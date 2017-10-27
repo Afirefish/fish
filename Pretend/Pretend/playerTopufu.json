@@ -1,0 +1,35 @@
+{
+	"content":
+	[
+		{
+			"step":1,
+			"choice":
+			[
+				{"index":0,"message":"喵喵喵？","nextStep":2},
+				{"index":1,"message":"哇，这里好漂亮！","nextStep":2},
+				{"index":2,"message":"喂，有人吗？","nextStep":2},
+				{"index":3,"message":"好累，我要睡一会。","nextStep":3}
+			]
+		},
+		{
+			"step":2,
+			"choice":
+			[
+				{"index":0,"message":"啊，原来有人在啊！","nextStep":1},
+				{"index":1,"message":"咦，这里是你的宫殿吗？","nextStep":1},
+				{"index":2,"message":"哇，突然出现！","nextStep":1},
+				{"index":3,"message":"呼，呼，呼。。","nextStep":1}
+			]
+		},
+		{
+			"step":3,
+			"choice":
+			[
+				{"index":0,"message":"嗯，似乎睡了好久了。。","nextStep":2},
+				{"index":1,"message":"谁啊。。我要睡觉。。","nextStep":2},
+				{"index":2,"message":"好困。。。","nextStep":2},
+				{"index":3,"message":"啊，你是谁？","nextStep":2}
+			]
+		}
+	]
+}

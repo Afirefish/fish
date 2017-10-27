@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface FirstCommunication : UIViewController
-
 + (instancetype)initWithFirstSence;
 
 @end

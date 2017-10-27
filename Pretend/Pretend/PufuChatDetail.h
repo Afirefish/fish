@@ -10,6 +10,7 @@
 #import "BaseChatDetail.h"
 
 @interface PufuChatDetail : BaseChatDetail
+
 @property (readonly,assign,nonatomic) NSUInteger pufuFinished;
 + (instancetype)pufuChatDetail;
 

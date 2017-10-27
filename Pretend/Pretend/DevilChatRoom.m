@@ -7,31 +7,21 @@
 //
 
 #import "DevilChatRoom.h"
-#import "BaseChatDetail.h"
+#import "ChatRoomMgr.h"
 #import "SantaChatDetail.h"
 #import "PufuChatDetail.h"
 #import "ChiziChatDetail.h"
 #import "TizaChatDetail.h"
+#import "ChatRoomCleared.h"
 
 @interface DevilChatRoom ()
 @property (strong,nonatomic) NSArray *devilNames;
 @property (strong,nonatomic) NSArray *devilImages;
-@property (assign,nonatomic) NSUInteger santaFinished;
-@property (assign,nonatomic) NSUInteger pufuFinished;
-@property (assign,nonatomic) NSUInteger chiziFinished;
-@property (assign,nonatomic) NSUInteger tizaFinished;
+@property (strong,nonatomic) ChatRoomMgr *chatRoomMgr;
 
 @end
 
 @implementation DevilChatRoom
-
-//设置恶魔名字，图片
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    self.navigationItem.hidesBackButton = YES;
-    self.title = @"DevilChat";
-    [self checkFinished];
-}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -46,6 +36,7 @@
     return devilChatCenter;
 }
 
+//初始化
 - (instancetype)initWithFirstState {
     if (self = [super init]) {
         self.devilNames = @[@"santa",@"pufu",@"chizi",@"tiza"];
@@ -53,24 +44,32 @@
                              [UIImage imageNamed:@"pufu.png"],
                              [UIImage imageNamed:@"chizi.png"],
                              [UIImage imageNamed:@"tiza.png"]];
-        self.santaFinished = 0;
-        self.pufuFinished = 0;
-        self.chiziFinished = 0;
-        self.tizaFinished = 0;
+        self.chatRoomMgr = [ChatRoomMgr defaultMgr];
     }
     return self;
 }
 
+//设置恶魔名字，图片
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    self.navigationItem.hidesBackButton = YES;
+    self.title = @"DevilChat";
+    [self checkFinished];
+}
+
+
 //检查完成状态
 - (void)checkFinished {
-    if (self.santaFinished == 100 && self.pufuFinished == 100 && self.chiziFinished == 100 && self.tizaFinished == 100) {
+    if ([self.chatRoomMgr checkComplete]) {
         [self complete];
     }
 }
 
 //全部完成之后的处理 ,可以用个模态框来实现跳转
 - (void)complete {
-    
+    [self.chatRoomMgr chatComplete];
+    ChatRoomCleared *cleared = [[ChatRoomCleared alloc] init];
+    [self.navigationController pushViewController:cleared animated:YES];
 }
 #pragma mark - Table view data source
 

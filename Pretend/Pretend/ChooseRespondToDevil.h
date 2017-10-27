@@ -10,5 +10,6 @@
 #import <UIKit/UIKit.h>
 
 @interface ChooseRespondToDevil : UIView
+@property (strong,nonatomic) UIButton *chooseRespond;//bar的响应按钮
 
 @end

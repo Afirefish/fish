@@ -8,8 +8,10 @@
 
 #import "FirstCommunication.h"
 #import "DevilChatRoom.h"
+#import "ChatRoomCleared.h"
 
 @interface FirstCommunication ()
+@property (strong,nonatomic) DevilChatRoom *selectChat;
 
 @end
 
@@ -39,18 +41,18 @@
             UILabel *startLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.view.bounds.size.width * 0.15, self.view.bounds.size.height * 0.2, self.view.bounds.size.width * 0.7, self.view.bounds.size.height * 0.2)];
             startLabel.text = @"Pretend";
             startLabel.font = [UIFont fontWithName:@"Courier-BoldOblique" size:48];
-            startLabel.backgroundColor = [UIColor colorWithRed:255.0/255 green:250.0/255 blue:240.0/255 alpha:1.0];
+            startLabel.backgroundColor = [UIColor clearColor];//[UIColor colorWithRed:255.0/255 green:250.0/255 blue:240.0/255 alpha:1.0];
             [self.view addSubview:startLabel];
             //开始的提示。。
             UILabel *startTipLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.view.bounds.size.width * 0.15, self.view.bounds.size.height * 0.7, self.view.bounds.size.width * 0.7, self.view.bounds.size.height * 0.2)];
             startTipLabel.text = @"touch anywhere to start";
             startTipLabel.font = [UIFont fontWithName:@"Courier" size:20];
-            startTipLabel.backgroundColor = [UIColor colorWithRed:255.0/255 green:250.0/255 blue:240.0/255 alpha:1.0];
+            startTipLabel.backgroundColor = [UIColor clearColor]; //[UIColor colorWithRed:255.0/255 green:250.0/255 blue:240.0/255 alpha:1.0];
             [self.view addSubview:startTipLabel];
             //跳过。。测试用
             UIButton *skipButton = [UIButton buttonWithType:UIButtonTypeSystem];
             skipButton.frame = CGRectMake(self.view.bounds.size.width * 0.8, self.view.bounds.size.height * 0.5, self.view.bounds.size.width * 0.2, self.view.bounds.size.height * 0.1);
-            skipButton.backgroundColor = [UIColor colorWithRed:255.0/255 green:250.0/255 blue:240.0/255 alpha:1.0];
+            skipButton.backgroundColor = [UIColor clearColor]; //[UIColor colorWithRed:255.0/255 green:250.0/255 blue:240.0/255 alpha:1.0];
             [skipButton setTitle:@"skip" forState:UIControlStateNormal];
             [skipButton addTarget:self action:@selector(skipToEnd) forControlEvents:UIControlEventTouchUpInside];
             [self.view addSubview:skipButton];
@@ -62,10 +64,20 @@
 //懒人专用 暂未实现
 - (void)skipToEnd {
     //emmmmmm.....
-    UIAlertController *firstAlert = [UIAlertController alertControllerWithTitle:@"咦，想跳过？" message:@"没门!" preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *firstComfirmAction = [UIAlertAction actionWithTitle:@"mdzz!" style:UIAlertActionStyleDefault handler:nil];
-    [firstAlert addAction:firstComfirmAction];
-    [self presentViewController:firstAlert animated:YES completion:nil];
+    UIAlertController *skipAlert = [UIAlertController alertControllerWithTitle:@"确定要跳过这里吗？" message:@"点击确定则会跳过这里的剧情，将无法获得稀有卡片！!" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *skipComfirmAction = [UIAlertAction actionWithTitle:@"确定跳过!" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [self showFinishScene];
+    }];
+    [skipAlert addAction:skipComfirmAction];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+    [skipAlert addAction:cancelAction];
+    [self presentViewController:skipAlert animated:YES completion:nil];
+}
+
+//通关场景
+- (void)showFinishScene {
+    ChatRoomCleared *cleared = [[ChatRoomCleared alloc] init];
+    [self.navigationController pushViewController:cleared animated:YES];
 }
 
 //响应触摸显示场景
@@ -89,8 +101,7 @@
 
 //显示具体的几个聊天房间
 - (void)showChatRoom {
-    DevilChatRoom *selectChat = [DevilChatRoom devilShowUp];
-    [self.navigationController pushViewController:selectChat animated:YES];
+    [self.navigationController pushViewController:self.selectChat animated:YES];
 }
 
 

@@ -10,4 +10,5 @@
 
 @interface SantaChatCell : BaseChatCell
 
+
 @end

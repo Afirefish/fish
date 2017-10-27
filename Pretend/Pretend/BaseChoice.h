@@ -6,9 +6,11 @@
 //  Copyright © 2017年 戴曦嘉. All rights reserved.
 //
 
-//基础的选项
+//玩家的选项
 #import <UIKit/UIKit.h>
 
 @interface BaseChoice : UITableViewCell
+
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier message:(NSString *)message;
 
 @end

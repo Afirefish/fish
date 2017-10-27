@@ -10,7 +10,7 @@
 #import "BaseChatDetail.h"
 
 @interface SantaChatDetail : BaseChatDetail
-@property (readonly,assign,nonatomic) NSUInteger santaFinished;
+
 + (instancetype)santaChatDetail;
 
 @end

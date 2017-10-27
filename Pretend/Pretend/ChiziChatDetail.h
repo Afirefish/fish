@@ -10,6 +10,7 @@
 #import "BaseChatDetail.h"
 
 @interface ChiziChatDetail : BaseChatDetail
+
 @property (readonly,assign,nonatomic) NSUInteger chiziFinished;
 + (instancetype)chiziChatDetail;
 

@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "PretendedViewController.h"
+#import "ChatRoomMgr.h"
 
 @interface AppDelegate ()
 
@@ -48,6 +49,8 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    ChatRoomMgr *chatRoomMgr = [ChatRoomMgr defaultMgr];
+    [chatRoomMgr writeToFile];
 }
 
 

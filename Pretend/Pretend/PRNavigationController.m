@@ -6,7 +6,6 @@
 //  Copyright © 2017年 戴曦嘉. All rights reserved.
 //
 
-//第一个视图的导航控制器
 #import "PRNavigationController.h"
 
 @interface PRNavigationController ()
@@ -31,6 +30,9 @@
 - (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated {
     if (self.viewControllers.count > 0) {
         viewController.hidesBottomBarWhenPushed = YES;
+    }
+    if ([viewController isKindOfClass:NSClassFromString(@"ChatRoomCleared")]) {
+        viewController.hidesBottomBarWhenPushed = NO;
     }
     [super pushViewController:viewController animated:animated];
 }

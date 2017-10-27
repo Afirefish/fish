@@ -1,0 +1,35 @@
+{
+	"content":
+	[
+		{
+			"step":1,
+			"choice":
+			[
+				{"index":0,"message":"又是一个新的风格的建筑啊（习惯了各种风格建筑的自己已经没有什么好害怕的啦！）","nextStep":2},
+				{"index":1,"message":"噫，好血腥的气息。。。","nextStep":2},
+				{"index":2,"message":"这又是一个什么大恶魔嘛。。？","nextStep":2},
+				{"index":3,"message":"到底怎么才能回去啊，我已经厌烦了！","nextStep":3}
+			]
+		},
+		{
+			"step":2,
+			"choice":
+			[
+				{"index":0,"message":"我是***，嘛，想来你也知道了，你又是谁？","nextStep":1},
+				{"index":1,"message":"噗！（眼中交织着震惊和疼痛，鲜血染红了胸前已经破旧不堪的衣服，半跪在了地上）","nextStep":1},
+				{"index":2,"message":"我趁机探索一下这里没什么问题吧。。？（抱着有些忐忑的心情，开始了探索）","nextStep":1},
+				{"index":3,"message":"- -！晕了！","nextStep":1}
+			]
+		},
+		{
+			"step":3,
+			"choice":
+			[
+				{"index":0,"message":"啧！（以毫厘之差滚开垂直的攻击，取出之前获得的小匕首，紧紧盯着眼前的凶兽）","nextStep":2},
+				{"index":1,"message":"不要啊！（紧紧抱头蹲下）","nextStep":2},
+				{"index":2,"message":"哇，我什么都没做啊！","nextStep":2},
+				{"index":3,"message":"santa！不是说不会杀我的吗？","nextStep":2}
+			]
+		}
+	]
+}

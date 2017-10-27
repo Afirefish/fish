@@ -10,6 +10,6 @@
 #import <UIKit/UIKit.h>
 
 @interface BaseChatCell : UITableViewCell
-- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier devil:(BOOL)isDevil;
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier devil:(BOOL)isDevil message:(NSString *)message respond:(NSString *)respond;//重写的cell的初始化函数
 
 @end
