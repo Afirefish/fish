@@ -48,7 +48,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.chiziMgr = [ChiziMgr defaultMgr];
-    self.chiziFinished = self.chiziMgr.chiziFinished;
+    //self.previousStep = self.chiziMgr.previousStep;
+    //self.chiziFinished = self.chiziMgr.chiziFinished;
     [self jsonData:@"chizi"];
     self.allCellHeight = [[NSMutableArray alloc] init];
 }
@@ -143,7 +144,6 @@
             NSNumber *height = [NSNumber numberWithFloat:cellRect.size.height + kCellGap];
             if ([self.allCellHeight count] < self.nodeNumber) {//将正确的高度存入数组
                 [self.allCellHeight addObject:height];
-                NSLog(@"height?---%f",cellRect.size.height);
             }
         }
         CGFloat cellHeight = [[self.allCellHeight objectAtIndex:indexPath.section] floatValue];//每次重新加载时，除了最后的cell，高度直接从数组里获取

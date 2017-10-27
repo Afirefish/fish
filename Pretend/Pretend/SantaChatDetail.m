@@ -49,8 +49,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.santaMgr = [SantaMgr defaultMgr];
-    self.previousStep = self.santaMgr.previousStep;
-    self.santaFinished = self.santaMgr.santaFinished;
+    //self.previousStep = self.santaMgr.previousStep;
+    //self.santaFinished = self.santaMgr.santaFinished;
     [self jsonData:@"santa"];
     self.allCellHeight = [[NSMutableArray alloc] init];
 }

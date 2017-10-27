@@ -49,7 +49,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.pufuMgr = [PufuMgr defaultMgr];
-    self.pufuFinished = self.pufuMgr.pufuFinished;
+    //self.previousStep = self.pufuMgr.previousStep;
+    //self.pufuFinished = self.pufuMgr.pufuFinished;
     [self jsonData:@"pufu"];
     self.allCellHeight = [[NSMutableArray alloc] init];
 }

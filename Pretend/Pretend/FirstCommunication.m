@@ -96,11 +96,14 @@
         [self showChatRoom];
     }];
     [firstAlert addAction:firstComfirmAction];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"容我考虑一下" style:UIAlertActionStyleCancel handler:nil];
+    [firstAlert addAction:cancelAction];
     [self presentViewController:firstAlert animated:YES completion:nil];
 }
 
 //显示具体的几个聊天房间
 - (void)showChatRoom {
+    self.selectChat = [DevilChatRoom devilShowUp];
     [self.navigationController pushViewController:self.selectChat animated:YES];
 }
 
