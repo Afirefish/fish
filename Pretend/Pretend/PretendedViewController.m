@@ -7,8 +7,11 @@
 //
 
 #import "PretendedViewController.h"
+#import "ChatRoomMgr.h"
 #import "PRNavigationController.h"
 #import "FirstCommunication.h"
+#import "ChatRoomCleared.h"
+#import "DCNavigationController.h"
 #import "DevilCard.h"
 #import "DevilRoom.h"
 #import "TrueWorld.h"
@@ -24,18 +27,23 @@
     // Do any additional setup after loading the view.
     self.tabBar.tintColor = [UIColor blackColor];
     NSMutableArray *childViewControllers = [[NSMutableArray alloc] init];
+    //NSLog(@"file path %@",[[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:@"chatRoom.txt"]);
     //第一个视图
-    FirstCommunication *firstCommunication = [FirstCommunication initWithFirstSence];
-    PRNavigationController *fall = [[PRNavigationController alloc] initWithRootViewController:firstCommunication];
-    [childViewControllers addObject:fall];
+    ChatRoomMgr *chatMgr = [ChatRoomMgr defaultMgr];
+    NSLog(@"chat finish %@",chatMgr.chatFinished?@"yes":@"no");
+    if (chatMgr.chatFinished == YES) {
+        ChatRoomCleared *chatCleared = [[ChatRoomCleared alloc] init];
+        PRNavigationController *fall = [[PRNavigationController alloc] initWithRootViewController:chatCleared];
+        [childViewControllers addObject:fall];
+    } else {
+        FirstCommunication *firstCommunication = [FirstCommunication initWithFirstSence];
+        PRNavigationController *fall = [[PRNavigationController alloc] initWithRootViewController:firstCommunication];
+        [childViewControllers addObject:fall];
+    }
     //第二个视图
     DevilCard *devilCard = [[DevilCard alloc] init];
-    [devilCard loadViewIfNeeded];
-    devilCard.view.backgroundColor = [UIColor colorWithRed:220.0/255 green:220.0/255 blue:220.0/255 alpha:1.0];
-    devilCard.tabBarItem.image = [[UIImage imageNamed:@"devilCard"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    devilCard.tabBarItem.selectedImage = [[UIImage imageNamed:@"devilCard"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    devilCard.tabBarItem.title = [NSString stringWithFormat:@"Card"];
-    [childViewControllers addObject:devilCard];
+    DCNavigationController *dcNC = [[DCNavigationController alloc] initWithRootViewController:devilCard];
+    [childViewControllers addObject:dcNC];
     //第三个视图
     DevilRoom *devilRoom = [[DevilRoom alloc] init];
     [devilRoom loadViewIfNeeded];

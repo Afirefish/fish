@@ -17,5 +17,6 @@
 - (void)saveCardInfo:(id)arg1;
 - (void)saveStep:(NSUInteger)arg1;
 - (void)savePreviousStep:(NSUInteger)arg1;
-
+- (void)saveToFile;
+- (void)resetPufu;
 @end

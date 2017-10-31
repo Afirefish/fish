@@ -17,6 +17,6 @@
 @property (strong,nonatomic) NSMutableSet *PuriCards;//存储直接从文件中获得的主角的卡牌
 + (instancetype)defaultMgr;
 - (void)presentCardInfo:(NSUInteger)sequence;//显示某一张卡牌的信息
-- (void)BattleStart:(NSUInteger)devilID;
+- (void)BattleStart:(NSUInteger)devilID;//开始对战
 - (void)loadDevilCard:(NSInteger)devilID;//加载恶魔的卡牌
 @end

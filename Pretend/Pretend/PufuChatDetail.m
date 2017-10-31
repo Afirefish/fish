@@ -13,7 +13,7 @@
 #import "ChooseRespondToPufu.h"
 #import "PufuChoice.h"
 
-#define kCellWidth 300
+#define kCellWidth 250
 #define kCellGap 20
 
 //似乎是比较温和的女性恶魔，拥有时光之力？？强大的实力毋庸置疑
@@ -39,8 +39,8 @@
     static PufuChatDetail *pufuChatDetail = nil;
     if (pufuChatDetail == nil) {
         pufuChatDetail = [[PufuChatDetail alloc] init];
-        pufuChatDetail.previousStep = 1;
-        pufuChatDetail.pufuFinished = 1;
+        //pufuChatDetail.previousStep = 1;
+        //pufuChatDetail.pufuFinished = 1;
     }
     return pufuChatDetail;
 }
@@ -48,9 +48,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.navigationItem.title = @"Pufu";
     self.pufuMgr = [PufuMgr defaultMgr];
-    //self.previousStep = self.pufuMgr.previousStep;
-    //self.pufuFinished = self.pufuMgr.pufuFinished;
+    self.previousStep = self.pufuMgr.previousStep;
+    self.pufuFinished = self.pufuMgr.pufuFinished;
     [self jsonData:@"pufu"];
     self.allCellHeight = [[NSMutableArray alloc] init];
 }
@@ -135,12 +136,12 @@
                         self.pufuArr = [dic objectForKey:@"respond"];
                         self.pufuDic = [self.pufuArr objectAtIndex:self.choiceIndex];
                         self.pufuRespond = [self.pufuDic objectForKey:@"message"];
-                        cellRect = [self.pufuRespond boundingRectWithSize:CGSizeMake(kCellWidth, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading | NSStringDrawingUsesDeviceMetrics attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:17]} context:nil];
+                        cellRect = [self.pufuRespond boundingRectWithSize:CGSizeMake(self.view.bounds.size.width * 0.7, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading | NSStringDrawingUsesDeviceMetrics attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:17]} context:nil];
                         break;
                     }
                 }
             } else {
-                cellRect = [self.playerChoice boundingRectWithSize:CGSizeMake(kCellWidth, MAXFLOAT) options:NSStringDrawingUsesFontLeading |NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesDeviceMetrics attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:17]} context:nil];
+                cellRect = [self.playerChoice boundingRectWithSize:CGSizeMake(self.view.bounds.size.width * 0.7, MAXFLOAT) options:NSStringDrawingUsesFontLeading |NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesDeviceMetrics attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:17]} context:nil];
             }
             NSNumber *height = [NSNumber numberWithFloat:cellRect.size.height + kCellGap];
             if ([self.allCellHeight count] < self.nodeNumber) {//将正确的高度存入数组
@@ -157,7 +158,7 @@
                 self.choiceArr = [dic objectForKey:@"choice"];
                 self.choiceDic = [self.choiceArr objectAtIndex:indexPath.row];
                 self.choiceContent = [self.choiceDic objectForKey:@"message"];
-                cellRect = [self.choiceContent boundingRectWithSize:CGSizeMake(kCellWidth, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading | NSStringDrawingUsesDeviceMetrics attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:17]} context:nil];
+                cellRect = [self.choiceContent boundingRectWithSize:CGSizeMake(self.view.bounds.size.width * 0.7, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading | NSStringDrawingUsesDeviceMetrics attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:17]} context:nil];
                 break;
             }
         }

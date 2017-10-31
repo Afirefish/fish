@@ -7,6 +7,7 @@
 //
 
 #import "FirstCommunication.h"
+#import "ChatRoomMgr.h"
 #import "DevilChatRoom.h"
 #import "ChatRoomCleared.h"
 
@@ -34,7 +35,8 @@
 - (instancetype)initWithSence:(NSInteger)step {
     if(self = [super init]) {
         if (step == 1) {
-            self.title = @"The unconscious fall";
+            self.navigationItem.hidesBackButton = YES;
+            self.navigationItem.title = @"The unconscious fall";
             self.view.backgroundColor = [UIColor colorWithRed:255.0/255 green:250.0/255 blue:240.0/255 alpha:1.0];
             NSLog(@"height---%f,width ----%f",self.view.bounds.size.height,self.view.bounds.size.width);
             //标题的标签
@@ -46,7 +48,7 @@
             //开始的提示。。
             UILabel *startTipLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.view.bounds.size.width * 0.15, self.view.bounds.size.height * 0.7, self.view.bounds.size.width * 0.7, self.view.bounds.size.height * 0.2)];
             startTipLabel.text = @"touch anywhere to start";
-            startTipLabel.font = [UIFont fontWithName:@"Courier" size:20];
+            startTipLabel.font = [UIFont fontWithName:@"Courier" size:16];
             startTipLabel.backgroundColor = [UIColor clearColor]; //[UIColor colorWithRed:255.0/255 green:250.0/255 blue:240.0/255 alpha:1.0];
             [self.view addSubview:startTipLabel];
             //跳过。。测试用
@@ -61,7 +63,7 @@
     return self;
 }
 
-//懒人专用 暂未实现
+//懒人专用
 - (void)skipToEnd {
     //emmmmmm.....
     UIAlertController *skipAlert = [UIAlertController alertControllerWithTitle:@"确定要跳过这里吗？" message:@"点击确定则会跳过这里的剧情，将无法获得稀有卡片！!" preferredStyle:UIAlertControllerStyleAlert];
@@ -76,8 +78,11 @@
 
 //通关场景
 - (void)showFinishScene {
+    ChatRoomMgr *mainMgr = [ChatRoomMgr defaultMgr];
+    [mainMgr chatComplete];
     ChatRoomCleared *cleared = [[ChatRoomCleared alloc] init];
     [self.navigationController pushViewController:cleared animated:YES];
+    //[self presentViewController:cleared animated:YES completion:nil];
 }
 
 //响应触摸显示场景

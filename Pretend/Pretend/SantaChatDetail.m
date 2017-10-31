@@ -13,7 +13,7 @@
 #import "ChooseRespondToSanta.h"
 #import "SantaChoice.h"
 
-#define kCellWidth 300
+#define kCellWidth 250
 #define kCellGap 20
 
 //说话语气很凶，但是实际是个很好的家伙，没有固定的居住地，偶尔会去chizi的宫殿呆着
@@ -39,8 +39,8 @@
     static SantaChatDetail *santaChatDetail = nil;
     if (santaChatDetail == nil) {
         santaChatDetail = [[SantaChatDetail alloc] init];
-        santaChatDetail.previousStep = 1;
-        santaChatDetail.santaFinished = 1;
+        //santaChatDetail.previousStep = 1;
+        //santaChatDetail.santaFinished = 1;
     }
     return santaChatDetail;
 }
@@ -48,9 +48,10 @@
 //解析json，初始化高度
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.navigationItem.title = @"Santa";
     self.santaMgr = [SantaMgr defaultMgr];
-    //self.previousStep = self.santaMgr.previousStep;
-    //self.santaFinished = self.santaMgr.santaFinished;
+    self.previousStep = self.santaMgr.previousStep;
+    self.santaFinished = self.santaMgr.santaFinished;
     [self jsonData:@"santa"];
     self.allCellHeight = [[NSMutableArray alloc] init];
 }
@@ -135,12 +136,12 @@
                         self.santaArr = [dic objectForKey:@"respond"];
                         self.santaDic = [self.santaArr objectAtIndex:self.choiceIndex];
                         self.santaRespond = [self.santaDic objectForKey:@"message"];
-                        cellRect = [self.santaRespond boundingRectWithSize:CGSizeMake(kCellWidth, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading | NSStringDrawingUsesDeviceMetrics attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:17]} context:nil];
+                        cellRect = [self.santaRespond boundingRectWithSize:CGSizeMake(self.view.bounds.size.width * 0.7, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading | NSStringDrawingUsesDeviceMetrics attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:17]} context:nil];
                         break;
                     }
                 }
             } else {
-                cellRect = [self.playerChoice boundingRectWithSize:CGSizeMake(kCellWidth, MAXFLOAT) options:NSStringDrawingUsesFontLeading |NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesDeviceMetrics attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:17]} context:nil];
+                cellRect = [self.playerChoice boundingRectWithSize:CGSizeMake(self.view.bounds.size.width * 0.7, MAXFLOAT) options:NSStringDrawingUsesFontLeading |NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesDeviceMetrics attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:17]} context:nil];
             }
             NSNumber *height = [NSNumber numberWithFloat:cellRect.size.height + kCellGap];
             if ([self.allCellHeight count] < self.nodeNumber) {//将正确的高度存入数组
@@ -157,7 +158,7 @@
                 self.choiceArr = [dic objectForKey:@"choice"];
                 self.choiceDic = [self.choiceArr objectAtIndex:indexPath.row];
                 self.choiceContent = [self.choiceDic objectForKey:@"message"];
-                cellRect = [self.choiceContent boundingRectWithSize:CGSizeMake(kCellWidth, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading | NSStringDrawingUsesDeviceMetrics attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:17]} context:nil];
+                cellRect = [self.choiceContent boundingRectWithSize:CGSizeMake(self.view.bounds.size.width * 0.7, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading | NSStringDrawingUsesDeviceMetrics attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:17]} context:nil];
                 break;
             }
         }

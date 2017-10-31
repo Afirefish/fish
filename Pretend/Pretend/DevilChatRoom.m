@@ -53,8 +53,21 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.hidesBackButton = YES;
+    self.view.backgroundColor = [UIColor colorWithRed:255.0/255 green:250.0/255 blue:240.0/255 alpha:1.0];
+    UIButton *saveBtn = [UIButton buttonWithType:UIButtonTypeSystem];
+    saveBtn.frame = CGRectMake(0, 0, 50, 50);
+    [saveBtn setTitle:@"save" forState:UIControlStateNormal];
+    [saveBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    saveBtn.titleLabel.font = [UIFont systemFontOfSize:16];
+    [saveBtn addTarget:self action:@selector(saveToFile) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *saveItem = [[UIBarButtonItem alloc] initWithCustomView:saveBtn];
+    self.navigationItem.rightBarButtonItem = saveItem;
     self.title = @"DevilChat";
     [self checkFinished];
+}
+
+- (void)saveToFile {//保存
+    [self.chatRoomMgr writeToFile];
 }
 
 
@@ -70,6 +83,7 @@
     [self.chatRoomMgr chatComplete];
     ChatRoomCleared *cleared = [[ChatRoomCleared alloc] init];
     [self.navigationController pushViewController:cleared animated:YES];
+    //[self presentViewController:cleared animated:YES completion:nil];
 }
 #pragma mark - Table view data source
 

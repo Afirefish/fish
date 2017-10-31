@@ -63,6 +63,11 @@
 		38C76CBD1FA1B4F500BCBCB9 /* Crafter.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C76CBC1FA1B4F500BCBCB9 /* Crafter.m */; };
 		38C76CC01FA1B62400BCBCB9 /* Puri.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C76CBF1FA1B62400BCBCB9 /* Puri.m */; };
 		38C76CC31FA1B65900BCBCB9 /* Devil.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C76CC21FA1B65900BCBCB9 /* Devil.m */; };
+		38C76CD91FA7561A00BCBCB9 /* DCNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C76CD81FA7561A00BCBCB9 /* DCNavigationController.m */; };
+		38C76CDC1FA7568B00BCBCB9 /* CardFeastViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C76CDB1FA7568B00BCBCB9 /* CardFeastViewController.m */; };
+		38C76CDF1FA8493E00BCBCB9 /* UIImage+Rotate.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C76CDE1FA8493E00BCBCB9 /* UIImage+Rotate.m */; };
+		38C76CE51FA8550300BCBCB9 /* FeastView.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C76CE41FA8550300BCBCB9 /* FeastView.m */; };
+		38C76CEB1FA867D600BCBCB9 /* BaseCardCraftViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C76CEA1FA867D600BCBCB9 /* BaseCardCraftViewController.m */; };
 		38CEAA6E1F8BA0B600BC72EC /* santa.json in Resources */ = {isa = PBXBuildFile; fileRef = 38CEAA6D1F8BA0B600BC72EC /* santa.json */; };
 		38CEAA701F8BA0E800BC72EC /* playerTosanta.json in Resources */ = {isa = PBXBuildFile; fileRef = 38CEAA6F1F8BA0E800BC72EC /* playerTosanta.json */; };
 /* End PBXBuildFile section */
@@ -191,6 +196,16 @@
 		38C76CBF1FA1B62400BCBCB9 /* Puri.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Puri.m; sourceTree = "<group>"; };
 		38C76CC11FA1B65900BCBCB9 /* Devil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Devil.h; sourceTree = "<group>"; };
 		38C76CC21FA1B65900BCBCB9 /* Devil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Devil.m; sourceTree = "<group>"; };
+		38C76CD71FA7561A00BCBCB9 /* DCNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCNavigationController.h; sourceTree = "<group>"; };
+		38C76CD81FA7561A00BCBCB9 /* DCNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCNavigationController.m; sourceTree = "<group>"; };
+		38C76CDA1FA7568B00BCBCB9 /* CardFeastViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardFeastViewController.h; sourceTree = "<group>"; };
+		38C76CDB1FA7568B00BCBCB9 /* CardFeastViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardFeastViewController.m; sourceTree = "<group>"; };
+		38C76CDD1FA8493E00BCBCB9 /* UIImage+Rotate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Rotate.h"; sourceTree = "<group>"; };
+		38C76CDE1FA8493E00BCBCB9 /* UIImage+Rotate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Rotate.m"; sourceTree = "<group>"; };
+		38C76CE31FA8550300BCBCB9 /* FeastView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeastView.h; sourceTree = "<group>"; };
+		38C76CE41FA8550300BCBCB9 /* FeastView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeastView.m; sourceTree = "<group>"; };
+		38C76CE91FA867D600BCBCB9 /* BaseCardCraftViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseCardCraftViewController.h; sourceTree = "<group>"; };
+		38C76CEA1FA867D600BCBCB9 /* BaseCardCraftViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseCardCraftViewController.m; sourceTree = "<group>"; };
 		38CEAA6D1F8BA0B600BC72EC /* santa.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = santa.json; sourceTree = "<group>"; };
 		38CEAA6F1F8BA0E800BC72EC /* playerTosanta.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = playerTosanta.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -393,6 +408,7 @@
 		388971D91F8B235E0061234F /* First Sence */ = {
 			isa = PBXGroup;
 			children = (
+				38C76CD01FA71F8700BCBCB9 /* view */,
 				38C76C9F1FA184C800BCBCB9 /* model */,
 				38C76C941FA07B3500BCBCB9 /* controller */,
 				388971DA1F8B23C80061234F /* Base Detail */,
@@ -576,8 +592,14 @@
 		38C76CB31FA1B16800BCBCB9 /* controller */ = {
 			isa = PBXGroup;
 			children = (
+				38C76CD71FA7561A00BCBCB9 /* DCNavigationController.h */,
+				38C76CD81FA7561A00BCBCB9 /* DCNavigationController.m */,
 				3801A04B1F7B4404006C3D18 /* DevilCard.h */,
 				3801A04C1F7B4404006C3D18 /* DevilCard.m */,
+				38C76CDA1FA7568B00BCBCB9 /* CardFeastViewController.h */,
+				38C76CDB1FA7568B00BCBCB9 /* CardFeastViewController.m */,
+				38C76CE91FA867D600BCBCB9 /* BaseCardCraftViewController.h */,
+				38C76CEA1FA867D600BCBCB9 /* BaseCardCraftViewController.m */,
 			);
 			name = controller;
 			sourceTree = "<group>";
@@ -595,11 +617,22 @@
 				38C76CC21FA1B65900BCBCB9 /* Devil.m */,
 				38C76CB81FA1B2B800BCBCB9 /* DevilCardInfo.h */,
 				38C76CB91FA1B2B800BCBCB9 /* DevilCardInfo.m */,
+				38C76CDD1FA8493E00BCBCB9 /* UIImage+Rotate.h */,
+				38C76CDE1FA8493E00BCBCB9 /* UIImage+Rotate.m */,
 			);
 			name = model;
 			sourceTree = "<group>";
 		};
 		38C76CC41FA1CBB900BCBCB9 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				38C76CE31FA8550300BCBCB9 /* FeastView.h */,
+				38C76CE41FA8550300BCBCB9 /* FeastView.m */,
+			);
+			name = view;
+			sourceTree = "<group>";
+		};
+		38C76CD01FA71F8700BCBCB9 /* view */ = {
 			isa = PBXGroup;
 			children = (
 			);
@@ -757,6 +790,7 @@
 				38C76C841FA06B4C00BCBCB9 /* TizaChatCell.m in Sources */,
 				388442AF1F8CA765005C9044 /* ChooseRespondToPufu.m in Sources */,
 				3876A7EA1F8DC772008A20C9 /* ChooseRespondToChizi.m in Sources */,
+				38C76CE51FA8550300BCBCB9 /* FeastView.m in Sources */,
 				3801A04A1F7B43CF006C3D18 /* FirstCommunication.m in Sources */,
 				3801A0591F7C88F1006C3D18 /* PRNavigationController.m in Sources */,
 				38C76CB21FA19CD300BCBCB9 /* TizaMgr.m in Sources */,
@@ -767,6 +801,7 @@
 				388442B21F8CA7B7005C9044 /* PufuChoice.m in Sources */,
 				3801A0171F7A76B0006C3D18 /* main.m in Sources */,
 				3801A0771F7E3BF6006C3D18 /* BaseChatCell.m in Sources */,
+				38C76CEB1FA867D600BCBCB9 /* BaseCardCraftViewController.m in Sources */,
 				388442AC1F8CA723005C9044 /* PufuChatCell.m in Sources */,
 				38C76CA61FA1901700BCBCB9 /* SantaMgr.m in Sources */,
 				38C76CC01FA1B62400BCBCB9 /* Puri.m in Sources */,
@@ -778,12 +813,15 @@
 				38C76C811FA06B2900BCBCB9 /* TizaDevilChatContent.m in Sources */,
 				3801A0801F7F3054006C3D18 /* ChiziChatDetail.m in Sources */,
 				38C76CBA1FA1B2B800BCBCB9 /* DevilCardInfo.m in Sources */,
+				38C76CD91FA7561A00BCBCB9 /* DCNavigationController.m in Sources */,
+				38C76CDC1FA7568B00BCBCB9 /* CardFeastViewController.m in Sources */,
 				38C76CC31FA1B65900BCBCB9 /* Devil.m in Sources */,
 				38C76C871FA06B7100BCBCB9 /* ChooseRespondToTiza.m in Sources */,
 				3801A0501F7B4423006C3D18 /* DevilRoom.m in Sources */,
 				3801A0561F7B5CB3006C3D18 /* PretendedViewController.m in Sources */,
 				3876A7E41F8DC681008A20C9 /* ChiziDevilChatContent.m in Sources */,
 				38C76CBD1FA1B4F500BCBCB9 /* Crafter.m in Sources */,
+				38C76CDF1FA8493E00BCBCB9 /* UIImage+Rotate.m in Sources */,
 				3801A0531F7B4439006C3D18 /* TrueWorld.m in Sources */,
 				3876A7ED1F8DC79D008A20C9 /* ChiziChoice.m in Sources */,
 				3801A0651F7E0F9D006C3D18 /* BaseChatDetail.m in Sources */,
@@ -945,6 +983,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 9SKD7V45UT;
 				INFOPLIST_FILE = Pretend/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = daixijia.Pretend;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -957,6 +996,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 9SKD7V45UT;
 				INFOPLIST_FILE = Pretend/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = daixijia.Pretend;
 				PRODUCT_NAME = "$(TARGET_NAME)";

@@ -17,6 +17,7 @@
 @property (strong,nonatomic) PufuMgr *pufu;
 @property (strong,nonatomic) ChiziMgr *chizi;
 @property (strong,nonatomic) TizaMgr *tiza;
+@property (strong,nonatomic) NSString *filePath;
 
 @end
 
@@ -42,12 +43,53 @@
     return self;
 }
 
-- (void)loadFromFile {
-    
+- (BOOL)isFileFirstCreated {//设定好文件的存储位置，判断是否创建了文件
+    NSString *docPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+    self.filePath = [docPath stringByAppendingPathComponent:@"chatRoom.txt"];
+    NSLog(@"main file path %@",self.filePath);
+    NSFileManager *fileMgr = [NSFileManager defaultManager];
+    if (![fileMgr fileExistsAtPath:self.filePath]) {
+        [fileMgr createFileAtPath:self.filePath contents:nil attributes:nil];
+        return YES;
+    } else {
+        return NO;
+    }
 }
 
-- (void)writeToFile {
-    
+- (void)loadFromFile {//读取文件中信息
+    if ([self isFileFirstCreated]) {
+        self.chatFinished = NO;
+    } else {
+        NSDictionary *dic = [NSDictionary dictionaryWithContentsOfFile:self.filePath];
+        NSLog(@"what this %@",dic);
+        if (dic == nil) {
+            self.chatFinished = NO;
+            NSLog(@"there?");
+            return;
+        }
+        NSLog(@"here?");
+        NSString *finish = [dic objectForKey:@"finish"];
+        if ([finish isEqualToString:@"YES"]) {
+            self.chatFinished = YES;
+        } else {
+            self.chatFinished = NO;
+        }
+        self.cards = [dic objectForKey:@"cards"];
+    }
+}
+
+- (void)writeToFile {//存入文件
+    if ([self isFileFirstCreated]) {
+        NSLog(@"main file create");
+    }
+    [self.santa saveToFile];
+    [self.pufu saveToFile];
+    [self.chizi saveToFile];
+    [self.tiza saveToFile];
+    NSString *finish = self.chatFinished?@"YES":@"NO";
+    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:finish,@"finish",self.cards,@"cards",nil];
+    NSLog(@"save main dic %@",dic);
+    [dic writeToFile:self.filePath atomically:YES];
 }
 
 
@@ -88,5 +130,18 @@
     [self.cards unionSet:self.tiza.cards];
     NSLog(@"now the cards set %@",self.cards);
     [self writeToFile];
+}
+
+
+- (void)reSet {//重置游戏
+    [self.santa resetSanta];
+    [self.pufu resetPufu];
+    [self.chizi resetChizi];
+    [self.tiza resetTiza];
+    NSString *start = @"NO";
+    self.cards = nil;
+    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:start,@"finish",self.cards,@"cards",nil];
+    NSLog(@"reset game %@",dic);
+    [dic writeToFile:self.filePath atomically:YES];
 }
 @end

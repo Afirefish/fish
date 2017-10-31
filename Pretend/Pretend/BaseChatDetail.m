@@ -23,6 +23,7 @@
 //初始化聊天节点数，
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.navigationController.navigationBar.tintColor = [UIColor blackColor];
     self.chatRoomMgr = [ChatRoomMgr defaultMgr];
     self.nodeNumber = 0;
     self.isDevil = NO;

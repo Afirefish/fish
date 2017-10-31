@@ -13,7 +13,7 @@
 #import "ChooseRespondToChizi.h"
 #import "ChiziChoice.h"
 
-#define kCellWidth 300
+#define kCellWidth 250
 #define kCellGap 20
 
 //设定为比较残忍的人，和santa很合得来，拥有最强大的近战攻击力
@@ -38,8 +38,8 @@
     static ChiziChatDetail *chiziChatDetail = nil;
     if (chiziChatDetail  == nil) {
         chiziChatDetail = [[ChiziChatDetail alloc] init];
-        chiziChatDetail.previousStep = 1;
-        chiziChatDetail.chiziFinished = 1;
+        //chiziChatDetail.previousStep = 1;
+        //chiziChatDetail.chiziFinished = 1;
     }
     return chiziChatDetail;
 }
@@ -47,9 +47,10 @@
 //解析json，初始化高度
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.navigationItem.title = @"Chizi";
     self.chiziMgr = [ChiziMgr defaultMgr];
-    //self.previousStep = self.chiziMgr.previousStep;
-    //self.chiziFinished = self.chiziMgr.chiziFinished;
+    self.previousStep = self.chiziMgr.previousStep;
+    self.chiziFinished = self.chiziMgr.chiziFinished;
     [self jsonData:@"chizi"];
     self.allCellHeight = [[NSMutableArray alloc] init];
 }
@@ -134,12 +135,12 @@
                         self.chiziArr = [dic objectForKey:@"respond"];
                         self.chiziDic = [self.chiziArr objectAtIndex:self.choiceIndex];
                         self.chiziRespond = [self.chiziDic objectForKey:@"message"];
-                        cellRect = [self.chiziRespond boundingRectWithSize:CGSizeMake(kCellWidth, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading | NSStringDrawingUsesDeviceMetrics attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:17]} context:nil];
+                        cellRect = [self.chiziRespond boundingRectWithSize:CGSizeMake(self.view.bounds.size.width * 0.7, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading | NSStringDrawingUsesDeviceMetrics attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:17]} context:nil];
                         break;
                     }
                 }
             } else {
-                cellRect = [self.playerChoice boundingRectWithSize:CGSizeMake(kCellWidth, MAXFLOAT) options:NSStringDrawingUsesFontLeading | NSStringDrawingUsesLineFragmentOrigin  attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:17]} context:nil];
+                cellRect = [self.playerChoice boundingRectWithSize:CGSizeMake(self.view.bounds.size.width * 0.7, MAXFLOAT) options:NSStringDrawingUsesFontLeading | NSStringDrawingUsesLineFragmentOrigin  attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:17]} context:nil];
             }
             NSNumber *height = [NSNumber numberWithFloat:cellRect.size.height + kCellGap];
             if ([self.allCellHeight count] < self.nodeNumber) {//将正确的高度存入数组
@@ -156,7 +157,7 @@
                 self.choiceArr = [dic objectForKey:@"choice"];
                 self.choiceDic = [self.choiceArr objectAtIndex:indexPath.row];
                 self.choiceContent = [self.choiceDic objectForKey:@"message"];
-                cellRect = [self.choiceContent boundingRectWithSize:CGSizeMake(kCellWidth, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading | NSStringDrawingUsesDeviceMetrics attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:17]} context:nil];
+                cellRect = [self.choiceContent boundingRectWithSize:CGSizeMake(self.view.bounds.size.width * 0.7, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading | NSStringDrawingUsesDeviceMetrics attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:17]} context:nil];
                 break;
             }
         }

@@ -20,4 +20,5 @@
 - (void)saveAllCards;
 - (void)chatComplete;
 - (BOOL)checkComplete;
+- (void)reSet;
 @end
