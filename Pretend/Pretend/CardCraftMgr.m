@@ -25,6 +25,7 @@
 - (instancetype)initWithFile {//从文件中加载数据，初始化主角的卡牌
     if (self = [super init]) {
         [self loadFromFile];
+        self.craftFinished = YES;
         self.PuriCrafter = [[Puri alloc] init];
     }
     return self;

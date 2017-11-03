@@ -11,6 +11,7 @@
 #import "DevilCard.h"
 #import "ChatRoomMgr.h"
 #import "DCNavigationController.h"
+#import "CardSortViewController.h"
 #import "CardFeastViewController.h"
 
 @interface DevilCard ()
@@ -24,14 +25,29 @@
     // Do any additional setup after loading the view.
     self.navigationItem.title = @"Devil Card";
     self.view.backgroundColor = [UIColor colorWithRed:220.0/255 green:220.0/255 blue:220.0/255 alpha:1.0];
+    //进入会场
     UIButton *enterBtn = [UIButton buttonWithType:UIButtonTypeSystem];
     enterBtn.frame = CGRectMake(self.view.bounds.size.width * 0.4, self.view.bounds.size.height * 0.4, self.view.bounds.size.width * 0.2, self.view.bounds.size.height * 0.2);
-    enterBtn.backgroundColor = [UIColor clearColor]; //[UIColor colorWithRed:255.0/255 green:250.0/255 blue:240.0/255 alpha:1.0];
+    enterBtn.backgroundColor = [UIColor clearColor];
     [enterBtn setTitle:@"Enter" forState:UIControlStateNormal];
     enterBtn.titleLabel.font = [UIFont systemFontOfSize:24];
     [enterBtn setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
     [enterBtn addTarget:self action:@selector(enterCardFeast) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:enterBtn];
+    //卡牌整理
+    UIButton *sortBtn = [UIButton buttonWithType:UIButtonTypeSystem];
+    sortBtn.frame = CGRectMake(self.view.bounds.size.width * 0.2, self.view.bounds.size.height * 0.7, self.view.bounds.size.width * 0.6, self.view.bounds.size.height * 0.2);
+    sortBtn.backgroundColor = [UIColor clearColor];
+    [sortBtn setTitle:@"Card Sort" forState:UIControlStateNormal];
+    sortBtn.titleLabel.font = [UIFont systemFontOfSize:24];
+    [sortBtn setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+    [sortBtn addTarget:self action:@selector(sortCard) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:sortBtn];
+}
+
+- (void)sortCard {
+    CardSortViewController *cardSort = [[CardSortViewController alloc] init];
+    [self.navigationController pushViewController:cardSort animated:YES];
 }
 
 - (void)enterCardFeast {//第一个游戏结束，整理卡牌之后进入

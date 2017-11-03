@@ -68,6 +68,18 @@
 		38C76CDF1FA8493E00BCBCB9 /* UIImage+Rotate.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C76CDE1FA8493E00BCBCB9 /* UIImage+Rotate.m */; };
 		38C76CE51FA8550300BCBCB9 /* FeastView.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C76CE41FA8550300BCBCB9 /* FeastView.m */; };
 		38C76CEB1FA867D600BCBCB9 /* BaseCardCraftViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C76CEA1FA867D600BCBCB9 /* BaseCardCraftViewController.m */; };
+		38C76CEE1FA8908D00BCBCB9 /* DRNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C76CED1FA8908D00BCBCB9 /* DRNavigationController.m */; };
+		38C76CF71FA8A74900BCBCB9 /* DevilRoomMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C76CF61FA8A74900BCBCB9 /* DevilRoomMgr.m */; };
+		38C76CF91FA8A91C00BCBCB9 /* consider.json in Resources */ = {isa = PBXBuildFile; fileRef = 38C76CF81FA8A91C00BCBCB9 /* consider.json */; };
+		38C76CFC1FA972C800BCBCB9 /* DevilCastleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C76CFB1FA972C800BCBCB9 /* DevilCastleViewController.m */; };
+		38C76D021FA977FB00BCBCB9 /* TruthMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C76D011FA977FB00BCBCB9 /* TruthMgr.m */; };
+		38C76D081FA9E64500BCBCB9 /* TWNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C76D071FA9E64500BCBCB9 /* TWNavigationController.m */; };
+		38C76D0B1FAAAE2300BCBCB9 /* CardSortViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C76D0A1FAAAE2300BCBCB9 /* CardSortViewController.m */; };
+		38C76D0E1FAAAFC800BCBCB9 /* CardCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C76D0D1FAAAFC800BCBCB9 /* CardCell.m */; };
+		38C76D111FAACAF900BCBCB9 /* CardSelectedBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C76D101FAACAF900BCBCB9 /* CardSelectedBackground.m */; };
+		38C76D141FAAD0C200BCBCB9 /* CardDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C76D131FAAD0C200BCBCB9 /* CardDetailViewController.m */; };
+		38C76D171FAAFF3400BCBCB9 /* PuriHandCardLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C76D161FAAFF3400BCBCB9 /* PuriHandCardLayout.m */; };
+		38C76D201FAB74B700BCBCB9 /* PuriLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C76D1F1FAB74B700BCBCB9 /* PuriLayout.m */; };
 		38CEAA6E1F8BA0B600BC72EC /* santa.json in Resources */ = {isa = PBXBuildFile; fileRef = 38CEAA6D1F8BA0B600BC72EC /* santa.json */; };
 		38CEAA701F8BA0E800BC72EC /* playerTosanta.json in Resources */ = {isa = PBXBuildFile; fileRef = 38CEAA6F1F8BA0E800BC72EC /* playerTosanta.json */; };
 /* End PBXBuildFile section */
@@ -206,6 +218,29 @@
 		38C76CE41FA8550300BCBCB9 /* FeastView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeastView.m; sourceTree = "<group>"; };
 		38C76CE91FA867D600BCBCB9 /* BaseCardCraftViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseCardCraftViewController.h; sourceTree = "<group>"; };
 		38C76CEA1FA867D600BCBCB9 /* BaseCardCraftViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseCardCraftViewController.m; sourceTree = "<group>"; };
+		38C76CEC1FA8908D00BCBCB9 /* DRNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DRNavigationController.h; sourceTree = "<group>"; };
+		38C76CED1FA8908D00BCBCB9 /* DRNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DRNavigationController.m; sourceTree = "<group>"; };
+		38C76CF51FA8A74900BCBCB9 /* DevilRoomMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DevilRoomMgr.h; sourceTree = "<group>"; };
+		38C76CF61FA8A74900BCBCB9 /* DevilRoomMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DevilRoomMgr.m; sourceTree = "<group>"; };
+		38C76CF81FA8A91C00BCBCB9 /* consider.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = consider.json; sourceTree = "<group>"; };
+		38C76CFA1FA972C800BCBCB9 /* DevilCastleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DevilCastleViewController.h; sourceTree = "<group>"; };
+		38C76CFB1FA972C800BCBCB9 /* DevilCastleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DevilCastleViewController.m; sourceTree = "<group>"; };
+		38C76D001FA977FB00BCBCB9 /* TruthMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TruthMgr.h; sourceTree = "<group>"; };
+		38C76D011FA977FB00BCBCB9 /* TruthMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TruthMgr.m; sourceTree = "<group>"; };
+		38C76D061FA9E64500BCBCB9 /* TWNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWNavigationController.h; sourceTree = "<group>"; };
+		38C76D071FA9E64500BCBCB9 /* TWNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWNavigationController.m; sourceTree = "<group>"; };
+		38C76D091FAAAE2300BCBCB9 /* CardSortViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardSortViewController.h; sourceTree = "<group>"; };
+		38C76D0A1FAAAE2300BCBCB9 /* CardSortViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardSortViewController.m; sourceTree = "<group>"; };
+		38C76D0C1FAAAFC800BCBCB9 /* CardCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardCell.h; sourceTree = "<group>"; };
+		38C76D0D1FAAAFC800BCBCB9 /* CardCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardCell.m; sourceTree = "<group>"; };
+		38C76D0F1FAACAF900BCBCB9 /* CardSelectedBackground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardSelectedBackground.h; sourceTree = "<group>"; };
+		38C76D101FAACAF900BCBCB9 /* CardSelectedBackground.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardSelectedBackground.m; sourceTree = "<group>"; };
+		38C76D121FAAD0C200BCBCB9 /* CardDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardDetailViewController.h; sourceTree = "<group>"; };
+		38C76D131FAAD0C200BCBCB9 /* CardDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardDetailViewController.m; sourceTree = "<group>"; };
+		38C76D151FAAFF3400BCBCB9 /* PuriHandCardLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PuriHandCardLayout.h; sourceTree = "<group>"; };
+		38C76D161FAAFF3400BCBCB9 /* PuriHandCardLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PuriHandCardLayout.m; sourceTree = "<group>"; };
+		38C76D1E1FAB74B700BCBCB9 /* PuriLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PuriLayout.h; sourceTree = "<group>"; };
+		38C76D1F1FAB74B700BCBCB9 /* PuriLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PuriLayout.m; sourceTree = "<group>"; };
 		38CEAA6D1F8BA0B600BC72EC /* santa.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = santa.json; sourceTree = "<group>"; };
 		38CEAA6F1F8BA0E800BC72EC /* playerTosanta.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = playerTosanta.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -260,11 +295,11 @@
 			children = (
 				3801A0181F7A76B0006C3D18 /* AppDelegate.h */,
 				3801A0191F7A76B0006C3D18 /* AppDelegate.m */,
-				388971D81F8B22FB0061234F /* Game Start */,
 				388971E21F8B257B0061234F /* Final */,
-				388971E01F8B253D0061234F /* Second Sence */,
 				388971E11F8B25610061234F /* Third Sence */,
+				388971E01F8B253D0061234F /* Second Sence */,
 				388971D91F8B235E0061234F /* First Sence */,
+				388971D81F8B22FB0061234F /* Game Start */,
 				3801A01E1F7A76B0006C3D18 /* Main.storyboard */,
 				3801A0211F7A76B0006C3D18 /* Assets.xcassets */,
 				3801A0231F7A76B0006C3D18 /* LaunchScreen.storyboard */,
@@ -490,8 +525,10 @@
 		388971E11F8B25610061234F /* Third Sence */ = {
 			isa = PBXGroup;
 			children = (
-				3801A04E1F7B4423006C3D18 /* DevilRoom.h */,
-				3801A04F1F7B4423006C3D18 /* DevilRoom.m */,
+				38C76CF81FA8A91C00BCBCB9 /* consider.json */,
+				38C76CF11FA89C4A00BCBCB9 /* model */,
+				38C76CF01FA89C4300BCBCB9 /* view */,
+				38C76CEF1FA89C2F00BCBCB9 /* controller */,
 			);
 			name = "Third Sence";
 			sourceTree = "<group>";
@@ -499,8 +536,9 @@
 		388971E21F8B257B0061234F /* Final */ = {
 			isa = PBXGroup;
 			children = (
-				3801A0511F7B4439006C3D18 /* TrueWorld.h */,
-				3801A0521F7B4439006C3D18 /* TrueWorld.m */,
+				38C76CFF1FA9761D00BCBCB9 /* view */,
+				38C76CFE1FA9761700BCBCB9 /* model */,
+				38C76CFD1FA9760600BCBCB9 /* controller */,
 			);
 			name = Final;
 			sourceTree = "<group>";
@@ -596,6 +634,10 @@
 				38C76CD81FA7561A00BCBCB9 /* DCNavigationController.m */,
 				3801A04B1F7B4404006C3D18 /* DevilCard.h */,
 				3801A04C1F7B4404006C3D18 /* DevilCard.m */,
+				38C76D091FAAAE2300BCBCB9 /* CardSortViewController.h */,
+				38C76D0A1FAAAE2300BCBCB9 /* CardSortViewController.m */,
+				38C76D121FAAD0C200BCBCB9 /* CardDetailViewController.h */,
+				38C76D131FAAD0C200BCBCB9 /* CardDetailViewController.m */,
 				38C76CDA1FA7568B00BCBCB9 /* CardFeastViewController.h */,
 				38C76CDB1FA7568B00BCBCB9 /* CardFeastViewController.m */,
 				38C76CE91FA867D600BCBCB9 /* BaseCardCraftViewController.h */,
@@ -619,6 +661,10 @@
 				38C76CB91FA1B2B800BCBCB9 /* DevilCardInfo.m */,
 				38C76CDD1FA8493E00BCBCB9 /* UIImage+Rotate.h */,
 				38C76CDE1FA8493E00BCBCB9 /* UIImage+Rotate.m */,
+				38C76D151FAAFF3400BCBCB9 /* PuriHandCardLayout.h */,
+				38C76D161FAAFF3400BCBCB9 /* PuriHandCardLayout.m */,
+				38C76D1E1FAB74B700BCBCB9 /* PuriLayout.h */,
+				38C76D1F1FAB74B700BCBCB9 /* PuriLayout.m */,
 			);
 			name = model;
 			sourceTree = "<group>";
@@ -628,11 +674,71 @@
 			children = (
 				38C76CE31FA8550300BCBCB9 /* FeastView.h */,
 				38C76CE41FA8550300BCBCB9 /* FeastView.m */,
+				38C76D0C1FAAAFC800BCBCB9 /* CardCell.h */,
+				38C76D0D1FAAAFC800BCBCB9 /* CardCell.m */,
+				38C76D0F1FAACAF900BCBCB9 /* CardSelectedBackground.h */,
+				38C76D101FAACAF900BCBCB9 /* CardSelectedBackground.m */,
 			);
 			name = view;
 			sourceTree = "<group>";
 		};
 		38C76CD01FA71F8700BCBCB9 /* view */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = view;
+			sourceTree = "<group>";
+		};
+		38C76CEF1FA89C2F00BCBCB9 /* controller */ = {
+			isa = PBXGroup;
+			children = (
+				38C76CEC1FA8908D00BCBCB9 /* DRNavigationController.h */,
+				38C76CED1FA8908D00BCBCB9 /* DRNavigationController.m */,
+				3801A04E1F7B4423006C3D18 /* DevilRoom.h */,
+				3801A04F1F7B4423006C3D18 /* DevilRoom.m */,
+				38C76CFA1FA972C800BCBCB9 /* DevilCastleViewController.h */,
+				38C76CFB1FA972C800BCBCB9 /* DevilCastleViewController.m */,
+			);
+			name = controller;
+			sourceTree = "<group>";
+		};
+		38C76CF01FA89C4300BCBCB9 /* view */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = view;
+			sourceTree = "<group>";
+		};
+		38C76CF11FA89C4A00BCBCB9 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				38C76CF51FA8A74900BCBCB9 /* DevilRoomMgr.h */,
+				38C76CF61FA8A74900BCBCB9 /* DevilRoomMgr.m */,
+			);
+			name = model;
+			sourceTree = "<group>";
+		};
+		38C76CFD1FA9760600BCBCB9 /* controller */ = {
+			isa = PBXGroup;
+			children = (
+				38C76D061FA9E64500BCBCB9 /* TWNavigationController.h */,
+				38C76D071FA9E64500BCBCB9 /* TWNavigationController.m */,
+				3801A0511F7B4439006C3D18 /* TrueWorld.h */,
+				3801A0521F7B4439006C3D18 /* TrueWorld.m */,
+			);
+			name = controller;
+			sourceTree = "<group>";
+		};
+		38C76CFE1FA9761700BCBCB9 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				38C76D001FA977FB00BCBCB9 /* TruthMgr.h */,
+				38C76D011FA977FB00BCBCB9 /* TruthMgr.m */,
+			);
+			name = model;
+			sourceTree = "<group>";
+		};
+		38C76CFF1FA9761D00BCBCB9 /* view */ = {
 			isa = PBXGroup;
 			children = (
 			);
@@ -754,6 +860,7 @@
 				388442B71F8CAD52005C9044 /* pufu.json in Resources */,
 				388442B61F8CAD52005C9044 /* playerTopufu.json in Resources */,
 				3876A7F31F8DD4AE008A20C9 /* chizi.json in Resources */,
+				38C76CF91FA8A91C00BCBCB9 /* consider.json in Resources */,
 				38C76C8F1FA073CA00BCBCB9 /* tiza.json in Resources */,
 				3801A0201F7A76B0006C3D18 /* Main.storyboard in Resources */,
 				38CEAA6E1F8BA0B600BC72EC /* santa.json in Resources */,
@@ -781,17 +888,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				38C76D201FAB74B700BCBCB9 /* PuriLayout.m in Sources */,
+				38C76D081FA9E64500BCBCB9 /* TWNavigationController.m in Sources */,
 				38C76CAE1FA19C6B00BCBCB9 /* ChiziMgr.m in Sources */,
+				38C76D171FAAFF3400BCBCB9 /* PuriHandCardLayout.m in Sources */,
 				38C76C9E1FA07C1700BCBCB9 /* ChatRoomCleared.m in Sources */,
 				38C76CB71FA1B1E700BCBCB9 /* CardCraftMgr.m in Sources */,
 				38C76C8A1FA06B9900BCBCB9 /* TizaChoice.m in Sources */,
+				38C76CF71FA8A74900BCBCB9 /* DevilRoomMgr.m in Sources */,
 				38C76CAA1FA19C1600BCBCB9 /* PufuMgr.m in Sources */,
 				3801A0711F7E23C9006C3D18 /* DevilChatContent.m in Sources */,
+				38C76D111FAACAF900BCBCB9 /* CardSelectedBackground.m in Sources */,
 				38C76C841FA06B4C00BCBCB9 /* TizaChatCell.m in Sources */,
 				388442AF1F8CA765005C9044 /* ChooseRespondToPufu.m in Sources */,
 				3876A7EA1F8DC772008A20C9 /* ChooseRespondToChizi.m in Sources */,
 				38C76CE51FA8550300BCBCB9 /* FeastView.m in Sources */,
 				3801A04A1F7B43CF006C3D18 /* FirstCommunication.m in Sources */,
+				38C76D141FAAD0C200BCBCB9 /* CardDetailViewController.m in Sources */,
 				3801A0591F7C88F1006C3D18 /* PRNavigationController.m in Sources */,
 				38C76CB21FA19CD300BCBCB9 /* TizaMgr.m in Sources */,
 				3801A01A1F7A76B0006C3D18 /* AppDelegate.m in Sources */,
@@ -804,8 +917,10 @@
 				38C76CEB1FA867D600BCBCB9 /* BaseCardCraftViewController.m in Sources */,
 				388442AC1F8CA723005C9044 /* PufuChatCell.m in Sources */,
 				38C76CA61FA1901700BCBCB9 /* SantaMgr.m in Sources */,
+				38C76D021FA977FB00BCBCB9 /* TruthMgr.m in Sources */,
 				38C76CC01FA1B62400BCBCB9 /* Puri.m in Sources */,
 				3801A0741F7E25EA006C3D18 /* ChooseRespondToDevil.m in Sources */,
+				38C76D0B1FAAAE2300BCBCB9 /* CardSortViewController.m in Sources */,
 				3801A08F1F7F4A26006C3D18 /* SantaChoice.m in Sources */,
 				3801A08C1F7F4A03006C3D18 /* ChooseRespondToSanta.m in Sources */,
 				3801A0831F7F3078006C3D18 /* TizaChatDetail.m in Sources */,
@@ -815,9 +930,11 @@
 				38C76CBA1FA1B2B800BCBCB9 /* DevilCardInfo.m in Sources */,
 				38C76CD91FA7561A00BCBCB9 /* DCNavigationController.m in Sources */,
 				38C76CDC1FA7568B00BCBCB9 /* CardFeastViewController.m in Sources */,
+				38C76CFC1FA972C800BCBCB9 /* DevilCastleViewController.m in Sources */,
 				38C76CC31FA1B65900BCBCB9 /* Devil.m in Sources */,
 				38C76C871FA06B7100BCBCB9 /* ChooseRespondToTiza.m in Sources */,
 				3801A0501F7B4423006C3D18 /* DevilRoom.m in Sources */,
+				38C76D0E1FAAAFC800BCBCB9 /* CardCell.m in Sources */,
 				3801A0561F7B5CB3006C3D18 /* PretendedViewController.m in Sources */,
 				3876A7E41F8DC681008A20C9 /* ChiziDevilChatContent.m in Sources */,
 				38C76CBD1FA1B4F500BCBCB9 /* Crafter.m in Sources */,
@@ -831,6 +948,7 @@
 				3801A07D1F7F302E006C3D18 /* PufuChatDetail.m in Sources */,
 				38C76C9B1FA07BD100BCBCB9 /* DevilChatRoom.m in Sources */,
 				3801A06E1F7E1037006C3D18 /* SantaChatDetail.m in Sources */,
+				38C76CEE1FA8908D00BCBCB9 /* DRNavigationController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

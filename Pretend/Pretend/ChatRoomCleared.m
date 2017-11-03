@@ -21,9 +21,9 @@
     // Do any additional setup after loading the view.
     self.navigationItem.hidesBackButton = YES;
     self.view.backgroundColor = [UIColor colorWithRed:255.0/255 green:250.0/255 blue:240.0/255 alpha:1.0];
-    self.title = @"DevilChat";
+    self.title = @"Devil Chat";
     //结束的标签
-    UILabel *finishLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.view.bounds.size.width * 0.15, self.view.bounds.size.height * 0.2, self.view.bounds.size.width * 0.7, self.view.bounds.size.height * 0.2)];
+    UILabel *finishLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.view.bounds.size.width * 0.2, self.view.bounds.size.height * 0.2, self.view.bounds.size.width * 0.6, self.view.bounds.size.height * 0.2)];
     finishLabel.text = @"Chat Cleared!";
     finishLabel.font = [UIFont fontWithName:@"Courier-BoldOblique" size:24];
     finishLabel.backgroundColor = [UIColor clearColor];

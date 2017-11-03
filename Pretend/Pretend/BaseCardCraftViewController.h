@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BaseCardCraftViewController : UIViewController
+@interface BaseCardCraftViewController : UIViewController<UICollectionViewDelegate,UICollectionViewDataSource>
+
 - (instancetype)initWithName:(id)arg1;
 
 @end

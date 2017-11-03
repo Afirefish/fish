@@ -1,33 +1,24 @@
 //
-//  TrueWorld.m
+//  DevilCastleViewController.m
 //  Pretend
 //
-//  Created by 戴曦嘉 on 2017/9/27.
+//  Created by 戴曦嘉 on 2017/11/1.
 //  Copyright © 2017年 戴曦嘉. All rights reserved.
 //
 
-#import "TrueWorld.h"
-#import "DevilRoomMgr.h"
-#import "TruthMgr.h"
+#import "DevilCastleViewController.h"
 
-@interface TrueWorld ()
+@interface DevilCastleViewController ()
 
 @end
 
-@implementation TrueWorld
+@implementation DevilCastleViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.view.backgroundColor = [UIColor colorWithRed:225.0/255 green:225.0/255 blue:225.0/255 alpha:1.0];
-    DevilRoomMgr *devilRoomMgr = [DevilRoomMgr defaultMgr];
-    if (devilRoomMgr.roomFinish && devilRoomMgr.sincere) {
-        self.navigationItem.title = @"True World";
-    } else if (devilRoomMgr.roomFinish && devilRoomMgr.betary){
-        self.navigationItem.title = @"Happy End";
-    } else {
-        self.navigationItem.title = @"End";
-    }
+    self.view.backgroundColor = [UIColor colorWithRed:255.0/255 green:250.0/255 blue:240.0/255 alpha:1.0];
+    self.navigationItem.title = @"castle";
 }
 
 - (void)didReceiveMemoryWarning {

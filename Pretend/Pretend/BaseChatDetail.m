@@ -15,7 +15,7 @@
 
 
 @interface BaseChatDetail ()<UITableViewDelegate,UITableViewDataSource>
-
+@property (assign,nonatomic) BOOL isChoice;
 @end
 
 @implementation BaseChatDetail
@@ -77,16 +77,21 @@
     chatContentFrame.size.height = self.view.bounds.size.height * 0.9;
     self.chatContent.frame = chatContentFrame;
     [self scrollTableToFoot:YES];
+    [self.chooseContent.chooseRespond addTarget:self action:@selector(showChoices) forControlEvents:UIControlEventTouchUpInside];
+    if (self.isChoice == NO) {
+        self.chooseContent.chooseRespond.userInteractionEnabled = YES;
+    }
 }
 
 //显示玩家的选项，因为数据源变更了，在显示之前重新加载一下数据
 - (void)showChoices {
-    self.chooseContent.chooseRespond.userInteractionEnabled = NO;
+    self.isChoice = NO;
     [self.choices reloadData];
     [self setRespondBar];
     CGRect choicesFrame = self.choices.frame;
     choicesFrame.origin.y = self.view.bounds.size.height * 0.7;
     self.choices.frame = choicesFrame;
+    [self.chooseContent.chooseRespond addTarget:self action:@selector(recoverRespondBar) forControlEvents:UIControlEventTouchUpInside];
 }
 
 //隐藏玩家的选项
@@ -181,6 +186,8 @@
 //玩家做出选择时，发送消息到聊天记录视图中
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (tableView == self.choices) {
+        self.chooseContent.chooseRespond.userInteractionEnabled = NO;
+        self.isChoice = YES;
         BaseChoice *cell = [tableView cellForRowAtIndexPath:indexPath];
         self.playerChoice = cell.textLabel.text;//这里很容易被hook弄崩。。
         [self sendMessage];

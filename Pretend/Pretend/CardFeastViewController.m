@@ -84,48 +84,56 @@
 - (void)yuiCraft {
     NSLog(@"YUI CRAFT");
     BaseCardCraftViewController *yuiCraft = [[BaseCardCraftViewController alloc] initWithName:@"Yui"];
+    yuiCraft.navigationItem.title = @"Yui";
     [self.navigationController pushViewController:yuiCraft animated:YES];
 }
 
 - (void)kiritoCraft {
     NSLog(@"KIRITO CRAFT");
     BaseCardCraftViewController *kiritoCraft = [[BaseCardCraftViewController alloc] initWithName:@"Kirito"];
+    kiritoCraft.navigationItem.title = @"Kirito";
     [self.navigationController pushViewController:kiritoCraft animated:YES];
 }
 
 - (void)asunaCraft {
     NSLog(@"ASUNA CRAFT");
     BaseCardCraftViewController *asunaCraft = [[BaseCardCraftViewController alloc] initWithName:@"Asuna"];
+    asunaCraft.navigationItem.title = @"Asuna";
     [self.navigationController pushViewController:asunaCraft animated:YES];
 }
 
 - (void)leafaCraft {
     NSLog(@"LEAFA CRAFT");
     BaseCardCraftViewController *leafaCraft = [[BaseCardCraftViewController alloc] initWithName:@"Leafa"];
+    leafaCraft.navigationItem.title = @"Leafa";
     [self.navigationController pushViewController:leafaCraft animated:YES];
 }
 
 - (void)silicaCraft {
     NSLog(@"SILICA CRAFT");
-    BaseCardCraftViewController *silicaCraft = [[BaseCardCraftViewController alloc] initWithName:@"Slica"];
+    BaseCardCraftViewController *silicaCraft = [[BaseCardCraftViewController alloc] initWithName:@"Silica"];
+    silicaCraft.navigationItem.title = @"Silica";
     [self.navigationController pushViewController:silicaCraft animated:YES];
 }
 
 - (void)agilCraft {
     NSLog(@"AGIL CRAFT");
     BaseCardCraftViewController *agilCraft = [[BaseCardCraftViewController alloc] initWithName:@"Agil"];
+    agilCraft.navigationItem.title = @"Agil";
     [self.navigationController pushViewController:agilCraft animated:YES];
 }
 
 - (void)kleinCraft {
     NSLog(@"KLEIN CRAFT");
     BaseCardCraftViewController *kleinCraft = [[BaseCardCraftViewController alloc] initWithName:@"Klein"];
+    kleinCraft.navigationItem.title = @"Klein";
     [self.navigationController pushViewController:kleinCraft animated:YES];
 }
 
 - (void)lisbethCraft {
     NSLog(@"LISBETH CRAFT");
     BaseCardCraftViewController *lisbethCraft = [[BaseCardCraftViewController alloc] initWithName:@"Lisbeth"];
+    lisbethCraft.navigationItem.title = @"Lisbeth";
     [self.navigationController pushViewController:lisbethCraft animated:YES];
 }
 
