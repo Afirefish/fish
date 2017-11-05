@@ -45,6 +45,7 @@
 		388442B21F8CA7B7005C9044 /* PufuChoice.m in Sources */ = {isa = PBXBuildFile; fileRef = 388442B11F8CA7B7005C9044 /* PufuChoice.m */; };
 		388442B61F8CAD52005C9044 /* playerTopufu.json in Resources */ = {isa = PBXBuildFile; fileRef = 388442B41F8CAD52005C9044 /* playerTopufu.json */; };
 		388442B71F8CAD52005C9044 /* pufu.json in Resources */ = {isa = PBXBuildFile; fileRef = 388442B51F8CAD52005C9044 /* pufu.json */; };
+		389C5C781FAEE89400494006 /* PuriHandCardCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 389C5C771FAEE89400494006 /* PuriHandCardCell.m */; };
 		38C76C811FA06B2900BCBCB9 /* TizaDevilChatContent.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C76C801FA06B2900BCBCB9 /* TizaDevilChatContent.m */; };
 		38C76C841FA06B4C00BCBCB9 /* TizaChatCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C76C831FA06B4C00BCBCB9 /* TizaChatCell.m */; };
 		38C76C871FA06B7100BCBCB9 /* ChooseRespondToTiza.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C76C861FA06B7100BCBCB9 /* ChooseRespondToTiza.m */; };
@@ -80,6 +81,7 @@
 		38C76D141FAAD0C200BCBCB9 /* CardDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C76D131FAAD0C200BCBCB9 /* CardDetailViewController.m */; };
 		38C76D171FAAFF3400BCBCB9 /* PuriHandCardLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C76D161FAAFF3400BCBCB9 /* PuriHandCardLayout.m */; };
 		38C76D201FAB74B700BCBCB9 /* PuriLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C76D1F1FAB74B700BCBCB9 /* PuriLayout.m */; };
+		38C76D231FAC538900BCBCB9 /* PuriHandCardAttributes.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C76D221FAC538900BCBCB9 /* PuriHandCardAttributes.m */; };
 		38CEAA6E1F8BA0B600BC72EC /* santa.json in Resources */ = {isa = PBXBuildFile; fileRef = 38CEAA6D1F8BA0B600BC72EC /* santa.json */; };
 		38CEAA701F8BA0E800BC72EC /* playerTosanta.json in Resources */ = {isa = PBXBuildFile; fileRef = 38CEAA6F1F8BA0E800BC72EC /* playerTosanta.json */; };
 /* End PBXBuildFile section */
@@ -174,6 +176,8 @@
 		388442B11F8CA7B7005C9044 /* PufuChoice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PufuChoice.m; sourceTree = "<group>"; };
 		388442B41F8CAD52005C9044 /* playerTopufu.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = playerTopufu.json; sourceTree = "<group>"; };
 		388442B51F8CAD52005C9044 /* pufu.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = pufu.json; sourceTree = "<group>"; };
+		389C5C761FAEE89400494006 /* PuriHandCardCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PuriHandCardCell.h; sourceTree = "<group>"; };
+		389C5C771FAEE89400494006 /* PuriHandCardCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PuriHandCardCell.m; sourceTree = "<group>"; };
 		38C76C7F1FA06B2900BCBCB9 /* TizaDevilChatContent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TizaDevilChatContent.h; sourceTree = "<group>"; };
 		38C76C801FA06B2900BCBCB9 /* TizaDevilChatContent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TizaDevilChatContent.m; sourceTree = "<group>"; };
 		38C76C821FA06B4C00BCBCB9 /* TizaChatCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TizaChatCell.h; sourceTree = "<group>"; };
@@ -241,6 +245,8 @@
 		38C76D161FAAFF3400BCBCB9 /* PuriHandCardLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PuriHandCardLayout.m; sourceTree = "<group>"; };
 		38C76D1E1FAB74B700BCBCB9 /* PuriLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PuriLayout.h; sourceTree = "<group>"; };
 		38C76D1F1FAB74B700BCBCB9 /* PuriLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PuriLayout.m; sourceTree = "<group>"; };
+		38C76D211FAC538900BCBCB9 /* PuriHandCardAttributes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PuriHandCardAttributes.h; sourceTree = "<group>"; };
+		38C76D221FAC538900BCBCB9 /* PuriHandCardAttributes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PuriHandCardAttributes.m; sourceTree = "<group>"; };
 		38CEAA6D1F8BA0B600BC72EC /* santa.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = santa.json; sourceTree = "<group>"; };
 		38CEAA6F1F8BA0E800BC72EC /* playerTosanta.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = playerTosanta.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -663,6 +669,8 @@
 				38C76CDE1FA8493E00BCBCB9 /* UIImage+Rotate.m */,
 				38C76D151FAAFF3400BCBCB9 /* PuriHandCardLayout.h */,
 				38C76D161FAAFF3400BCBCB9 /* PuriHandCardLayout.m */,
+				38C76D211FAC538900BCBCB9 /* PuriHandCardAttributes.h */,
+				38C76D221FAC538900BCBCB9 /* PuriHandCardAttributes.m */,
 				38C76D1E1FAB74B700BCBCB9 /* PuriLayout.h */,
 				38C76D1F1FAB74B700BCBCB9 /* PuriLayout.m */,
 			);
@@ -676,6 +684,8 @@
 				38C76CE41FA8550300BCBCB9 /* FeastView.m */,
 				38C76D0C1FAAAFC800BCBCB9 /* CardCell.h */,
 				38C76D0D1FAAAFC800BCBCB9 /* CardCell.m */,
+				389C5C761FAEE89400494006 /* PuriHandCardCell.h */,
+				389C5C771FAEE89400494006 /* PuriHandCardCell.m */,
 				38C76D0F1FAACAF900BCBCB9 /* CardSelectedBackground.h */,
 				38C76D101FAACAF900BCBCB9 /* CardSelectedBackground.m */,
 			);
@@ -913,6 +923,7 @@
 				3801A0861F7F4927006C3D18 /* SantaDevilChatContent.m in Sources */,
 				388442B21F8CA7B7005C9044 /* PufuChoice.m in Sources */,
 				3801A0171F7A76B0006C3D18 /* main.m in Sources */,
+				38C76D231FAC538900BCBCB9 /* PuriHandCardAttributes.m in Sources */,
 				3801A0771F7E3BF6006C3D18 /* BaseChatCell.m in Sources */,
 				38C76CEB1FA867D600BCBCB9 /* BaseCardCraftViewController.m in Sources */,
 				388442AC1F8CA723005C9044 /* PufuChatCell.m in Sources */,
@@ -925,6 +936,7 @@
 				3801A08C1F7F4A03006C3D18 /* ChooseRespondToSanta.m in Sources */,
 				3801A0831F7F3078006C3D18 /* TizaChatDetail.m in Sources */,
 				3876A7E71F8DC6FD008A20C9 /* ChiziChatCell.m in Sources */,
+				389C5C781FAEE89400494006 /* PuriHandCardCell.m in Sources */,
 				38C76C811FA06B2900BCBCB9 /* TizaDevilChatContent.m in Sources */,
 				3801A0801F7F3054006C3D18 /* ChiziChatDetail.m in Sources */,
 				38C76CBA1FA1B2B800BCBCB9 /* DevilCardInfo.m in Sources */,

@@ -6,6 +6,7 @@
 //  Copyright © 2017年 戴曦嘉. All rights reserved.
 //
 
+//收集整理卡牌的cell
 #import "CardCell.h"
 #import "CardSelectedBackground.h"
 
@@ -13,7 +14,6 @@
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
-        self.backgroundColor = [UIColor blueColor];
         self.cardImage= [[UIImageView alloc] initWithFrame:CGRectMake(2, 2, self.frame.size.width - 4, self.frame.size.height - 20)];
         self.cardName = [[UILabel alloc] initWithFrame:CGRectMake(0, self.frame.size.height - 18, self.frame.size.width, 18)];
         [self.contentView addSubview:self.cardName];

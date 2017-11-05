@@ -10,5 +10,4 @@
 
 @interface PuriHandCardLayout : UICollectionViewLayout
 
-
 @end
