@@ -14,6 +14,8 @@
 #import "CardSortViewController.h"
 #import "CardFeastViewController.h"
 
+#import "CardSortTestViewController.h"
+
 @interface DevilCard ()
 
 @end
@@ -42,11 +44,17 @@
     sortBtn.titleLabel.font = [UIFont systemFontOfSize:24];
     [sortBtn setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
     [sortBtn addTarget:self action:@selector(sortCard) forControlEvents:UIControlEventTouchUpInside];
+    //[sortBtn addTarget:self action:@selector(sortCardTest) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:sortBtn];
 }
 
 - (void)sortCard {
     CardSortViewController *cardSort = [[CardSortViewController alloc] init];
+    [self.navigationController pushViewController:cardSort animated:YES];
+}
+
+- (void)sortCardTest {
+    CardSortTestViewController *cardSort = [[CardSortTestViewController alloc] init];
     [self.navigationController pushViewController:cardSort animated:YES];
 }
 

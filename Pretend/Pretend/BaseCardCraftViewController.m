@@ -44,31 +44,14 @@ static NSString *card = @"PuriCard";
 
 
 -(void)setPuriHandCardLayout{//使用手牌的布局
-//    PuriLayout *layout = [[PuriLayout alloc] init];
-//    CGFloat startAngle = M_PI * 5/6;
-//    CGFloat endAngle = M_PI / 3;
-//    CGFloat radius = SCREEN_WIDTH/2 - ITEM_WIDTH/2;
-//    CGFloat angularSpacing = 1;
-//    CGFloat circumference = ABS(startAngle - endAngle)*radius;//圆弧长度
-//    NSInteger maxNoOfCellsInCircle =  (NSInteger)(circumference/(MAX(ITEM_WIDTH, ITEM_HEIGHT) + angularSpacing/2));//卡牌的最大数量
-//    self.cellCount = maxNoOfCellsInCircle + 2;
-//    [layout initWithCentre:CGPointMake(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 3 - ITEM_WIDTH * 0.7) radius:radius itemSize:CGSizeMake(ITEM_WIDTH, ITEM_HEIGHT) andAngularSpacing:angularSpacing];//这个的中心点的位置是相对于collectionview来说的
-//    [layout setStartAngle:startAngle endAngle:endAngle];
-//    layout.mirrorX = NO;
-//    layout.mirrorY = NO;
-//    layout.rotateItems = YES;
-//    layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
     PuriHandCardLayout *layout = [[PuriHandCardLayout alloc] init];
-    //self.handCard = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT) collectionViewLayout:layout];
-    self.handCard = [[UICollectionView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT * 2 / 3, SCREEN_WIDTH, SCREEN_HEIGHT / 3) collectionViewLayout:layout];
-    NSLog(@"handCard frame %@",self.handCard);
+    self.handCard = [[UICollectionView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT * 2 / 3 + 64, SCREEN_WIDTH, SCREEN_HEIGHT / 3 - 64) collectionViewLayout:layout];
     self.handCard.delegate = self;
     self.handCard.dataSource = self;
     self.handCard.backgroundColor = [UIColor colorWithRed:220.0/255 green:220.0/255 blue:220.0/255 alpha:1.0];
     self.handCard.showsVerticalScrollIndicator = NO;
     [self.view addSubview:self.handCard];
     [self.handCard registerClass:[PuriHandCardCell class] forCellWithReuseIdentifier:card];
-    //[self.handCard reloadData];
 }
 
 - (void)didReceiveMemoryWarning {

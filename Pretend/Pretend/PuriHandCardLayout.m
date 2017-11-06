@@ -23,9 +23,7 @@
 @property (nonatomic, assign) CGSize itemSize;//cell的大小
 @property (nonatomic, assign) CGFloat anglePerItem;//每个cell的角度
 @property (nonatomic, assign) CGFloat angleAtExtreme;//最大的角度
-//@property (nonatomic, assign) NSInteger startIndex;
-//@property (nonatomic, assign) NSInteger endIndex;
-//@property (nonatomic, assign) CGFloat theta;
+
 
 @end
 
@@ -44,33 +42,20 @@
 }
 
 - (CGSize)collectionViewContentSize {//返回collectionView的内容的尺寸
-    CGSize contentSize = CGSizeMake([self.collectionView numberOfItemsInSection:0] * ITEM_WIDTH, self.collectionView.bounds.size.height);//collection view的内容宽设定为cell数量乘上cell的宽度，高度设定为collection view自身高度
+    CGSize contentSize = CGSizeMake([self.collectionView numberOfItemsInSection:0] * ITEM_WIDTH, COLLECTION_HEIGHT);//collection view的内容宽设定为cell数量乘上cell的宽度，高度设定为collection view自身高度
     return contentSize;
 }
 
 
 - (NSArray<PuriHandCardAttributes *> *)layoutAttributesForElementsInRect:(CGRect)rect {//返回cell的布局数组
     NSMutableArray* attributes = [NSMutableArray array];
+    CGRect visibleRect;//可见的rect
+    visibleRect.origin = self.collectionView.contentOffset;
+    visibleRect.size = self.collectionView.bounds.size;
     for (NSInteger i=0 ; i < self.cellCount; i++) {
         NSIndexPath* indexPath = [NSIndexPath indexPathForItem:i inSection:0];
         PuriHandCardAttributes *attr = (PuriHandCardAttributes *)[self layoutAttributesForItemAtIndexPath:indexPath];
         [attributes addObject:attr];
-//        //判断是否在视图外面 失败了。。
-//        _startIndex = 0;//初始化开始的cell和结束的cell索引
-//        _endIndex = [self.collectionView numberOfItemsInSection:0] - 1 ;
-//        if (attr.angle < -_theta) {//如果cell超过了视图
-//            _startIndex = (NSInteger)floor((-_theta - attr.angle) / _anglePerItem);//显示的cell的index向下取整，即等一个cell完全消失之后才会不加载这个cell
-//        }
-//        _endIndex = MIN(_endIndex, (NSInteger)ceil((_theta - attr.angle) / _anglePerItem));//同样的，显示最后一个cell的index向上取整与最后的一个cell的最小值的cell
-//        NSLog(@"endIndex %ld",(long)_endIndex);
-//        if (_startIndex > _endIndex) {
-//            _endIndex = 0;
-//            _startIndex = 0;
-//        }
-//        if (i >= _startIndex && i <= _endIndex ) {
-//            NSLog(@"add endIndex %ld",(long)_endIndex);
-//            [attributes addObject:attr];
-//        }
     }
     return attributes;
 }
@@ -91,22 +76,39 @@
     return YES;
 }
 
-////中间的cell停在正中心 还是出了些问题。。。没有成功
-//- (CGPoint)targetContentOffsetForProposedContentOffset:(CGPoint)proposedContentOffset withScrollingVelocity:(CGPoint)velocity {
-//    CGPoint finalContentOffset = proposedContentOffset;
-//    CGFloat factor = - _angleAtExtreme / self.collectionViewContentSize.width - COLLECTION_WIDTH;
-//    CGFloat proposedAngle = proposedContentOffset.x * factor;
-//    CGFloat ratio = proposedAngle / _anglePerItem;
-//    CGFloat multiplier = 0;
-//    if (velocity.x > 0) {
-//        multiplier = ceil(ratio);
-//    } else if (velocity.x < 0) {
-//        multiplier = floor(ratio);
-//    } else {
-//        multiplier = round(ratio);
-//    }
-//    finalContentOffset.x = multiplier * _anglePerItem / ratio;
-//    return finalContentOffset;
-//}
+//中间的cell停在正中心 成功了
+- (CGPoint)targetContentOffsetForProposedContentOffset:(CGPoint)proposedContentOffset withScrollingVelocity:(CGPoint)velocity {
+    CGPoint finalContentOffset = proposedContentOffset;
+    CGFloat factor = - self.angleAtExtreme / (self.collectionViewContentSize.width - COLLECTION_WIDTH);//角度和内容的比率
+    CGFloat proposedAngle = proposedContentOffset.x * factor;//当前偏移角度
+    CGFloat ratio = proposedAngle / self.anglePerItem;//偏移角度对应的cell
+    CGFloat multiplier = 0;
+    if (velocity.x > 0) {//cell取整
+        multiplier = ceil(ratio);
+    } else if (velocity.x < 0) {
+        multiplier = floor(ratio);
+    } else {
+        multiplier = round(ratio);
+    }
+    finalContentOffset.x = multiplier * self.anglePerItem / factor;//设置好新的偏移量
+    return finalContentOffset;
+}
+
+//开始的cell
+- (UICollectionViewLayoutAttributes *)initialLayoutAttributesForInsertedItemAtIndexPath:(NSIndexPath *)itemIndexPath {
+    UICollectionViewLayoutAttributes* attributes = [self layoutAttributesForItemAtIndexPath:itemIndexPath];
+    attributes.alpha = 0.0;
+    attributes.center = CGPointMake(COLLECTION_WIDTH / 2, COLLECTION_HEIGHT / 2 - ITEM_HEIGHT / 4);
+    return attributes;
+}
+
+//结束的cell
+- (UICollectionViewLayoutAttributes *)finalLayoutAttributesForDeletedItemAtIndexPath:(NSIndexPath *)itemIndexPath {
+    UICollectionViewLayoutAttributes* attributes = [self layoutAttributesForItemAtIndexPath:itemIndexPath];
+    attributes.alpha = 0.0;
+    attributes.center = CGPointMake(COLLECTION_WIDTH / 2, COLLECTION_HEIGHT / 2 - ITEM_HEIGHT / 4);
+    attributes.transform3D = CATransform3DMakeScale(0.1, 0.1, 1.0);
+    return attributes;
+}
 
 @end

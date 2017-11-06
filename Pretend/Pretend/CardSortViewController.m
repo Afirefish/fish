@@ -10,6 +10,9 @@
 #import "CardCell.h"
 #import "CardDetailViewController.h"
 
+#define ITEM_WIDTH 68
+#define ITEM_HEIGHT 96
+
 @interface CardSortViewController ()
 @property (strong,nonatomic) UICollectionView *cardCollect;
 
@@ -34,8 +37,8 @@
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
     [layout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
     //layout.headerReferenceSize = CGSizeMake(self.view.bounds.size.width, 20);
-    CGFloat height = (self.view.bounds.size.height - 20 - 64) / 2;
-    CGFloat width = height * 68 / 96;
+    CGFloat height = (self.view.bounds.size.height - 60 - 64) / 2 + 20;
+    CGFloat width = height * ITEM_WIDTH / ITEM_HEIGHT + 4;
     layout.itemSize = CGSizeMake(width, height);
     self.cardCollect = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height) collectionViewLayout:layout];
     self.cardCollect.backgroundColor = [UIColor colorWithRed:220.0/255 green:220.0/255 blue:220.0/255 alpha:1.0];
@@ -54,7 +57,7 @@
 }
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-    return 1;
+    return 2;
 }
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {
