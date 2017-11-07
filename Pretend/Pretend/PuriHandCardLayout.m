@@ -23,7 +23,7 @@
 @property (nonatomic, assign) CGSize itemSize;//cell的大小
 @property (nonatomic, assign) CGFloat anglePerItem;//每个cell的角度
 @property (nonatomic, assign) CGFloat angleAtExtreme;//最大的角度
-
+@property (nonatomic, assign) CGFloat maxAngle;//显示cell的最大角度
 
 @end
 
@@ -37,7 +37,7 @@
     self.anglePerItem = atan(ITEM_WIDTH  / _radius);//每个cell占有的角度，防止距离过远
     self.cellCount = [self.collectionView numberOfItemsInSection:0];//cell的数量从数据源取得
     self.angleAtExtreme = (self.cellCount > 0) ? - (self.cellCount - 1) * self.anglePerItem : 0;//最大的偏移角度为cell数量减1乘上cell的角度
-    //self.theta = atan2(COLLECTION_WIDTH / 2.0, _radius + (ITEM_HEIGHT / 2.0) - COLLECTION_HEIGHT / 2.0);//获得视图的角度的
+    self.maxAngle = atan2(ITEM_HEIGHT / 2 + COLLECTION_WIDTH / 2 , self.radius - COLLECTION_HEIGHT);//获得视图的角度的
 
 }
 
@@ -48,14 +48,13 @@
 
 
 - (NSArray<PuriHandCardAttributes *> *)layoutAttributesForElementsInRect:(CGRect)rect {//返回cell的布局数组
-    NSMutableArray* attributes = [NSMutableArray array];
-    CGRect visibleRect;//可见的rect
-    visibleRect.origin = self.collectionView.contentOffset;
-    visibleRect.size = self.collectionView.bounds.size;
+    NSMutableArray* attributes = [NSMutableArray array];;
     for (NSInteger i=0 ; i < self.cellCount; i++) {
         NSIndexPath* indexPath = [NSIndexPath indexPathForItem:i inSection:0];
         PuriHandCardAttributes *attr = (PuriHandCardAttributes *)[self layoutAttributesForItemAtIndexPath:indexPath];
-        [attributes addObject:attr];
+        if (CGRectIntersectsRect(rect, attr.frame) && attr.alpha != 0) {
+            [attributes addObject:attr];
+        }
     }
     return attributes;
 }
@@ -69,6 +68,10 @@
     attributes.angle = angle + self.anglePerItem * path.item;//cell的角度为cell的索引乘以每个cell的角度加上偏移的角度
     attributes.zIndex = (NSInteger)attributes.angle * 1000000;//cell在y轴上的坐标,越来越大，后面的cell覆盖在前面的cell上面
     attributes.transform = CGAffineTransformMakeRotation(attributes.angle);//cell的样式是旋转cell的角度的样式
+    //NSLog(@"%ld att %f angle %f",(long)path.item,attributes.center.x,attributes.angle );
+    if (attributes.angle < -self.maxAngle || attributes.angle > self.maxAngle) {//隐藏在视图外面的cell
+        attributes.alpha = 0;
+    }
     return attributes;
 }
 

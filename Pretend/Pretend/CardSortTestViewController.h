@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CardSortTestViewController : UIViewController<UICollectionViewDelegate,UICollectionViewDataSource>
+@interface CardSortTestViewController : UIViewController<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 
 @end

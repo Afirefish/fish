@@ -140,6 +140,7 @@
     [self.tiza resetTiza];
     NSString *start = @"NO";
     self.cards = nil;
+    self.chatFinished = NO;
     NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:start,@"finish",self.cards,@"cards",nil];
     NSLog(@"reset game %@",dic);
     [dic writeToFile:self.filePath atomically:YES];

@@ -5,7 +5,7 @@
 //  Created by 戴曦嘉 on 2017/11/6.
 //  Copyright © 2017年 戴曦嘉. All rights reserved.
 //
-
+//3d流水布局
 #import "CardCoverFlowLayout.h"
 
 #define ZOOM_FACTOR 0.35
@@ -29,12 +29,7 @@
     visibleRect.origin = self.collectionView.contentOffset;
     visibleRect.size = self.collectionView.bounds.size;
     float collectionViewHalfFrame = self.collectionView.frame.size.width/2.0f;//一半的宽度
-//    NSInteger count = 0;
     for (UICollectionViewLayoutAttributes* attributes in array) {
-//        if (CGRectIntersectsRect(attributes.frame, visibleRect)) {
-//            count ++;
-//            NSLog(@"count %ld",(long)count);
-//        }
         if (CGRectIntersectsRect(attributes.frame, rect)) {//获得在rect内的cell
             CGFloat distance = CGRectGetMidX(visibleRect) - attributes.center.x;//可见的rect的中心减去某一个cell的中心的距离s
             CGFloat normalizedDistance = distance / collectionViewHalfFrame;//距离和当前collectionview一半的比值，越远越大

@@ -103,6 +103,8 @@
 
 //玩家做出选择的消息
 - (void)sendMessage{
+    self.isChoice = YES;
+    self.chooseContent.chooseRespond.userInteractionEnabled = NO;
     self.isDevil = NO;
     self.nodeNumber += 1;
     [self recoverRespondBar];
@@ -186,8 +188,6 @@
 //玩家做出选择时，发送消息到聊天记录视图中
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (tableView == self.choices) {
-        self.chooseContent.chooseRespond.userInteractionEnabled = NO;
-        self.isChoice = YES;
         BaseChoice *cell = [tableView cellForRowAtIndexPath:indexPath];
         self.playerChoice = cell.textLabel.text;//这里很容易被hook弄崩。。
         [self sendMessage];

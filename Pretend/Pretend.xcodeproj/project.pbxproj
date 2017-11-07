@@ -50,6 +50,7 @@
 		389C5C7E1FB057CB00494006 /* CardSortTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 389C5C7D1FB057CB00494006 /* CardSortTestViewController.m */; };
 		389C5C811FB0768B00494006 /* CardSortTestCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 389C5C801FB0768B00494006 /* CardSortTestCollectionViewCell.m */; };
 		389C5C871FB0866400494006 /* CardCoverFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 389C5C861FB0866400494006 /* CardCoverFlowLayout.m */; };
+		389C5C8A1FB15E4500494006 /* TableCardCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 389C5C891FB15E4500494006 /* TableCardCollectionViewCell.m */; };
 		38C76C811FA06B2900BCBCB9 /* TizaDevilChatContent.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C76C801FA06B2900BCBCB9 /* TizaDevilChatContent.m */; };
 		38C76C841FA06B4C00BCBCB9 /* TizaChatCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C76C831FA06B4C00BCBCB9 /* TizaChatCell.m */; };
 		38C76C871FA06B7100BCBCB9 /* ChooseRespondToTiza.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C76C861FA06B7100BCBCB9 /* ChooseRespondToTiza.m */; };
@@ -190,6 +191,8 @@
 		389C5C801FB0768B00494006 /* CardSortTestCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardSortTestCollectionViewCell.m; sourceTree = "<group>"; };
 		389C5C851FB0866400494006 /* CardCoverFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardCoverFlowLayout.h; sourceTree = "<group>"; };
 		389C5C861FB0866400494006 /* CardCoverFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardCoverFlowLayout.m; sourceTree = "<group>"; };
+		389C5C881FB15E4500494006 /* TableCardCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableCardCollectionViewCell.h; sourceTree = "<group>"; };
+		389C5C891FB15E4500494006 /* TableCardCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableCardCollectionViewCell.m; sourceTree = "<group>"; };
 		38C76C7F1FA06B2900BCBCB9 /* TizaDevilChatContent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TizaDevilChatContent.h; sourceTree = "<group>"; };
 		38C76C801FA06B2900BCBCB9 /* TizaDevilChatContent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TizaDevilChatContent.m; sourceTree = "<group>"; };
 		38C76C821FA06B4C00BCBCB9 /* TizaChatCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TizaChatCell.h; sourceTree = "<group>"; };
@@ -706,6 +709,8 @@
 				389C5C801FB0768B00494006 /* CardSortTestCollectionViewCell.m */,
 				389C5C761FAEE89400494006 /* PuriHandCardCell.h */,
 				389C5C771FAEE89400494006 /* PuriHandCardCell.m */,
+				389C5C881FB15E4500494006 /* TableCardCollectionViewCell.h */,
+				389C5C891FB15E4500494006 /* TableCardCollectionViewCell.m */,
 				38C76D0F1FAACAF900BCBCB9 /* CardSelectedBackground.h */,
 				38C76D101FAACAF900BCBCB9 /* CardSelectedBackground.m */,
 			);
@@ -935,6 +940,7 @@
 				3876A7EA1F8DC772008A20C9 /* ChooseRespondToChizi.m in Sources */,
 				38C76CE51FA8550300BCBCB9 /* FeastView.m in Sources */,
 				389C5C7B1FB04F9B00494006 /* CardMasonryLayout.m in Sources */,
+				389C5C8A1FB15E4500494006 /* TableCardCollectionViewCell.m in Sources */,
 				3801A04A1F7B43CF006C3D18 /* FirstCommunication.m in Sources */,
 				38C76D141FAAD0C200BCBCB9 /* CardDetailViewController.m in Sources */,
 				3801A0591F7C88F1006C3D18 /* PRNavigationController.m in Sources */,

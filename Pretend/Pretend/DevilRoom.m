@@ -13,6 +13,8 @@
 
 @interface DevilRoom ()
 @property (strong,nonatomic) UIButton *considerBtn;
+@property (strong, nonatomic) UIButton *betaryBtn;
+@property (strong, nonatomic) UIButton *sincereBtn;
 @property (strong,nonatomic) UITextView *considerView;
 @property (strong,nonatomic) DevilRoomMgr *devilRoomMgr;
 
@@ -32,6 +34,7 @@
         self.considerBtn.backgroundColor = [UIColor clearColor];
         [self.considerBtn setTitle:@"Consider" forState:UIControlStateNormal];
         self.considerBtn.titleLabel.font = [UIFont systemFontOfSize:24];
+        self.considerBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
         [self.considerBtn setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
         [self.view addSubview:self.considerBtn];
     } else {
@@ -88,28 +91,56 @@
                     }];
                 }];
             });
-            sleep(2);
+            sleep(3);
             i++;
         }
+        
+        
         dispatch_async(dispatch_get_main_queue(), ^{
-            UIAlertController *choiceAlert = [UIAlertController alertControllerWithTitle:@"决定" message:@"是继续信任他们，还是自己主动抓住机会？" preferredStyle:UIAlertControllerStyleAlert];
-            UIAlertAction *betaryAction = [UIAlertAction actionWithTitle:@"寻找钥匙" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-                [self betary];
-            }];
-            [choiceAlert addAction:betaryAction];
-            UIAlertAction *sincereAction = [UIAlertAction actionWithTitle:@"信任他们" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-                [self sincere];
-            }];
-            [choiceAlert addAction:sincereAction];
-            [self presentViewController:choiceAlert animated:YES completion:nil];
+            [self addChooseBtn];
+//            UIAlertController *choiceAlert = [UIAlertController alertControllerWithTitle:@"决定" message:@"是继续信任他们，还是自己主动抓住机会？" preferredStyle:UIAlertControllerStyleAlert];
+//            UIAlertAction *betaryAction = [UIAlertAction actionWithTitle:@"寻找钥匙" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+//                [self betary];
+//            }];
+//            [choiceAlert addAction:betaryAction];
+//            UIAlertAction *sincereAction = [UIAlertAction actionWithTitle:@"信任他们" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+//                [self sincere];
+//            }];
+//            [choiceAlert addAction:sincereAction];
+//            [self presentViewController:choiceAlert animated:YES completion:nil];
         });
     });
+}
+
+- (void)addChooseBtn {//增加选择的按钮
+    self.betaryBtn = [UIButton buttonWithType:UIButtonTypeSystem];
+    self.betaryBtn.frame = CGRectMake(self.view.bounds.size.width * 0.1, self.view.bounds.size.height * 0.7, self.view.bounds.size.width * 0.3, self.view.bounds.size.height * 0.2);
+    self.betaryBtn.backgroundColor = [UIColor clearColor];
+    [self.betaryBtn setTitle:@"betary" forState:UIControlStateNormal];
+    self.betaryBtn.titleLabel.font = [UIFont systemFontOfSize:20];
+    self.betaryBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
+    [self.betaryBtn setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+    [self.betaryBtn addTarget:self action:@selector(betary) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:self.betaryBtn];
+    
+    self.sincereBtn = [UIButton buttonWithType:UIButtonTypeSystem];
+    self.sincereBtn.frame = CGRectMake(self.view.bounds.size.width * 0.6, self.view.bounds.size.height * 0.7, self.view.bounds.size.width * 0.3, self.view.bounds.size.height * 0.2);
+    self.sincereBtn.backgroundColor = [UIColor clearColor];
+    [self.sincereBtn setTitle:@"sincere" forState:UIControlStateNormal];
+    self.sincereBtn.titleLabel.font = [UIFont systemFontOfSize:20];
+    self.sincereBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
+    [self.sincereBtn setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+    [self.sincereBtn addTarget:self action:@selector(sincere) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:self.sincereBtn];
+
 }
 
 - (void)betary {//背叛
     self.devilRoomMgr.betary = YES;
     self.devilRoomMgr.roomFinish = YES;//记得以后要修改这里在真正通关之后才设置
     [self.considerView removeFromSuperview];
+    [self.betaryBtn removeFromSuperview];
+    [self.sincereBtn removeFromSuperview];
     [self.considerBtn setTitle:@"Castle" forState:UIControlStateNormal];
     [self.considerBtn removeTarget:self action:@selector(showHesitate) forControlEvents:UIControlEventTouchUpInside];
     [self.considerBtn addTarget:self action:@selector(enterCastle) forControlEvents:UIControlEventTouchUpInside];
@@ -127,11 +158,13 @@
     self.devilRoomMgr.sincere = YES;
     self.devilRoomMgr.roomFinish = YES;
     [self.considerView removeFromSuperview];
+    [self.betaryBtn removeFromSuperview];
+    [self.sincereBtn removeFromSuperview];
     [self.considerBtn setTitle:@"Truth" forState:UIControlStateNormal];
     self.considerBtn.userInteractionEnabled = NO;
     [self.view addSubview:self.considerBtn];
     NSLog(@"sincere");
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         self.tabBarController.selectedIndex = 3;
     });
 }

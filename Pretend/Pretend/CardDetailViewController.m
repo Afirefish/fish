@@ -26,7 +26,7 @@
     } else if (height <= self.view.bounds.size.height - 64) {
         width = self.view.bounds.size.width;
     } else {
-        NSLog(@"应该不会出现这种情况");
+        NSLog(@"图片适配失败");
     }
     //NSLog(@"height %f width %f nap %f",height,width,(self.view.bounds.size.height - height - 64)/2);
     self.cardDetail = [[UIImageView alloc] initWithFrame:CGRectMake((self.view.bounds.size.width - width)/2, (self.view.bounds.size.height - height - 64)/2 + 64, width, height)];
@@ -42,15 +42,5 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

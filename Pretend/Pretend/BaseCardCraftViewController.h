@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BaseCardCraftViewController : UIViewController<UICollectionViewDelegate,UICollectionViewDataSource>
+@interface BaseCardCraftViewController : UIViewController<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 
 - (instancetype)initWithName:(id)arg1;
 

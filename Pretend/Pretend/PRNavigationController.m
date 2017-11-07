@@ -28,10 +28,8 @@
 }
 
 - (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated {//隐藏tabbar
-    if ([viewController isKindOfClass:NSClassFromString(@"BaseChatDetail")]) {
+    if (self.viewControllers.count > 0) {
         viewController.hidesBottomBarWhenPushed = YES;
-    } else {
-        viewController.hidesBottomBarWhenPushed = NO;
     }
     [super pushViewController:viewController animated:animated];
 }

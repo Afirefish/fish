@@ -6,7 +6,7 @@
 //  Copyright © 2017年 戴曦嘉. All rights reserved.
 //
 
-//暂时没有用到的布局写法
+//暂时没有用到的圆形布局写法
 #import "PuriLayout.h"
 
 @implementation PuriLayout {

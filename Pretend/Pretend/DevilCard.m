@@ -18,6 +18,8 @@
 
 @interface DevilCard ()
 
+@property (nonatomic, strong) UILabel *tipLabel;
+
 @end
 
 @implementation DevilCard
@@ -42,6 +44,7 @@
     sortBtn.backgroundColor = [UIColor clearColor];
     [sortBtn setTitle:@"Card Sort" forState:UIControlStateNormal];
     sortBtn.titleLabel.font = [UIFont systemFontOfSize:24];
+    sortBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
     [sortBtn setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
     [sortBtn addTarget:self action:@selector(sortCard) forControlEvents:UIControlEventTouchUpInside];
     //[sortBtn addTarget:self action:@selector(sortCardTest) forControlEvents:UIControlEventTouchUpInside];
@@ -65,7 +68,14 @@
         [self.navigationController pushViewController:cardFeast animated:YES];
         //[self presentViewController:dcNC animated:YES completion:nil];
     } else {
-        NSLog(@"you haven't pass the first game ");
+        if (self.tipLabel == nil) {
+            self.tipLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.view.bounds.size.width * 0.1,self.view.bounds.size.height * 0.5, self.view.bounds.size.width * 0.8, self.view.bounds.size.height * 0.2)];
+            self.tipLabel.text = @"你还没有通关第一个游戏";
+            self.tipLabel.textAlignment = NSTextAlignmentCenter;
+            self.tipLabel.adjustsFontSizeToFitWidth = YES;
+            self.tipLabel.backgroundColor = [UIColor clearColor];
+            [self.view addSubview:self.tipLabel];
+        }
     }
 }
 
