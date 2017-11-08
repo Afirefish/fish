@@ -23,10 +23,6 @@
 
 @implementation DevilChatRoom
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-}
-
 //单例
 + (instancetype)devilShowUp {
     static DevilChatRoom *devilChatCenter = nil;
@@ -83,7 +79,7 @@
     [self.chatRoomMgr chatComplete];
     ChatRoomCleared *cleared = [[ChatRoomCleared alloc] init];
     [self.navigationController pushViewController:cleared animated:YES];
-    //[self presentViewController:cleared animated:YES completion:nil];
+    [self removeFromParentViewController];
 }
 #pragma mark - Table view data source
 

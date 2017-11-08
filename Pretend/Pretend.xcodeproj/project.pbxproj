@@ -22,27 +22,19 @@
 		3801A0591F7C88F1006C3D18 /* PRNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3801A0581F7C88F1006C3D18 /* PRNavigationController.m */; };
 		3801A0651F7E0F9D006C3D18 /* BaseChatDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 3801A0641F7E0F9D006C3D18 /* BaseChatDetail.m */; };
 		3801A06E1F7E1037006C3D18 /* SantaChatDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 3801A06D1F7E1037006C3D18 /* SantaChatDetail.m */; };
-		3801A0711F7E23C9006C3D18 /* DevilChatContent.m in Sources */ = {isa = PBXBuildFile; fileRef = 3801A0701F7E23C9006C3D18 /* DevilChatContent.m */; };
-		3801A0741F7E25EA006C3D18 /* ChooseRespondToDevil.m in Sources */ = {isa = PBXBuildFile; fileRef = 3801A0731F7E25EA006C3D18 /* ChooseRespondToDevil.m */; };
-		3801A0771F7E3BF6006C3D18 /* BaseChatCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3801A0761F7E3BF6006C3D18 /* BaseChatCell.m */; };
-		3801A07A1F7E6D73006C3D18 /* BaseChoice.m in Sources */ = {isa = PBXBuildFile; fileRef = 3801A0791F7E6D73006C3D18 /* BaseChoice.m */; };
+		3801A0711F7E23C9006C3D18 /* BaseChatTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3801A0701F7E23C9006C3D18 /* BaseChatTableView.m */; };
+		3801A0771F7E3BF6006C3D18 /* BaseChatTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3801A0761F7E3BF6006C3D18 /* BaseChatTableViewCell.m */; };
 		3801A07D1F7F302E006C3D18 /* PufuChatDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 3801A07C1F7F302E006C3D18 /* PufuChatDetail.m */; };
 		3801A0801F7F3054006C3D18 /* ChiziChatDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 3801A07F1F7F3054006C3D18 /* ChiziChatDetail.m */; };
 		3801A0831F7F3078006C3D18 /* TizaChatDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 3801A0821F7F3078006C3D18 /* TizaChatDetail.m */; };
-		3801A0861F7F4927006C3D18 /* SantaDevilChatContent.m in Sources */ = {isa = PBXBuildFile; fileRef = 3801A0851F7F4927006C3D18 /* SantaDevilChatContent.m */; };
-		3801A0891F7F498E006C3D18 /* SantaChatCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3801A0881F7F498E006C3D18 /* SantaChatCell.m */; };
-		3801A08C1F7F4A03006C3D18 /* ChooseRespondToSanta.m in Sources */ = {isa = PBXBuildFile; fileRef = 3801A08B1F7F4A03006C3D18 /* ChooseRespondToSanta.m */; };
-		3801A08F1F7F4A26006C3D18 /* SantaChoice.m in Sources */ = {isa = PBXBuildFile; fileRef = 3801A08E1F7F4A26006C3D18 /* SantaChoice.m */; };
-		3876A7E41F8DC681008A20C9 /* ChiziDevilChatContent.m in Sources */ = {isa = PBXBuildFile; fileRef = 3876A7E31F8DC681008A20C9 /* ChiziDevilChatContent.m */; };
-		3876A7E71F8DC6FD008A20C9 /* ChiziChatCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3876A7E61F8DC6FD008A20C9 /* ChiziChatCell.m */; };
-		3876A7EA1F8DC772008A20C9 /* ChooseRespondToChizi.m in Sources */ = {isa = PBXBuildFile; fileRef = 3876A7E91F8DC772008A20C9 /* ChooseRespondToChizi.m */; };
-		3876A7ED1F8DC79D008A20C9 /* ChiziChoice.m in Sources */ = {isa = PBXBuildFile; fileRef = 3876A7EC1F8DC79D008A20C9 /* ChiziChoice.m */; };
+		3801A0861F7F4927006C3D18 /* SantaChatTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3801A0851F7F4927006C3D18 /* SantaChatTableView.m */; };
+		3801A0891F7F498E006C3D18 /* SantaChatTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3801A0881F7F498E006C3D18 /* SantaChatTableViewCell.m */; };
+		3876A7E41F8DC681008A20C9 /* ChiziChatTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3876A7E31F8DC681008A20C9 /* ChiziChatTableView.m */; };
+		3876A7E71F8DC6FD008A20C9 /* ChiziChatTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3876A7E61F8DC6FD008A20C9 /* ChiziChatTableViewCell.m */; };
 		3876A7F11F8DD4A7008A20C9 /* playerTochizi.json in Resources */ = {isa = PBXBuildFile; fileRef = 3876A7F01F8DD4A7008A20C9 /* playerTochizi.json */; };
 		3876A7F31F8DD4AE008A20C9 /* chizi.json in Resources */ = {isa = PBXBuildFile; fileRef = 3876A7F21F8DD4AE008A20C9 /* chizi.json */; };
-		388442A91F8CA6D6005C9044 /* PufuDevilChatContent.m in Sources */ = {isa = PBXBuildFile; fileRef = 388442A81F8CA6D6005C9044 /* PufuDevilChatContent.m */; };
-		388442AC1F8CA723005C9044 /* PufuChatCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 388442AB1F8CA723005C9044 /* PufuChatCell.m */; };
-		388442AF1F8CA765005C9044 /* ChooseRespondToPufu.m in Sources */ = {isa = PBXBuildFile; fileRef = 388442AE1F8CA765005C9044 /* ChooseRespondToPufu.m */; };
-		388442B21F8CA7B7005C9044 /* PufuChoice.m in Sources */ = {isa = PBXBuildFile; fileRef = 388442B11F8CA7B7005C9044 /* PufuChoice.m */; };
+		388442A91F8CA6D6005C9044 /* PufuChatTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 388442A81F8CA6D6005C9044 /* PufuChatTableView.m */; };
+		388442AC1F8CA723005C9044 /* PufuChatTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 388442AB1F8CA723005C9044 /* PufuChatTableViewCell.m */; };
 		388442B61F8CAD52005C9044 /* playerTopufu.json in Resources */ = {isa = PBXBuildFile; fileRef = 388442B41F8CAD52005C9044 /* playerTopufu.json */; };
 		388442B71F8CAD52005C9044 /* pufu.json in Resources */ = {isa = PBXBuildFile; fileRef = 388442B51F8CAD52005C9044 /* pufu.json */; };
 		389C5C781FAEE89400494006 /* PuriHandCardCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 389C5C771FAEE89400494006 /* PuriHandCardCell.m */; };
@@ -51,10 +43,18 @@
 		389C5C811FB0768B00494006 /* CardSortTestCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 389C5C801FB0768B00494006 /* CardSortTestCollectionViewCell.m */; };
 		389C5C871FB0866400494006 /* CardCoverFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 389C5C861FB0866400494006 /* CardCoverFlowLayout.m */; };
 		389C5C8A1FB15E4500494006 /* TableCardCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 389C5C891FB15E4500494006 /* TableCardCollectionViewCell.m */; };
-		38C76C811FA06B2900BCBCB9 /* TizaDevilChatContent.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C76C801FA06B2900BCBCB9 /* TizaDevilChatContent.m */; };
-		38C76C841FA06B4C00BCBCB9 /* TizaChatCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C76C831FA06B4C00BCBCB9 /* TizaChatCell.m */; };
-		38C76C871FA06B7100BCBCB9 /* ChooseRespondToTiza.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C76C861FA06B7100BCBCB9 /* ChooseRespondToTiza.m */; };
-		38C76C8A1FA06B9900BCBCB9 /* TizaChoice.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C76C891FA06B9900BCBCB9 /* TizaChoice.m */; };
+		389C5C901FB1DC8700494006 /* BaseChoiceCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 389C5C8F1FB1DC8700494006 /* BaseChoiceCollectionView.m */; };
+		389C5C931FB1E39900494006 /* BaseChoiceCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 389C5C921FB1E39900494006 /* BaseChoiceCollectionViewCell.m */; };
+		389C5C961FB29FA900494006 /* SantaChoiceCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 389C5C951FB29FA900494006 /* SantaChoiceCollectionView.m */; };
+		389C5C991FB29FC600494006 /* SantaChoiceCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 389C5C981FB29FC600494006 /* SantaChoiceCollectionViewCell.m */; };
+		389C5C9C1FB2BA2D00494006 /* PufuChoiceCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 389C5C9B1FB2BA2C00494006 /* PufuChoiceCollectionView.m */; };
+		389C5C9F1FB2BA4D00494006 /* PufuChoiceCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 389C5C9E1FB2BA4D00494006 /* PufuChoiceCollectionViewCell.m */; };
+		389C5CA21FB2BA6D00494006 /* ChiziChoiceCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 389C5CA11FB2BA6D00494006 /* ChiziChoiceCollectionView.m */; };
+		389C5CA51FB2BA8D00494006 /* ChiziChoiceCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 389C5CA41FB2BA8D00494006 /* ChiziChoiceCollectionViewCell.m */; };
+		389C5CA81FB2BAA700494006 /* TizaChoiceCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 389C5CA71FB2BAA700494006 /* TizaChoiceCollectionView.m */; };
+		389C5CAB1FB2BAC300494006 /* TizaChoiceCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 389C5CAA1FB2BAC300494006 /* TizaChoiceCollectionViewCell.m */; };
+		38C76C811FA06B2900BCBCB9 /* TizaChatTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C76C801FA06B2900BCBCB9 /* TizaChatTableView.m */; };
+		38C76C841FA06B4C00BCBCB9 /* TizaChatTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C76C831FA06B4C00BCBCB9 /* TizaChatTableViewCell.m */; };
 		38C76C8F1FA073CA00BCBCB9 /* tiza.json in Resources */ = {isa = PBXBuildFile; fileRef = 38C76C8D1FA073CA00BCBCB9 /* tiza.json */; };
 		38C76C901FA073CA00BCBCB9 /* playerTotiza.json in Resources */ = {isa = PBXBuildFile; fileRef = 38C76C8E1FA073CA00BCBCB9 /* playerTotiza.json */; };
 		38C76C9B1FA07BD100BCBCB9 /* DevilChatRoom.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C76C991FA07BD100BCBCB9 /* DevilChatRoom.m */; };
@@ -139,46 +139,30 @@
 		3801A0641F7E0F9D006C3D18 /* BaseChatDetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseChatDetail.m; sourceTree = "<group>"; };
 		3801A06C1F7E1037006C3D18 /* SantaChatDetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SantaChatDetail.h; sourceTree = "<group>"; };
 		3801A06D1F7E1037006C3D18 /* SantaChatDetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SantaChatDetail.m; sourceTree = "<group>"; };
-		3801A06F1F7E23C9006C3D18 /* DevilChatContent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DevilChatContent.h; sourceTree = "<group>"; };
-		3801A0701F7E23C9006C3D18 /* DevilChatContent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DevilChatContent.m; sourceTree = "<group>"; };
-		3801A0721F7E25EA006C3D18 /* ChooseRespondToDevil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseRespondToDevil.h; sourceTree = "<group>"; };
-		3801A0731F7E25EA006C3D18 /* ChooseRespondToDevil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseRespondToDevil.m; sourceTree = "<group>"; };
-		3801A0751F7E3BF6006C3D18 /* BaseChatCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseChatCell.h; sourceTree = "<group>"; };
-		3801A0761F7E3BF6006C3D18 /* BaseChatCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseChatCell.m; sourceTree = "<group>"; };
-		3801A0781F7E6D73006C3D18 /* BaseChoice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseChoice.h; sourceTree = "<group>"; };
-		3801A0791F7E6D73006C3D18 /* BaseChoice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseChoice.m; sourceTree = "<group>"; };
+		3801A06F1F7E23C9006C3D18 /* BaseChatTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseChatTableView.h; sourceTree = "<group>"; };
+		3801A0701F7E23C9006C3D18 /* BaseChatTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseChatTableView.m; sourceTree = "<group>"; };
+		3801A0751F7E3BF6006C3D18 /* BaseChatTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseChatTableViewCell.h; sourceTree = "<group>"; };
+		3801A0761F7E3BF6006C3D18 /* BaseChatTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseChatTableViewCell.m; sourceTree = "<group>"; };
 		3801A07B1F7F302E006C3D18 /* PufuChatDetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PufuChatDetail.h; sourceTree = "<group>"; };
 		3801A07C1F7F302E006C3D18 /* PufuChatDetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PufuChatDetail.m; sourceTree = "<group>"; };
 		3801A07E1F7F3054006C3D18 /* ChiziChatDetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChiziChatDetail.h; sourceTree = "<group>"; };
 		3801A07F1F7F3054006C3D18 /* ChiziChatDetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChiziChatDetail.m; sourceTree = "<group>"; };
 		3801A0811F7F3078006C3D18 /* TizaChatDetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TizaChatDetail.h; sourceTree = "<group>"; };
 		3801A0821F7F3078006C3D18 /* TizaChatDetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TizaChatDetail.m; sourceTree = "<group>"; };
-		3801A0841F7F4927006C3D18 /* SantaDevilChatContent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SantaDevilChatContent.h; sourceTree = "<group>"; };
-		3801A0851F7F4927006C3D18 /* SantaDevilChatContent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SantaDevilChatContent.m; sourceTree = "<group>"; };
-		3801A0871F7F498E006C3D18 /* SantaChatCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SantaChatCell.h; sourceTree = "<group>"; };
-		3801A0881F7F498E006C3D18 /* SantaChatCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SantaChatCell.m; sourceTree = "<group>"; };
-		3801A08A1F7F4A03006C3D18 /* ChooseRespondToSanta.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseRespondToSanta.h; sourceTree = "<group>"; };
-		3801A08B1F7F4A03006C3D18 /* ChooseRespondToSanta.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseRespondToSanta.m; sourceTree = "<group>"; };
-		3801A08D1F7F4A26006C3D18 /* SantaChoice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SantaChoice.h; sourceTree = "<group>"; };
-		3801A08E1F7F4A26006C3D18 /* SantaChoice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SantaChoice.m; sourceTree = "<group>"; };
-		3876A7E21F8DC681008A20C9 /* ChiziDevilChatContent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChiziDevilChatContent.h; sourceTree = "<group>"; };
-		3876A7E31F8DC681008A20C9 /* ChiziDevilChatContent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChiziDevilChatContent.m; sourceTree = "<group>"; };
-		3876A7E51F8DC6FD008A20C9 /* ChiziChatCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChiziChatCell.h; sourceTree = "<group>"; };
-		3876A7E61F8DC6FD008A20C9 /* ChiziChatCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChiziChatCell.m; sourceTree = "<group>"; };
-		3876A7E81F8DC772008A20C9 /* ChooseRespondToChizi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseRespondToChizi.h; sourceTree = "<group>"; };
-		3876A7E91F8DC772008A20C9 /* ChooseRespondToChizi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseRespondToChizi.m; sourceTree = "<group>"; };
-		3876A7EB1F8DC79D008A20C9 /* ChiziChoice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChiziChoice.h; sourceTree = "<group>"; };
-		3876A7EC1F8DC79D008A20C9 /* ChiziChoice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChiziChoice.m; sourceTree = "<group>"; };
+		3801A0841F7F4927006C3D18 /* SantaChatTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SantaChatTableView.h; sourceTree = "<group>"; };
+		3801A0851F7F4927006C3D18 /* SantaChatTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SantaChatTableView.m; sourceTree = "<group>"; };
+		3801A0871F7F498E006C3D18 /* SantaChatTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SantaChatTableViewCell.h; sourceTree = "<group>"; };
+		3801A0881F7F498E006C3D18 /* SantaChatTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SantaChatTableViewCell.m; sourceTree = "<group>"; };
+		3876A7E21F8DC681008A20C9 /* ChiziChatTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChiziChatTableView.h; sourceTree = "<group>"; };
+		3876A7E31F8DC681008A20C9 /* ChiziChatTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChiziChatTableView.m; sourceTree = "<group>"; };
+		3876A7E51F8DC6FD008A20C9 /* ChiziChatTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChiziChatTableViewCell.h; sourceTree = "<group>"; };
+		3876A7E61F8DC6FD008A20C9 /* ChiziChatTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChiziChatTableViewCell.m; sourceTree = "<group>"; };
 		3876A7F01F8DD4A7008A20C9 /* playerTochizi.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = playerTochizi.json; sourceTree = "<group>"; };
 		3876A7F21F8DD4AE008A20C9 /* chizi.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = chizi.json; sourceTree = "<group>"; };
-		388442A71F8CA6D6005C9044 /* PufuDevilChatContent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PufuDevilChatContent.h; sourceTree = "<group>"; };
-		388442A81F8CA6D6005C9044 /* PufuDevilChatContent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PufuDevilChatContent.m; sourceTree = "<group>"; };
-		388442AA1F8CA723005C9044 /* PufuChatCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PufuChatCell.h; sourceTree = "<group>"; };
-		388442AB1F8CA723005C9044 /* PufuChatCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PufuChatCell.m; sourceTree = "<group>"; };
-		388442AD1F8CA765005C9044 /* ChooseRespondToPufu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseRespondToPufu.h; sourceTree = "<group>"; };
-		388442AE1F8CA765005C9044 /* ChooseRespondToPufu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseRespondToPufu.m; sourceTree = "<group>"; };
-		388442B01F8CA7B7005C9044 /* PufuChoice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PufuChoice.h; sourceTree = "<group>"; };
-		388442B11F8CA7B7005C9044 /* PufuChoice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PufuChoice.m; sourceTree = "<group>"; };
+		388442A71F8CA6D6005C9044 /* PufuChatTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PufuChatTableView.h; sourceTree = "<group>"; };
+		388442A81F8CA6D6005C9044 /* PufuChatTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PufuChatTableView.m; sourceTree = "<group>"; };
+		388442AA1F8CA723005C9044 /* PufuChatTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PufuChatTableViewCell.h; sourceTree = "<group>"; };
+		388442AB1F8CA723005C9044 /* PufuChatTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PufuChatTableViewCell.m; sourceTree = "<group>"; };
 		388442B41F8CAD52005C9044 /* playerTopufu.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = playerTopufu.json; sourceTree = "<group>"; };
 		388442B51F8CAD52005C9044 /* pufu.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = pufu.json; sourceTree = "<group>"; };
 		389C5C761FAEE89400494006 /* PuriHandCardCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PuriHandCardCell.h; sourceTree = "<group>"; };
@@ -193,14 +177,30 @@
 		389C5C861FB0866400494006 /* CardCoverFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardCoverFlowLayout.m; sourceTree = "<group>"; };
 		389C5C881FB15E4500494006 /* TableCardCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableCardCollectionViewCell.h; sourceTree = "<group>"; };
 		389C5C891FB15E4500494006 /* TableCardCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableCardCollectionViewCell.m; sourceTree = "<group>"; };
-		38C76C7F1FA06B2900BCBCB9 /* TizaDevilChatContent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TizaDevilChatContent.h; sourceTree = "<group>"; };
-		38C76C801FA06B2900BCBCB9 /* TizaDevilChatContent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TizaDevilChatContent.m; sourceTree = "<group>"; };
-		38C76C821FA06B4C00BCBCB9 /* TizaChatCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TizaChatCell.h; sourceTree = "<group>"; };
-		38C76C831FA06B4C00BCBCB9 /* TizaChatCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TizaChatCell.m; sourceTree = "<group>"; };
-		38C76C851FA06B7100BCBCB9 /* ChooseRespondToTiza.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseRespondToTiza.h; sourceTree = "<group>"; };
-		38C76C861FA06B7100BCBCB9 /* ChooseRespondToTiza.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseRespondToTiza.m; sourceTree = "<group>"; };
-		38C76C881FA06B9900BCBCB9 /* TizaChoice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TizaChoice.h; sourceTree = "<group>"; };
-		38C76C891FA06B9900BCBCB9 /* TizaChoice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TizaChoice.m; sourceTree = "<group>"; };
+		389C5C8E1FB1DC8700494006 /* BaseChoiceCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseChoiceCollectionView.h; sourceTree = "<group>"; };
+		389C5C8F1FB1DC8700494006 /* BaseChoiceCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseChoiceCollectionView.m; sourceTree = "<group>"; };
+		389C5C911FB1E39900494006 /* BaseChoiceCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseChoiceCollectionViewCell.h; sourceTree = "<group>"; };
+		389C5C921FB1E39900494006 /* BaseChoiceCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseChoiceCollectionViewCell.m; sourceTree = "<group>"; };
+		389C5C941FB29FA900494006 /* SantaChoiceCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SantaChoiceCollectionView.h; sourceTree = "<group>"; };
+		389C5C951FB29FA900494006 /* SantaChoiceCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SantaChoiceCollectionView.m; sourceTree = "<group>"; };
+		389C5C971FB29FC600494006 /* SantaChoiceCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SantaChoiceCollectionViewCell.h; sourceTree = "<group>"; };
+		389C5C981FB29FC600494006 /* SantaChoiceCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SantaChoiceCollectionViewCell.m; sourceTree = "<group>"; };
+		389C5C9A1FB2BA2C00494006 /* PufuChoiceCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PufuChoiceCollectionView.h; sourceTree = "<group>"; };
+		389C5C9B1FB2BA2C00494006 /* PufuChoiceCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PufuChoiceCollectionView.m; sourceTree = "<group>"; };
+		389C5C9D1FB2BA4D00494006 /* PufuChoiceCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PufuChoiceCollectionViewCell.h; sourceTree = "<group>"; };
+		389C5C9E1FB2BA4D00494006 /* PufuChoiceCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PufuChoiceCollectionViewCell.m; sourceTree = "<group>"; };
+		389C5CA01FB2BA6D00494006 /* ChiziChoiceCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChiziChoiceCollectionView.h; sourceTree = "<group>"; };
+		389C5CA11FB2BA6D00494006 /* ChiziChoiceCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChiziChoiceCollectionView.m; sourceTree = "<group>"; };
+		389C5CA31FB2BA8D00494006 /* ChiziChoiceCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChiziChoiceCollectionViewCell.h; sourceTree = "<group>"; };
+		389C5CA41FB2BA8D00494006 /* ChiziChoiceCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChiziChoiceCollectionViewCell.m; sourceTree = "<group>"; };
+		389C5CA61FB2BAA700494006 /* TizaChoiceCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TizaChoiceCollectionView.h; sourceTree = "<group>"; };
+		389C5CA71FB2BAA700494006 /* TizaChoiceCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TizaChoiceCollectionView.m; sourceTree = "<group>"; };
+		389C5CA91FB2BAC300494006 /* TizaChoiceCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TizaChoiceCollectionViewCell.h; sourceTree = "<group>"; };
+		389C5CAA1FB2BAC300494006 /* TizaChoiceCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TizaChoiceCollectionViewCell.m; sourceTree = "<group>"; };
+		38C76C7F1FA06B2900BCBCB9 /* TizaChatTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TizaChatTableView.h; sourceTree = "<group>"; };
+		38C76C801FA06B2900BCBCB9 /* TizaChatTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TizaChatTableView.m; sourceTree = "<group>"; };
+		38C76C821FA06B4C00BCBCB9 /* TizaChatTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TizaChatTableViewCell.h; sourceTree = "<group>"; };
+		38C76C831FA06B4C00BCBCB9 /* TizaChatTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TizaChatTableViewCell.m; sourceTree = "<group>"; };
 		38C76C8D1FA073CA00BCBCB9 /* tiza.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = tiza.json; sourceTree = "<group>"; };
 		38C76C8E1FA073CA00BCBCB9 /* playerTotiza.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = playerTotiza.json; sourceTree = "<group>"; };
 		38C76C981FA07BD100BCBCB9 /* DevilChatRoom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DevilChatRoom.h; sourceTree = "<group>"; };
@@ -368,14 +368,14 @@
 		3876A7EF1F8DC92D008A20C9 /* view */ = {
 			isa = PBXGroup;
 			children = (
-				3876A7E21F8DC681008A20C9 /* ChiziDevilChatContent.h */,
-				3876A7E31F8DC681008A20C9 /* ChiziDevilChatContent.m */,
-				3876A7E51F8DC6FD008A20C9 /* ChiziChatCell.h */,
-				3876A7E61F8DC6FD008A20C9 /* ChiziChatCell.m */,
-				3876A7E81F8DC772008A20C9 /* ChooseRespondToChizi.h */,
-				3876A7E91F8DC772008A20C9 /* ChooseRespondToChizi.m */,
-				3876A7EB1F8DC79D008A20C9 /* ChiziChoice.h */,
-				3876A7EC1F8DC79D008A20C9 /* ChiziChoice.m */,
+				3876A7E21F8DC681008A20C9 /* ChiziChatTableView.h */,
+				3876A7E31F8DC681008A20C9 /* ChiziChatTableView.m */,
+				3876A7E51F8DC6FD008A20C9 /* ChiziChatTableViewCell.h */,
+				3876A7E61F8DC6FD008A20C9 /* ChiziChatTableViewCell.m */,
+				389C5CA01FB2BA6D00494006 /* ChiziChoiceCollectionView.h */,
+				389C5CA11FB2BA6D00494006 /* ChiziChoiceCollectionView.m */,
+				389C5CA31FB2BA8D00494006 /* ChiziChoiceCollectionViewCell.h */,
+				389C5CA41FB2BA8D00494006 /* ChiziChoiceCollectionViewCell.m */,
 			);
 			name = view;
 			sourceTree = "<group>";
@@ -392,14 +392,14 @@
 		388442A21F8C9C1F005C9044 /* view */ = {
 			isa = PBXGroup;
 			children = (
-				3801A06F1F7E23C9006C3D18 /* DevilChatContent.h */,
-				3801A0701F7E23C9006C3D18 /* DevilChatContent.m */,
-				3801A0751F7E3BF6006C3D18 /* BaseChatCell.h */,
-				3801A0761F7E3BF6006C3D18 /* BaseChatCell.m */,
-				3801A0721F7E25EA006C3D18 /* ChooseRespondToDevil.h */,
-				3801A0731F7E25EA006C3D18 /* ChooseRespondToDevil.m */,
-				3801A0781F7E6D73006C3D18 /* BaseChoice.h */,
-				3801A0791F7E6D73006C3D18 /* BaseChoice.m */,
+				3801A06F1F7E23C9006C3D18 /* BaseChatTableView.h */,
+				3801A0701F7E23C9006C3D18 /* BaseChatTableView.m */,
+				3801A0751F7E3BF6006C3D18 /* BaseChatTableViewCell.h */,
+				3801A0761F7E3BF6006C3D18 /* BaseChatTableViewCell.m */,
+				389C5C8E1FB1DC8700494006 /* BaseChoiceCollectionView.h */,
+				389C5C8F1FB1DC8700494006 /* BaseChoiceCollectionView.m */,
+				389C5C911FB1E39900494006 /* BaseChoiceCollectionViewCell.h */,
+				389C5C921FB1E39900494006 /* BaseChoiceCollectionViewCell.m */,
 			);
 			name = view;
 			sourceTree = "<group>";
@@ -416,14 +416,14 @@
 		388442A41F8C9C59005C9044 /* view */ = {
 			isa = PBXGroup;
 			children = (
-				3801A0841F7F4927006C3D18 /* SantaDevilChatContent.h */,
-				3801A0851F7F4927006C3D18 /* SantaDevilChatContent.m */,
-				3801A0871F7F498E006C3D18 /* SantaChatCell.h */,
-				3801A0881F7F498E006C3D18 /* SantaChatCell.m */,
-				3801A08A1F7F4A03006C3D18 /* ChooseRespondToSanta.h */,
-				3801A08B1F7F4A03006C3D18 /* ChooseRespondToSanta.m */,
-				3801A08D1F7F4A26006C3D18 /* SantaChoice.h */,
-				3801A08E1F7F4A26006C3D18 /* SantaChoice.m */,
+				3801A0841F7F4927006C3D18 /* SantaChatTableView.h */,
+				3801A0851F7F4927006C3D18 /* SantaChatTableView.m */,
+				3801A0871F7F498E006C3D18 /* SantaChatTableViewCell.h */,
+				3801A0881F7F498E006C3D18 /* SantaChatTableViewCell.m */,
+				389C5C941FB29FA900494006 /* SantaChoiceCollectionView.h */,
+				389C5C951FB29FA900494006 /* SantaChoiceCollectionView.m */,
+				389C5C971FB29FC600494006 /* SantaChoiceCollectionViewCell.h */,
+				389C5C981FB29FC600494006 /* SantaChoiceCollectionViewCell.m */,
 			);
 			name = view;
 			sourceTree = "<group>";
@@ -440,14 +440,14 @@
 		388442B31F8CA7E0005C9044 /* view */ = {
 			isa = PBXGroup;
 			children = (
-				388442A71F8CA6D6005C9044 /* PufuDevilChatContent.h */,
-				388442A81F8CA6D6005C9044 /* PufuDevilChatContent.m */,
-				388442AA1F8CA723005C9044 /* PufuChatCell.h */,
-				388442AB1F8CA723005C9044 /* PufuChatCell.m */,
-				388442AD1F8CA765005C9044 /* ChooseRespondToPufu.h */,
-				388442AE1F8CA765005C9044 /* ChooseRespondToPufu.m */,
-				388442B01F8CA7B7005C9044 /* PufuChoice.h */,
-				388442B11F8CA7B7005C9044 /* PufuChoice.m */,
+				388442A71F8CA6D6005C9044 /* PufuChatTableView.h */,
+				388442A81F8CA6D6005C9044 /* PufuChatTableView.m */,
+				388442AA1F8CA723005C9044 /* PufuChatTableViewCell.h */,
+				388442AB1F8CA723005C9044 /* PufuChatTableViewCell.m */,
+				389C5C9A1FB2BA2C00494006 /* PufuChoiceCollectionView.h */,
+				389C5C9B1FB2BA2C00494006 /* PufuChoiceCollectionView.m */,
+				389C5C9D1FB2BA4D00494006 /* PufuChoiceCollectionViewCell.h */,
+				389C5C9E1FB2BA4D00494006 /* PufuChoiceCollectionViewCell.m */,
 			);
 			name = view;
 			sourceTree = "<group>";
@@ -576,14 +576,14 @@
 		38C76C8C1FA06D6900BCBCB9 /* view */ = {
 			isa = PBXGroup;
 			children = (
-				38C76C7F1FA06B2900BCBCB9 /* TizaDevilChatContent.h */,
-				38C76C801FA06B2900BCBCB9 /* TizaDevilChatContent.m */,
-				38C76C821FA06B4C00BCBCB9 /* TizaChatCell.h */,
-				38C76C831FA06B4C00BCBCB9 /* TizaChatCell.m */,
-				38C76C851FA06B7100BCBCB9 /* ChooseRespondToTiza.h */,
-				38C76C861FA06B7100BCBCB9 /* ChooseRespondToTiza.m */,
-				38C76C881FA06B9900BCBCB9 /* TizaChoice.h */,
-				38C76C891FA06B9900BCBCB9 /* TizaChoice.m */,
+				38C76C7F1FA06B2900BCBCB9 /* TizaChatTableView.h */,
+				38C76C801FA06B2900BCBCB9 /* TizaChatTableView.m */,
+				38C76C821FA06B4C00BCBCB9 /* TizaChatTableViewCell.h */,
+				38C76C831FA06B4C00BCBCB9 /* TizaChatTableViewCell.m */,
+				389C5CA61FB2BAA700494006 /* TizaChoiceCollectionView.h */,
+				389C5CA71FB2BAA700494006 /* TizaChoiceCollectionView.m */,
+				389C5CA91FB2BAC300494006 /* TizaChoiceCollectionViewCell.h */,
+				389C5CAA1FB2BAC300494006 /* TizaChoiceCollectionViewCell.m */,
 			);
 			name = view;
 			sourceTree = "<group>";
@@ -928,65 +928,65 @@
 				38C76D081FA9E64500BCBCB9 /* TWNavigationController.m in Sources */,
 				38C76CAE1FA19C6B00BCBCB9 /* ChiziMgr.m in Sources */,
 				38C76D171FAAFF3400BCBCB9 /* PuriHandCardLayout.m in Sources */,
+				389C5CA51FB2BA8D00494006 /* ChiziChoiceCollectionViewCell.m in Sources */,
+				389C5C9C1FB2BA2D00494006 /* PufuChoiceCollectionView.m in Sources */,
 				38C76C9E1FA07C1700BCBCB9 /* ChatRoomCleared.m in Sources */,
 				38C76CB71FA1B1E700BCBCB9 /* CardCraftMgr.m in Sources */,
-				38C76C8A1FA06B9900BCBCB9 /* TizaChoice.m in Sources */,
 				38C76CF71FA8A74900BCBCB9 /* DevilRoomMgr.m in Sources */,
 				38C76CAA1FA19C1600BCBCB9 /* PufuMgr.m in Sources */,
-				3801A0711F7E23C9006C3D18 /* DevilChatContent.m in Sources */,
+				3801A0711F7E23C9006C3D18 /* BaseChatTableView.m in Sources */,
+				389C5C9F1FB2BA4D00494006 /* PufuChoiceCollectionViewCell.m in Sources */,
 				38C76D111FAACAF900BCBCB9 /* CardSelectedBackground.m in Sources */,
-				38C76C841FA06B4C00BCBCB9 /* TizaChatCell.m in Sources */,
-				388442AF1F8CA765005C9044 /* ChooseRespondToPufu.m in Sources */,
-				3876A7EA1F8DC772008A20C9 /* ChooseRespondToChizi.m in Sources */,
+				38C76C841FA06B4C00BCBCB9 /* TizaChatTableViewCell.m in Sources */,
 				38C76CE51FA8550300BCBCB9 /* FeastView.m in Sources */,
 				389C5C7B1FB04F9B00494006 /* CardMasonryLayout.m in Sources */,
 				389C5C8A1FB15E4500494006 /* TableCardCollectionViewCell.m in Sources */,
+				389C5C991FB29FC600494006 /* SantaChoiceCollectionViewCell.m in Sources */,
 				3801A04A1F7B43CF006C3D18 /* FirstCommunication.m in Sources */,
 				38C76D141FAAD0C200BCBCB9 /* CardDetailViewController.m in Sources */,
+				389C5C931FB1E39900494006 /* BaseChoiceCollectionViewCell.m in Sources */,
 				3801A0591F7C88F1006C3D18 /* PRNavigationController.m in Sources */,
 				38C76CB21FA19CD300BCBCB9 /* TizaMgr.m in Sources */,
 				3801A01A1F7A76B0006C3D18 /* AppDelegate.m in Sources */,
-				3801A07A1F7E6D73006C3D18 /* BaseChoice.m in Sources */,
 				389C5C811FB0768B00494006 /* CardSortTestCollectionViewCell.m in Sources */,
+				389C5CA81FB2BAA700494006 /* TizaChoiceCollectionView.m in Sources */,
 				3801A04D1F7B4404006C3D18 /* DevilCard.m in Sources */,
-				3801A0861F7F4927006C3D18 /* SantaDevilChatContent.m in Sources */,
-				388442B21F8CA7B7005C9044 /* PufuChoice.m in Sources */,
+				3801A0861F7F4927006C3D18 /* SantaChatTableView.m in Sources */,
 				3801A0171F7A76B0006C3D18 /* main.m in Sources */,
 				38C76D231FAC538900BCBCB9 /* PuriHandCardAttributes.m in Sources */,
-				3801A0771F7E3BF6006C3D18 /* BaseChatCell.m in Sources */,
+				3801A0771F7E3BF6006C3D18 /* BaseChatTableViewCell.m in Sources */,
 				38C76CEB1FA867D600BCBCB9 /* BaseCardCraftViewController.m in Sources */,
-				388442AC1F8CA723005C9044 /* PufuChatCell.m in Sources */,
+				388442AC1F8CA723005C9044 /* PufuChatTableViewCell.m in Sources */,
 				389C5C7E1FB057CB00494006 /* CardSortTestViewController.m in Sources */,
 				38C76CA61FA1901700BCBCB9 /* SantaMgr.m in Sources */,
 				38C76D021FA977FB00BCBCB9 /* TruthMgr.m in Sources */,
 				38C76CC01FA1B62400BCBCB9 /* Puri.m in Sources */,
-				3801A0741F7E25EA006C3D18 /* ChooseRespondToDevil.m in Sources */,
 				38C76D0B1FAAAE2300BCBCB9 /* CardSortViewController.m in Sources */,
-				3801A08F1F7F4A26006C3D18 /* SantaChoice.m in Sources */,
-				3801A08C1F7F4A03006C3D18 /* ChooseRespondToSanta.m in Sources */,
 				3801A0831F7F3078006C3D18 /* TizaChatDetail.m in Sources */,
-				3876A7E71F8DC6FD008A20C9 /* ChiziChatCell.m in Sources */,
+				3876A7E71F8DC6FD008A20C9 /* ChiziChatTableViewCell.m in Sources */,
 				389C5C781FAEE89400494006 /* PuriHandCardCell.m in Sources */,
-				38C76C811FA06B2900BCBCB9 /* TizaDevilChatContent.m in Sources */,
+				38C76C811FA06B2900BCBCB9 /* TizaChatTableView.m in Sources */,
 				3801A0801F7F3054006C3D18 /* ChiziChatDetail.m in Sources */,
 				38C76CBA1FA1B2B800BCBCB9 /* DevilCardInfo.m in Sources */,
 				38C76CD91FA7561A00BCBCB9 /* DCNavigationController.m in Sources */,
 				38C76CDC1FA7568B00BCBCB9 /* CardFeastViewController.m in Sources */,
 				38C76CFC1FA972C800BCBCB9 /* DevilCastleViewController.m in Sources */,
 				38C76CC31FA1B65900BCBCB9 /* Devil.m in Sources */,
-				38C76C871FA06B7100BCBCB9 /* ChooseRespondToTiza.m in Sources */,
 				3801A0501F7B4423006C3D18 /* DevilRoom.m in Sources */,
 				38C76D0E1FAAAFC800BCBCB9 /* CardCell.m in Sources */,
 				3801A0561F7B5CB3006C3D18 /* PretendedViewController.m in Sources */,
-				3876A7E41F8DC681008A20C9 /* ChiziDevilChatContent.m in Sources */,
+				3876A7E41F8DC681008A20C9 /* ChiziChatTableView.m in Sources */,
 				38C76CBD1FA1B4F500BCBCB9 /* Crafter.m in Sources */,
+				389C5C961FB29FA900494006 /* SantaChoiceCollectionView.m in Sources */,
 				38C76CDF1FA8493E00BCBCB9 /* UIImage+Rotate.m in Sources */,
 				3801A0531F7B4439006C3D18 /* TrueWorld.m in Sources */,
-				3876A7ED1F8DC79D008A20C9 /* ChiziChoice.m in Sources */,
 				3801A0651F7E0F9D006C3D18 /* BaseChatDetail.m in Sources */,
-				3801A0891F7F498E006C3D18 /* SantaChatCell.m in Sources */,
+				3801A0891F7F498E006C3D18 /* SantaChatTableViewCell.m in Sources */,
+				389C5CAB1FB2BAC300494006 /* TizaChoiceCollectionViewCell.m in Sources */,
 				38C76CA21FA1850600BCBCB9 /* ChatRoomMgr.m in Sources */,
-				388442A91F8CA6D6005C9044 /* PufuDevilChatContent.m in Sources */,
+				389C5CA21FB2BA6D00494006 /* ChiziChoiceCollectionView.m in Sources */,
+				388442A91F8CA6D6005C9044 /* PufuChatTableView.m in Sources */,
+				389C5C901FB1DC8700494006 /* BaseChoiceCollectionView.m in Sources */,
 				3801A07D1F7F302E006C3D18 /* PufuChatDetail.m in Sources */,
 				38C76C9B1FA07BD100BCBCB9 /* DevilChatRoom.m in Sources */,
 				3801A06E1F7E1037006C3D18 /* SantaChatDetail.m in Sources */,

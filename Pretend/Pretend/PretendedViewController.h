@@ -9,6 +9,6 @@
 //根控制器
 #import <UIKit/UIKit.h>
 
-@interface PretendedViewController : UITabBarController
+@interface PretendedViewController : UITabBarController<UITabBarControllerDelegate>
 
 @end
