@@ -9,7 +9,11 @@
 #import "CardSortViewController.h"
 #import "CardCell.h"
 #import "CardDetailViewController.h"
+#import <Masonry.h>
 
+#define SCREEN_SIZE ([UIScreen mainScreen].bounds.size)
+#define SCREEN_WIDTH (SCREEN_SIZE.width < SCREEN_SIZE.height ? SCREEN_SIZE.width : SCREEN_SIZE.height)
+#define SCREEN_HEIGHT (SCREEN_SIZE.width > SCREEN_SIZE.height ? SCREEN_SIZE.width : SCREEN_SIZE.height)
 #define ITEM_WIDTH 68
 #define ITEM_HEIGHT 96
 
@@ -37,14 +41,17 @@
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
     [layout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
     //layout.headerReferenceSize = CGSizeMake(self.view.bounds.size.width, 20);
-    CGFloat height = (self.view.bounds.size.height - 60 - 64) / 2 + 20;
+    CGFloat height = (SCREEN_HEIGHT - 30) / 2 - 64;
     CGFloat width = height * ITEM_WIDTH / ITEM_HEIGHT + 4;
     layout.itemSize = CGSizeMake(width, height);
-    self.cardCollect = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height) collectionViewLayout:layout];
+    self.cardCollect = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];
     self.cardCollect.backgroundColor = [UIColor colorWithRed:220.0/255 green:220.0/255 blue:220.0/255 alpha:1.0];
     self.cardCollect.delegate = self;
     self.cardCollect.dataSource = self;
     [self.view addSubview:self.cardCollect];
+    [self.cardCollect mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self.view);
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -60,12 +67,8 @@
     return 2;
 }
 
-- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {
-    return 20;
-}
-
-- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
-    return 6;
+- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
+    return UIEdgeInsetsMake(10, 10, 10, 10);
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {

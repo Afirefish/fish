@@ -11,8 +11,10 @@
 #import "PuriHandCardAttributes.h"
 #import <math.h>
 
-#define COLLECTION_WIDTH self.collectionView.bounds.size.width
-#define COLLECTION_HEIGHT self.collectionView.bounds.size.height
+
+#define COLLECTION_SIZE (self.collectionView.bounds.size)
+#define COLLECTION_WIDTH (COLLECTION_SIZE.width < COLLECTION_SIZE.height ? COLLECTION_SIZE.width : COLLECTION_SIZE.height)
+#define COLLECTION_HEIGHT (COLLECTION_SIZE.width > COLLECTION_SIZE.height ? COLLECTION_SIZE.width : COLLECTION_SIZE.height)
 #define ITEM_WIDTH 136
 #define ITEM_HEIGHT 192
 
@@ -33,11 +35,11 @@
 - (void)prepareLayout {
     [super prepareLayout];
     self.itemSize = CGSizeMake(ITEM_WIDTH, ITEM_HEIGHT);//cell的大小事先设定好
-    self.radius = 500;//半径设定好
+    self.radius =  500;//半径设定好
     self.anglePerItem = atan(ITEM_WIDTH  / _radius);//每个cell占有的角度，防止距离过远
     self.cellCount = [self.collectionView numberOfItemsInSection:0];//cell的数量从数据源取得
     self.angleAtExtreme = (self.cellCount > 0) ? - (self.cellCount - 1) * self.anglePerItem : 0;//最大的偏移角度为cell数量减1乘上cell的角度
-    self.maxAngle = atan2(ITEM_HEIGHT / 2 + COLLECTION_WIDTH / 2 , self.radius - COLLECTION_HEIGHT);//获得视图的角度的
+    self.maxAngle = atan2(ITEM_HEIGHT / 2 + COLLECTION_WIDTH / 2 , self.radius - COLLECTION_HEIGHT);//获得视图的角度的最大值
 
 }
 

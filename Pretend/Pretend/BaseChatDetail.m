@@ -15,8 +15,10 @@
 
 #import <Masonry.h>
 
-#define SCREEN_WIDTH [[UIScreen mainScreen] bounds].size.width
-#define SCREEN_HEIGHT [[UIScreen mainScreen] bounds].size.height
+
+#define SCREEN_SIZE ([UIScreen mainScreen].bounds.size)
+#define SCREEN_WIDTH (SCREEN_SIZE.width < SCREEN_SIZE.height ? SCREEN_SIZE.width : SCREEN_SIZE.height)
+#define SCREEN_HEIGHT (SCREEN_SIZE.width > SCREEN_SIZE.height ? SCREEN_SIZE.width : SCREEN_SIZE.height)
 #define kCellGap 20
 
 @interface BaseChatDetail ()

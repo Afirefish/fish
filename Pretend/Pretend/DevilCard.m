@@ -13,12 +13,15 @@
 #import "DCNavigationController.h"
 #import "CardSortViewController.h"
 #import "CardFeastViewController.h"
+#import <Masonry.h>
 
 #import "CardSortTestViewController.h"
 
 @interface DevilCard ()
 
 @property (nonatomic, strong) UILabel *tipLabel;
+@property (nonatomic, strong) UIButton *enterBtn;
+@property (nonatomic, strong) UIButton *sortBtn;
 
 @end
 
@@ -29,26 +32,47 @@
     // Do any additional setup after loading the view.
     self.navigationItem.title = @"Devil Card";
     self.view.backgroundColor = [UIColor colorWithRed:220.0/255 green:220.0/255 blue:220.0/255 alpha:1.0];
+    [self setUpSubviews];
+
+}
+
+- (void)setUpSubviews {
     //进入会场
-    UIButton *enterBtn = [UIButton buttonWithType:UIButtonTypeSystem];
-    enterBtn.frame = CGRectMake(self.view.bounds.size.width * 0.4, self.view.bounds.size.height * 0.4, self.view.bounds.size.width * 0.2, self.view.bounds.size.height * 0.2);
-    enterBtn.backgroundColor = [UIColor clearColor];
-    [enterBtn setTitle:@"Enter" forState:UIControlStateNormal];
-    enterBtn.titleLabel.font = [UIFont systemFontOfSize:24];
-    [enterBtn setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
-    [enterBtn addTarget:self action:@selector(enterCardFeast) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:enterBtn];
+    self.enterBtn = ({
+        UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
+        button.backgroundColor = [UIColor clearColor];
+        [button setTitle:@"Enter" forState:UIControlStateNormal];
+        button.titleLabel.font = [UIFont systemFontOfSize:24];
+        [button setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+        button;
+    });
+//    enterBtn.frame = CGRectMake(self.view.bounds.size.width * 0.4, self.view.bounds.size.height * 0.4, self.view.bounds.size.width * 0.2, self.view.bounds.size.height * 0.2);
+    [self.enterBtn addTarget:self action:@selector(enterCardFeast) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:self.enterBtn];
+    [self.enterBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.left.right.equalTo(self.view);
+        make.height.equalTo(@30.0);
+    }];
+
     //卡牌整理
-    UIButton *sortBtn = [UIButton buttonWithType:UIButtonTypeSystem];
-    sortBtn.frame = CGRectMake(self.view.bounds.size.width * 0.2, self.view.bounds.size.height * 0.7, self.view.bounds.size.width * 0.6, self.view.bounds.size.height * 0.2);
-    sortBtn.backgroundColor = [UIColor clearColor];
-    [sortBtn setTitle:@"Card Sort" forState:UIControlStateNormal];
-    sortBtn.titleLabel.font = [UIFont systemFontOfSize:24];
-    sortBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
-    [sortBtn setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
-    [sortBtn addTarget:self action:@selector(sortCard) forControlEvents:UIControlEventTouchUpInside];
+    self.sortBtn = ({
+        UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
+        button.backgroundColor = [UIColor clearColor];
+        [button setTitle:@"Card Sort" forState:UIControlStateNormal];
+        button.titleLabel.font = [UIFont systemFontOfSize:24];
+        button.titleLabel.textAlignment = NSTextAlignmentCenter;
+        [button setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+        button;
+    });
+//    sortBtn.frame = CGRectMake(self.view.bounds.size.width * 0.2, self.view.bounds.size.height * 0.7, self.view.bounds.size.width * 0.6, self.view.bounds.size.height * 0.2);
+    [self.sortBtn addTarget:self action:@selector(sortCard) forControlEvents:UIControlEventTouchUpInside];
     //[sortBtn addTarget:self action:@selector(sortCardTest) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:sortBtn];
+    [self.view addSubview:self.sortBtn];
+    [self.sortBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.equalTo(self.view);
+        make.bottom.equalTo(self.view).offset(-100);
+        make.height.equalTo(@30.0);
+    }];
 }
 
 - (void)sortCard {
@@ -56,42 +80,48 @@
     [self.navigationController pushViewController:cardSort animated:YES];
 }
 
-- (void)sortCardTest {
-    CardSortTestViewController *cardSort = [[CardSortTestViewController alloc] init];
-    [self.navigationController pushViewController:cardSort animated:YES];
-}
+//- (void)sortCardTest {
+//    CardSortTestViewController *cardSort = [[CardSortTestViewController alloc] init];
+//    [self.navigationController pushViewController:cardSort animated:YES];
+//}
 
 - (void)enterCardFeast {//第一个游戏结束，整理卡牌之后进入
     ChatRoomMgr *chatRoomMgr = [ChatRoomMgr defaultMgr];
     if (chatRoomMgr.chatFinished == YES) {//判断第一个游戏是否结束
+        if (self.tipLabel != nil) {
+            [self.tipLabel removeFromSuperview];
+            self.tipLabel = nil;
+        }
         CardFeastViewController *cardFeast = [[CardFeastViewController alloc] init];
         [self.navigationController pushViewController:cardFeast animated:YES];
         //[self presentViewController:dcNC animated:YES completion:nil];
     } else {
         if (self.tipLabel == nil) {
-            self.tipLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.view.bounds.size.width * 0.1,self.view.bounds.size.height * 0.5, self.view.bounds.size.width * 0.8, self.view.bounds.size.height * 0.2)];
-            self.tipLabel.text = @"你还没有通关第一个游戏";
-            self.tipLabel.textAlignment = NSTextAlignmentCenter;
-            self.tipLabel.adjustsFontSizeToFitWidth = YES;
-            self.tipLabel.backgroundColor = [UIColor clearColor];
-            [self.view addSubview:self.tipLabel];
+            [self setUpTipLabel];
         }
     }
 }
 
+- (void)setUpTipLabel {
+    self.tipLabel = ({
+        UILabel *label = [[UILabel alloc] init];
+        label.text = @"你还没有通关第一个游戏";
+        label.textAlignment = NSTextAlignmentCenter;
+        label.adjustsFontSizeToFitWidth = YES;
+        label.backgroundColor = [UIColor clearColor];
+        label;
+    });
+//    self.tipLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.view.bounds.size.width * 0.1,self.view.bounds.size.height * 0.5, self.view.bounds.size.width * 0.8, self.view.bounds.size.height * 0.2)];
+    [self.view addSubview:self.tipLabel];
+    [self.tipLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.equalTo(self.view);
+        make.top.equalTo(self.enterBtn.mas_bottom).offset(10.0);
+        make.bottom.equalTo(self.sortBtn.mas_top).offset(10.0);
+    }];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

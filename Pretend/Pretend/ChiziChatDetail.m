@@ -13,8 +13,9 @@
 #import "ChiziChoiceCollectionView.h"
 #import "ChiziChoiceCollectionViewCell.h"
 
-#define SCREEN_WIDTH [[UIScreen mainScreen] bounds].size.width
-#define SCREEN_HEIGHT [[UIScreen mainScreen] bounds].size.height
+#define SCREEN_SIZE ([UIScreen mainScreen].bounds.size)
+#define SCREEN_WIDTH (SCREEN_SIZE.width < SCREEN_SIZE.height ? SCREEN_SIZE.width : SCREEN_SIZE.height)
+#define SCREEN_HEIGHT (SCREEN_SIZE.width > SCREEN_SIZE.height ? SCREEN_SIZE.width : SCREEN_SIZE.height)
 #define kCellGap 20
 
 //设定为比较残忍的人，和santa很合得来，拥有最强大的近战攻击力

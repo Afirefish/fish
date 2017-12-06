@@ -10,9 +10,11 @@
 #import "PuriHandCardCell.h"
 #import "CardSelectedBackground.h"
 #import "PuriHandCardAttributes.h"
+#import <Masonry.h>
 
-#define SCREEN_WIDTH [[UIScreen mainScreen] bounds].size.width
-#define SCREEN_HEIGHT [[UIScreen mainScreen] bounds].size.height
+#define CELL_SIZE (self.bounds.size)
+#define CELL_WIDTH (CELL_SIZE.width < CELL_SIZE.height ? CELL_SIZE.width : CELL_SIZE.height)
+#define CELL_HEIGHT (CELL_SIZE.width > CELL_SIZE.height ? CELL_SIZE.width : CELL_SIZE.height)
 #define ITEM_WIDTH 136
 #define ITEM_HEIGHT 192
 

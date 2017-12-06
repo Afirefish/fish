@@ -6,11 +6,15 @@
 //  Copyright © 2017年 戴曦嘉. All rights reserved.
 //
 
+/*这里不太好用图片实现，于是考虑用一个类似树状图的UIView来实现，Button点击来出发相应 的人物的战斗，直到决出最后胜负*/
+
 #import "CardFeastViewController.h"
 #import "FeastView.h"
 #import "BaseCardCraftViewController.h"
+#import <Masonry.h>
 
 @interface CardFeastViewController ()
+@property (nonatomic,strong) FeastView *feastView;
 
 @end
 
@@ -21,64 +25,26 @@
     // Do any additional setup after loading the view.
     self.navigationItem.title = @"Card Feast";
     //宴会的场面
-    FeastView *feastView = [[FeastView alloc] initWithFrame:CGRectMake(0, 64, self.view.bounds.size.width, self.view.bounds.size.height - 64)];
-    [self.view addSubview:feastView];
-    //添加yuri craft
-    UIButton *yuiBtn = [UIButton buttonWithType:UIButtonTypeSystem];
-    yuiBtn.frame = CGRectMake(0, self.view.bounds.size.height * 0.85, self.view.bounds.size.width * 0.2, self.view.bounds.size.height * 0.1);
-    yuiBtn.backgroundColor = [UIColor clearColor];
-    //[yuiBtn setTitle:@"yui" forState:UIControlStateNormal];
-    [yuiBtn addTarget:self action:@selector(yuiCraft) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:yuiBtn];
-    //添加kirito
-    UIButton *kiritoBtn = [UIButton buttonWithType:UIButtonTypeSystem];
-    kiritoBtn.frame = CGRectMake(self.view.bounds.size.width * 0.1, self.view.bounds.size.height * 0.7, self.view.bounds.size.width * 0.8, self.view.bounds.size.height * 0.1);
-    kiritoBtn.backgroundColor = [UIColor clearColor];
-    //[kiritoBtn setTitle:@"kirito" forState:UIControlStateNormal];
-    [kiritoBtn addTarget:self action:@selector(kiritoCraft) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:kiritoBtn];
-    //添加asuna
-    UIButton *asunaBtn = [UIButton buttonWithType:UIButtonTypeSystem];
-    asunaBtn.frame = CGRectMake(self.view.bounds.size.width * 0.2, self.view.bounds.size.height * 0.8, self.view.bounds.size.width * 0.7, self.view.bounds.size.height * 0.1);
-    asunaBtn.backgroundColor = [UIColor clearColor];
-    //[asunaBtn setTitle:@"asuna" forState:UIControlStateNormal];
-    [asunaBtn addTarget:self action:@selector(asunaCraft) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:asunaBtn];
-    //添加leafa
-    UIButton *leafaBtn = [UIButton buttonWithType:UIButtonTypeSystem];
-    leafaBtn.frame = CGRectMake(self.view.bounds.size.width * 0.6, self.view.bounds.size.height * 0.38, self.view.bounds.size.width  * 0.3, self.view.bounds.size.height * 0.05);
-    leafaBtn.backgroundColor = [UIColor clearColor];
-    //[leafaBtn setTitle:@"leafa" forState:UIControlStateNormal];
-    [leafaBtn addTarget:self action:@selector(leafaCraft) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:leafaBtn];
-    //添加silica
-    UIButton *silicaBtn = [UIButton buttonWithType:UIButtonTypeSystem];
-    silicaBtn.frame = CGRectMake(self.view.bounds.size.width * 0.65, self.view.bounds.size.height * 0.45, self.view.bounds.size.width  * 0.25, self.view.bounds.size.height *0.05);
-    silicaBtn.backgroundColor = [UIColor clearColor];
-    //[silicaBtn setTitle:@"silica" forState:UIControlStateNormal];
-    [silicaBtn addTarget:self action:@selector(silicaCraft) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:silicaBtn];
-    //添加agil
-    UIButton *agilBtn = [UIButton buttonWithType:UIButtonTypeSystem];
-    agilBtn.frame = CGRectMake(self.view.bounds.size.width * 0.5, self.view.bounds.size.height * 0.6, self.view.bounds.size.width  * 0.4, self.view.bounds.size.height * 0.05);
-    agilBtn.backgroundColor = [UIColor clearColor];
-    //[agilBtn setTitle:@"agil" forState:UIControlStateNormal];
-    [agilBtn addTarget:self action:@selector(agilCraft) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:agilBtn];
-    //添加klein
-    UIButton *kleinBtn = [UIButton buttonWithType:UIButtonTypeSystem];
-    kleinBtn.frame = CGRectMake(self.view.bounds.size.width * 0.3, self.view.bounds.size.height  * 0.1, self.view.bounds.size.width  * 0.6, self.view.bounds.size.height * 0.1);
-    kleinBtn.backgroundColor = [UIColor clearColor];
-    //[kleinBtn setTitle:@"klein" forState:UIControlStateNormal];
-    [kleinBtn addTarget:self action:@selector(kleinCraft) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:kleinBtn];
-    //添加lisbeth
-    UIButton *lisbethBtn = [UIButton buttonWithType:UIButtonTypeSystem];
-    lisbethBtn.frame = CGRectMake(self.view.bounds.size.width * 0.3, self.view.bounds.size.height  * 0.25, self.view.bounds.size.width  * 0.6, self.view.bounds.size.height * 0.1);
-    lisbethBtn.backgroundColor = [UIColor clearColor];
-    //[lisbethBtn setTitle:@"lisbeth" forState:UIControlStateNormal];
-    [lisbethBtn addTarget:self action:@selector(lisbethCraft) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:lisbethBtn];
+    self.feastView = [[FeastView alloc] init];
+    [self.view addSubview:self.feastView];
+    [self.feastView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self.view);
+    }];
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(yuiCraft)];
+    tapGesture.numberOfTapsRequired = 1;
+    [self.view addGestureRecognizer:tapGesture];
+    //[self addBtnTarget];
+}
+
+- (void)addBtnTarget {
+    [self.feastView.yuiBtn addTarget:self action:@selector(yuiCraft) forControlEvents:UIControlEventTouchUpInside];
+    [self.feastView.kiritoBtn addTarget:self action:@selector(kiritoCraft) forControlEvents:UIControlEventTouchUpInside];
+    [self.feastView.asunaBtn addTarget:self action:@selector(asunaCraft) forControlEvents:UIControlEventTouchUpInside];
+    [self.feastView.leafaBtn addTarget:self action:@selector(leafaCraft) forControlEvents:UIControlEventTouchUpInside];
+    [self.feastView.silicaBtn addTarget:self action:@selector(silicaCraft) forControlEvents:UIControlEventTouchUpInside];
+    [self.feastView.agilBtn addTarget:self action:@selector(agilCraft) forControlEvents:UIControlEventTouchUpInside];
+    [self.feastView.kleinBtn addTarget:self action:@selector(kleinCraft) forControlEvents:UIControlEventTouchUpInside];
+    [self.feastView.lisbethBtn addTarget:self action:@selector(lisbethCraft) forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (void)yuiCraft {

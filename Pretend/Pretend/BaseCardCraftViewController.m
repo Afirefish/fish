@@ -11,9 +11,11 @@
 #import "PuriLayout.h"
 #import "PuriHandCardLayout.h"
 #import "TableCardCollectionViewCell.h"
+#import <Masonry.h>
 
-#define SCREEN_WIDTH [[UIScreen mainScreen] bounds].size.width
-#define SCREEN_HEIGHT [[UIScreen mainScreen] bounds].size.height
+#define SCREEN_SIZE ([UIScreen mainScreen].bounds.size)
+#define SCREEN_WIDTH SCREEN_SIZE.width
+#define SCREEN_HEIGHT SCREEN_SIZE.height
 #define ITEM_WIDTH 34
 #define ITEM_HEIGHT 48
 
@@ -53,54 +55,89 @@ static NSString *tableCard = @"TableCard";
 }
 
 -(void)setPuriHandCardLayout{
-    //使用手牌的布局
+    //使用手牌的布局 不能兼容旋转
     PuriHandCardLayout *puriLayout = [[PuriHandCardLayout alloc] init];
-    self.handCard = [[UICollectionView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT * 2 / 3 + 64, SCREEN_WIDTH, SCREEN_HEIGHT / 3 - 64) collectionViewLayout:puriLayout];
+    self.handCard = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:puriLayout];
     self.handCard.delegate = self;
     self.handCard.dataSource = self;
-    self.handCard.backgroundColor = [UIColor colorWithRed:220.0/255 green:220.0/255 blue:220.0/255 alpha:1.0];
+    self.handCard.backgroundColor = [UIColor whiteColor];//[UIColor colorWithRed:220.0/255 green:220.0/255 blue:220.0/255 alpha:1.0];
     self.handCard.showsVerticalScrollIndicator = NO;
     [self.view addSubview:self.handCard];
     [self.handCard registerClass:[PuriHandCardCell class] forCellWithReuseIdentifier:puriCard];
+    [self.handCard mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.left.right.equalTo(self.view);
+        make.height.equalTo(@240.0);
+    }];
     
-    //桌面卡牌
+    //桌面卡牌 不能兼容旋转
     UICollectionViewFlowLayout *tableLayout = [[UICollectionViewFlowLayout alloc] init];
     [tableLayout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
-    CGFloat height = (self.view.bounds.size.height * 1 / 2 - 64) / 2 ;
-    CGFloat width = height * ITEM_WIDTH / ITEM_HEIGHT + 4;
+    CGFloat height = (SCREEN_HEIGHT - 60.0) / 4.0 ;
+    CGFloat width = height * ITEM_WIDTH / ITEM_HEIGHT + 4.0;
     tableLayout.itemSize = CGSizeMake(width, height);
-    self.tableCardCraft = [[UICollectionView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT / 6 + 64 - SCREEN_HEIGHT / 18, SCREEN_WIDTH, SCREEN_HEIGHT * 1 / 2) collectionViewLayout:tableLayout];
+    self.tableCardCraft = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:tableLayout];
     self.tableCardCraft.backgroundColor = [UIColor colorWithRed:220.0/255 green:220.0/255 blue:220.0/255 alpha:1.0];
     self.tableCardCraft.delegate = self;
     self.tableCardCraft.dataSource = self;
     [self.view addSubview:self.tableCardCraft];
     [self.tableCardCraft registerClass:[TableCardCollectionViewCell class] forCellWithReuseIdentifier:tableCard];
+    [self.tableCardCraft mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.left.equalTo(self.view);
+        make.bottom.equalTo(self.handCard.mas_top);
+        make.height.equalTo(@(SCREEN_HEIGHT / 2.0));
+    }];
     
     //对战对手的label
-    self.crafterLabel = [[UILabel alloc] initWithFrame:CGRectMake((SCREEN_WIDTH - SCREEN_HEIGHT / 9) / 2, 64, SCREEN_HEIGHT / 9, SCREEN_HEIGHT / 9)];
-    self.crafterLabel.text = self.crafterName;
-    self.crafterLabel.adjustsFontSizeToFitWidth = YES;
-    [self.crafterLabel setTextAlignment:NSTextAlignmentCenter];
-    self.crafterLabel.backgroundColor = [UIColor clearColor];
-    self.crafterLabel.layer.cornerRadius = self.crafterLabel.bounds.size.width/2;
-    self.crafterLabel.layer.masksToBounds = YES;
+    self.crafterLabel = ({
+        UILabel *label = [[UILabel alloc] init];
+        label.text = self.crafterName;
+        label.font = [UIFont systemFontOfSize:30.0];
+        label.textAlignment = NSTextAlignmentCenter;
+        label.backgroundColor = [UIColor whiteColor];
+        label.layer.cornerRadius = self.crafterLabel.bounds.size.width/2;
+        label.layer.masksToBounds = YES;
+        label;
+    });
+//    self.crafterLabel = [[UILabel alloc] initWithFrame:CGRectMake((SCREEN_WIDTH - SCREEN_HEIGHT / 9) / 2, 64, SCREEN_HEIGHT / 9, SCREEN_HEIGHT / 9)];
     [self.view addSubview:self.crafterLabel];
+    [self.crafterLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(self.view);
+        make.bottom.equalTo(self.tableCardCraft.mas_top).offset(-10.0);
+        make.height.equalTo(@40.0);
+        make.width.equalTo(@((SCREEN_WIDTH - 40) / 3));
+    }];
     
     //puri的lifePoint
-    self.PuriLP = [[UILabel alloc] initWithFrame:CGRectMake((SCREEN_WIDTH + SCREEN_HEIGHT / 9) / 2 + (SCREEN_WIDTH - SCREEN_HEIGHT / 9) * 0.2 / 2, 64, (SCREEN_WIDTH - SCREEN_HEIGHT / 9) * 0.8 / 2, SCREEN_HEIGHT / 9)];
-    self.PuriLP.text = @"Puri:10";
-    self.PuriLP.adjustsFontSizeToFitWidth = YES;
-    [self.PuriLP setTextAlignment:NSTextAlignmentCenter];
-    self.PuriLP.backgroundColor = [UIColor clearColor];
+    self.PuriLP = ({
+        UILabel *label = [[UILabel alloc] init];
+        label.text = @"Puri:10";
+        label.font = [UIFont systemFontOfSize:30.0];
+        label.textAlignment = NSTextAlignmentCenter;
+        label.backgroundColor = [UIColor whiteColor];
+        label;
+    });
+//    self.PuriLP = [[UILabel alloc] initWithFrame:CGRectMake((SCREEN_WIDTH + SCREEN_HEIGHT / 9) / 2 + (SCREEN_WIDTH - SCREEN_HEIGHT / 9) * 0.2 / 2, 64, (SCREEN_WIDTH - SCREEN_HEIGHT / 9) * 0.8 / 2, SCREEN_HEIGHT / 9)];
     [self.view addSubview:self.PuriLP];
+    [self.PuriLP mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.width.height.equalTo(self.crafterLabel);
+        make.right.equalTo(self.view).offset(-10.0);
+    }];
     
     //对手的lifepoint
-    self.crafterLP = [[UILabel alloc] initWithFrame:CGRectMake(0, 64, (SCREEN_WIDTH - SCREEN_HEIGHT / 9) * 0.8 / 2, SCREEN_HEIGHT / 9)];
-    self.crafterLP.text = [NSString stringWithFormat:@"%@:10",self.crafterName];
-    self.crafterLP.adjustsFontSizeToFitWidth = YES;
-    [self.crafterLP setTextAlignment:NSTextAlignmentCenter];
-    self.crafterLP.backgroundColor = [UIColor clearColor];
+    self.crafterLP = ({
+        UILabel *label = [[UILabel alloc] init];
+        label.text = [NSString stringWithFormat:@"%@:10",self.crafterName];
+        label.font = [UIFont systemFontOfSize:30.0];
+        label.textAlignment = NSTextAlignmentCenter;
+        label.backgroundColor = [UIColor whiteColor];
+        label;
+    });
+//    self.crafterLP = [[UILabel alloc] initWithFrame:CGRectMake(0, 64, (SCREEN_WIDTH - SCREEN_HEIGHT / 9) * 0.8 / 2, SCREEN_HEIGHT / 9)];
     [self.view addSubview:self.crafterLP];
+    [self.crafterLP mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.view).offset(10.0);
+        make.centerY.width.height.equalTo(self.crafterLabel);
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -138,5 +175,8 @@ static NSString *tableCard = @"TableCard";
     return nil;
 }
 
+- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
+    return UIEdgeInsetsMake(10, 10, 10, 10);
+}
 
 @end

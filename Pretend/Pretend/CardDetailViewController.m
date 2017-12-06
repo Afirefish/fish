@@ -7,6 +7,7 @@
 //
 
 #import "CardDetailViewController.h"
+#import <Masonry.h>
 
 @interface CardDetailViewController ()
 @property (nonatomic,strong) UIImageView *cardDetail;
@@ -19,18 +20,12 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor colorWithRed:220.0/255 green:220.0/255 blue:220.0/255 alpha:1.0];
-    CGFloat width = (self.view.bounds.size.height - 64) * 68 / 96;
-    CGFloat height = self.view.bounds.size.width * 96 / 68;
-    if (width <= self.view.bounds.size.width) {
-        height = self.view.bounds.size.height - 64;
-    } else if (height <= self.view.bounds.size.height - 64) {
-        width = self.view.bounds.size.width;
-    } else {
-        NSLog(@"图片适配失败");
-    }
-    //NSLog(@"height %f width %f nap %f",height,width,(self.view.bounds.size.height - height - 64)/2);
-    self.cardDetail = [[UIImageView alloc] initWithFrame:CGRectMake((self.view.bounds.size.width - width)/2, (self.view.bounds.size.height - height - 64)/2 + 64, width, height)];
+    self.cardDetail = [[UIImageView alloc] init];
+    self.cardDetail.contentMode = UIViewContentModeScaleAspectFit;
     [self.view addSubview:self.cardDetail];
+    [self.cardDetail mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self.view);
+    }];
 }
 
 - (void)viewWillAppear:(BOOL)animated {//在这里处理可以使动画很平滑
