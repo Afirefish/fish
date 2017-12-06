@@ -10,5 +10,4 @@
 
 @interface ChatRoomCleared : UIViewController
 
-
 @end

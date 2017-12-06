@@ -11,9 +11,11 @@
 
 @class BaseChatTableView,ChatRoomMgr,BaseChoiceCollectionView;
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface BaseChatDetail : UIViewController<UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 
-@property (strong,nonatomic) BaseChatTableView *chatContent;//聊天的具体内容
+@property (strong,nonatomic) BaseChatTableView *chatContentTableView;//聊天的具体内容
 @property (assign,nonatomic) NSInteger nodeNumber;//当前聊天所具有的节点数
 @property (assign,nonatomic) BOOL isDevil;//当前节点是否是devil
 @property (strong,nonatomic) NSString *playerChoice;//玩家的选择
@@ -35,8 +37,13 @@
 @property (strong,nonatomic) NSString *devilRespondContent;//santa的回复的信息字符串
 @property (strong,nonatomic) NSMutableArray *allCellHeight;//保存聊天记录的所有视图的高度
 
-- (void)setSubViews;//设置子视图
+- (void)setUpContentViewsType;//设置子视图的type
+- (void)setUpSubviews;//设置子视图
+- (void)setUpContentViews;//设置内容视图
+- (void)setUpCoverLabel;//设置选项的mask视图
 - (void)sendMessage;//玩家做出选择的消息
 - (void)devilRespond;//devil的回复
 - (void)jsonData:(NSString *)devil;//json解析
 @end
+
+NS_ASSUME_NONNULL_END

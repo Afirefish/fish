@@ -8,7 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface FirstCommunication : UIViewController
+@property (nonatomic,strong) UIButton *skipButton;
 + (instancetype)initWithFirstSence;
 
 @end
+
+NS_ASSUME_NONNULL_END

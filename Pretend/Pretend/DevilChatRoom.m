@@ -14,12 +14,16 @@
 #import "TizaChatDetail.h"
 #import "ChatRoomCleared.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface DevilChatRoom ()
 @property (strong,nonatomic) NSArray *devilNames;
 @property (strong,nonatomic) NSArray *devilImages;
 @property (strong,nonatomic) ChatRoomMgr *chatRoomMgr;
 
 @end
+
+NS_ASSUME_NONNULL_END
 
 @implementation DevilChatRoom
 
@@ -49,8 +53,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     //self.navigationItem.hidesBackButton = YES;
-    self.navigationItem.title = @"Devil Chat";
+    self.title = @"Devil Chat";
     self.view.backgroundColor = [UIColor colorWithRed:255.0/255 green:250.0/255 blue:240.0/255 alpha:1.0];
+    self.tableView.layer.borderWidth = 2;
+    self.tableView.layer.borderColor = [UIColor blackColor].CGColor;
     UIButton *saveBtn = [UIButton buttonWithType:UIButtonTypeSystem];
     saveBtn.frame = CGRectMake(0, 0, 44, 44);
     [saveBtn setTitle:@"save" forState:UIControlStateNormal];
@@ -65,7 +71,6 @@
 - (void)saveToFile {//保存
     [self.chatRoomMgr writeToFile];
 }
-
 
 //检查完成状态
 - (void)checkFinished {
@@ -82,10 +87,6 @@
     [self removeFromParentViewController];
 }
 #pragma mark - Table view data source
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
-}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return 4;
@@ -105,8 +106,12 @@
 
 #pragma mark Table view delegate
 
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    return 2;
+}
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return self.view.bounds.size.height/8;
+    return 100;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {

@@ -29,6 +29,7 @@
 		3801A0831F7F3078006C3D18 /* TizaChatDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 3801A0821F7F3078006C3D18 /* TizaChatDetail.m */; };
 		3801A0861F7F4927006C3D18 /* SantaChatTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3801A0851F7F4927006C3D18 /* SantaChatTableView.m */; };
 		3801A0891F7F498E006C3D18 /* SantaChatTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3801A0881F7F498E006C3D18 /* SantaChatTableViewCell.m */; };
+		383BA7001FD799B600B0D207 /* FirstCommunication+UI.m in Sources */ = {isa = PBXBuildFile; fileRef = 383BA6FF1FD799B600B0D207 /* FirstCommunication+UI.m */; };
 		3876A7E41F8DC681008A20C9 /* ChiziChatTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3876A7E31F8DC681008A20C9 /* ChiziChatTableView.m */; };
 		3876A7E71F8DC6FD008A20C9 /* ChiziChatTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3876A7E61F8DC6FD008A20C9 /* ChiziChatTableViewCell.m */; };
 		3876A7F11F8DD4A7008A20C9 /* playerTochizi.json in Resources */ = {isa = PBXBuildFile; fileRef = 3876A7F01F8DD4A7008A20C9 /* playerTochizi.json */; };
@@ -154,6 +155,8 @@
 		3801A0851F7F4927006C3D18 /* SantaChatTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SantaChatTableView.m; sourceTree = "<group>"; };
 		3801A0871F7F498E006C3D18 /* SantaChatTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SantaChatTableViewCell.h; sourceTree = "<group>"; };
 		3801A0881F7F498E006C3D18 /* SantaChatTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SantaChatTableViewCell.m; sourceTree = "<group>"; };
+		383BA6FE1FD799B600B0D207 /* FirstCommunication+UI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FirstCommunication+UI.h"; sourceTree = "<group>"; };
+		383BA6FF1FD799B600B0D207 /* FirstCommunication+UI.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "FirstCommunication+UI.m"; sourceTree = "<group>"; };
 		3876A7E21F8DC681008A20C9 /* ChiziChatTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChiziChatTableView.h; sourceTree = "<group>"; };
 		3876A7E31F8DC681008A20C9 /* ChiziChatTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChiziChatTableView.m; sourceTree = "<group>"; };
 		3876A7E51F8DC6FD008A20C9 /* ChiziChatTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChiziChatTableViewCell.h; sourceTree = "<group>"; };
@@ -610,6 +613,8 @@
 				3801A0581F7C88F1006C3D18 /* PRNavigationController.m */,
 				3801A0481F7B43CF006C3D18 /* FirstCommunication.h */,
 				3801A0491F7B43CF006C3D18 /* FirstCommunication.m */,
+				383BA6FE1FD799B600B0D207 /* FirstCommunication+UI.h */,
+				383BA6FF1FD799B600B0D207 /* FirstCommunication+UI.m */,
 				38C76C981FA07BD100BCBCB9 /* DevilChatRoom.h */,
 				38C76C991FA07BD100BCBCB9 /* DevilChatRoom.m */,
 				38C76C9C1FA07C1700BCBCB9 /* ChatRoomCleared.h */,
@@ -1038,6 +1043,7 @@
 				389C5C7E1FB057CB00494006 /* CardSortTestViewController.m in Sources */,
 				38C76CA61FA1901700BCBCB9 /* SantaMgr.m in Sources */,
 				38C76D021FA977FB00BCBCB9 /* TruthMgr.m in Sources */,
+				383BA7001FD799B600B0D207 /* FirstCommunication+UI.m in Sources */,
 				38C76CC01FA1B62400BCBCB9 /* Puri.m in Sources */,
 				38C76D0B1FAAAE2300BCBCB9 /* CardSortViewController.m in Sources */,
 				3801A0831F7F3078006C3D18 /* TizaChatDetail.m in Sources */,

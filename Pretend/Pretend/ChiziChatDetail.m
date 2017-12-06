@@ -48,9 +48,9 @@ static NSString *choice = @"Choice";
 }
 
 //重写子视图设置的方法
-- (void)setSubViews {
-    self.chatContent = [[ChiziChatTableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT * 0.7)];
-    self.choicesCollectionView = [[ChiziChoiceCollectionView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT * 0.7, SCREEN_WIDTH, SCREEN_HEIGHT * 0.3) collectionViewLayout:self.layout];
+- (void)setUpContentViewsType {
+    self.chatContentTableView = [[ChiziChatTableView alloc] init];
+    self.choicesCollectionView = [[ChiziChoiceCollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:self.layout];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -65,7 +65,7 @@ static NSString *choice = @"Choice";
 
 //聊天记录的视图在获得高度的时候就有数据源了，不过在处理玩家的选择的视图的时候，还是要重新设置数据
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (tableView == self.chatContent) {
+    if (tableView == self.chatContentTableView) {
         NSString *chiziChat = [NSString stringWithFormat:@"ChiziChat%ld",(long)indexPath.section];
         ChiziChatTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:chiziChat];
         if(cell == nil){

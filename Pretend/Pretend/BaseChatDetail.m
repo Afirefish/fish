@@ -13,11 +13,14 @@
 #import "BaseChoiceCollectionView.h"
 #import "BaseChoiceCollectionViewCell.h"
 
+#import <Masonry.h>
+
 #define SCREEN_WIDTH [[UIScreen mainScreen] bounds].size.width
 #define SCREEN_HEIGHT [[UIScreen mainScreen] bounds].size.height
 #define kCellGap 20
 
 @interface BaseChatDetail ()
+
 @end
 
 @implementation BaseChatDetail
@@ -31,46 +34,77 @@ static NSString *choice = @"Choice";
     self.chatRoomMgr = [ChatRoomMgr defaultMgr];
     self.nodeNumber = 0;
     self.isDevil = NO;
+    self.choiceCount = 4;
     self.layout = [[UICollectionViewFlowLayout alloc] init];
     [self.layout setScrollDirection:UICollectionViewScrollDirectionVertical];
-    self.layout.itemSize = CGSizeMake((SCREEN_WIDTH - 40)/2 , SCREEN_HEIGHT * 0.3);
-    [self setSubViews];
+    self.layout.itemSize = CGSizeMake((SCREEN_WIDTH - 40)/2 , 80);
+    [self setUpContentViewsType];
+    [self setUpSubviews];
+}
+
+//设置表视图和集合视图类型
+- (void)setUpContentViewsType {
+    self.chatContentTableView = [[BaseChatTableView alloc] init];
+    self.choicesCollectionView =  [[BaseChoiceCollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:self.layout];
+    [self.choicesCollectionView registerClass:[BaseChoiceCollectionViewCell class]
+                   forCellWithReuseIdentifier:choice];
+}
+
+- (void)setUpSubviews {
+    [self setUpContentViews];
+    [self setUpCoverLabel];
+}
+
+//设置表视图和集合视图
+- (void)setUpContentViews {
     //聊天内容
-    self.chatContent.delegate = self;
-    self.chatContent.dataSource = self;
-    [self.view addSubview:self.chatContent];
+    //    self.chatContent = [[BaseChatTableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT * 0.7) style:UITableViewStylePlain];
+    self.chatContentTableView.delegate = self;
+    self.chatContentTableView.dataSource = self;
+    [self.view addSubview:self.chatContentTableView];
+    [self.chatContentTableView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.left.right.equalTo(self.view);
+        make.bottom.equalTo(self.view).offset(-140);
+    }];
+    
     //collection view显示的视图
-    self.choiceCount = 4;
-    [self.choicesCollectionView registerClass:[BaseChoiceCollectionViewCell class] forCellWithReuseIdentifier:choice];
+    //    self.choicesCollectionView = [[BaseChoiceCollectionView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT * 0.7, SCREEN_WIDTH, SCREEN_HEIGHT * 0.3) collectionViewLayout:self.layout];
     self.choicesCollectionView.delegate = self;
     self.choicesCollectionView.dataSource = self;
     self.choicesCollectionView.backgroundColor = [UIColor colorWithRed:255.0/255 green:250.0/255 blue:240.0/255 alpha:1.0];
     [self.view addSubview:self.choicesCollectionView];
-    //玩家不能选择时的视图
-    self.coverLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT * 0.7, SCREEN_WIDTH, SCREEN_HEIGHT * 0.3)];
-    self.coverLabel.backgroundColor = [UIColor colorWithRed:255.0/255 green:250.0/255 blue:240.0/255 alpha:1.0];
-    self.coverLabel.text = @"...";
-    self.coverLabel.font = [UIFont systemFontOfSize:60];
-    self.coverLabel.textAlignment = NSTextAlignmentCenter;
-    self.coverLabel.alpha = 0;
-    [self.view addSubview:self.coverLabel];
+    [self.choicesCollectionView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.left.right.equalTo(self.view);
+        make.top.equalTo(self.chatContentTableView.mas_bottom);
+    }];
 }
 
-//设置子视图
-- (void)setSubViews {
-    self.chatContent = [[BaseChatTableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT * 0.7) style:UITableViewStylePlain];
-    self.choicesCollectionView = [[BaseChoiceCollectionView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT * 0.7, SCREEN_WIDTH, SCREEN_HEIGHT * 0.3) collectionViewLayout:self.layout];
-
+//玩家不能选择时的视图
+- (void)setUpCoverLabel {
+    self.coverLabel = ({
+        UILabel *label = [[UILabel alloc] init];
+        label.backgroundColor = [UIColor colorWithRed:255.0/255 green:250.0/255 blue:240.0/255 alpha:1.0];
+        label.text = @"...";
+        label.font = [UIFont systemFontOfSize:60];
+        label.textAlignment = NSTextAlignmentCenter;
+        label.alpha = 0;
+        label;
+    });
+    //    self.coverLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT * 0.7, SCREEN_WIDTH, SCREEN_HEIGHT * 0.3)];
+    [self.view addSubview:self.coverLabel];
+    [self.coverLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self.choicesCollectionView);
+    }];
 }
 
 //滚动到底部
 - (void)scrollTableToFoot:(BOOL)animated {
-    NSInteger section = [self.chatContent numberOfSections];
+    NSInteger section = [self.chatContentTableView numberOfSections];
     if (section<1) return;  //无数据时不执行 要不会crash
-    NSInteger row = [self.chatContent numberOfRowsInSection:section-1];
+    NSInteger row = [self.chatContentTableView numberOfRowsInSection:section-1];
     if (row<1) return;
     NSIndexPath *index = [NSIndexPath indexPathForRow:row-1 inSection:section-1];  //取最后一行数据
-    [self.chatContent scrollToRowAtIndexPath:index atScrollPosition:UITableViewScrollPositionBottom animated:animated]; //滚动到最后一行
+    [self.chatContentTableView scrollToRowAtIndexPath:index atScrollPosition:UITableViewScrollPositionBottom animated:animated]; //滚动到最后一行
 }
 
 //玩家做出选择的消息
@@ -79,7 +113,7 @@ static NSString *choice = @"Choice";
     self.choicesCollectionView.userInteractionEnabled = NO;
     self.coverLabel.alpha = 1;
     self.nodeNumber += 1;
-    [self.chatContent reloadData];
+    [self.chatContentTableView reloadData];
     [self scrollTableToFoot:YES];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{//加个延迟有种思考的感觉233
         [self devilRespond];
@@ -90,7 +124,7 @@ static NSString *choice = @"Choice";
 - (void)devilRespond {
     self.isDevil = YES;
     self.nodeNumber += 1;
-    [self.chatContent reloadData];
+    [self.chatContentTableView reloadData];
     [self scrollTableToFoot:YES];
     [self.choicesCollectionView reloadData];
     self.coverLabel.alpha = 0;
@@ -102,39 +136,29 @@ static NSString *choice = @"Choice";
     // Dispose of any resources that can be recreated.
 }
 
+#pragma dataSource
+
 //聊天记录每一个作为一个新的section，而玩家选项一个section
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    if (tableView == self.chatContent) {
-        return self.nodeNumber;
-    }
-    return 0;
+    return self.nodeNumber;
 }
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-    if (collectionView == self.choicesCollectionView) {
-        return 1;
-    }
-    return 0;
+    return 1;
 }
 
 //聊天记录每一个section仅包括一行，玩家选项定为4个
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if (tableView == self.chatContent) {
-        return 1;
-    }
-    return 0;
+    return 1;
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    if (collectionView == self.choicesCollectionView) {
-        return self.choiceCount;
-    }
-    return 0;
+    return self.choiceCount;
 }
 
 //这里做了点特别的处理，对于聊天记录的视图，每个cell有不同的标志符，对于每个玩家选择，设置为一个标志符（后面实现的时候没有复用了）
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (tableView == self.chatContent) {
+    if (tableView == self.chatContentTableView) {
         NSString *baseChat = [NSString stringWithFormat:@"BaseChat%ld",(long)indexPath.section];
         BaseChatTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:baseChat];
         if(cell == nil){
@@ -161,6 +185,20 @@ static NSString *choice = @"Choice";
     return cell;
 }
 
+#pragma delegate
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return 2;
+}
+
+- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
+    return UIEdgeInsetsMake(10, 10, 10, 10);
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
 //玩家做出选择之后的处理
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     self.playerChoice = [[self.choiceArr objectAtIndex:indexPath.row] objectForKey:@"message"];
@@ -176,7 +214,7 @@ static NSString *choice = @"Choice";
 //设置cell高度，根据文本行数和大小变化
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     CGRect cellRect = CGRectMake(0, 0, 0, 0);
-    if (tableView == self.chatContent) {
+    if (tableView == self.chatContentTableView) {
         if (indexPath.section == [tableView numberOfSections] - 1 ) {
             if (self.isDevil == YES) {
                 for (NSDictionary *dic in self.devilMessages) {

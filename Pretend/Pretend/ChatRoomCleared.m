@@ -9,6 +9,7 @@
 #import "ChatRoomCleared.h"
 #import "ChatRoomMgr.h"
 #import "FirstCommunication.h"
+#import <Masonry.h>
 
 @interface ChatRoomCleared ()
 
@@ -22,19 +23,46 @@
     self.navigationItem.hidesBackButton = YES;
     self.view.backgroundColor = [UIColor colorWithRed:255.0/255 green:250.0/255 blue:240.0/255 alpha:1.0];
     self.title = @"Devil Chat";
+    [self setUpSubviews];
+
+}
+
+- (void)setUpSubviews {
     //结束的标签
-    UILabel *finishLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.view.bounds.size.width * 0.2, self.view.bounds.size.height * 0.2, self.view.bounds.size.width * 0.6, self.view.bounds.size.height * 0.2)];
-    finishLabel.text = @"Chat Cleared!";
-    finishLabel.font = [UIFont fontWithName:@"Courier-BoldOblique" size:24];
-    finishLabel.backgroundColor = [UIColor clearColor];
+    UILabel *finishLabel = ({
+        UILabel *label = [[UILabel alloc] init];
+        label.text = @"Chat Cleared!";
+        label.font = [UIFont fontWithName:@"Courier-BoldOblique" size:24];
+        label.textAlignment = NSTextAlignmentCenter;
+        label.backgroundColor = [UIColor clearColor];
+        label;
+    });
+//    UILabel *finishLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.view.bounds.size.width * 0.2, self.view.bounds.size.height * 0.2, self.view.bounds.size.width * 0.6, self.view.bounds.size.height * 0.2)];
     [self.view addSubview:finishLabel];
+    [finishLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.equalTo(self.view);
+        make.height.equalTo(@30.0);
+        make.bottom.equalTo(self.view.mas_centerY).offset(-80.0);
+    }];
+    
     //重新开始
-    UIButton *reStartButton = [UIButton buttonWithType:UIButtonTypeSystem];
-    reStartButton.frame = CGRectMake(self.view.bounds.size.width * 0.4, self.view.bounds.size.height * 0.6, self.view.bounds.size.width * 0.2, self.view.bounds.size.height * 0.2);
-    reStartButton.backgroundColor = [UIColor clearColor]; //[UIColor colorWithRed:255.0/255 green:250.0/255 blue:240.0/255 alpha:1.0];
-    [reStartButton setTitle:@"ReStart" forState:UIControlStateNormal];
-    [reStartButton addTarget:self action:@selector(reStart) forControlEvents:UIControlEventTouchUpInside];
+    UIButton *reStartButton = ({
+        UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
+        button.backgroundColor = [UIColor clearColor];
+        [button setTitle:@"ReStart" forState:UIControlStateNormal];
+        [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [button.titleLabel setFont:[UIFont systemFontOfSize:16]];
+        [button addTarget:self action:@selector(reStart) forControlEvents:UIControlEventTouchUpInside];
+        button;
+    });
+//    reStartButton.frame = CGRectMake(self.view.bounds.size.width * 0.4, self.view.bounds.size.height * 0.6, self.view.bounds.size.width * 0.2, self.view.bounds.size.height * 0.2);
     [self.view addSubview:reStartButton];
+    [reStartButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.equalTo(self.view);
+        make.height.equalTo(@20.0);
+        make.top.equalTo(finishLabel.mas_bottom).offset(100);
+    }];
+    
 }
 
 - (void)reStart {//重新开始和恶魔的聊天
@@ -42,7 +70,7 @@
     UIAlertAction *reStartComfirmAction = [UIAlertAction actionWithTitle:@"重新开始" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         ChatRoomMgr *chatRoomMgr = [ChatRoomMgr defaultMgr];
         [chatRoomMgr reSet];
-        NSLog(@"root %@",[self.navigationController.viewControllers firstObject]);
+        //NSLog(@"root %@",[self.navigationController.viewControllers firstObject]);
         FirstCommunication *firstSence = [FirstCommunication initWithFirstSence];
         [self.navigationController pushViewController:firstSence animated:YES];
         [self removeFromParentViewController];

@@ -45,13 +45,14 @@ static NSString *choice = @"Choice";
     self.finished = self.pufuMgr.pufuFinished;
     [self jsonData:@"pufu"];
     self.allCellHeight = [[NSMutableArray alloc] init];
-    [self.choicesCollectionView registerClass:[PufuChoiceCollectionViewCell class] forCellWithReuseIdentifier:choice];
+
 }
 
 //重写子视图设置的方法
-- (void)setSubViews {
-    self.chatContent = [[PufuChatTableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT * 0.7)];
-    self.choicesCollectionView = [[PufuChoiceCollectionView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT * 0.7, SCREEN_WIDTH, SCREEN_HEIGHT * 0.3) collectionViewLayout:self.layout];
+- (void)setUpContentViewsType {
+    self.chatContentTableView = [[PufuChatTableView alloc] init];
+    self.choicesCollectionView = [[PufuChoiceCollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:self.layout];
+    [self.choicesCollectionView registerClass:[PufuChoiceCollectionViewCell class] forCellWithReuseIdentifier:choice];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -66,7 +67,7 @@ static NSString *choice = @"Choice";
 
 //聊天记录的视图在获得高度的时候就有数据源了，不过在处理玩家的选择的视图的时候，还是要重新设置数据
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (tableView == self.chatContent) {
+    if (tableView == self.chatContentTableView) {
         NSString *pufuChat = [NSString stringWithFormat:@"PufuChat%ld",(long)indexPath.section];
         PufuChatTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:pufuChat];
         if(cell == nil){

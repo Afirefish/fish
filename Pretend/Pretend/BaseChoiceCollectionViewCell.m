@@ -7,18 +7,27 @@
 //
 
 #import "BaseChoiceCollectionViewCell.h"
+#import <Masonry.h>
 
 @implementation BaseChoiceCollectionViewCell
 
 - (instancetype) initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
-        self.messageLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, self.bounds.size.height/4, self.bounds.size.width, self.bounds.size.height/2)];
-        self.messageLabel.backgroundColor = [UIColor colorWithRed:220.0/255 green:220.0/255 blue:220.0/255 alpha:1.0];
-        self.messageLabel.numberOfLines = 0;
-        self.messageLabel.lineBreakMode = NSLineBreakByWordWrapping;
-        self.messageLabel.textAlignment = NSTextAlignmentCenter;
-        self.messageLabel.adjustsFontSizeToFitWidth = YES;
+        self.messageLabel = ({
+            UILabel *label = [[UILabel alloc] init];
+            label.adjustsFontSizeToFitWidth = YES;
+            label.numberOfLines = 0;
+            label.lineBreakMode = NSLineBreakByWordWrapping;
+            label.backgroundColor = [UIColor whiteColor];
+            label.textAlignment = NSTextAlignmentCenter;
+            [label setFont:[UIFont systemFontOfSize:16]];
+            label;
+        });
+//        self.messageView = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.height)];
         [self addSubview:self.messageLabel];
+        [self.messageLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.edges.equalTo(self.contentView);
+        }];
     }
     return self;
 }
