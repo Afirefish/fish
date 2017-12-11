@@ -40,7 +40,7 @@
     if(self = [super init]) {
         if (step == 1) {
             self.navigationItem.hidesBackButton = YES;
-            self.title = @"The unconscious fall";
+            self.navigationItem.title = @"The unconscious fall";
             self.view.backgroundColor = [UIColor colorWithRed:255.0/255 green:250.0/255 blue:240.0/255 alpha:1.0];
             NSLog(@"height---%f,width ----%f",self.view.bounds.size.height,self.view.bounds.size.width);
             //标题的标签

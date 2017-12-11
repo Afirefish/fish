@@ -57,6 +57,7 @@ NS_ASSUME_NONNULL_END
     self.view.backgroundColor = [UIColor colorWithRed:255.0/255 green:250.0/255 blue:240.0/255 alpha:1.0];
     self.tableView.layer.borderWidth = 2;
     self.tableView.layer.borderColor = [UIColor blackColor].CGColor;
+    [self.tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];//设置多余cell的分割线不显示
     UIButton *saveBtn = [UIButton buttonWithType:UIButtonTypeSystem];
     saveBtn.frame = CGRectMake(0, 0, 44, 44);
     [saveBtn setTitle:@"save" forState:UIControlStateNormal];
@@ -70,6 +71,10 @@ NS_ASSUME_NONNULL_END
 
 - (void)saveToFile {//保存
     [self.chatRoomMgr writeToFile];
+    UIAlertController *confirm = [UIAlertController alertControllerWithTitle:@"保存成功" message:nil preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *confirmAction = [UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:nil];
+    [confirm addAction:confirmAction];
+    [self presentViewController:confirm animated:YES completion:nil];
 }
 
 //检查完成状态
@@ -105,10 +110,6 @@ NS_ASSUME_NONNULL_END
 }
 
 #pragma mark Table view delegate
-
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-    return 2;
-}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 100;

@@ -63,6 +63,7 @@ static NSString *choice = @"Choice";
     //    self.chatContent = [[BaseChatTableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT * 0.7) style:UITableViewStylePlain];
     self.chatContentTableView.delegate = self;
     self.chatContentTableView.dataSource = self;
+    [self.chatContentTableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];//设置多余cell的分割线不显示
     [self.view addSubview:self.chatContentTableView];
     [self.chatContentTableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.left.right.equalTo(self.view);
