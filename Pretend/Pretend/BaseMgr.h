@@ -7,10 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "ChatRoomMgr.h"
 
 @interface BaseMgr : NSObject
-@property (assign, nonatomic) NSUInteger finished;//当前的进度
 @property (strong, nonatomic) NSMutableSet *cards;// 恶魔的卡牌
+@property (assign, nonatomic) NSUInteger finished;//当前的进度
+@property (strong, nonatomic) NSString *finishText;//上一句剧情
 @property (assign, nonatomic) NSUInteger previousStep;//上一步的进度
 
 + (instancetype)defaultMgr;

@@ -7,16 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "BaseMgr.h"
 
-@interface SantaMgr : NSObject
-@property (assign,nonatomic) NSUInteger finished;//当前的进度
-@property (strong,nonatomic) NSMutableSet *cards;// 恶魔的卡牌
-@property (assign,nonatomic) NSUInteger previousStep;//上一步的进度
+@interface SantaMgr : BaseMgr
 
-+ (instancetype)defaultMgr;
-- (void)saveCardInfo:(id)arg1;
-- (void)saveStep:(NSUInteger)arg1;
-- (void)savePreviousStep:(NSUInteger)arg1;
-- (void)saveToFile;
-- (void)reset;
 @end

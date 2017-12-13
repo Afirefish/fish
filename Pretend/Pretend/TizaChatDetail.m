@@ -7,6 +7,7 @@
 //
 
 #import "TizaChatDetail.h"
+#import "ChatRoomMgr.h"
 #import "TizaMgr.h"
 #import "TizaChatTableView.h"
 #import "TizaChatTableViewCell.h"
@@ -74,6 +75,8 @@ static NSString *choice = @"Choice";
         TizaChatTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:tizaChat];
         if(cell == nil){
             cell = [[TizaChatTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:tizaChat isDevil:self.isDevil message:self.playerChoice respond:self.devilRespondContent devilName:@"tiza"];
+            self.tizaMgr.finishText = self.devilRespondContent;
+            [ChatRoomMgr defaultMgr].showTime = TizaShowTime;
         }
         return cell;
     }

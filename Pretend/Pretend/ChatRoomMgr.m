@@ -60,14 +60,16 @@
 - (void)loadFromFile {//读取文件中信息
     if ([self isFileFirstCreated]) {
         self.chatFinished = NO;
+        self.showTime = SantaShowTime;
     } else {
         NSDictionary *dic = [NSDictionary dictionaryWithContentsOfFile:self.filePath];
         NSLog(@"main dic %@",dic);
         if (dic == nil) {
             self.chatFinished = NO;
+            self.showTime = SantaShowTime;
             return;
         }
-        NSLog(@"here?");
+        self.showTime = [[dic objectForKey:@"showTime"] integerValue];
         NSString *finish = [dic objectForKey:@"finish"];
         if ([finish isEqualToString:@"YES"]) {
             self.chatFinished = YES;
@@ -88,7 +90,12 @@
     [self.tiza saveToFile];
     self.step = self.santa.finished;
     NSString *finish = self.chatFinished?@"YES":@"NO";
-    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:finish,@"finish",self.cards,@"cards",nil];
+    NSNumber *currentDevil = [NSNumber numberWithInteger:self.showTime];
+    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:
+                         currentDevil,@"showTime",
+                         finish,@"finish",
+                         self.cards,@"cards",
+                         nil];
     NSLog(@"save main dic %@",dic);
     [dic writeToFile:self.filePath atomically:YES];
 }
@@ -118,7 +125,6 @@
     }
 }
 
-
 - (void)chatComplete{//第一个游戏通关
     self.chatFinished = YES;
     [self saveAllCards];
@@ -138,11 +144,12 @@
     [self.santa reset];
     [self.pufu reset];
     [self.chizi reset];
-    [self.tiza resetTiza];
+    [self.tiza reset];
     self.step = 1;
     NSString *start = @"NO";
     self.cards = nil;
     self.chatFinished = NO;
+    self.showTime = SantaShowTime;
     NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:start,@"finish",self.cards,@"cards",nil];
     NSLog(@"reset game %@",dic);
     [dic writeToFile:self.filePath atomically:YES];

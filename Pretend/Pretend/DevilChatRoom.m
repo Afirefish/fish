@@ -25,10 +25,10 @@ NSString *devilMaster = @"devilMaster";
 NS_ASSUME_NONNULL_BEGIN
 
 @interface DevilChatRoom ()
-@property (strong,nonatomic) NSArray *devilNames;
-@property (strong,nonatomic) NSArray *devilImages;
+@property (strong,nonatomic) NSArray *devilNames;//恶魔名字
+@property (strong,nonatomic) NSArray *devilImages;//恶魔头像
+@property (strong,nonatomic) NSArray *finishText;//上次的剧情
 @property (strong,nonatomic) ChatRoomMgr *chatRoomMgr;
-@property (strong,nonatomic) NSIndexPath *roomIndex;
 
 @end
 
@@ -54,6 +54,11 @@ NS_ASSUME_NONNULL_BEGIN
         self.chatRoomMgr = [ChatRoomMgr defaultMgr];
     }
     return self;
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self.tableView reloadData];
 }
 
 //设置恶魔名字，图片
@@ -115,9 +120,29 @@ NS_ASSUME_NONNULL_BEGIN
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     ChatRoomCell *cell = [tableView dequeueReusableCellWithIdentifier:devilMaster forIndexPath:indexPath];
     cell.nameLabel.text = self.devilNames[indexPath.row];
-    cell.messageLabel.text = @"这里要传一下进入的cell的剧情";
     cell.headImageView.image = self.devilImages[indexPath.row];
-    cell.sign.hidden = NO;
+    switch (indexPath.row) {
+        case 0:
+            cell.messageLabel.text = [SantaMgr defaultMgr].finishText;
+            break;
+        case 1:
+            cell.messageLabel.text = [PufuMgr defaultMgr].finishText;
+            break;
+        case 2:
+            cell.messageLabel.text = [ChiziMgr defaultMgr].finishText;
+            break;
+        case 3:
+            cell.messageLabel.text = [TizaMgr defaultMgr].finishText;
+            break;
+        default:
+            break;
+    }
+    if (indexPath.row == self.chatRoomMgr.showTime) {
+        cell.sign.hidden = NO;
+    } else {
+        cell.sign.hidden = YES;
+    }
+//    NSLog(@"msg  %@",cell.messageLabel.text);
     return cell;
 }
 
@@ -128,7 +153,6 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    self.roomIndex = indexPath;
     BaseChatDetail *chatDetail = nil;
     if (indexPath.row == 0) {
         chatDetail = [SantaChatDetail santaChatDetail];

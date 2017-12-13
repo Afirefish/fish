@@ -7,16 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "BaseMgr.h"
 
-@interface ChiziMgr : NSObject
-@property (assign,nonatomic) NSUInteger finished;
-@property (strong,nonatomic) NSMutableSet *cards;// 恶魔的卡牌
-@property (assign,nonatomic) NSUInteger previousStep;
+@interface ChiziMgr : BaseMgr
 
-+ (instancetype)defaultMgr;
-- (void)saveCardInfo:(id)arg1;
-- (void)saveStep:(NSUInteger)arg1;
-- (void)savePreviousStep:(NSUInteger)arg1;
-- (void)saveToFile;
-- (void)reset;
 @end

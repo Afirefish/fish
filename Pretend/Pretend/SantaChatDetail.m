@@ -7,6 +7,7 @@
 //
 
 #import "SantaChatDetail.h"
+#import "ChatRoomMgr.h"
 #import "SantaMgr.h"
 #import "SantaChatTableView.h"
 #import "SantaChatTableViewCell.h"
@@ -73,6 +74,8 @@ static NSString *choice = @"Choice";
         SantaChatTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:santaChat];
         if(cell == nil){
             cell = [[SantaChatTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:santaChat isDevil:self.isDevil message:self.playerChoice respond:self.devilRespondContent devilName:@"santa"];
+            self.santaMgr.finishText = self.devilRespondContent;
+            [ChatRoomMgr defaultMgr].showTime = SantaShowTime;
         }
         return cell;
     }

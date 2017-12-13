@@ -7,6 +7,7 @@
 //
 
 #import "ChiziChatDetail.h"
+#import "ChatRoomMgr.h"
 #import "ChiziMgr.h"
 #import "ChiziChatTableView.h"
 #import "ChiziChatTableViewCell.h"
@@ -71,6 +72,8 @@ static NSString *choice = @"Choice";
         ChiziChatTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:chiziChat];
         if(cell == nil){
             cell = [[ChiziChatTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:chiziChat isDevil:self.isDevil message:self.playerChoice respond:self.devilRespondContent devilName:@"chizi"];
+            self.chiziMgr.finishText = self.devilRespondContent;
+            [ChatRoomMgr defaultMgr].showTime = ChiziShowTime;
         }
         return cell;
     }

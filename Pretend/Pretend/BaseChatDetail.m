@@ -165,7 +165,7 @@ static NSString *choice = @"Choice";
         NSString *baseChat = [NSString stringWithFormat:@"BaseChat%ld",(long)indexPath.section];
         BaseChatTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:baseChat];
         if(cell == nil){
-            cell = [[BaseChatTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:baseChat isDevil:self.isDevil message:self.playerChoice respond:nil devilName:nil];
+            cell = [[BaseChatTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:baseChat isDevil:self.isDevil message:self.playerChoice respond:self.devilRespondContent devilName:nil];
         }
         return cell;
     }

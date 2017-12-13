@@ -7,6 +7,7 @@
 //
 
 #import "PufuChatDetail.h"
+#import "ChatRoomMgr.h"
 #import "PufuMgr.h"
 #import "PufuChatTableView.h"
 #import "PufuChatTableViewCell.h"
@@ -73,6 +74,8 @@ static NSString *choice = @"Choice";
         PufuChatTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:pufuChat];
         if(cell == nil){
             cell = [[PufuChatTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:pufuChat isDevil:self.isDevil message:self.playerChoice respond:self.devilRespondContent devilName:@"pufu"];
+            self.pufuMgr.finishText = self.devilRespondContent;
+            [ChatRoomMgr defaultMgr].showTime = PufuShowTime;
         }
         return cell;
     }
