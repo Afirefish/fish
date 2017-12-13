@@ -10,8 +10,8 @@
 
 @interface FirstCommunication (UI)
 
-- (void)setUpStartLabel;
-- (void)setUpStartTipLabel;
-- (void)setUpSkipButton;
+- (void)setupStartLabel;
+- (void)setupStartTipLabel;
+- (void)setupSkipButton;
 
 @end

@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface PufuMgr : NSObject
-@property (assign,nonatomic) NSUInteger pufuFinished;
+@property (assign,nonatomic) NSUInteger finished;
 @property (strong,nonatomic) NSMutableSet *cards;// 恶魔的卡牌
 @property (assign,nonatomic) NSUInteger previousStep;
 
@@ -18,5 +18,5 @@
 - (void)saveStep:(NSUInteger)arg1;
 - (void)savePreviousStep:(NSUInteger)arg1;
 - (void)saveToFile;
-- (void)resetPufu;
+- (void)reset;
 @end

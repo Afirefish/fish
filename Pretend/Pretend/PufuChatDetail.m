@@ -43,7 +43,7 @@ static NSString *choice = @"Choice";
     self.navigationItem.title = @"Pufu";
     self.pufuMgr = [PufuMgr defaultMgr];
     self.previousStep = self.pufuMgr.previousStep;
-    self.finished = self.pufuMgr.pufuFinished;
+    self.finished = self.pufuMgr.finished;
     [self jsonData:@"pufu"];
     self.allCellHeight = [[NSMutableArray alloc] init];
 
@@ -62,7 +62,7 @@ static NSString *choice = @"Choice";
 }
 
 ////pufu恶魔通过
-//- (void)setPufuFinished:(NSUInteger)pufuFinished {
+//- (void)setfinished:(NSUInteger)finished {
 //    self.finished = 100;
 //}
 

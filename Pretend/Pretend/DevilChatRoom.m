@@ -8,11 +8,19 @@
 
 #import "DevilChatRoom.h"
 #import "ChatRoomMgr.h"
+#import "SantaMgr.h"
+#import "PufuMgr.h"
+#import "TizaMgr.h"
+#import "ChiziMgr.h"
+#import "ChatRoomCell.h"
 #import "SantaChatDetail.h"
 #import "PufuChatDetail.h"
 #import "ChiziChatDetail.h"
 #import "TizaChatDetail.h"
 #import "ChatRoomCleared.h"
+#import "UIColor+PRCustomColor.h"
+
+NSString *devilMaster = @"devilMaster";
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -20,15 +28,14 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong,nonatomic) NSArray *devilNames;
 @property (strong,nonatomic) NSArray *devilImages;
 @property (strong,nonatomic) ChatRoomMgr *chatRoomMgr;
+@property (strong,nonatomic) NSIndexPath *roomIndex;
 
 @end
-
-NS_ASSUME_NONNULL_END
 
 @implementation DevilChatRoom
 
 //单例
-+ (instancetype)devilShowUp {
++ (instancetype)defaultChatRoom {
     static DevilChatRoom *devilChatCenter = nil;
     if (devilChatCenter == nil) {
         devilChatCenter = [[DevilChatRoom alloc] initWithFirstState];
@@ -52,12 +59,21 @@ NS_ASSUME_NONNULL_END
 //设置恶魔名字，图片
 - (void)viewDidLoad {
     [super viewDidLoad];
-    //self.navigationItem.hidesBackButton = YES;
     self.title = @"Devil Chat";
-    self.view.backgroundColor = [UIColor colorWithRed:255.0/255 green:250.0/255 blue:240.0/255 alpha:1.0];
+    [self setupTableView];
+    [self setupSaveBtn];
+    [self checkFinished];
+}
+
+- (void)setupTableView {
+    self.tableView.backgroundColor = [UIColor warmShellColor];
     self.tableView.layer.borderWidth = 2;
     self.tableView.layer.borderColor = [UIColor blackColor].CGColor;
     [self.tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];//设置多余cell的分割线不显示
+    [self.tableView registerClass:[ChatRoomCell class] forCellReuseIdentifier:devilMaster];
+}
+
+- (void)setupSaveBtn {
     UIButton *saveBtn = [UIButton buttonWithType:UIButtonTypeSystem];
     saveBtn.frame = CGRectMake(0, 0, 44, 44);
     [saveBtn setTitle:@"save" forState:UIControlStateNormal];
@@ -66,7 +82,6 @@ NS_ASSUME_NONNULL_END
     [saveBtn addTarget:self action:@selector(saveToFile) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *saveItem = [[UIBarButtonItem alloc] initWithCustomView:saveBtn];
     self.navigationItem.rightBarButtonItem = saveItem;
-    [self checkFinished];
 }
 
 - (void)saveToFile {//保存
@@ -98,14 +113,11 @@ NS_ASSUME_NONNULL_END
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *devilMaster = @"devilMaster";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:devilMaster];
-    if(cell == nil){
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:devilMaster];
-    }
-    cell.backgroundColor = [UIColor colorWithRed:255.0/255 green:250.0/255 blue:240.0/255 alpha:1.0];
-    cell.textLabel.text = self.devilNames[indexPath.row];
-    cell.imageView.image = self.devilImages[indexPath.row];
+    ChatRoomCell *cell = [tableView dequeueReusableCellWithIdentifier:devilMaster forIndexPath:indexPath];
+    cell.nameLabel.text = self.devilNames[indexPath.row];
+    cell.messageLabel.text = @"这里要传一下进入的cell的剧情";
+    cell.headImageView.image = self.devilImages[indexPath.row];
+    cell.sign.hidden = NO;
     return cell;
 }
 
@@ -116,20 +128,20 @@ NS_ASSUME_NONNULL_END
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    self.roomIndex = indexPath;
+    BaseChatDetail *chatDetail = nil;
     if (indexPath.row == 0) {
-        SantaChatDetail *santaChatDetail = [SantaChatDetail santaChatDetail];
-        [self.navigationController pushViewController:santaChatDetail animated:YES];
+        chatDetail = [SantaChatDetail santaChatDetail];
     } else if (indexPath.row == 1) {
-        PufuChatDetail *pufuChatDetail = [PufuChatDetail pufuChatDetail];
-        [self.navigationController pushViewController:pufuChatDetail animated:YES];
+        chatDetail = [PufuChatDetail pufuChatDetail];
     } else if (indexPath.row == 2) {
-        ChiziChatDetail *chiziChatDetail = [ChiziChatDetail chiziChatDetail];
-        [self.navigationController pushViewController:chiziChatDetail animated:YES];
+        chatDetail = [ChiziChatDetail chiziChatDetail];
     } else {
-        TizaChatDetail *tizaChatDetail = [TizaChatDetail tizaChatDetail];
-        [self.navigationController pushViewController:tizaChatDetail animated:YES];
+        chatDetail = [TizaChatDetail tizaChatDetail];
     }
-    
+    [self.navigationController pushViewController:chatDetail animated:YES];
 }
 
 @end
+
+NS_ASSUME_NONNULL_END

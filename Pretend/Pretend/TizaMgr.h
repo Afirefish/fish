@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface TizaMgr : NSObject
-@property (assign,nonatomic) NSUInteger tizaFinished;
+@property (assign,nonatomic) NSUInteger finished;
 @property (strong,nonatomic) NSMutableSet *cards;// 恶魔的卡牌
 @property (assign,nonatomic) NSUInteger previousStep;
 

@@ -13,6 +13,7 @@
 #import "DCNavigationController.h"
 #import "CardSortViewController.h"
 #import "CardFeastViewController.h"
+#import "UIColor+PRCustomColor.h"
 #import <Masonry.h>
 
 #import "CardSortTestViewController.h"
@@ -31,7 +32,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.navigationItem.title = @"Devil Card";
-    self.view.backgroundColor = [UIColor colorWithRed:220.0/255 green:220.0/255 blue:220.0/255 alpha:1.0];
+    self.view.backgroundColor = [UIColor smokeWhiteColor];
     [self setUpSubviews];
 
 }

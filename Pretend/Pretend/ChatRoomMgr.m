@@ -39,6 +39,7 @@
         self.pufu = [PufuMgr defaultMgr];
         self.chizi = [ChiziMgr defaultMgr];
         self.tiza = [TizaMgr defaultMgr];
+        self.step = self.santa.finished;
     }
     return self;
 }
@@ -61,10 +62,9 @@
         self.chatFinished = NO;
     } else {
         NSDictionary *dic = [NSDictionary dictionaryWithContentsOfFile:self.filePath];
-        NSLog(@"what this %@",dic);
+        NSLog(@"main dic %@",dic);
         if (dic == nil) {
             self.chatFinished = NO;
-            NSLog(@"there?");
             return;
         }
         NSLog(@"here?");
@@ -86,6 +86,7 @@
     [self.pufu saveToFile];
     [self.chizi saveToFile];
     [self.tiza saveToFile];
+    self.step = self.santa.finished;
     NSString *finish = self.chatFinished?@"YES":@"NO";
     NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:finish,@"finish",self.cards,@"cards",nil];
     NSLog(@"save main dic %@",dic);
@@ -110,7 +111,7 @@
 }
 
 - (BOOL)checkComplete {//检查游戏是否通关
-    if (self.santa.santaFinished == 100 && self.pufu.pufuFinished == 100 && self.chizi.chiziFinished == 100 && self.tiza.tizaFinished == 100) {
+    if (self.santa.finished == 100 && self.pufu.finished == 100 && self.chizi.finished == 100 && self.tiza.finished == 100) {
         return YES;
     } else {
         return NO;
@@ -134,15 +135,17 @@
 
 
 - (void)reSet {//重置游戏
-    [self.santa resetSanta];
-    [self.pufu resetPufu];
-    [self.chizi resetChizi];
+    [self.santa reset];
+    [self.pufu reset];
+    [self.chizi reset];
     [self.tiza resetTiza];
+    self.step = 1;
     NSString *start = @"NO";
     self.cards = nil;
     self.chatFinished = NO;
     NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:start,@"finish",self.cards,@"cards",nil];
     NSLog(@"reset game %@",dic);
     [dic writeToFile:self.filePath atomically:YES];
+    [self loadFromFile];
 }
 @end

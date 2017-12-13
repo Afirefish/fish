@@ -10,6 +10,6 @@
 #import <UIKit/UIKit.h>
 
 @interface DevilChatRoom : UITableViewController
-+ (instancetype)devilShowUp;
++ (instancetype)defaultChatRoom;
 
 @end

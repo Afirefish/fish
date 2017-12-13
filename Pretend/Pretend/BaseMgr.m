@@ -1,25 +1,23 @@
 //
-//  PufuMgr.m
+//  BaseMgr.m
 //  Pretend
 //
-//  Created by 戴曦嘉 on 2017/10/26.
+//  Created by daixijia on 2017/12/13.
 //  Copyright © 2017年 戴曦嘉. All rights reserved.
 //
 
+#import "BaseMgr.h"
 
-#import "PufuMgr.h"
-
-@interface PufuMgr()
-@property (strong,nonatomic) NSString *filePath;
+@interface BaseMgr ()
+@property (strong, nonatomic) NSString *filePath;
 
 @end
 
-
-@implementation PufuMgr
+@implementation BaseMgr
 + (instancetype)defaultMgr {
-    static PufuMgr *defaultDevilMgr = nil;
+    static BaseMgr *defaultDevilMgr = nil;
     if (defaultDevilMgr == nil) {
-        defaultDevilMgr = [[PufuMgr alloc] initWithFile];
+        defaultDevilMgr = [[BaseMgr alloc] initWithFile];
     }
     return defaultDevilMgr;
 }
@@ -33,7 +31,7 @@
 
 - (BOOL)isFileFirstCreated {//设定好文件的存储位置，判断是否创建了文件
     NSString *docPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
-    self.filePath = [docPath stringByAppendingPathComponent:@"pufu.txt"];
+    self.filePath = [docPath stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.txt",NSStringFromClass([self class])]];
     NSLog(@"file path %@",self.filePath);
     NSFileManager *fileMgr = [NSFileManager defaultManager];
     if (![fileMgr fileExistsAtPath:self.filePath]) {
@@ -70,11 +68,11 @@
     NSNumber *previousStep = [NSNumber numberWithUnsignedInteger:self.previousStep];
     NSNumber *finished = [NSNumber numberWithUnsignedInteger:self.finished];
     NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:previousStep,@"previousStep",finished,@"finished",self.cards,@"cards", nil];
-    NSLog(@"pufu dic is %@",dic);
+    NSLog(@"santa dic is %@",dic);
     [dic writeToFile:self.filePath atomically:YES];
 }
 
-- (void)reset {//重置pufu
+- (void)reset {//重置santa
     if ([self isFileFirstCreated]) {
         NSLog(@"create file");
     }
@@ -87,15 +85,15 @@
     [dic writeToFile:self.filePath atomically:YES];
 }
 
-- (void)saveStep:(NSUInteger)step {
+- (void)saveStep:(NSUInteger)step {//保存当前进度
     self.finished = step;
 }
 
-- (void)saveCardInfo:(NSNumber *)card {
+- (void)saveCardInfo:(NSNumber *)card {//保存获得的卡牌信息
     [self.cards addObject:card];
 }
 
-- (void)savePreviousStep:(NSUInteger)step {
+- (void)savePreviousStep:(NSUInteger)step {//保存上一步的剧情,这里将会用于重新进入游戏的加载
     self.previousStep = step;
 }
 

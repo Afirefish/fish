@@ -10,7 +10,6 @@
 #import "BaseChatDetail.h"
 
 @interface TizaChatDetail : BaseChatDetail
-@property (readonly,assign,nonatomic) NSUInteger tizaFinished;
 + (instancetype)tizaChatDetail;
 
 @end

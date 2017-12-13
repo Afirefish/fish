@@ -42,7 +42,7 @@ static NSString *choice = @"Choice";
     self.navigationItem.title = @"Tiza";
     self.tizaMgr = [TizaMgr defaultMgr];
     self.previousStep = self.tizaMgr.previousStep;
-    self.finished = self.tizaMgr.tizaFinished;
+    self.finished = self.tizaMgr.finished;
     [self jsonData:@"tiza"];
     self.allCellHeight = [[NSMutableArray alloc] init];
     [self.choicesCollectionView registerClass:[TizaChoiceCollectionViewCell class] forCellWithReuseIdentifier:choice];
@@ -63,7 +63,7 @@ static NSString *choice = @"Choice";
 }
 
 ////tiza恶魔通过
-//- (void)setTizaFinished:(NSUInteger)tizaFinished {
+//- (void)setfinished:(NSUInteger)finished {
 //    self.finished = 100;
 //}
 

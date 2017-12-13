@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface FirstCommunication : UIViewController
 @property (nonatomic,strong) UIButton *skipButton;
-+ (instancetype)initWithFirstSence;
+- (instancetype)initWithFirstSence;
 
 @end
 

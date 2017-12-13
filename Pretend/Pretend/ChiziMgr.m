@@ -46,19 +46,18 @@
 - (void)loadFromFile {//读取文件
     if ([self isFileFirstCreated]) {
         self.previousStep = 1;
-        self.chiziFinished = 1;
+        self.finished = 1;
     } else {
         NSDictionary *dic = [NSDictionary dictionaryWithContentsOfFile:self.filePath];
         if (dic == nil) {
             self.previousStep = 1;
-            self.chiziFinished = 1;
+            self.finished = 1;
             return;
         }
-        NSLog(@"chizi load dic is %@",dic);
         NSNumber *previousStep = [dic objectForKey:@"previousStep"];
         NSNumber *finished = [dic objectForKey:@"finished"];
         self.previousStep = [previousStep unsignedIntegerValue];
-        self.chiziFinished = [finished unsignedIntegerValue];
+        self.finished = [finished unsignedIntegerValue];
         self.cards = [dic objectForKey:@"cards"];
     }
 }
@@ -68,27 +67,27 @@
         NSLog(@"create file");
     }
     NSNumber *previousStep = [NSNumber numberWithUnsignedInteger:self.previousStep];
-    NSNumber *finished = [NSNumber numberWithUnsignedInteger:self.chiziFinished];
+    NSNumber *finished = [NSNumber numberWithUnsignedInteger:self.finished];
     NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:previousStep,@"previousStep",finished,@"finished",self.cards,@"cards", nil];
     NSLog(@"chizi dic is %@",dic);
     [dic writeToFile:self.filePath atomically:YES];
 }
 
-- (void)resetChizi {//重置chizi
+- (void)reset {//重置chizi
     if ([self isFileFirstCreated]) {
         NSLog(@"create file");
     }
     self.previousStep = 1;
-    self.chiziFinished = 1;
+    self.finished = 1;
     NSNumber *previousStep = [NSNumber numberWithUnsignedInteger:self.previousStep];
-    NSNumber *finished = [NSNumber numberWithUnsignedInteger:self.chiziFinished];
+    NSNumber *finished = [NSNumber numberWithUnsignedInteger:self.finished];
     self.cards = nil;
     NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:previousStep,@"previousStep",finished,@"finished",self.cards,@"cards", nil];
     [dic writeToFile:self.filePath atomically:YES];
 }
 
 - (void)saveStep:(NSUInteger)step {
-    self.chiziFinished = step;
+    self.finished = step;
 }
 
 - (void)saveCardInfo:(NSNumber *)card {

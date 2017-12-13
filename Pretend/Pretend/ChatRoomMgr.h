@@ -13,6 +13,7 @@
 @property (strong,nonatomic) NSMutableSet *cards;
 @property (strong,nonatomic) NSArray *playerMessages;//玩家的回复数据包
 @property (strong,nonatomic) NSArray *devilMessages;//devil的回复数据包
+@property (assign,nonatomic) NSUInteger step;//初始化首界面的状态
 
 + (instancetype)defaultMgr;
 - (void)writeToFile;

@@ -9,6 +9,7 @@
 #import "TrueWorld.h"
 #import "DevilRoomMgr.h"
 #import "TruthMgr.h"
+#import "UIColor+PRCustomColor.h"
 
 @interface TrueWorld ()
 
@@ -19,7 +20,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.view.backgroundColor = [UIColor colorWithRed:225.0/255 green:225.0/255 blue:225.0/255 alpha:1.0];
+    self.view.backgroundColor = [UIColor lightBlueColor];
     DevilRoomMgr *devilRoomMgr = [DevilRoomMgr defaultMgr];
     if (devilRoomMgr.roomFinish && devilRoomMgr.sincere) {
         self.navigationItem.title = @"True World";

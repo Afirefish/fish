@@ -54,6 +54,9 @@
 		389C5CA51FB2BA8D00494006 /* ChiziChoiceCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 389C5CA41FB2BA8D00494006 /* ChiziChoiceCollectionViewCell.m */; };
 		389C5CA81FB2BAA700494006 /* TizaChoiceCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 389C5CA71FB2BAA700494006 /* TizaChoiceCollectionView.m */; };
 		389C5CAB1FB2BAC300494006 /* TizaChoiceCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 389C5CAA1FB2BAC300494006 /* TizaChoiceCollectionViewCell.m */; };
+		38A13E021FE0D1C8002B62B4 /* UIColor+PRCustomColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 38A13E011FE0D1C8002B62B4 /* UIColor+PRCustomColor.m */; };
+		38A13E051FE10A46002B62B4 /* ChatRoomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 38A13E041FE10A46002B62B4 /* ChatRoomCell.m */; };
+		38A13E081FE1192C002B62B4 /* BaseMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 38A13E071FE1192C002B62B4 /* BaseMgr.m */; };
 		38C76C811FA06B2900BCBCB9 /* TizaChatTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C76C801FA06B2900BCBCB9 /* TizaChatTableView.m */; };
 		38C76C841FA06B4C00BCBCB9 /* TizaChatTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C76C831FA06B4C00BCBCB9 /* TizaChatTableViewCell.m */; };
 		38C76C8F1FA073CA00BCBCB9 /* tiza.json in Resources */ = {isa = PBXBuildFile; fileRef = 38C76C8D1FA073CA00BCBCB9 /* tiza.json */; };
@@ -201,6 +204,12 @@
 		389C5CA71FB2BAA700494006 /* TizaChoiceCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TizaChoiceCollectionView.m; sourceTree = "<group>"; };
 		389C5CA91FB2BAC300494006 /* TizaChoiceCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TizaChoiceCollectionViewCell.h; sourceTree = "<group>"; };
 		389C5CAA1FB2BAC300494006 /* TizaChoiceCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TizaChoiceCollectionViewCell.m; sourceTree = "<group>"; };
+		38A13E001FE0D1C8002B62B4 /* UIColor+PRCustomColor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIColor+PRCustomColor.h"; sourceTree = "<group>"; };
+		38A13E011FE0D1C8002B62B4 /* UIColor+PRCustomColor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIColor+PRCustomColor.m"; sourceTree = "<group>"; };
+		38A13E031FE10A46002B62B4 /* ChatRoomCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatRoomCell.h; sourceTree = "<group>"; };
+		38A13E041FE10A46002B62B4 /* ChatRoomCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChatRoomCell.m; sourceTree = "<group>"; };
+		38A13E061FE1192C002B62B4 /* BaseMgr.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseMgr.h; sourceTree = "<group>"; };
+		38A13E071FE1192C002B62B4 /* BaseMgr.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseMgr.m; sourceTree = "<group>"; };
 		38C76C7F1FA06B2900BCBCB9 /* TizaChatTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TizaChatTableView.h; sourceTree = "<group>"; };
 		38C76C801FA06B2900BCBCB9 /* TizaChatTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TizaChatTableView.m; sourceTree = "<group>"; };
 		38C76C821FA06B4C00BCBCB9 /* TizaChatTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TizaChatTableViewCell.h; sourceTree = "<group>"; };
@@ -473,6 +482,7 @@
 		388971D81F8B22FB0061234F /* Game Start */ = {
 			isa = PBXGroup;
 			children = (
+				38A13DFF1FE0D152002B62B4 /* common */,
 				3801A0541F7B5CB3006C3D18 /* PretendedViewController.h */,
 				3801A0551F7B5CB3006C3D18 /* PretendedViewController.m */,
 			);
@@ -499,6 +509,7 @@
 			children = (
 				388442A11F8C9C04005C9044 /* controller */,
 				388442A21F8C9C1F005C9044 /* view */,
+				38A13E091FE11932002B62B4 /* model */,
 			);
 			name = "Base Detail";
 			sourceTree = "<group>";
@@ -580,6 +591,24 @@
 				38C76CFD1FA9760600BCBCB9 /* controller */,
 			);
 			name = Final;
+			sourceTree = "<group>";
+		};
+		38A13DFF1FE0D152002B62B4 /* common */ = {
+			isa = PBXGroup;
+			children = (
+				38A13E001FE0D1C8002B62B4 /* UIColor+PRCustomColor.h */,
+				38A13E011FE0D1C8002B62B4 /* UIColor+PRCustomColor.m */,
+			);
+			name = common;
+			sourceTree = "<group>";
+		};
+		38A13E091FE11932002B62B4 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				38A13E061FE1192C002B62B4 /* BaseMgr.h */,
+				38A13E071FE1192C002B62B4 /* BaseMgr.m */,
+			);
+			name = model;
 			sourceTree = "<group>";
 		};
 		38C76C8B1FA06D5100BCBCB9 /* controller */ = {
@@ -740,6 +769,8 @@
 		38C76CD01FA71F8700BCBCB9 /* view */ = {
 			isa = PBXGroup;
 			children = (
+				38A13E031FE10A46002B62B4 /* ChatRoomCell.h */,
+				38A13E041FE10A46002B62B4 /* ChatRoomCell.m */,
 			);
 			name = view;
 			sourceTree = "<group>";
@@ -1016,6 +1047,7 @@
 				38C76C9E1FA07C1700BCBCB9 /* ChatRoomCleared.m in Sources */,
 				38C76CB71FA1B1E700BCBCB9 /* CardCraftMgr.m in Sources */,
 				38C76CF71FA8A74900BCBCB9 /* DevilRoomMgr.m in Sources */,
+				38A13E051FE10A46002B62B4 /* ChatRoomCell.m in Sources */,
 				38C76CAA1FA19C1600BCBCB9 /* PufuMgr.m in Sources */,
 				3801A0711F7E23C9006C3D18 /* BaseChatTableView.m in Sources */,
 				389C5C9F1FB2BA4D00494006 /* PufuChoiceCollectionViewCell.m in Sources */,
@@ -1058,6 +1090,7 @@
 				38C76CC31FA1B65900BCBCB9 /* Devil.m in Sources */,
 				3801A0501F7B4423006C3D18 /* DevilRoom.m in Sources */,
 				38C76D0E1FAAAFC800BCBCB9 /* CardCell.m in Sources */,
+				38A13E021FE0D1C8002B62B4 /* UIColor+PRCustomColor.m in Sources */,
 				3801A0561F7B5CB3006C3D18 /* PretendedViewController.m in Sources */,
 				3876A7E41F8DC681008A20C9 /* ChiziChatTableView.m in Sources */,
 				38C76CBD1FA1B4F500BCBCB9 /* Crafter.m in Sources */,
@@ -1065,6 +1098,7 @@
 				38C76CDF1FA8493E00BCBCB9 /* UIImage+Rotate.m in Sources */,
 				3801A0531F7B4439006C3D18 /* TrueWorld.m in Sources */,
 				3801A0651F7E0F9D006C3D18 /* BaseChatDetail.m in Sources */,
+				38A13E081FE1192C002B62B4 /* BaseMgr.m in Sources */,
 				3801A0891F7F498E006C3D18 /* SantaChatTableViewCell.m in Sources */,
 				389C5CAB1FB2BAC300494006 /* TizaChoiceCollectionViewCell.m in Sources */,
 				38C76CA21FA1850600BCBCB9 /* ChatRoomMgr.m in Sources */,

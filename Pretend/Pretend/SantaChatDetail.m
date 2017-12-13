@@ -44,7 +44,7 @@ static NSString *choice = @"Choice";
     self.navigationItem.title = @"Santa";
     self.santaMgr = [SantaMgr defaultMgr];
     self.previousStep = self.santaMgr.previousStep;
-    self.finished = self.santaMgr.santaFinished;
+    self.finished = self.santaMgr.finished;
     [self jsonData:@"santa"];
     self.allCellHeight = [[NSMutableArray alloc] init];
 
@@ -62,7 +62,7 @@ static NSString *choice = @"Choice";
 }
 
 ////santa恶魔通过
-//- (void)setSantaFinished{
+//- (void)setfinished{
 //    self.finished = 100;
 //}
 

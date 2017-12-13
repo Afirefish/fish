@@ -10,6 +10,7 @@
 #import "CardCraftMgr.h"
 #import "DevilRoomMgr.h"
 #import "DevilCastleViewController.h"
+#import "UIColor+PRCustomColor.h"
 #import <Masonry.h>
 
 NS_ASSUME_NONNULL_BEGIN
@@ -29,12 +30,12 @@ NS_ASSUME_NONNULL_BEGIN
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.navigationItem.title = @"Devil Room";
-    self.view.backgroundColor = [UIColor colorWithRed:255.0/255 green:250.0/255 blue:240.0/255 alpha:1.0];
+    self.view.backgroundColor = [UIColor warmGrayColor];
     CardCraftMgr *cardMgr = [CardCraftMgr defaultMgr];
     if (cardMgr.craftFinished) {
         self.considerBtn = ({
            UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
-            button.backgroundColor = [UIColor whiteColor];
+            button.backgroundColor = [UIColor clearColor];
             [button setTitle:@"Consider" forState:UIControlStateNormal];
             [button setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
             button.titleLabel.font = [UIFont systemFontOfSize:24];

@@ -42,7 +42,7 @@ static NSString *choice = @"Choice";
     self.navigationItem.title = @"Chizi";
     self.chiziMgr = [ChiziMgr defaultMgr];
     self.previousStep = self.chiziMgr.previousStep;
-    self.finished = self.chiziMgr.chiziFinished;
+    self.finished = self.chiziMgr.finished;
     [self jsonData:@"chizi"];
     self.allCellHeight = [[NSMutableArray alloc] init];
     [self.choicesCollectionView registerClass:[ChiziChoiceCollectionViewCell class] forCellWithReuseIdentifier:choice];
@@ -60,7 +60,7 @@ static NSString *choice = @"Choice";
 }
 
 ////pufu恶魔通过
-//- (void)setChiziFinished:(NSUInteger)chiziFinished {
+//- (void)setfinished:(NSUInteger)finished {
 //    self.finished = 100;
 //}
 

@@ -71,7 +71,7 @@
         ChatRoomMgr *chatRoomMgr = [ChatRoomMgr defaultMgr];
         [chatRoomMgr reSet];
         //NSLog(@"root %@",[self.navigationController.viewControllers firstObject]);
-        FirstCommunication *firstSence = [FirstCommunication initWithFirstSence];
+        FirstCommunication *firstSence = [[FirstCommunication alloc] initWithFirstSence];
         [self.navigationController pushViewController:firstSence animated:YES];
         [self removeFromParentViewController];
     }];

@@ -9,9 +9,11 @@
 #import "FirstCommunication+UI.h"
 #import <Masonry.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @implementation FirstCommunication (UI)
 
-- (void)setUpSkipButton {
+- (void)setupSkipButton {
     self.skipButton = ({
         UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
         button.backgroundColor = [UIColor clearColor];
@@ -24,14 +26,14 @@
 //    self.skipButton.frame = CGRectMake(self.view.bounds.size.width * 0.8, self.view.bounds.size.height * 0.5, self.view.bounds.size.width * 0.2, self.view.bounds.size.height * 0.1);
     [self.view addSubview:self.skipButton];
     [self.skipButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(self.view).offset(-10.0);
+        make.right.equalTo(self.view).offset(-40.0);
         make.centerY.equalTo(self.view);
         make.height.equalTo(@20.0);
         make.width.equalTo(@50.0);
     }];
 }
 
-- (void)setUpStartLabel {
+- (void)setupStartLabel {
     UILabel *startLabel = ({
         UILabel *label = [[UILabel alloc] init];
         label.text = @"Pretend";
@@ -49,7 +51,7 @@
     }];
 }
 
-- (void)setUpStartTipLabel {
+- (void)setupStartTipLabel {
     UILabel *startTipLabel = ({
         UILabel *label = [[UILabel alloc] init];
         label.text = @"touch anywhere to start";
@@ -67,6 +69,6 @@
     }];
 }
 
-
 @end
 
+NS_ASSUME_NONNULL_END

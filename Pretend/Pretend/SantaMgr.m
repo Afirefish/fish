@@ -46,19 +46,18 @@
 - (void)loadFromFile {//读取文件
     if ([self isFileFirstCreated]) {
         self.previousStep = 1;
-        self.santaFinished = 1;
+        self.finished = 1;
     } else {
         NSDictionary *dic = [NSDictionary dictionaryWithContentsOfFile:self.filePath];
         if (dic == nil) {
             self.previousStep = 1;
-            self.santaFinished = 1;
+            self.finished = 1;
             return;
         }
-        NSLog(@"santa load dic is %@",dic);
         NSNumber *previousStep = [dic objectForKey:@"previousStep"];
         NSNumber *finished = [dic objectForKey:@"finished"];
         self.previousStep = [previousStep unsignedIntegerValue];
-        self.santaFinished = [finished unsignedIntegerValue];
+        self.finished = [finished unsignedIntegerValue];
         self.cards = [dic objectForKey:@"cards"];
     }
 }
@@ -68,27 +67,27 @@
         NSLog(@"create file");
     }
     NSNumber *previousStep = [NSNumber numberWithUnsignedInteger:self.previousStep];
-    NSNumber *finished = [NSNumber numberWithUnsignedInteger:self.santaFinished];
+    NSNumber *finished = [NSNumber numberWithUnsignedInteger:self.finished];
     NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:previousStep,@"previousStep",finished,@"finished",self.cards,@"cards", nil];
     NSLog(@"santa dic is %@",dic);
     [dic writeToFile:self.filePath atomically:YES];
 }
 
-- (void)resetSanta {//重置santa
+- (void)reset {//重置santa
     if ([self isFileFirstCreated]) {
         NSLog(@"create file");
     }
     self.previousStep = 1;
-    self.santaFinished = 1;
+    self.finished = 1;
     NSNumber *previousStep = [NSNumber numberWithUnsignedInteger:self.previousStep];
-    NSNumber *finished = [NSNumber numberWithUnsignedInteger:self.santaFinished];
+    NSNumber *finished = [NSNumber numberWithUnsignedInteger:self.finished];
     self.cards = nil;
     NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:previousStep,@"previousStep",finished,@"finished",self.cards,@"cards", nil];
     [dic writeToFile:self.filePath atomically:YES];
 }
 
 - (void)saveStep:(NSUInteger)step {//保存当前进度
-    self.santaFinished = step;
+    self.finished = step;
     //NSLog(@"save");
 }
 
