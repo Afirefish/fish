@@ -23,6 +23,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)setupView {
     self.backgroundColor = [UIColor warmShellColor];
+    //设置背景视图
     self.backgroundImageView = ({
         UIImageView *imageView = [[UIImageView alloc] init];
         imageView.contentMode = UIViewContentModeScaleAspectFill;

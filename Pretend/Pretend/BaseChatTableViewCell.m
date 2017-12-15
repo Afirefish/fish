@@ -18,8 +18,10 @@
 //初始化聊天记录的cell样式
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier isDevil:(BOOL)isDevil message:(NSString *)message respond:(NSString *)respond devilName:devilName{
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
+        self.backgroundColor = [UIColor clearColor];
         self.textLabel.numberOfLines = 0;
         self.textLabel.lineBreakMode = NSLineBreakByWordWrapping;
+        self.textLabel.textColor = [UIColor whiteColor];
         if (isDevil == YES) {
             self.textLabel.text = respond;
             self.imageView.image = [UIImage imageNamed:devilName];

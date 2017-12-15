@@ -7,8 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <Masonry.h>
+#import "UIColor+PRCustomColor.h"
 
 @interface BaseChoiceCollectionViewCell : UICollectionViewCell
-@property (strong,nonatomic) UILabel *messageLabel;
+@property (strong, nonatomic) UILabel *messageLabel;
+@property (strong, nonatomic) UIImageView *backgroudImageView;
 
 @end

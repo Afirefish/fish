@@ -44,7 +44,7 @@ NS_ASSUME_NONNULL_BEGIN
         });
 //        self.considerBtn.frame = CGRectMake(self.view.bounds.size.width * 0.2, self.view.bounds.size.height * 0.2, self.view.bounds.size.width * 0.6, self.view.bounds.size.height * 0.2);
         [self.view addSubview:self.considerBtn];
-        [self setUpConsiderBtn];
+        [self setupConsiderBtn];
     } else {
         NSLog(@"you haven't finish the card craft");
     }
@@ -130,7 +130,7 @@ NS_ASSUME_NONNULL_BEGIN
     });
 }
 
-- (void)setUpConsiderBtn {
+- (void)setupConsiderBtn {
     [self.considerBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self.view);
         make.centerY.equalTo(self.view);
@@ -189,7 +189,7 @@ NS_ASSUME_NONNULL_BEGIN
     [self.considerBtn removeTarget:self action:@selector(showHesitate) forControlEvents:UIControlEventTouchUpInside];
     [self.considerBtn addTarget:self action:@selector(enterCastle) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.considerBtn];
-    [self setUpConsiderBtn];
+    [self setupConsiderBtn];
     NSLog(@"betary");
     [self enterCastle];
 }
@@ -208,7 +208,7 @@ NS_ASSUME_NONNULL_BEGIN
     [self.considerBtn setTitle:@"Truth" forState:UIControlStateNormal];
     self.considerBtn.userInteractionEnabled = NO;
     [self.view addSubview:self.considerBtn];
-    [self setUpConsiderBtn];
+    [self setupConsiderBtn];
     NSLog(@"sincere");
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         self.tabBarController.selectedIndex = 3;

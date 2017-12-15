@@ -51,10 +51,14 @@ static NSString *choice = @"Choice";
 }
 
 //重写子视图设置的方法
-- (void)setUpContentViewsType {
+- (void)setupContentViewsType {
     self.chatContentTableView = [[PufuChatTableView alloc] init];
     self.choicesCollectionView = [[PufuChoiceCollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:self.layout];
     [self.choicesCollectionView registerClass:[PufuChoiceCollectionViewCell class] forCellWithReuseIdentifier:choice];
+}
+
+- (void)setupBackgroundImage {
+    self.tableBackgroundView.image = [UIImage imageNamed:@"pufuBG"];
 }
 
 - (void)didReceiveMemoryWarning {

@@ -33,11 +33,11 @@
     // Do any additional setup after loading the view.
     self.navigationItem.title = @"Devil Card";
     self.view.backgroundColor = [UIColor smokeWhiteColor];
-    [self setUpSubviews];
+    [self setupSubviews];
 
 }
 
-- (void)setUpSubviews {
+- (void)setupSubviews {
     //进入会场
     self.enterBtn = ({
         UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
@@ -98,12 +98,12 @@
         //[self presentViewController:dcNC animated:YES completion:nil];
     } else {
         if (self.tipLabel == nil) {
-            [self setUpTipLabel];
+            [self setupTipLabel];
         }
     }
 }
 
-- (void)setUpTipLabel {
+- (void)setupTipLabel {
     self.tipLabel = ({
         UILabel *label = [[UILabel alloc] init];
         label.text = @"你还没有通关第一个游戏";

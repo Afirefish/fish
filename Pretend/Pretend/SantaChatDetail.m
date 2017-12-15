@@ -48,14 +48,17 @@ static NSString *choice = @"Choice";
     self.finished = self.santaMgr.finished;
     [self jsonData:@"santa"];
     self.allCellHeight = [[NSMutableArray alloc] init];
-
 }
 
 //重写设置内容视图的类型的方法
-- (void)setUpContentViewsType {
+- (void)setupContentViewsType {
     self.chatContentTableView = [[SantaChatTableView alloc] init];
     self.choicesCollectionView = [[SantaChoiceCollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:self.layout];
     [self.choicesCollectionView registerClass:[SantaChoiceCollectionViewCell class] forCellWithReuseIdentifier:choice];
+}
+
+- (void)setupBackgroundImage {
+    self.tableBackgroundView.image = [UIImage imageNamed:@"santaBG"];
 }
 
 - (void)didReceiveMemoryWarning {

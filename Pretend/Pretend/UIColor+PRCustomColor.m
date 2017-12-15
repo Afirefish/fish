@@ -26,4 +26,8 @@
     return [self colorWithRed:245.0/255 green:245.0/255 blue:245.0/255 alpha:1.0];
 }
 
++ (instancetype)silverColor {
+    return [self colorWithRed:192.0/255 green:192.0/255 blue:192.0/255 alpha:1.0];
+}
+
 @end

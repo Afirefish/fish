@@ -50,13 +50,15 @@ static NSString *choice = @"Choice";
 
 }
 
-
 //重写子视图设置的方法
 - (void)setSubViews {
     self.chatContentTableView = [[TizaChatTableView alloc] initWithFrame:CGRectZero];
     self.choicesCollectionView = [[TizaChoiceCollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:self.layout];
 }
 
+- (void)setupBackgroundImage {
+    self.tableBackgroundView.image = [UIImage imageNamed:@"tizaBG"];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

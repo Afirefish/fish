@@ -22,6 +22,8 @@
 #define SCREEN_HEIGHT (SCREEN_SIZE.width > SCREEN_SIZE.height ? SCREEN_SIZE.width : SCREEN_SIZE.height)
 #define kCellGap 20
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface BaseChatDetail ()
 
 @end
@@ -41,12 +43,12 @@ static NSString *choice = @"Choice";
     self.layout = [[UICollectionViewFlowLayout alloc] init];
     [self.layout setScrollDirection:UICollectionViewScrollDirectionVertical];
     self.layout.itemSize = CGSizeMake((SCREEN_WIDTH - 40)/2 , 80);
-    [self setUpContentViewsType];
+    [self setupContentViewsType];
     [self setupSubviews];
 }
 
 //设置表视图和集合视图类型
-- (void)setUpContentViewsType {
+- (void)setupContentViewsType {
     self.chatContentTableView = [[BaseChatTableView alloc] init];
     self.choicesCollectionView =  [[BaseChoiceCollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:self.layout];
     [self.choicesCollectionView registerClass:[BaseChoiceCollectionViewCell class]
@@ -64,11 +66,25 @@ static NSString *choice = @"Choice";
     //    self.chatContent = [[BaseChatTableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT * 0.7) style:UITableViewStylePlain];
     self.chatContentTableView.delegate = self;
     self.chatContentTableView.dataSource = self;
+    self.chatContentTableView.backgroundColor = [UIColor clearColor];
+    [self.chatContentTableView setAllowsSelection:NO];
     [self.chatContentTableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];//设置多余cell的分割线不显示
     [self.view addSubview:self.chatContentTableView];
     [self.chatContentTableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.left.right.equalTo(self.view);
         make.bottom.equalTo(self.view).offset(-140);
+    }];
+    //设置tableview背景视图
+    self.tableBackgroundView = ({
+        UIImageView *imageView = [[UIImageView alloc] init];
+        imageView.contentMode = UIViewContentModeScaleAspectFill;
+        imageView.clipsToBounds = YES;
+        imageView;
+    });
+    [self.view addSubview:self.tableBackgroundView];
+    [self.view sendSubviewToBack:self.tableBackgroundView];
+    [self.tableBackgroundView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self.chatContentTableView);
     }];
     
     //collection view显示的视图
@@ -81,6 +97,22 @@ static NSString *choice = @"Choice";
         make.bottom.left.right.equalTo(self.view);
         make.top.equalTo(self.chatContentTableView.mas_bottom);
     }];
+    //设置collectionview背景视图
+    self.collectionBackgroudView = ({
+        UIImageView *imageView = [[UIImageView alloc] init];
+        imageView.contentMode = UIViewContentModeScaleAspectFill;
+        imageView.clipsToBounds = YES;
+        imageView;
+    });
+    [self.view addSubview:self.collectionBackgroudView];
+    [self.view sendSubviewToBack:self.collectionBackgroudView];
+    [self.collectionBackgroudView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self.choicesCollectionView);
+    }];
+    [self setupBackgroundImage];
+}
+
+- (void)setupBackgroundImage {
 }
 
 //玩家不能选择时的视图
@@ -251,3 +283,5 @@ static NSString *choice = @"Choice";
 }
 
 @end
+
+NS_ASSUME_NONNULL_END

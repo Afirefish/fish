@@ -23,11 +23,11 @@
     self.navigationItem.hidesBackButton = YES;
     self.view.backgroundColor = [UIColor colorWithRed:255.0/255 green:250.0/255 blue:240.0/255 alpha:1.0];
     self.title = @"Devil Chat";
-    [self setUpSubviews];
+    [self setupSubviews];
 
 }
 
-- (void)setUpSubviews {
+- (void)setupSubviews {
 
     //设置背景图片
     UIImageView *backgroudImageView = ({

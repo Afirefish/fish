@@ -25,12 +25,12 @@
         //UIImage* image = [feastImage rotate:UIImageOrientationLeft];
         self.contentMode = UIViewContentModeScaleAspectFit;
         self.image = self.feastImage;
-        //[self setUpActions];
+        //[self setupActions];
     }
     return self;
 }
 
-- (void)setUpActions {
+- (void)setupActions {
     //添加yuri craft
     self.yuiBtn = [UIButton buttonWithType:UIButtonTypeSystem];
 //    self.yuiBtn.frame = CGRectMake(0, self.bounds.size.height * 0.85, self.bounds.size.width * 0.2, self.bounds.size.height * 0.1);

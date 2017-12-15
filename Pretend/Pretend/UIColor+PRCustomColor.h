@@ -13,5 +13,6 @@
 + (instancetype)warmShellColor; // 暖贝壳色
 + (instancetype)lightBlueColor; // 暖蓝色
 + (instancetype)smokeWhiteColor; // 灰白色
++ (instancetype)silverColor; // 银色
 
 @end
