@@ -38,9 +38,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong,nonatomic) NSMutableArray *allCellHeight;//保存聊天记录的所有视图的高度
 
 - (void)setUpContentViewsType;//设置子视图的type
-- (void)setUpSubviews;//设置子视图
-- (void)setUpContentViews;//设置内容视图
-- (void)setUpCoverLabel;//设置选项的mask视图
+- (void)setupSubviews;//设置子视图
+- (void)setupContentViews;//设置内容视图
+- (void)setupCoverLabel;//设置选项的mask视图
 - (void)sendMessage;//玩家做出选择的消息
 - (void)devilRespond;//devil的回复
 - (void)jsonData:(NSString *)devil;//json解析

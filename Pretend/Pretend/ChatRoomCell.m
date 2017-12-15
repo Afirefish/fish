@@ -10,9 +10,11 @@
 #import "UIColor+PRCustomColor.h"
 #import <Masonry.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @implementation ChatRoomCell
 
-- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(nullable NSString *)reuseIdentifier {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         [self setupView];
     }
@@ -21,19 +23,31 @@
 
 - (void)setupView {
     self.backgroundColor = [UIColor warmShellColor];
+    self.backgroundImageView = ({
+        UIImageView *imageView = [[UIImageView alloc] init];
+        imageView.contentMode = UIViewContentModeScaleAspectFill;
+        imageView.clipsToBounds = YES;
+        imageView;
+    });
+    [self.contentView addSubview:self.backgroundImageView];
+    [self.contentView sendSubviewToBack:self.backgroundImageView];
+    [self.backgroundImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.contentView).offset(100.0);
+        make.top.right.bottom.equalTo(self.contentView);
+    }];
     //设置头像
     self.headImageView = [[UIImageView alloc] init];
     [self.contentView addSubview:self.headImageView];
     [self.headImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.left.equalTo(self.contentView).offset(15.0);
-        make.bottom.equalTo(self.contentView).offset(-15.0);
+        make.top.left.equalTo(self.contentView).offset(5.0);
+        make.bottom.equalTo(self.contentView).offset(-5.0);
         make.width.equalTo(self.headImageView.mas_height);
     }];
     //设置名字
     self.nameLabel = ({
         UILabel *label = [[UILabel alloc] init];
         label.textAlignment = NSTextAlignmentCenter;
-        label.textColor = [UIColor blackColor];
+        label.textColor = [UIColor whiteColor];
         label.font = [UIFont systemFontOfSize:24];
         label;
     });
@@ -48,7 +62,7 @@
     self.messageLabel = ({
         UILabel *label = [[UILabel alloc] init];
         label.textAlignment = NSTextAlignmentLeft;
-        label.textColor = [UIColor blackColor];
+        label.textColor = [UIColor whiteColor];
         label.font = [UIFont systemFontOfSize:12];
         label;
     });
@@ -83,3 +97,5 @@
 }
 
 @end
+
+NS_ASSUME_NONNULL_END

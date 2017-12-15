@@ -277,6 +277,7 @@
 		38C76D221FAC538900BCBCB9 /* PuriHandCardAttributes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PuriHandCardAttributes.m; sourceTree = "<group>"; };
 		38CEAA6D1F8BA0B600BC72EC /* santa.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = santa.json; sourceTree = "<group>"; };
 		38CEAA6F1F8BA0E800BC72EC /* playerTosanta.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = playerTosanta.json; sourceTree = "<group>"; };
+		38E6119F1FE25340003E2211 /* Pretend copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Pretend copy-Info.plist"; path = "/Users/daixijia/Pretend/fish/Pretend/Pretend copy-Info.plist"; sourceTree = "<absolute>"; };
 		4D56EA3242F97FEDFA0D68FC /* Pods-Pretend.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pretend.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Pretend/Pods-Pretend.debug.xcconfig"; sourceTree = "<group>"; };
 		D33B925DDB6AA3EAC9B48AB8 /* libPods-Pretend.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Pretend.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4A1AF25F2E2AE883639043E /* Pods-Pretend.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pretend.release.xcconfig"; path = "Pods/Target Support Files/Pods-Pretend/Pods-Pretend.release.xcconfig"; sourceTree = "<group>"; };
@@ -325,6 +326,7 @@
 				3801A0131F7A76B0006C3D18 /* Products */,
 				77B4DAE9C004B9A31F0F9C7E /* Pods */,
 				2AA6CFA4835DFD7BAA736578 /* Frameworks */,
+				38E6119F1FE25340003E2211 /* Pretend copy-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};

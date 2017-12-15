@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 typedef NS_ENUM(NSInteger, DevilShowTime) {
     SantaShowTime = 0,
     PufuShowTime = 1,
@@ -16,12 +18,12 @@ typedef NS_ENUM(NSInteger, DevilShowTime) {
 };
 
 @interface ChatRoomMgr : NSObject
-@property (assign,nonatomic) BOOL chatFinished;
-@property (strong,nonatomic) NSMutableSet *cards;
-@property (strong,nonatomic) NSArray *playerMessages;//玩家的回复数据包
-@property (strong,nonatomic) NSArray *devilMessages;//devil的回复数据包
-@property (assign,nonatomic) NSUInteger step;//当前剧情的进度
-@property (assign,nonatomic) DevilShowTime showTime;//剧情处于的恶魔模块
+@property (assign, nonatomic) BOOL chatFinished;
+@property (strong, nonatomic, nullable) NSMutableSet *cards;
+@property (strong, nonatomic) NSArray *playerMessages; // 玩家的回复数据包
+@property (strong, nonatomic) NSArray *devilMessages; // devil的回复数据包
+@property (assign, nonatomic) NSUInteger step; // 当前剧情的进度
+@property (assign, nonatomic) DevilShowTime showTime; // 剧情处于的恶魔模块
 
 + (instancetype)defaultMgr;
 - (void)writeToFile;
@@ -31,3 +33,5 @@ typedef NS_ENUM(NSInteger, DevilShowTime) {
 - (BOOL)checkComplete;
 - (void)reSet;
 @end
+
+NS_ASSUME_NONNULL_END

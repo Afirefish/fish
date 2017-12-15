@@ -28,11 +28,25 @@
 }
 
 - (void)setUpSubviews {
+
+    //设置背景图片
+    UIImageView *backgroudImageView = ({
+        UIImageView *imageView = [[UIImageView alloc] init];
+        imageView.contentMode = UIViewContentModeScaleAspectFill;
+        imageView.image = [UIImage imageNamed:@"endCastle"];
+        imageView;
+    });
+    [self.view addSubview:backgroudImageView];
+    [backgroudImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self.view);
+    }];
+    
     //结束的标签
     UILabel *finishLabel = ({
         UILabel *label = [[UILabel alloc] init];
         label.text = @"Chat Cleared!";
-        label.font = [UIFont fontWithName:@"Courier-BoldOblique" size:24];
+        label.textColor = [UIColor whiteColor];
+        label.font = [UIFont fontWithName:@"Zapfino" size:24];
         label.textAlignment = NSTextAlignmentCenter;
         label.backgroundColor = [UIColor clearColor];
         label;
@@ -41,7 +55,7 @@
     [self.view addSubview:finishLabel];
     [finishLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.equalTo(self.view);
-        make.height.equalTo(@30.0);
+        make.height.equalTo(@50.0);
         make.bottom.equalTo(self.view.mas_centerY).offset(-80.0);
     }];
     
@@ -50,7 +64,7 @@
         UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
         button.backgroundColor = [UIColor clearColor];
         [button setTitle:@"ReStart" forState:UIControlStateNormal];
-        [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [button.titleLabel setFont:[UIFont systemFontOfSize:16]];
         [button addTarget:self action:@selector(reStart) forControlEvents:UIControlEventTouchUpInside];
         button;
@@ -62,7 +76,6 @@
         make.height.equalTo(@20.0);
         make.top.equalTo(finishLabel.mas_bottom).offset(100);
     }];
-    
 }
 
 - (void)reStart {//重新开始和恶魔的聊天

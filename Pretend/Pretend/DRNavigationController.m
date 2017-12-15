@@ -21,7 +21,7 @@
     [self.navigationBar setTitleTextAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"Courier" size:20],NSForegroundColorAttributeName:[UIColor blackColor]}];
     self.tabBarItem.image = [[UIImage imageNamed:@"devilRoom"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     self.tabBarItem.selectedImage = [[UIImage imageNamed:@"devilRoom"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    self.tabBarItem.title = [NSString stringWithFormat:@"Room"];
+    self.tabBarItem.title = [NSString stringWithFormat:@"Castle"];
 }
 
 - (void)didReceiveMemoryWarning {

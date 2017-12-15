@@ -8,6 +8,7 @@
 
 #import "BaseChoiceCollectionViewCell.h"
 #import <Masonry.h>
+#import "UIColor+PRCustomColor.h"
 
 @implementation BaseChoiceCollectionViewCell
 

@@ -12,12 +12,14 @@
 #import "TizaMgr.h"
 #import "ChiziMgr.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface ChatRoomMgr ()
-@property (strong,nonatomic) SantaMgr *santa;
-@property (strong,nonatomic) PufuMgr *pufu;
-@property (strong,nonatomic) ChiziMgr *chizi;
-@property (strong,nonatomic) TizaMgr *tiza;
-@property (strong,nonatomic) NSString *filePath;
+@property (strong, nonatomic) SantaMgr *santa;
+@property (strong, nonatomic) PufuMgr *pufu;
+@property (strong, nonatomic) ChiziMgr *chizi;
+@property (strong, nonatomic) TizaMgr *tiza;
+@property (strong, nonatomic) NSString *filePath;
 
 @end
 
@@ -156,3 +158,5 @@
     [self loadFromFile];
 }
 @end
+
+NS_ASSUME_NONNULL_END

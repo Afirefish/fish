@@ -29,7 +29,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.navigationItem.title = @"Devil Room";
+    self.navigationItem.title = @"Devil Castle";
     self.view.backgroundColor = [UIColor warmGrayColor];
     CardCraftMgr *cardMgr = [CardCraftMgr defaultMgr];
     if (cardMgr.craftFinished) {

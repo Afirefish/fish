@@ -13,12 +13,26 @@ NS_ASSUME_NONNULL_BEGIN
 
 @implementation FirstCommunication (UI)
 
+//设置背景图片
+- (void)setupBackGroudImage {
+    UIImageView *backgroudImageView = ({
+        UIImageView *imageView = [[UIImageView alloc] init];
+        imageView.contentMode = UIViewContentModeScaleAspectFill;
+        imageView.image = [UIImage imageNamed:@"startCastle"];
+        imageView;
+    });
+    [self.view addSubview:backgroudImageView];
+    [backgroudImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self.view);
+    }];
+}
+
 - (void)setupSkipButton {
     self.skipButton = ({
         UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
         button.backgroundColor = [UIColor clearColor];
         [button setTitle:@"skip" forState:UIControlStateNormal];
-        [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [button.titleLabel setFont:[UIFont systemFontOfSize:12]];
         [button.titleLabel setTextAlignment:NSTextAlignmentRight];
         button;
@@ -34,11 +48,24 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)setupStartLabel {
+//    UIImageView *titleImageView = ({
+//        UIImageView *imageView = [[UIImageView alloc] init];
+//        imageView.image = [UIImage imageNamed:@"title"];
+//        imageView;
+//    });
+//    [self.view addSubview:titleImageView];
+//    [titleImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.right.equalTo(self.view);
+//        make.height.equalTo(@400.0);
+//        make.bottom.equalTo(self.view.mas_centerY).offset(-80.0);
+//    }];
+    
     UILabel *startLabel = ({
         UILabel *label = [[UILabel alloc] init];
         label.text = @"Pretend";
         label.textAlignment = NSTextAlignmentCenter;
-        label.font = [UIFont fontWithName:@"Courier-BoldOblique" size:48];
+        label.textColor = [UIColor whiteColor];
+        label.font = [UIFont fontWithName:@"Zapfino" size:48];
         label.backgroundColor = [UIColor clearColor];
         label;
     });
@@ -46,7 +73,7 @@ NS_ASSUME_NONNULL_BEGIN
     [self.view addSubview:startLabel];
     [startLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.equalTo(self.view);
-        make.height.equalTo(@50.0);
+        make.height.equalTo(@100.0);
         make.bottom.equalTo(self.view.mas_centerY).offset(-80.0);
     }];
 }
@@ -55,6 +82,7 @@ NS_ASSUME_NONNULL_BEGIN
     UILabel *startTipLabel = ({
         UILabel *label = [[UILabel alloc] init];
         label.text = @"touch anywhere to start";
+        label.textColor = [UIColor whiteColor];
         label.font = [UIFont fontWithName:@"Courier" size:16];
         label.textAlignment = NSTextAlignmentCenter;
         label.backgroundColor = [UIColor clearColor];

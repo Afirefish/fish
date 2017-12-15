@@ -12,6 +12,7 @@
 #import "BaseChatTableViewCell.h"
 #import "BaseChoiceCollectionView.h"
 #import "BaseChoiceCollectionViewCell.h"
+#import "UIColor+PRCustomColor.h"
 
 #import <Masonry.h>
 
@@ -41,7 +42,7 @@ static NSString *choice = @"Choice";
     [self.layout setScrollDirection:UICollectionViewScrollDirectionVertical];
     self.layout.itemSize = CGSizeMake((SCREEN_WIDTH - 40)/2 , 80);
     [self setUpContentViewsType];
-    [self setUpSubviews];
+    [self setupSubviews];
 }
 
 //设置表视图和集合视图类型
@@ -52,13 +53,13 @@ static NSString *choice = @"Choice";
                    forCellWithReuseIdentifier:choice];
 }
 
-- (void)setUpSubviews {
-    [self setUpContentViews];
-    [self setUpCoverLabel];
+- (void)setupSubviews {
+    [self setupContentViews];
+    [self setupCoverLabel];
 }
 
 //设置表视图和集合视图
-- (void)setUpContentViews {
+- (void)setupContentViews {
     //聊天内容
     //    self.chatContent = [[BaseChatTableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT * 0.7) style:UITableViewStylePlain];
     self.chatContentTableView.delegate = self;
@@ -74,7 +75,7 @@ static NSString *choice = @"Choice";
     //    self.choicesCollectionView = [[BaseChoiceCollectionView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT * 0.7, SCREEN_WIDTH, SCREEN_HEIGHT * 0.3) collectionViewLayout:self.layout];
     self.choicesCollectionView.delegate = self;
     self.choicesCollectionView.dataSource = self;
-    self.choicesCollectionView.backgroundColor = [UIColor colorWithRed:255.0/255 green:250.0/255 blue:240.0/255 alpha:1.0];
+    self.choicesCollectionView.backgroundColor = [UIColor warmShellColor];
     [self.view addSubview:self.choicesCollectionView];
     [self.choicesCollectionView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.left.right.equalTo(self.view);
@@ -83,10 +84,10 @@ static NSString *choice = @"Choice";
 }
 
 //玩家不能选择时的视图
-- (void)setUpCoverLabel {
+- (void)setupCoverLabel {
     self.coverLabel = ({
         UILabel *label = [[UILabel alloc] init];
-        label.backgroundColor = [UIColor colorWithRed:255.0/255 green:250.0/255 blue:240.0/255 alpha:1.0];
+        label.backgroundColor = [UIColor warmShellColor];
         label.text = @"...";
         label.font = [UIFont systemFontOfSize:60];
         label.textAlignment = NSTextAlignmentCenter;
@@ -134,11 +135,6 @@ static NSString *choice = @"Choice";
     self.choicesCollectionView.userInteractionEnabled = YES;
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 #pragma dataSource
 
 //聊天记录每一个作为一个新的section，而玩家选项一个section
@@ -159,7 +155,7 @@ static NSString *choice = @"Choice";
     return self.choiceCount;
 }
 
-//这里做了点特别的处理，对于聊天记录的视图，每个cell有不同的标志符，对于每个玩家选择，设置为一个标志符（后面实现的时候没有复用了）
+//这里做了点特别的处理，对于聊天记录的视图，每个cell有不同的标志符，对于每个玩家选择，设置为一个标志符（后面实现的时候相当于没有复用了）
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (tableView == self.chatContentTableView) {
         NSString *baseChat = [NSString stringWithFormat:@"BaseChat%ld",(long)indexPath.section];

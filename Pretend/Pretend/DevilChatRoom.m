@@ -19,16 +19,17 @@
 #import "TizaChatDetail.h"
 #import "ChatRoomCleared.h"
 #import "UIColor+PRCustomColor.h"
+#import <Masonry.h>
 
 NSString *devilMaster = @"devilMaster";
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface DevilChatRoom ()
-@property (strong,nonatomic) NSArray *devilNames;//恶魔名字
-@property (strong,nonatomic) NSArray *devilImages;//恶魔头像
-@property (strong,nonatomic) NSArray *finishText;//上次的剧情
-@property (strong,nonatomic) ChatRoomMgr *chatRoomMgr;
+@property (strong, nonatomic) NSArray *devilNames;//恶魔名字
+@property (strong, nonatomic) NSArray *devilImages;//恶魔头像
+@property (strong, nonatomic) NSArray *backgroundImage;//背景图片
+@property (strong, nonatomic) ChatRoomMgr *chatRoomMgr;
 
 @end
 
@@ -51,6 +52,10 @@ NS_ASSUME_NONNULL_BEGIN
                              [UIImage imageNamed:@"pufu.png"],
                              [UIImage imageNamed:@"chizi.png"],
                              [UIImage imageNamed:@"tiza.png"]];
+        self.backgroundImage = @[[UIImage imageNamed:@"startDesert"],
+                                 [UIImage imageNamed:@"pufuCastle"],
+                                 [UIImage imageNamed:@"chiziCastle"],
+                                 [UIImage imageNamed:@"tizaCastle"]];
         self.chatRoomMgr = [ChatRoomMgr defaultMgr];
     }
     return self;
@@ -65,14 +70,19 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"Devil Chat";
+    //重新创建一个barButtonItem
+    UIBarButtonItem *backItem = [[UIBarButtonItem alloc]initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+    //设置backBarButtonItem即可
+    self.navigationItem.backBarButtonItem = backItem;
     [self setupTableView];
     [self setupSaveBtn];
     [self checkFinished];
 }
 
 - (void)setupTableView {
-    self.tableView.backgroundColor = [UIColor warmShellColor];
-    self.tableView.layer.borderWidth = 2;
+    self.tableView.backgroundColor = [UIColor warmGrayColor];
+    self.tableView.layer.borderWidth = 2.0;
+    self.tableView.rowHeight = 100.0;
     self.tableView.layer.borderColor = [UIColor blackColor].CGColor;
     [self.tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];//设置多余cell的分割线不显示
     [self.tableView registerClass:[ChatRoomCell class] forCellReuseIdentifier:devilMaster];
@@ -104,7 +114,7 @@ NS_ASSUME_NONNULL_BEGIN
     }
 }
 
-//全部完成之后的处理 ,可以用个模态框来实现跳转
+//全部完成之后的处理 
 - (void)complete {
     [self.chatRoomMgr chatComplete];
     ChatRoomCleared *cleared = [[ChatRoomCleared alloc] init];
@@ -121,6 +131,7 @@ NS_ASSUME_NONNULL_BEGIN
     ChatRoomCell *cell = [tableView dequeueReusableCellWithIdentifier:devilMaster forIndexPath:indexPath];
     cell.nameLabel.text = self.devilNames[indexPath.row];
     cell.headImageView.image = self.devilImages[indexPath.row];
+    cell.backgroundImageView.image = self.backgroundImage[indexPath.row];
     switch (indexPath.row) {
         case 0:
             cell.messageLabel.text = [SantaMgr defaultMgr].finishText;
@@ -137,22 +148,15 @@ NS_ASSUME_NONNULL_BEGIN
         default:
             break;
     }
-    if (indexPath.row == self.chatRoomMgr.showTime) {
-        cell.sign.hidden = NO;
-    } else {
-        cell.sign.hidden = YES;
-    }
+    cell.sign.hidden = (indexPath.row == self.chatRoomMgr.showTime)? NO : YES;
 //    NSLog(@"msg  %@",cell.messageLabel.text);
     return cell;
 }
 
 #pragma mark Table view delegate
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 100;
-}
-
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     BaseChatDetail *chatDetail = nil;
     if (indexPath.row == 0) {
         chatDetail = [SantaChatDetail santaChatDetail];

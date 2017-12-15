@@ -33,9 +33,14 @@ NS_ASSUME_NONNULL_BEGIN
 - (instancetype)initWithFirstSence{
     if (self = [super init]) {
         self.navigationItem.hidesBackButton = YES;
-        self.navigationItem.title = @"The unconscious fall";
+        self.navigationItem.title = @"Unconscious Fall";
+        //重新创建一个barButtonItem
+        UIBarButtonItem *backItem = [[UIBarButtonItem alloc]initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+        //设置backBarButtonItem即可
+        self.navigationItem.backBarButtonItem = backItem;
         self.view.backgroundColor = [UIColor warmShellColor];
         NSLog(@"height---%f,width ----%f",self.view.bounds.size.height,self.view.bounds.size.width);
+        [self setupBackGroudImage];
         //标题的标签
         [self setupStartLabel];
         //开始的提示。。

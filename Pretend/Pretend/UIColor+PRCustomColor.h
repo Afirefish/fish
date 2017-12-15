@@ -9,9 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface UIColor (PRCustomColor)
-+ (instancetype)warmGrayColor;
-+ (instancetype)warmShellColor;
-+ (instancetype)lightBlueColor;
-+ (instancetype)smokeWhiteColor;
++ (instancetype)warmGrayColor; // 暖灰色
++ (instancetype)warmShellColor; // 暖贝壳色
++ (instancetype)lightBlueColor; // 暖蓝色
++ (instancetype)smokeWhiteColor; // 灰白色
 
 @end
