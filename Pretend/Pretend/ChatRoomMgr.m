@@ -49,7 +49,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (BOOL)isFileFirstCreated {//设定好文件的存储位置，判断是否创建了文件
     NSString *docPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
     self.filePath = [docPath stringByAppendingPathComponent:@"chatRoom.txt"];
-    NSLog(@"main file path %@",self.filePath);
+    //NSLog(@"main file path %@",self.filePath);
     NSFileManager *fileMgr = [NSFileManager defaultManager];
     if (![fileMgr fileExistsAtPath:self.filePath]) {
         [fileMgr createFileAtPath:self.filePath contents:nil attributes:nil];
@@ -65,7 +65,7 @@ NS_ASSUME_NONNULL_BEGIN
         self.showTime = SantaShowTime;
     } else {
         NSDictionary *dic = [NSDictionary dictionaryWithContentsOfFile:self.filePath];
-        NSLog(@"main dic %@",dic);
+        //NSLog(@"main dic %@",dic);
         if (dic == nil) {
             self.chatFinished = NO;
             self.showTime = SantaShowTime;
@@ -98,7 +98,7 @@ NS_ASSUME_NONNULL_BEGIN
                          finish,@"finish",
                          self.cards,@"cards",
                          nil];
-    NSLog(@"save main dic %@",dic);
+    //NSLog(@"save main dic %@",dic);
     [dic writeToFile:self.filePath atomically:YES];
 }
 
@@ -137,7 +137,7 @@ NS_ASSUME_NONNULL_BEGIN
     [self.cards unionSet:self.pufu.cards];
     [self.cards unionSet:self.chizi.cards];
     [self.cards unionSet:self.tiza.cards];
-    NSLog(@"now the cards set %@",self.cards);
+    //NSLog(@"now the cards set %@",self.cards);
     [self writeToFile];
 }
 
@@ -153,7 +153,7 @@ NS_ASSUME_NONNULL_BEGIN
     self.chatFinished = NO;
     self.showTime = SantaShowTime;
     NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:start,@"finish",self.cards,@"cards",nil];
-    NSLog(@"reset game %@",dic);
+    //NSLog(@"reset game %@",dic);
     [dic writeToFile:self.filePath atomically:YES];
     [self loadFromFile];
 }

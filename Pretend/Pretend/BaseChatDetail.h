@@ -47,6 +47,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)sendMessage;//玩家做出选择的消息
 - (void)devilRespond;//devil的回复
 - (void)jsonData:(NSString *)devil;//json解析
+- (void)reset;//重置
 @end
 
 NS_ASSUME_NONNULL_END

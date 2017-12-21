@@ -28,32 +28,41 @@
 @implementation TizaChatDetail
 
 static NSString *choice = @"Choice";
+static TizaChatDetail *tizaChatDetail = nil;
 
 + (instancetype)tizaChatDetail {
-    static TizaChatDetail *tizaChatDetail = nil;
     if (tizaChatDetail  == nil) {
         tizaChatDetail = [[TizaChatDetail alloc] init];
     }
     return tizaChatDetail;
 }
 
+- (instancetype)init {
+    if (self = [super init]) {
+        self.tizaMgr = [TizaMgr defaultMgr];
+        self.previousStep = self.tizaMgr.previousStep;
+        self.finished = self.tizaMgr.finished;
+        [self jsonData:@"tiza"];
+    }
+    return self;
+}
+
+
+- (void)reset {
+    tizaChatDetail = [[TizaChatDetail alloc] init];
+}
+
 //解析json，初始化高度
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = @"Tiza";
-    self.tizaMgr = [TizaMgr defaultMgr];
-    self.previousStep = self.tizaMgr.previousStep;
-    self.finished = self.tizaMgr.finished;
-    [self jsonData:@"tiza"];
-    self.allCellHeight = [[NSMutableArray alloc] init];
-    [self.choicesCollectionView registerClass:[TizaChoiceCollectionViewCell class] forCellWithReuseIdentifier:choice];
-
 }
 
 //重写子视图设置的方法
-- (void)setSubViews {
+- (void)setupContentViewsType {
     self.chatContentTableView = [[TizaChatTableView alloc] initWithFrame:CGRectZero];
     self.choicesCollectionView = [[TizaChoiceCollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:self.layout];
+    [self.choicesCollectionView registerClass:[TizaChoiceCollectionViewCell class] forCellWithReuseIdentifier:choice];
 }
 
 - (void)setupBackgroundImage {
@@ -77,9 +86,9 @@ static NSString *choice = @"Choice";
         TizaChatTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:tizaChat];
         if(cell == nil){
             cell = [[TizaChatTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:tizaChat isDevil:self.isDevil message:self.playerChoice respond:self.devilRespondContent devilName:@"tiza"];
-            self.tizaMgr.finishText = self.devilRespondContent;
-            [ChatRoomMgr defaultMgr].showTime = TizaShowTime;
         }
+        self.tizaMgr.finishText = self.devilRespondContent;
+        [ChatRoomMgr defaultMgr].showTime = TizaShowTime;
         return cell;
     }
     return nil;

@@ -33,7 +33,7 @@
 - (BOOL)isFileFirstCreated {
     NSString *docPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
     self.filePath = [docPath stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.txt",NSStringFromClass([self class])]];
-    NSLog(@"file path %@",self.filePath);
+    //NSLog(@"file path %@",self.filePath);
     NSFileManager *fileMgr = [NSFileManager defaultManager];
     if (![fileMgr fileExistsAtPath:self.filePath]) {
         [fileMgr createFileAtPath:self.filePath contents:nil attributes:nil];
@@ -77,11 +77,11 @@
                          self.finishText,@"finishText",
                          self.cards,@"cards",
                          nil];
-    NSLog(@"santa dic is %@",dic);
+    //NSLog(@"santa dic is %@",dic);
     [dic writeToFile:self.filePath atomically:YES];
 }
 
-//重置santa
+//重置
 - (void)reset {
     if ([self isFileFirstCreated]) {
         NSLog(@"create file");

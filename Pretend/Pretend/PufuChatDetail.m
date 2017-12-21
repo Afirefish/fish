@@ -29,25 +29,32 @@
 @implementation PufuChatDetail
 
 static NSString *choice = @"Choice";
+static PufuChatDetail *pufuChatDetail = nil;
 
 + (instancetype)pufuChatDetail {
-    static PufuChatDetail *pufuChatDetail = nil;
     if (pufuChatDetail == nil) {
         pufuChatDetail = [[PufuChatDetail alloc] init];
     }
     return pufuChatDetail;
 }
 
+- (instancetype)init {
+    if (self = [super init]) {
+        self.pufuMgr = [PufuMgr defaultMgr];
+        self.previousStep = self.pufuMgr.previousStep;
+        self.finished = self.pufuMgr.finished;
+        [self jsonData:@"pufu"];
+    }
+    return self;
+}
+
+- (void)reset {
+    pufuChatDetail = [[PufuChatDetail alloc] init];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = @"Pufu";
-    self.pufuMgr = [PufuMgr defaultMgr];
-    self.previousStep = self.pufuMgr.previousStep;
-    self.finished = self.pufuMgr.finished;
-    [self jsonData:@"pufu"];
-    self.allCellHeight = [[NSMutableArray alloc] init];
-
 }
 
 //重写子视图设置的方法
@@ -78,9 +85,9 @@ static NSString *choice = @"Choice";
         PufuChatTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:pufuChat];
         if(cell == nil){
             cell = [[PufuChatTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:pufuChat isDevil:self.isDevil message:self.playerChoice respond:self.devilRespondContent devilName:@"pufu"];
-            self.pufuMgr.finishText = self.devilRespondContent;
-            [ChatRoomMgr defaultMgr].showTime = PufuShowTime;
         }
+        self.pufuMgr.finishText = self.devilRespondContent;
+        [ChatRoomMgr defaultMgr].showTime = PufuShowTime;
         return cell;
     }
     return nil;

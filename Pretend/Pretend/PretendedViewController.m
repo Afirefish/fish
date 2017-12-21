@@ -36,7 +36,7 @@ NS_ASSUME_NONNULL_BEGIN
     //NSLog(@"file path %@",[[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:@"chatRoom.txt"]);
     //第一个视图
     ChatRoomMgr *chatMgr = [ChatRoomMgr defaultMgr];
-    NSLog(@"chat finish %@",chatMgr.chatFinished?@"yes":@"no");
+    //NSLog(@"chat finish %@",chatMgr.chatFinished?@"yes":@"no");
     if (chatMgr.chatFinished == YES) {//如果第一关完成了，显示结束的画面，否则显示第一个界面
         ChatRoomCleared *chatCleared = [[ChatRoomCleared alloc] init];
         PRNavigationController *prNC = [[PRNavigationController alloc] initWithRootViewController:chatCleared];

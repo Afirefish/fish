@@ -30,24 +30,33 @@
 @implementation SantaChatDetail
 
 static NSString *choice = @"Choice";
+static SantaChatDetail *santaChatDetail = nil;
 
 + (instancetype)santaChatDetail {
-    static SantaChatDetail *santaChatDetail = nil;
     if (santaChatDetail == nil) {
         santaChatDetail = [[SantaChatDetail alloc] init];
     }
     return santaChatDetail;
 }
 
+- (instancetype)init {
+    if (self = [super init]) {
+        self.santaMgr = [SantaMgr defaultMgr];
+        self.previousStep = self.santaMgr.previousStep;
+        self.finished = self.santaMgr.finished;
+        [self jsonData:@"santa"];
+    }
+    return self;
+}
+
+- (void)reset {
+    santaChatDetail = [[SantaChatDetail alloc] init];
+}
+
 //解析json，初始化高度
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = @"Santa";
-    self.santaMgr = [SantaMgr defaultMgr];
-    self.previousStep = self.santaMgr.previousStep;
-    self.finished = self.santaMgr.finished;
-    [self jsonData:@"santa"];
-    self.allCellHeight = [[NSMutableArray alloc] init];
 }
 
 //重写设置内容视图的类型的方法
@@ -77,9 +86,9 @@ static NSString *choice = @"Choice";
         SantaChatTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:santaChat];
         if(cell == nil){
             cell = [[SantaChatTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:santaChat isDevil:self.isDevil message:self.playerChoice respond:self.devilRespondContent devilName:@"santa"];
-            self.santaMgr.finishText = self.devilRespondContent;
-            [ChatRoomMgr defaultMgr].showTime = SantaShowTime;
         }
+        self.santaMgr.finishText = self.devilRespondContent;
+        [ChatRoomMgr defaultMgr].showTime = SantaShowTime;
         return cell;
     }
     return nil;

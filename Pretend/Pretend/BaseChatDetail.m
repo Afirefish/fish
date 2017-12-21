@@ -32,17 +32,29 @@ NS_ASSUME_NONNULL_BEGIN
 
 static NSString *choice = @"Choice";
 
+- (instancetype)init {
+    if (self = [super init]) {
+        self.chatRoomMgr = [ChatRoomMgr defaultMgr];
+        self.nodeNumber = 0;
+        self.isDevil = NO;
+        self.choiceCount = 4;
+        self.layout = [[UICollectionViewFlowLayout alloc] init];
+        [self.layout setScrollDirection:UICollectionViewScrollDirectionVertical];
+        self.layout.itemSize = CGSizeMake((SCREEN_WIDTH - 40)/2 , 80);
+        self.allCellHeight = [[NSMutableArray alloc] init];
+    }
+    return self;
+}
+
+// 如果重置，直接初始化这个控制器
+- (void)reset {
+    //虚函数的感觉
+}
+
 //初始化聊天节点数，
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationController.navigationBar.tintColor = [UIColor blackColor];
-    self.chatRoomMgr = [ChatRoomMgr defaultMgr];
-    self.nodeNumber = 0;
-    self.isDevil = NO;
-    self.choiceCount = 4;
-    self.layout = [[UICollectionViewFlowLayout alloc] init];
-    [self.layout setScrollDirection:UICollectionViewScrollDirectionVertical];
-    self.layout.itemSize = CGSizeMake((SCREEN_WIDTH - 40)/2 , 80);
     [self setupContentViewsType];
     [self setupSubviews];
 }

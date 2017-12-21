@@ -190,7 +190,7 @@ NS_ASSUME_NONNULL_BEGIN
     [self.considerBtn addTarget:self action:@selector(enterCastle) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.considerBtn];
     [self setupConsiderBtn];
-    NSLog(@"betary");
+    //NSLog(@"betary");
     [self enterCastle];
 }
 
@@ -209,7 +209,7 @@ NS_ASSUME_NONNULL_BEGIN
     self.considerBtn.userInteractionEnabled = NO;
     [self.view addSubview:self.considerBtn];
     [self setupConsiderBtn];
-    NSLog(@"sincere");
+    //NSLog(@"sincere");
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         self.tabBarController.selectedIndex = 3;
     });

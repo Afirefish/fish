@@ -9,6 +9,10 @@
 #import "ChatRoomCleared.h"
 #import "ChatRoomMgr.h"
 #import "FirstCommunication.h"
+#import "SantaChatDetail.h"
+#import "PufuChatDetail.h"
+#import "ChiziChatDetail.h"
+#import "TizaChatDetail.h"
 #import <Masonry.h>
 
 @interface ChatRoomCleared ()
@@ -83,6 +87,10 @@
     UIAlertAction *reStartComfirmAction = [UIAlertAction actionWithTitle:@"重新开始" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         ChatRoomMgr *chatRoomMgr = [ChatRoomMgr defaultMgr];
         [chatRoomMgr reSet];
+        [[SantaChatDetail santaChatDetail] reset];
+        [[PufuChatDetail pufuChatDetail] reset];
+        [[ChiziChatDetail chiziChatDetail] reset];
+        [[TizaChatDetail tizaChatDetail] reset];
         //NSLog(@"root %@",[self.navigationController.viewControllers firstObject]);
         FirstCommunication *firstSence = [[FirstCommunication alloc] initWithFirstSence];
         [self.navigationController pushViewController:firstSence animated:YES];
