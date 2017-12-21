@@ -36,6 +36,7 @@
         self.backgroudImageView = ({
             UIImageView *imageView = [[UIImageView alloc] init];
             imageView.contentMode = UIViewContentModeScaleAspectFill;
+            imageView.layer.cornerRadius = 8.0;
             imageView.clipsToBounds = YES;
             imageView;
         });

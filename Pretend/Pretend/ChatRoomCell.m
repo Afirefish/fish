@@ -14,6 +14,16 @@ NS_ASSUME_NONNULL_BEGIN
 
 @implementation ChatRoomCell
 
+- (void)setFrame:(CGRect)frame {
+    CGFloat gap = 10;
+    //frame.origin.x = 10;//这里间距为10，可以根据自己的情况调整
+    //frame.size.width -= 2 * frame.origin.x;
+    frame.size.height -= 2 * gap;
+    self.layer.masksToBounds = YES;
+    self.layer.cornerRadius = 8.0;
+    [super setFrame:frame];
+}
+
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(nullable NSString *)reuseIdentifier {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         [self setupView];
@@ -23,27 +33,35 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)setupView {
     self.backgroundColor = [UIColor warmShellColor];
-    //设置背景视图
-    self.backgroundImageView = ({
+    //设置头像
+    self.headImageView = ({
         UIImageView *imageView = [[UIImageView alloc] init];
         imageView.contentMode = UIViewContentModeScaleAspectFill;
         imageView.clipsToBounds = YES;
+        imageView.layer.cornerRadius = 8.0;
         imageView;
     });
-    [self.contentView addSubview:self.backgroundImageView];
-    [self.contentView sendSubviewToBack:self.backgroundImageView];
-    [self.backgroundImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.contentView).offset(100.0);
-        make.top.right.bottom.equalTo(self.contentView);
-    }];
-    //设置头像
-    self.headImageView = [[UIImageView alloc] init];
     [self.contentView addSubview:self.headImageView];
     [self.headImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.left.equalTo(self.contentView).offset(5.0);
         make.bottom.equalTo(self.contentView).offset(-5.0);
         make.width.equalTo(self.headImageView.mas_height);
     }];
+    //设置背景视图
+    self.backgroundImageView = ({
+        UIImageView *imageView = [[UIImageView alloc] init];
+        imageView.contentMode = UIViewContentModeScaleAspectFill;
+        imageView.clipsToBounds = YES;
+        imageView.layer.cornerRadius = 8.0;
+        imageView;
+    });
+    [self.contentView addSubview:self.backgroundImageView];
+    [self.contentView sendSubviewToBack:self.backgroundImageView];
+    [self.backgroundImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.headImageView.mas_right).offset(5.0);
+        make.top.right.bottom.equalTo(self.contentView);
+    }];
+    
     //设置名字
     self.nameLabel = ({
         UILabel *label = [[UILabel alloc] init];
