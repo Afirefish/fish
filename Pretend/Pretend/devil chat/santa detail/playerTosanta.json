@@ -1,0 +1,35 @@
+{
+	"content":
+	[
+		{
+			"step":1,
+			"choice":
+			[
+				{"index":0,"message":"你好，请问这里是哪里？","nextStep":2},
+				{"index":1,"message":"你好，你是谁？我在哪里？","nextStep":2},
+				{"index":2,"message":"你好，可以告诉我现在是什么状况吗？","nextStep":2},
+				{"index":3,"message":"哇，这里好可怕，可以送我回去吗？","nextStep":3}
+			]
+		},
+		{
+			"step":2,
+			"choice":
+			[
+				{"index":0,"message":"我需要怎么做呢？","nextStep":1},
+				{"index":1,"message":"那么怎么才能让我回去呢？","nextStep":1},
+				{"index":2,"message":"你想要我做什么吗？","nextStep":1},
+				{"index":3,"message":"有什么需要我的地方吗？","nextStep":1}
+			]
+		},
+		{
+			"step":3,
+			"choice":
+			[
+				{"index":0,"message":"真凶哦!","nextStep":2},
+				{"index":1,"message":"要这么凶吗。。","nextStep":2},
+				{"index":2,"message":"切，不说算了。","nextStep":2},
+				{"index":3,"message":"对不起啦，不要这么凶嘛。。","nextStep":2}
+			]
+		}
+	]
+}

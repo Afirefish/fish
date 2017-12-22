@@ -1,0 +1,35 @@
+{
+	"content":
+	[
+		{
+			"step":1,
+			"choice":
+			[
+				{"index":0,"message":"哇，好空旷的广场","nextStep":2},
+				{"index":1,"message":"这里怎么只有个这么大的广场","nextStep":2},
+				{"index":2,"message":"最后一个恶魔吗？有意思。。","nextStep":2},
+				{"index":3,"message":"我想回去。。。","nextStep":3}
+			]
+		},
+		{
+			"step":2,
+			"choice":
+			[
+				{"index":0,"message":"有人吗？有人在吗？","nextStep":1},
+				{"index":1,"message":"有点在意这不平凡的雕塑","nextStep":1},
+				{"index":2,"message":"感觉这里没有存在的气息，很好奇是怎么样的呢。。。","nextStep":1},
+				{"index":3,"message":"啊，这么写感觉性格主角不稳定啊，嘛 游戏就该这样吧？（反正我又晕了）","nextStep":1}
+			]
+		},
+		{
+			"step":3,
+			"choice":
+			[
+				{"index":0,"message":"多久才能回去啊","nextStep":2},
+				{"index":1,"message":"怎样才能回去啊","nextStep":2},
+				{"index":2,"message":"呜呜呜。。。","nextStep":2},
+				{"index":3,"message":"老爸，老妈，我想你们。。。。","nextStep":2}
+			]
+		}
+	]
+}
