@@ -69,7 +69,14 @@ static NSString *tableCard = @"TableCard";
     [self.view addSubview:self.handCard];
     [self.handCard registerClass:[PuriHandCardCell class] forCellWithReuseIdentifier:puriCard];
     [self.handCard mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.left.right.equalTo(self.view);
+        if (@available(iOS 11.0, *)) {
+            make.left.equalTo(self.view.mas_safeAreaLayoutGuideLeft);
+            make.right.equalTo(self.view.mas_safeAreaLayoutGuideRight);
+            make.bottom.equalTo(self.view.mas_safeAreaLayoutGuideBottom);
+        }
+        else {
+            make.bottom.left.right.equalTo(self.view);
+        }
         make.height.equalTo(@(CGRectGetHeight(self.view.frame) * 0.3));
     }];
     
@@ -86,9 +93,14 @@ static NSString *tableCard = @"TableCard";
     [self.view addSubview:self.tableCardCraft];
     [self.tableCardCraft registerClass:[TableCardCollectionViewCell class] forCellWithReuseIdentifier:tableCard];
     [self.tableCardCraft mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.left.equalTo(self.view);
+        if (@available(iOS 11.0, *)) {
+            make.left.equalTo(self.view.mas_safeAreaLayoutGuideLeft);
+            make.right.equalTo(self.view.mas_safeAreaLayoutGuideRight);
+        }
+        else {
+            make.right.left.equalTo(self.view);
+        }
         make.bottom.equalTo(self.handCard.mas_top);
-        NSLog(@" frame height %f",CGRectGetHeight(self.view.frame));
         make.height.equalTo(@(CGRectGetHeight(self.view.frame) * 0.5));
     }];
     
@@ -108,7 +120,7 @@ static NSString *tableCard = @"TableCard";
     [self.crafterLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self.view);
         make.bottom.equalTo(self.tableCardCraft.mas_top).offset(-10.0);
-        make.height.equalTo(@40.0);
+        make.height.equalTo(@30.0);
         make.width.equalTo(@((SCREEN_WIDTH - 40) / 3));
     }];
     
@@ -127,7 +139,12 @@ static NSString *tableCard = @"TableCard";
     [self.view addSubview:self.PuriLP];
     [self.PuriLP mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.width.height.equalTo(self.crafterLabel);
-        make.right.equalTo(self.view).offset(-10.0);
+        if (@available(iOS 11.0, *)) {
+            make.right.equalTo(self.view.mas_safeAreaLayoutGuideRight).offset(-10.0);
+        }
+        else {
+            make.right.equalTo(self.view).offset(-10.0);
+        }
     }];
     
     //对手的lifepoint
@@ -144,8 +161,13 @@ static NSString *tableCard = @"TableCard";
 //    self.crafterLP = [[UILabel alloc] initWithFrame:CGRectMake(0, 64, (SCREEN_WIDTH - SCREEN_HEIGHT / 9) * 0.8 / 2, SCREEN_HEIGHT / 9)];
     [self.view addSubview:self.crafterLP];
     [self.crafterLP mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.view).offset(10.0);
         make.centerY.width.height.equalTo(self.crafterLabel);
+        if (@available(iOS 11.0, *)) {
+            make.left.equalTo(self.view.mas_safeAreaLayoutGuideLeft).offset(10.0);
+        }
+        else {
+            make.left.equalTo(self.view).offset(10.0);
+        }
     }];
 }
 
@@ -153,7 +175,6 @@ static NSString *tableCard = @"TableCard";
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     if (collectionView == self.handCard) {

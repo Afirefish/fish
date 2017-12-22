@@ -24,18 +24,21 @@
     self.cardDetail.contentMode = UIViewContentModeScaleAspectFit;
     [self.view addSubview:self.cardDetail];
     [self.cardDetail mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(self.view);
+        if (@available(iOS 11.0, *)) {
+            make.left.equalTo(self.view.mas_safeAreaLayoutGuideLeft);
+            make.right.equalTo(self.view.mas_safeAreaLayoutGuideRight);
+            make.bottom.equalTo(self.view.mas_safeAreaLayoutGuideBottom);
+            make.top.equalTo(self.view.mas_safeAreaLayoutGuideTop);
+        }
+        else {
+            make.edges.equalTo(self.view);
+        }
     }];
 }
 
 - (void)viewWillAppear:(BOOL)animated {//在这里处理可以使动画很平滑
     [super viewWillAppear:animated];
     self.cardDetail.image = self.cardImage;
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 @end
