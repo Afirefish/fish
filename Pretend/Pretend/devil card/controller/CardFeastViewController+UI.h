@@ -10,4 +10,7 @@
 
 @interface CardFeastViewController (UI)
 
+- (void)setupScrollView;
+- (void)setupCollectionView;
+
 @end

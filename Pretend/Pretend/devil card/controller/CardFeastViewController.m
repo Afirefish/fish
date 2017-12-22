@@ -9,6 +9,7 @@
 /*这里不太好用图片实现，于是考虑用一个类似树状图的UIView来实现，Button点击来出发相应 的人物的战斗，直到决出最后胜负*/
 
 #import "CardFeastViewController.h"
+#import "CardFeastViewController+UI.h"
 #import "FeastView.h"
 #import "BaseCardCraftViewController.h"
 #import <Masonry.h>
@@ -34,6 +35,23 @@
     tapGesture.numberOfTapsRequired = 1;
     [self.view addGestureRecognizer:tapGesture];
     //[self addBtnTarget];
+}
+
+#pragma mark - collectionView delegate
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    return 10;
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"text" forIndexPath:indexPath];
+    return cell;
+}
+
+#pragma mark - collectionView data source
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    NSLog(@"cell select");
 }
 
 - (void)addBtnTarget {
@@ -102,13 +120,5 @@
     lisbethCraft.navigationItem.title = @"Lisbeth";
     [self.navigationController pushViewController:lisbethCraft animated:YES];
 }
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-
-
 
 @end

@@ -41,7 +41,7 @@
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
     [layout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
     //layout.headerReferenceSize = CGSizeMake(self.view.bounds.size.width, 20);
-    CGFloat height = (SCREEN_HEIGHT - 30) / 2 - 64;
+    CGFloat height = (SCREEN_HEIGHT - 30 - 64) / 2 ;
     CGFloat width = height * ITEM_WIDTH / ITEM_HEIGHT + 4;
     layout.itemSize = CGSizeMake(width, height);
     self.cardCollect = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];

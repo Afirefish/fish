@@ -13,8 +13,10 @@
 
 
 #define COLLECTION_SIZE (self.collectionView.bounds.size)
-#define COLLECTION_WIDTH (COLLECTION_SIZE.width < COLLECTION_SIZE.height ? COLLECTION_SIZE.width : COLLECTION_SIZE.height)
-#define COLLECTION_HEIGHT (COLLECTION_SIZE.width > COLLECTION_SIZE.height ? COLLECTION_SIZE.width : COLLECTION_SIZE.height)
+#define COLLECTION_WIDTH COLLECTION_SIZE.width
+#define COLLECTION_HEIGHT COLLECTION_SIZE.height
+//#define COLLECTION_WIDTH (COLLECTION_SIZE.width < COLLECTION_SIZE.height ? COLLECTION_SIZE.width : COLLECTION_SIZE.height)
+//#define COLLECTION_HEIGHT (COLLECTION_SIZE.width > COLLECTION_SIZE.height ? COLLECTION_SIZE.width : COLLECTION_SIZE.height)
 #define ITEM_WIDTH 136
 #define ITEM_HEIGHT 192
 
@@ -44,7 +46,7 @@
 }
 
 - (CGSize)collectionViewContentSize {//返回collectionView的内容的尺寸
-    CGSize contentSize = CGSizeMake([self.collectionView numberOfItemsInSection:0] * ITEM_WIDTH, COLLECTION_HEIGHT);//collection view的内容宽设定为cell数量乘上cell的宽度，高度设定为collection view自身高度
+    CGSize contentSize = CGSizeMake([self.collectionView numberOfItemsInSection:0] * ITEM_WIDTH, COLLECTION_SIZE.height);//collection view的内容宽设定为cell数量乘上cell的宽度，高度设定为collection view自身高度
     return contentSize;
 }
 
@@ -65,7 +67,7 @@
     PuriHandCardAttributes* attributes = [PuriHandCardAttributes layoutAttributesForCellWithIndexPath:path];//自定义的布局属性来初始化
     attributes.size = CGSizeMake(ITEM_WIDTH, ITEM_HEIGHT);//cell大小为设定好的大小，这里直接赋值为_itemSize也行
     CGFloat centerX = self.collectionView.contentOffset.x + COLLECTION_WIDTH /2;//cell的中心点的横坐标设置为偏移量的横坐标（其实也只会x轴偏移）加上collection view的宽度
-    attributes.center =  CGPointMake(centerX, COLLECTION_HEIGHT / 2 - ITEM_HEIGHT / 4);//cell的中心点，高度为collection view的高度的一半减去cell的四分之一大小,这样可以显示完全。。
+    attributes.center =  CGPointMake(centerX, COLLECTION_HEIGHT / 2 /*- ITEM_HEIGHT / 8*/);//cell的中心点，高度为collection view的高度的一半减去cell的四分之一大小,这样可以显示完全。。额 不用减了
     CGFloat angle = self.angleAtExtreme * self.collectionView.contentOffset.x / (self.collectionViewContentSize.width - COLLECTION_WIDTH);//偏移角度为最大的偏移角度乘上偏移量和最大偏移量的比值
     attributes.angle = angle + self.anglePerItem * path.item;//cell的角度为cell的索引乘以每个cell的角度加上偏移的角度
     attributes.zIndex = (NSInteger)attributes.angle * 1000000;//cell在y轴上的坐标,越来越大，后面的cell覆盖在前面的cell上面

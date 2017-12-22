@@ -23,7 +23,7 @@
         self.feastImage = [UIImage imageNamed:@"feast.png"];
         //旋转图片,创建了一个类别
         //UIImage* image = [feastImage rotate:UIImageOrientationLeft];
-        self.contentMode = UIViewContentModeScaleAspectFit;
+        self.contentMode = UIViewContentModeScaleAspectFill;
         self.image = self.feastImage;
         //[self setupActions];
     }
