@@ -77,7 +77,7 @@ static NSString *tableCard = @"TableCard";
         else {
             make.bottom.left.right.equalTo(self.view);
         }
-        make.height.equalTo(@(CGRectGetHeight(self.view.frame) * 0.3));
+        make.height.equalTo(@(CGRectGetHeight([UIScreen mainScreen].bounds) * 0.3));
     }];
     
     //桌面卡牌 不能兼容旋转
@@ -115,7 +115,7 @@ static NSString *tableCard = @"TableCard";
         label.backgroundColor = [UIColor whiteColor];
         label;
     });
-//    self.crafterLabel = [[UILabel alloc] initWithFrame:CGRectMake((SCREEN_WIDTH - SCREEN_HEIGHT / 9) / 2, 64, SCREEN_HEIGHT / 9, SCREEN_HEIGHT / 9)];
+    //    self.crafterLabel = [[UILabel alloc] initWithFrame:CGRectMake((SCREEN_WIDTH - SCREEN_HEIGHT / 9) / 2, 64, SCREEN_HEIGHT / 9, SCREEN_HEIGHT / 9)];
     [self.view addSubview:self.crafterLabel];
     [self.crafterLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self.view);
@@ -135,7 +135,7 @@ static NSString *tableCard = @"TableCard";
         label.backgroundColor = [UIColor whiteColor];
         label;
     });
-//    self.PuriLP = [[UILabel alloc] initWithFrame:CGRectMake((SCREEN_WIDTH + SCREEN_HEIGHT / 9) / 2 + (SCREEN_WIDTH - SCREEN_HEIGHT / 9) * 0.2 / 2, 64, (SCREEN_WIDTH - SCREEN_HEIGHT / 9) * 0.8 / 2, SCREEN_HEIGHT / 9)];
+    //    self.PuriLP = [[UILabel alloc] initWithFrame:CGRectMake((SCREEN_WIDTH + SCREEN_HEIGHT / 9) / 2 + (SCREEN_WIDTH - SCREEN_HEIGHT / 9) * 0.2 / 2, 64, (SCREEN_WIDTH - SCREEN_HEIGHT / 9) * 0.8 / 2, SCREEN_HEIGHT / 9)];
     [self.view addSubview:self.PuriLP];
     [self.PuriLP mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.width.height.equalTo(self.crafterLabel);
@@ -158,7 +158,7 @@ static NSString *tableCard = @"TableCard";
         label.backgroundColor = [UIColor whiteColor];
         label;
     });
-//    self.crafterLP = [[UILabel alloc] initWithFrame:CGRectMake(0, 64, (SCREEN_WIDTH - SCREEN_HEIGHT / 9) * 0.8 / 2, SCREEN_HEIGHT / 9)];
+    //    self.crafterLP = [[UILabel alloc] initWithFrame:CGRectMake(0, 64, (SCREEN_WIDTH - SCREEN_HEIGHT / 9) * 0.8 / 2, SCREEN_HEIGHT / 9)];
     [self.view addSubview:self.crafterLP];
     [self.crafterLP mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.width.height.equalTo(self.crafterLabel);
@@ -169,11 +169,6 @@ static NSString *tableCard = @"TableCard";
             make.left.equalTo(self.view).offset(10.0);
         }
     }];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {

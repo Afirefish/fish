@@ -10,9 +10,13 @@
 
 #import "CardFeastViewController.h"
 #import "CardFeastViewController+UI.h"
+#import "CardCrafterCell.h"
+#import "UIColor+PRCustomColor.h"
 #import "FeastView.h"
 #import "BaseCardCraftViewController.h"
 #import <Masonry.h>
+
+NSString *cardCrafter = @"cardCrafter";
 
 @interface CardFeastViewController ()
 @property (nonatomic,strong) FeastView *feastView;
@@ -25,42 +29,74 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.navigationItem.title = @"Card Feast";
-    //宴会的场面
-    self.feastView = [[FeastView alloc] init];
-    [self.view addSubview:self.feastView];
-    [self.feastView mas_makeConstraints:^(MASConstraintMaker *make) {
-        if (@available(iOS 11.0, *)) {
-            make.left.equalTo(self.view.mas_safeAreaLayoutGuideLeft);
-            make.right.equalTo(self.view.mas_safeAreaLayoutGuideRight);
-            make.bottom.equalTo(self.view.mas_safeAreaLayoutGuideBottom);
-            make.top.equalTo(self.view.mas_safeAreaLayoutGuideTop);
-        }
-        else {
-            make.edges.equalTo(self.view);
-        }
-    }];
-    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(yuiCraft)];
-    tapGesture.numberOfTapsRequired = 1;
-    [self.view addGestureRecognizer:tapGesture];
+    self.view.backgroundColor = [UIColor smokeWhiteColor];
+//    //宴会的场面
+//    self.feastView = [[FeastView alloc] init];
+//    [self.view addSubview:self.feastView];
+//    [self.feastView mas_makeConstraints:^(MASConstraintMaker *make) {
+//        if (@available(iOS 11.0, *)) {
+//            make.left.equalTo(self.view.mas_safeAreaLayoutGuideLeft);
+//            make.right.equalTo(self.view.mas_safeAreaLayoutGuideRight);
+//            make.bottom.equalTo(self.view.mas_safeAreaLayoutGuideBottom);
+//            make.top.equalTo(self.view.mas_safeAreaLayoutGuideTop);
+//        }
+//        else {
+//            make.edges.equalTo(self.view);
+//        }
+//    }];
+    
+    [self setupCollectionView];
+    [self setupScrollView];
+    [self showQuarterFinal];
+    [self.collectionView registerClass:[CardCrafterCell class] forCellWithReuseIdentifier:cardCrafter];
     //[self addBtnTarget];
+}
+
+- (void)showQuarterFinal {
+    for (UIImageView *view in self.quarterFinalView) {
+        view.image = [UIImage imageNamed:@"chiziCrafter"];
+        view.userInteractionEnabled = YES;
+        UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(yuiCraft)];
+        tapGesture.numberOfTapsRequired = 1;
+        [view addGestureRecognizer:tapGesture];
+    }
+    for (UIImageView *view in self.semiFinalView) {
+        view.image = [UIImage imageNamed:@"chiziCrafter"];
+        view.userInteractionEnabled = YES;
+        UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(kiritoCraft)];
+        tapGesture.numberOfTapsRequired = 1;
+        [view addGestureRecognizer:tapGesture];
+    }
+    self.championView.image = [UIImage imageNamed:@"chiziCrafter"];
+    self.championView.userInteractionEnabled = YES;
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(asunaCraft)];
+    tapGesture.numberOfTapsRequired = 1;
+    [self.championView addGestureRecognizer:tapGesture];
 }
 
 #pragma mark - collectionView delegate
 
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return 10;
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    NSLog(@"cell select");
 }
 
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"text" forIndexPath:indexPath];
-    return cell;
+- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
+    return UIEdgeInsetsMake(10, 10, 10, 10);
 }
 
 #pragma mark - collectionView data source
 
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"cell select");
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    return 8;
 }
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    CardCrafterCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cardCrafter forIndexPath:indexPath];
+    cell.imageView.image = [UIImage imageNamed:@"chiziCrafter"];
+    return cell;
+}
+
+#pragma deprecated
 
 - (void)addBtnTarget {
     [self.feastView.yuiBtn addTarget:self action:@selector(yuiCraft) forControlEvents:UIControlEventTouchUpInside];
