@@ -41,7 +41,7 @@ static NSString *choice = @"Choice";
         self.layout = [[UICollectionViewFlowLayout alloc] init];
         [self.layout setScrollDirection:UICollectionViewScrollDirectionVertical];
         self.layout.itemSize = CGSizeMake((SCREEN_WIDTH - 40)/2 , 80);
-        self.choiceContent = [[NSMutableArray alloc] init];
+        self.allCellHeight = [[NSMutableArray alloc] init];
     }
     return self;
 }
@@ -57,7 +57,6 @@ static NSString *choice = @"Choice";
     self.navigationController.navigationBar.tintColor = [UIColor blackColor];
     [self setupContentViewsType];
     [self setupSubviews];
-    [self refreshPlayerMessages];
 }
 
 //设置表视图和集合视图类型
@@ -79,15 +78,21 @@ static NSString *choice = @"Choice";
     //    self.chatContent = [[BaseChatTableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT * 0.7) style:UITableViewStylePlain];
     self.chatContentTableView.delegate = self;
     self.chatContentTableView.dataSource = self;
-    self.chatContentTableView.rowHeight = UITableViewAutomaticDimension;
-    self.chatContentTableView.estimatedRowHeight = 40;
     self.chatContentTableView.backgroundColor = [UIColor clearColor];
     [self.chatContentTableView setAllowsSelection:NO];
     [self.chatContentTableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];//设置多余cell的分割线不显示
     [self.view addSubview:self.chatContentTableView];
     [self.chatContentTableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.left.right.equalTo(self.view);
-        make.bottom.equalTo(self.view).offset(-140);
+        if (@available(iOS 11.0, *)) {
+            make.left.equalTo(self.view.mas_safeAreaLayoutGuideLeft);
+            make.right.equalTo(self.view.mas_safeAreaLayoutGuideRight);
+            make.bottom.equalTo(self.view.mas_safeAreaLayoutGuideBottom).offset(-140);
+            make.top.equalTo(self.view.mas_safeAreaLayoutGuideTop);
+        }
+        else {
+            make.top.left.right.equalTo(self.view);
+            make.bottom.equalTo(self.view).offset(-140);
+        }
     }];
     //设置tableview背景视图
     self.tableBackgroundView = ({
@@ -109,7 +114,14 @@ static NSString *choice = @"Choice";
     self.choicesCollectionView.backgroundColor = [UIColor warmShellColor];
     [self.view addSubview:self.choicesCollectionView];
     [self.choicesCollectionView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.left.right.equalTo(self.view);
+        if (@available(iOS 11.0, *)) {
+            make.left.equalTo(self.view.mas_safeAreaLayoutGuideLeft);
+            make.right.equalTo(self.view.mas_safeAreaLayoutGuideRight);
+            make.bottom.equalTo(self.view.mas_safeAreaLayoutGuideBottom);
+        }
+        else {
+            make.bottom.left.right.equalTo(self.view);
+        }
         make.top.equalTo(self.chatContentTableView.mas_bottom);
     }];
     //设置collectionview背景视图
@@ -158,36 +170,6 @@ static NSString *choice = @"Choice";
     [self.chatContentTableView scrollToRowAtIndexPath:index atScrollPosition:UITableViewScrollPositionBottom animated:animated]; //滚动到最后一行
 }
 
-- (void)refreshDevilRespond {
-    for (NSDictionary *dic in self.devilMessages) {//刷新恶魔的回复
-        NSNumber *step = [dic objectForKey:@"step"];
-        NSUInteger mystep = [step integerValue];
-        if (mystep == self.previousStep) {
-            self.devilArr = [dic objectForKey:@"respond"];
-            self.devilDic = [self.devilArr objectAtIndex:self.choiceIndex];
-            self.devilRespondContent = [self.devilDic objectForKey:@"message"];
-            break;
-        }
-    }
-}
-
-- (void)refreshPlayerMessages {
-    for (NSDictionary *dic in self.playerMessages) {//刷新玩家的选项
-        NSNumber *step = [dic objectForKey:@"step"];
-        NSUInteger myStep = [step integerValue];
-        if (myStep == self.finished) {
-            [self.choiceContent removeAllObjects];
-            self.choiceArr = [dic objectForKey:@"choice"];
-            self.choiceCount = [self.choiceArr count];
-            for (NSUInteger i = 0; i < self.choiceCount; i ++) {
-                self.choiceDic = [self.choiceArr objectAtIndex:i];
-                [self.choiceContent addObject:[self.choiceDic objectForKey:@"message"]];
-            }
-            break;
-        }
-    }
-}
-
 //玩家做出选择的消息
 - (void)sendMessage{
     self.isDevil = NO;
@@ -196,13 +178,6 @@ static NSString *choice = @"Choice";
     self.nodeNumber += 1;
     [self.chatContentTableView reloadData];
     [self scrollTableToFoot:YES];
-    dispatch_async(dispatch_get_global_queue(0, 0), ^{//与下面的延时异步运行，加载数据
-        [self refreshDevilRespond];
-        [self refreshPlayerMessages];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self.choicesCollectionView reloadData];
-        });
-    });
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{//加个延迟有种思考的感觉233
         [self devilRespond];
     });
@@ -214,6 +189,7 @@ static NSString *choice = @"Choice";
     self.nodeNumber += 1;
     [self.chatContentTableView reloadData];
     [self scrollTableToFoot:YES];
+    [self.choicesCollectionView reloadData];
     self.coverLabel.alpha = 0;
     self.choicesCollectionView.userInteractionEnabled = YES;
 }
@@ -252,8 +228,18 @@ static NSString *choice = @"Choice";
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    for (NSDictionary *dic in self.playerMessages) {
+        NSNumber *step = [dic objectForKey:@"step"];
+        NSUInteger myStep = [step integerValue];
+        if (myStep == self.finished) {
+            self.choiceArr = [dic objectForKey:@"choice"];
+            self.choiceDic = [self.choiceArr objectAtIndex:indexPath.row];
+            self.choiceContent = [self.choiceDic objectForKey:@"message"];
+            break;
+        }
+    }
     BaseChoiceCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:choice forIndexPath:indexPath];
-    cell.messageLabel.text = [self.choiceContent objectAtIndex:indexPath.row];
+    cell.messageLabel.text = self.choiceContent;
     return cell;
 }
 
@@ -281,6 +267,37 @@ static NSString *choice = @"Choice";
     self.finished = [nextStep integerValue];
     [self sendMessage];
     [collectionView deselectItemAtIndexPath:indexPath animated:YES];
+}
+
+//设置cell高度，根据文本行数和大小变化
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    CGRect cellRect = CGRectMake(0, 0, 0, 0);
+    if (tableView == self.chatContentTableView) {
+        if (indexPath.section == [tableView numberOfSections] - 1 ) {
+            if (self.isDevil == YES) {
+                for (NSDictionary *dic in self.devilMessages) {
+                    NSNumber *step = [dic objectForKey:@"step"];
+                    NSUInteger mystep = [step integerValue];
+                    if (mystep == self.previousStep) {
+                        self.devilArr = [dic objectForKey:@"respond"];
+                        self.devilDic = [self.devilArr objectAtIndex:self.choiceIndex];
+                        self.devilRespondContent = [self.devilDic objectForKey:@"message"];
+                        cellRect = [self.devilRespondContent boundingRectWithSize:CGSizeMake(self.view.bounds.size.width * 0.7, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading | NSStringDrawingUsesDeviceMetrics attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:17]} context:nil];
+                        break;
+                    }
+                }
+            } else {
+                cellRect = [self.playerChoice boundingRectWithSize:CGSizeMake(self.view.bounds.size.width * 0.7, MAXFLOAT) options:NSStringDrawingUsesFontLeading |NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesDeviceMetrics attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:17]} context:nil];
+            }
+            NSNumber *height = [NSNumber numberWithFloat:cellRect.size.height + kCellGap];
+            if ([self.allCellHeight count] < self.nodeNumber) {//将正确的高度存入数组
+                [self.allCellHeight addObject:height];
+            }
+        }
+        CGFloat cellHeight = [[self.allCellHeight objectAtIndex:indexPath.section] floatValue];//每次重新加载时，除了最后的cell，高度直接从数组里获取
+        return cellHeight;
+    }
+    return 0;
 }
 
 #pragma json

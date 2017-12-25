@@ -46,7 +46,15 @@ NS_ASSUME_NONNULL_BEGIN
     [self.view addSubview:backgroudImageView];
     [self.view bringSubviewToFront:backgroudImageView];
     [backgroudImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(self.view);
+        if (@available(iOS 11.0, *)) {
+            make.left.equalTo(self.view.mas_safeAreaLayoutGuideLeft);
+            make.right.equalTo(self.view.mas_safeAreaLayoutGuideRight);
+            make.bottom.equalTo(self.view.mas_safeAreaLayoutGuideBottom);
+            make.top.equalTo(self.view.mas_safeAreaLayoutGuideTop);
+        }
+        else {
+            make.edges.equalTo(self.view);
+        }
     }];
     //设置考虑的btn
     CardCraftMgr *cardMgr = [CardCraftMgr defaultMgr];
@@ -169,10 +177,15 @@ NS_ASSUME_NONNULL_BEGIN
     [self.betaryBtn addTarget:self action:@selector(betary) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.betaryBtn];
     [self.betaryBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.view).offset(10.0);
-        make.right.equalTo(self.view.mas_centerX).offset(-10.0);
+        if (@available(iOS 11.0, *)) {
+            make.left.equalTo(self.view.mas_safeAreaLayoutGuideLeft).offset(10.0);
+        }
+        else {
+            make.left.equalTo(self.view).offset(10.0);
+        }
         make.height.equalTo(@30);
         make.top.equalTo(self.view.mas_centerY).offset(40.0);
+        make.right.equalTo(self.view.mas_centerX).offset(-10.0);
     }];
     
     //信任

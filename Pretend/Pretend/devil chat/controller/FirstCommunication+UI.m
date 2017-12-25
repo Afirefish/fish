@@ -15,16 +15,24 @@ NS_ASSUME_NONNULL_BEGIN
 
 //设置背景图片
 - (void)setupBackGroudImage {
-    UIImageView *backgroudImageView = ({
+    self.backgroudImageView = ({
         UIImageView *imageView = [[UIImageView alloc] init];
         imageView.contentMode = UIViewContentModeScaleAspectFill;
         imageView.image = [UIImage imageNamed:@"startCastle"];
         imageView;
     });
-    [self.view addSubview:backgroudImageView];
-    [self.view bringSubviewToFront:backgroudImageView];
-    [backgroudImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(self.view);
+    [self.view addSubview:self.backgroudImageView];
+    [self.view bringSubviewToFront:self.backgroudImageView];
+    [self.backgroudImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        if (@available(iOS 11.0, *)) {
+            make.left.equalTo(self.view.mas_safeAreaLayoutGuideLeft);
+            make.right.equalTo(self.view.mas_safeAreaLayoutGuideRight);
+            make.bottom.equalTo(self.view.mas_safeAreaLayoutGuideBottom);
+            make.top.equalTo(self.view.mas_safeAreaLayoutGuideTop);
+        }
+        else {
+            make.edges.equalTo(self.view);
+        }
     }];
 }
 
@@ -41,8 +49,8 @@ NS_ASSUME_NONNULL_BEGIN
 //    self.skipButton.frame = CGRectMake(self.view.bounds.size.width * 0.8, self.view.bounds.size.height * 0.5, self.view.bounds.size.width * 0.2, self.view.bounds.size.height * 0.1);
     [self.view addSubview:self.skipButton];
     [self.skipButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(self.view).offset(-40.0);
-        make.centerY.equalTo(self.view);
+        make.right.equalTo(self.backgroudImageView).offset(-40.0);
+        make.centerY.equalTo(self.backgroudImageView);
         make.height.equalTo(@20.0);
         make.width.equalTo(@50.0);
     }];
@@ -73,9 +81,9 @@ NS_ASSUME_NONNULL_BEGIN
     //    UILabel *startLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.view.bounds.size.width * 0.15, self.view.bounds.size.height * 0.2, self.view.bounds.size.width * 0.7, self.view.bounds.size.height * 0.2)];
     [self.view addSubview:startLabel];
     [startLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.equalTo(self.view);
+        make.left.right.equalTo(self.backgroudImageView);
         make.height.equalTo(@100.0);
-        make.bottom.equalTo(self.view.mas_centerY).offset(-80.0);
+        make.bottom.equalTo(self.backgroudImageView.mas_centerY).offset(-40.0);
     }];
 }
 
@@ -92,8 +100,8 @@ NS_ASSUME_NONNULL_BEGIN
     //    UILabel *startTipLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.view.bounds.size.width * 0.15, self.view.bounds.size.height * 0.7, self.view.bounds.size.width * 0.7, self.view.bounds.size.height * 0.2)];
     [self.view addSubview:startTipLabel];
     [startTipLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.equalTo(self.view);
-        make.top.equalTo(self.view.mas_centerY).offset(100.0);
+        make.left.right.equalTo(self.backgroudImageView);
+        make.top.equalTo(self.backgroudImageView.mas_centerY).offset(100.0);
         make.height.equalTo(@20.0);
     }];
 }

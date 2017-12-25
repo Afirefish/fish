@@ -23,6 +23,7 @@
 @property (nonatomic, strong) UILabel *tipLabel;
 @property (nonatomic, strong) UIButton *enterBtn;
 @property (nonatomic, strong) UIButton *sortBtn;
+@property (nonatomic, strong) UIImageView *backgroudImageView;
 
 @end
 
@@ -39,16 +40,24 @@
 
 //设置背景图片
 - (void)setupBackGroudImage {
-    UIImageView *backgroudImageView = ({
+    self.backgroudImageView = ({
         UIImageView *imageView = [[UIImageView alloc] init];
         imageView.contentMode = UIViewContentModeScaleAspectFill;
         imageView.image = [UIImage imageNamed:@"feast"];
         imageView;
     });
-    [self.view addSubview:backgroudImageView];
-    [self.view bringSubviewToFront:backgroudImageView];
-    [backgroudImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(self.view);
+    [self.view addSubview:self.backgroudImageView];
+    [self.view bringSubviewToFront:self.backgroudImageView];
+    [self.backgroudImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        if (@available(iOS 11.0, *)) {
+            make.left.equalTo(self.view.mas_safeAreaLayoutGuideLeft);
+            make.right.equalTo(self.view.mas_safeAreaLayoutGuideRight);
+            make.bottom.equalTo(self.view.mas_safeAreaLayoutGuideBottom);
+            make.top.equalTo(self.view.mas_safeAreaLayoutGuideTop);
+        }
+        else {
+            make.edges.equalTo(self.view);
+        }
     }];
 }
 
@@ -66,8 +75,8 @@
     [self.sortBtn addTarget:self action:@selector(sortCard) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.sortBtn];
     [self.sortBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.view).offset(100.0);
-        make.top.equalTo(self.view).offset(100.0);
+        make.left.equalTo(self.backgroudImageView).offset(100.0);
+        make.top.equalTo(self.backgroudImageView).offset(100.0);
         make.width.equalTo(@100.0);
         make.height.equalTo(@30.0);
     }];
@@ -87,7 +96,7 @@
     //[sortBtn addTarget:self action:@selector(sortCardTest) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.enterBtn];
     [self.enterBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.view).offset(40.0);
+        make.left.equalTo(self.backgroudImageView).offset(40.0);
         make.width.equalTo(@100.0);
         make.top.equalTo(self.sortBtn.mas_bottom).offset(100);
         make.height.equalTo(@30.0);
@@ -134,7 +143,7 @@
 //    self.tipLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.view.bounds.size.width * 0.1,self.view.bounds.size.height * 0.5, self.view.bounds.size.width * 0.8, self.view.bounds.size.height * 0.2)];
     [self.view addSubview:self.tipLabel];
     [self.tipLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.equalTo(self.view);
+        make.left.right.equalTo(self.backgroudImageView);
         make.top.equalTo(self.sortBtn.mas_bottom).offset(10.0);
         make.bottom.equalTo(self.enterBtn.mas_top).offset(10.0);
     }];

@@ -42,7 +42,15 @@
     });
     [self.view addSubview:backgroudImageView];
     [backgroudImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(self.view);
+        if (@available(iOS 11.0, *)) {
+            make.left.equalTo(self.view.mas_safeAreaLayoutGuideLeft);
+            make.right.equalTo(self.view.mas_safeAreaLayoutGuideRight);
+            make.bottom.equalTo(self.view.mas_safeAreaLayoutGuideBottom);
+            make.top.equalTo(self.view.mas_safeAreaLayoutGuideTop);
+        }
+        else {
+            make.edges.equalTo(self.view);
+        }
     }];
     
     //结束的标签
@@ -58,9 +66,9 @@
 //    UILabel *finishLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.view.bounds.size.width * 0.2, self.view.bounds.size.height * 0.2, self.view.bounds.size.width * 0.6, self.view.bounds.size.height * 0.2)];
     [self.view addSubview:finishLabel];
     [finishLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.equalTo(self.view);
+        make.left.right.equalTo(backgroudImageView);
         make.height.equalTo(@50.0);
-        make.bottom.equalTo(self.view.mas_centerY).offset(-80.0);
+        make.bottom.equalTo(backgroudImageView.mas_centerY).offset(-80.0);
     }];
     
     //重新开始
@@ -76,7 +84,7 @@
 //    reStartButton.frame = CGRectMake(self.view.bounds.size.width * 0.4, self.view.bounds.size.height * 0.6, self.view.bounds.size.width * 0.2, self.view.bounds.size.height * 0.2);
     [self.view addSubview:reStartButton];
     [reStartButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.equalTo(self.view);
+        make.left.right.equalTo(backgroudImageView);
         make.height.equalTo(@20.0);
         make.top.equalTo(finishLabel.mas_bottom).offset(100);
     }];

@@ -42,6 +42,9 @@
     [layout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
     //layout.headerReferenceSize = CGSizeMake(self.view.bounds.size.width, 20);
     CGFloat height = (SCREEN_HEIGHT - 30 - 64) / 2 ;
+    if (@available(iOS 11.0, *)) {
+        height = (SCREEN_HEIGHT - 30 - 64 - 60) / 2 ;
+    }
     CGFloat width = height * ITEM_WIDTH / ITEM_HEIGHT + 4;
     layout.itemSize = CGSizeMake(width, height);
     self.cardCollect = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];
@@ -50,7 +53,15 @@
     self.cardCollect.dataSource = self;
     [self.view addSubview:self.cardCollect];
     [self.cardCollect mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(self.view);
+        if (@available(iOS 11.0, *)) {
+            make.left.equalTo(self.view.mas_safeAreaLayoutGuideLeft);
+            make.right.equalTo(self.view.mas_safeAreaLayoutGuideRight);
+            make.bottom.equalTo(self.view.mas_safeAreaLayoutGuideBottom);
+            make.top.equalTo(self.view.mas_safeAreaLayoutGuideTop);
+        }
+        else {
+            make.edges.equalTo(self.view);
+        }
     }];
 }
 

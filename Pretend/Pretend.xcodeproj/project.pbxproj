@@ -93,6 +93,7 @@
 		38CEAA6E1F8BA0B600BC72EC /* santa.json in Resources */ = {isa = PBXBuildFile; fileRef = 38CEAA6D1F8BA0B600BC72EC /* santa.json */; };
 		38CEAA701F8BA0E800BC72EC /* playerTosanta.json in Resources */ = {isa = PBXBuildFile; fileRef = 38CEAA6F1F8BA0E800BC72EC /* playerTosanta.json */; };
 		38E240241FECB69300896939 /* CardFeastViewController+UI.m in Sources */ = {isa = PBXBuildFile; fileRef = 38E240231FECB69300896939 /* CardFeastViewController+UI.m */; };
+		38E2404F1FF0954700896939 /* CardCrafterCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 38E2404E1FF0954700896939 /* CardCrafterCell.m */; };
 		FEB8F7668BFCA7D04939BC7C /* libPods-Pretend.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D33B925DDB6AA3EAC9B48AB8 /* libPods-Pretend.a */; };
 /* End PBXBuildFile section */
 
@@ -278,6 +279,8 @@
 		38CEAA6F1F8BA0E800BC72EC /* playerTosanta.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = playerTosanta.json; sourceTree = "<group>"; };
 		38E240221FECB69300896939 /* CardFeastViewController+UI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CardFeastViewController+UI.h"; sourceTree = "<group>"; };
 		38E240231FECB69300896939 /* CardFeastViewController+UI.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "CardFeastViewController+UI.m"; sourceTree = "<group>"; };
+		38E2404D1FF0954700896939 /* CardCrafterCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CardCrafterCell.h; sourceTree = "<group>"; };
+		38E2404E1FF0954700896939 /* CardCrafterCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CardCrafterCell.m; sourceTree = "<group>"; };
 		4D56EA3242F97FEDFA0D68FC /* Pods-Pretend.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pretend.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Pretend/Pods-Pretend.debug.xcconfig"; sourceTree = "<group>"; };
 		D33B925DDB6AA3EAC9B48AB8 /* libPods-Pretend.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Pretend.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4A1AF25F2E2AE883639043E /* Pods-Pretend.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pretend.release.xcconfig"; path = "Pods/Target Support Files/Pods-Pretend/Pods-Pretend.release.xcconfig"; sourceTree = "<group>"; };
@@ -414,6 +417,8 @@
 				38C76CE41FA8550300BCBCB9 /* FeastView.m */,
 				38C76D0C1FAAAFC800BCBCB9 /* CardCell.h */,
 				38C76D0D1FAAAFC800BCBCB9 /* CardCell.m */,
+				38E2404D1FF0954700896939 /* CardCrafterCell.h */,
+				38E2404E1FF0954700896939 /* CardCrafterCell.m */,
 				389C5C7F1FB0768B00494006 /* CardSortTestCollectionViewCell.h */,
 				389C5C801FB0768B00494006 /* CardSortTestCollectionViewCell.m */,
 				389C5C761FAEE89400494006 /* PuriHandCardCell.h */,
@@ -1043,6 +1048,7 @@
 				389C5C8A1FB15E4500494006 /* TableCardCollectionViewCell.m in Sources */,
 				389C5C991FB29FC600494006 /* SantaChoiceCollectionViewCell.m in Sources */,
 				3801A04A1F7B43CF006C3D18 /* FirstCommunication.m in Sources */,
+				38E2404F1FF0954700896939 /* CardCrafterCell.m in Sources */,
 				38C76D141FAAD0C200BCBCB9 /* CardDetailViewController.m in Sources */,
 				389C5C931FB1E39900494006 /* BaseChoiceCollectionViewCell.m in Sources */,
 				3801A0591F7C88F1006C3D18 /* PRNavigationController.m in Sources */,
