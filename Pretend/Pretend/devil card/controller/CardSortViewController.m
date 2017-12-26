@@ -14,7 +14,7 @@
 #define SCREEN_SIZE ([UIScreen mainScreen].bounds.size)
 #define SCREEN_WIDTH (SCREEN_SIZE.width < SCREEN_SIZE.height ? SCREEN_SIZE.width : SCREEN_SIZE.height)
 #define SCREEN_HEIGHT (SCREEN_SIZE.width > SCREEN_SIZE.height ? SCREEN_SIZE.width : SCREEN_SIZE.height)
-#define ITEM_WIDTH 68
+#define ITEM_WIDTH 69
 #define ITEM_HEIGHT 96
 
 @interface CardSortViewController ()
