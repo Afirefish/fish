@@ -14,9 +14,6 @@
 #import "SantaChoiceCollectionView.h"
 #import "SantaChoiceCollectionViewCell.h"
 
-#define SCREEN_SIZE ([UIScreen mainScreen].bounds.size)
-#define SCREEN_WIDTH (SCREEN_SIZE.width < SCREEN_SIZE.height ? SCREEN_SIZE.width : SCREEN_SIZE.height)
-#define SCREEN_HEIGHT (SCREEN_SIZE.width > SCREEN_SIZE.height ? SCREEN_SIZE.width : SCREEN_SIZE.height)
 #define kCellGap 20
 
 //说话语气很凶，但是实际是个很好的家伙，没有固定的居住地，偶尔会去chizi的宫殿呆着
