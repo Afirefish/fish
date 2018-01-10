@@ -61,7 +61,6 @@ NS_ASSUME_NONNULL_BEGIN
     TrueWorld *trueWorld  = [[TrueWorld alloc] init];
     TWNavigationController *twNC = [[TWNavigationController alloc] initWithRootViewController:trueWorld];
     [childViewControllers addObject:twNC];
-    
     self.viewControllers = childViewControllers;
 }
 

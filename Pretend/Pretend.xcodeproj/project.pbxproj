@@ -56,6 +56,7 @@
 		38A13E021FE0D1C8002B62B4 /* UIColor+PRCustomColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 38A13E011FE0D1C8002B62B4 /* UIColor+PRCustomColor.m */; };
 		38A13E051FE10A46002B62B4 /* ChatRoomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 38A13E041FE10A46002B62B4 /* ChatRoomCell.m */; };
 		38A13E081FE1192C002B62B4 /* BaseMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 38A13E071FE1192C002B62B4 /* BaseMgr.m */; };
+		38A17BFD2004987200088588 /* PRTxtTransform.m in Sources */ = {isa = PBXBuildFile; fileRef = 38A17BFC2004987200088588 /* PRTxtTransform.m */; };
 		38C76C811FA06B2900BCBCB9 /* TizaChatTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C76C801FA06B2900BCBCB9 /* TizaChatTableView.m */; };
 		38C76C841FA06B4C00BCBCB9 /* TizaChatTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C76C831FA06B4C00BCBCB9 /* TizaChatTableViewCell.m */; };
 		38C76C8F1FA073CA00BCBCB9 /* tiza.json in Resources */ = {isa = PBXBuildFile; fileRef = 38C76C8D1FA073CA00BCBCB9 /* tiza.json */; };
@@ -94,6 +95,7 @@
 		38CEAA701F8BA0E800BC72EC /* playerTosanta.json in Resources */ = {isa = PBXBuildFile; fileRef = 38CEAA6F1F8BA0E800BC72EC /* playerTosanta.json */; };
 		38E240241FECB69300896939 /* CardFeastViewController+UI.m in Sources */ = {isa = PBXBuildFile; fileRef = 38E240231FECB69300896939 /* CardFeastViewController+UI.m */; };
 		38E2404F1FF0954700896939 /* CardCrafterCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 38E2404E1FF0954700896939 /* CardCrafterCell.m */; };
+		38F7C2D8200374E10085B0BA /* test.txt in Resources */ = {isa = PBXBuildFile; fileRef = 38F7C2D7200374E10085B0BA /* test.txt */; };
 		FEB8F7668BFCA7D04939BC7C /* libPods-Pretend.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D33B925DDB6AA3EAC9B48AB8 /* libPods-Pretend.a */; };
 /* End PBXBuildFile section */
 
@@ -210,6 +212,8 @@
 		38A13E041FE10A46002B62B4 /* ChatRoomCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChatRoomCell.m; sourceTree = "<group>"; };
 		38A13E061FE1192C002B62B4 /* BaseMgr.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseMgr.h; sourceTree = "<group>"; };
 		38A13E071FE1192C002B62B4 /* BaseMgr.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseMgr.m; sourceTree = "<group>"; };
+		38A17BFB2004987200088588 /* PRTxtTransform.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PRTxtTransform.h; sourceTree = "<group>"; };
+		38A17BFC2004987200088588 /* PRTxtTransform.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PRTxtTransform.m; sourceTree = "<group>"; };
 		38C76C7F1FA06B2900BCBCB9 /* TizaChatTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TizaChatTableView.h; sourceTree = "<group>"; };
 		38C76C801FA06B2900BCBCB9 /* TizaChatTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TizaChatTableView.m; sourceTree = "<group>"; };
 		38C76C821FA06B4C00BCBCB9 /* TizaChatTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TizaChatTableViewCell.h; sourceTree = "<group>"; };
@@ -281,6 +285,7 @@
 		38E240231FECB69300896939 /* CardFeastViewController+UI.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "CardFeastViewController+UI.m"; sourceTree = "<group>"; };
 		38E2404D1FF0954700896939 /* CardCrafterCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CardCrafterCell.h; sourceTree = "<group>"; };
 		38E2404E1FF0954700896939 /* CardCrafterCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CardCrafterCell.m; sourceTree = "<group>"; };
+		38F7C2D7200374E10085B0BA /* test.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = test.txt; sourceTree = "<group>"; };
 		4D56EA3242F97FEDFA0D68FC /* Pods-Pretend.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pretend.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Pretend/Pods-Pretend.debug.xcconfig"; sourceTree = "<group>"; };
 		D33B925DDB6AA3EAC9B48AB8 /* libPods-Pretend.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Pretend.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4A1AF25F2E2AE883639043E /* Pods-Pretend.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pretend.release.xcconfig"; path = "Pods/Target Support Files/Pods-Pretend/Pods-Pretend.release.xcconfig"; sourceTree = "<group>"; };
@@ -809,6 +814,8 @@
 			children = (
 				38A13E001FE0D1C8002B62B4 /* UIColor+PRCustomColor.h */,
 				38A13E011FE0D1C8002B62B4 /* UIColor+PRCustomColor.m */,
+				38A17BFB2004987200088588 /* PRTxtTransform.h */,
+				38A17BFC2004987200088588 /* PRTxtTransform.m */,
 			);
 			path = common;
 			sourceTree = "<group>";
@@ -816,6 +823,7 @@
 		38E2404C1FECBD5900896939 /* game start */ = {
 			isa = PBXGroup;
 			children = (
+				38F7C2D7200374E10085B0BA /* test.txt */,
 				3801A0541F7B5CB3006C3D18 /* PretendedViewController.h */,
 				3801A0551F7B5CB3006C3D18 /* PretendedViewController.m */,
 			);
@@ -951,6 +959,7 @@
 				3876A7F31F8DD4AE008A20C9 /* chizi.json in Resources */,
 				38C76CF91FA8A91C00BCBCB9 /* consider.json in Resources */,
 				38C76C8F1FA073CA00BCBCB9 /* tiza.json in Resources */,
+				38F7C2D8200374E10085B0BA /* test.txt in Resources */,
 				38CEAA6E1F8BA0B600BC72EC /* santa.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1028,6 +1037,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				38C76D201FAB74B700BCBCB9 /* PuriLayout.m in Sources */,
+				38A17BFD2004987200088588 /* PRTxtTransform.m in Sources */,
 				389C5C871FB0866400494006 /* CardCoverFlowLayout.m in Sources */,
 				38C76D081FA9E64500BCBCB9 /* TWNavigationController.m in Sources */,
 				38C76CAE1FA19C6B00BCBCB9 /* ChiziMgr.m in Sources */,
