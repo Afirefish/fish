@@ -14,9 +14,6 @@
 #import "PufuChoiceCollectionView.h"
 #import "PufuChoiceCollectionViewCell.h"
 
-#define SCREEN_SIZE ([UIScreen mainScreen].bounds.size)
-#define SCREEN_WIDTH (SCREEN_SIZE.width < SCREEN_SIZE.height ? SCREEN_SIZE.width : SCREEN_SIZE.height)
-#define SCREEN_HEIGHT (SCREEN_SIZE.width > SCREEN_SIZE.height ? SCREEN_SIZE.width : SCREEN_SIZE.height)
 #define kCellGap 20
 
 //似乎是比较温和的女性恶魔，拥有时光之力？？强大的实力毋庸置疑

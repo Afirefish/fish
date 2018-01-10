@@ -12,6 +12,7 @@
 #import "ChatRoomCleared.h"
 #import "FirstCommunication+UI.h"
 #import "UIColor+PRCustomColor.h"
+#import "PRTxtTransform.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -58,16 +59,18 @@ NS_ASSUME_NONNULL_BEGIN
 
 //懒人专用，跳过剧情
 - (void)skipToEnd {
-    //emmmmmm.....
-    //NSLog(@"root %@",[self.navigationController.viewControllers firstObject]);
-    UIAlertController *skipAlert = [UIAlertController alertControllerWithTitle:@"确定要跳过这里吗？" message:@"点击确定则会跳过这里的剧情，将无法获得稀有卡片！!" preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *skipComfirmAction = [UIAlertAction actionWithTitle:@"确定跳过!" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        [self showFinishScene];
-    }];
-    [skipAlert addAction:skipComfirmAction];
-    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
-    [skipAlert addAction:cancelAction];
-    [self presentViewController:skipAlert animated:YES completion:nil];
+    PRTxtTransform *trans = [[PRTxtTransform alloc] init];
+    [trans transTXTToJson];
+//    //emmmmmm.....
+//    //NSLog(@"root %@",[self.navigationController.viewControllers firstObject]);
+//    UIAlertController *skipAlert = [UIAlertController alertControllerWithTitle:@"确定要跳过这里吗？" message:@"点击确定则会跳过这里的剧情，将无法获得稀有卡片！!" preferredStyle:UIAlertControllerStyleAlert];
+//    UIAlertAction *skipComfirmAction = [UIAlertAction actionWithTitle:@"确定跳过!" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+//        [self showFinishScene];
+//    }];
+//    [skipAlert addAction:skipComfirmAction];
+//    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+//    [skipAlert addAction:cancelAction];
+//    [self presentViewController:skipAlert animated:YES completion:nil];
 }
 
 //通关场景
