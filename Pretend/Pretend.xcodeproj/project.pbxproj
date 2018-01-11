@@ -29,6 +29,8 @@
 		3801A0861F7F4927006C3D18 /* SantaChatTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3801A0851F7F4927006C3D18 /* SantaChatTableView.m */; };
 		3801A0891F7F498E006C3D18 /* SantaChatTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3801A0881F7F498E006C3D18 /* SantaChatTableViewCell.m */; };
 		383BA7001FD799B600B0D207 /* FirstCommunication+UI.m in Sources */ = {isa = PBXBuildFile; fileRef = 383BA6FF1FD799B600B0D207 /* FirstCommunication+UI.m */; };
+		383D7243200600AF0063FEB6 /* novel.txt in Resources */ = {isa = PBXBuildFile; fileRef = 383D7242200600AF0063FEB6 /* novel.txt */; };
+		383D72452006058E0063FEB6 /* article.txt in Resources */ = {isa = PBXBuildFile; fileRef = 383D72442006058D0063FEB6 /* article.txt */; };
 		3876A7E41F8DC681008A20C9 /* ChiziChatTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3876A7E31F8DC681008A20C9 /* ChiziChatTableView.m */; };
 		3876A7E71F8DC6FD008A20C9 /* ChiziChatTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3876A7E61F8DC6FD008A20C9 /* ChiziChatTableViewCell.m */; };
 		3876A7F11F8DD4A7008A20C9 /* playerTochizi.json in Resources */ = {isa = PBXBuildFile; fileRef = 3876A7F01F8DD4A7008A20C9 /* playerTochizi.json */; };
@@ -162,6 +164,8 @@
 		3801A0881F7F498E006C3D18 /* SantaChatTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SantaChatTableViewCell.m; sourceTree = "<group>"; };
 		383BA6FE1FD799B600B0D207 /* FirstCommunication+UI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FirstCommunication+UI.h"; sourceTree = "<group>"; };
 		383BA6FF1FD799B600B0D207 /* FirstCommunication+UI.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "FirstCommunication+UI.m"; sourceTree = "<group>"; };
+		383D7242200600AF0063FEB6 /* novel.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = novel.txt; sourceTree = "<group>"; };
+		383D72442006058D0063FEB6 /* article.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = article.txt; sourceTree = "<group>"; };
 		3876A7E21F8DC681008A20C9 /* ChiziChatTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChiziChatTableView.h; sourceTree = "<group>"; };
 		3876A7E31F8DC681008A20C9 /* ChiziChatTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChiziChatTableView.m; sourceTree = "<group>"; };
 		3876A7E51F8DC6FD008A20C9 /* ChiziChatTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChiziChatTableViewCell.h; sourceTree = "<group>"; };
@@ -823,6 +827,8 @@
 		38E2404C1FECBD5900896939 /* game start */ = {
 			isa = PBXGroup;
 			children = (
+				383D72442006058D0063FEB6 /* article.txt */,
+				383D7242200600AF0063FEB6 /* novel.txt */,
 				38F7C2D7200374E10085B0BA /* test.txt */,
 				3801A0541F7B5CB3006C3D18 /* PretendedViewController.h */,
 				3801A0551F7B5CB3006C3D18 /* PretendedViewController.m */,
@@ -904,7 +910,7 @@
 		3801A00A1F7A76B0006C3D18 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0830;
+				LastUpgradeCheck = 0920;
 				ORGANIZATIONNAME = "戴曦嘉";
 				TargetAttributes = {
 					3801A0111F7A76B0006C3D18 = {
@@ -954,6 +960,7 @@
 				3801A0221F7A76B0006C3D18 /* Assets.xcassets in Resources */,
 				38CEAA701F8BA0E800BC72EC /* playerTosanta.json in Resources */,
 				38C76C901FA073CA00BCBCB9 /* playerTotiza.json in Resources */,
+				383D7243200600AF0063FEB6 /* novel.txt in Resources */,
 				388442B71F8CAD52005C9044 /* pufu.json in Resources */,
 				388442B61F8CAD52005C9044 /* playerTopufu.json in Resources */,
 				3876A7F31F8DD4AE008A20C9 /* chizi.json in Resources */,
@@ -961,6 +968,7 @@
 				38C76C8F1FA073CA00BCBCB9 /* tiza.json in Resources */,
 				38F7C2D8200374E10085B0BA /* test.txt in Resources */,
 				38CEAA6E1F8BA0B600BC72EC /* santa.json in Resources */,
+				383D72452006058E0063FEB6 /* article.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1167,7 +1175,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -1175,7 +1185,11 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -1216,7 +1230,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -1224,7 +1240,11 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;

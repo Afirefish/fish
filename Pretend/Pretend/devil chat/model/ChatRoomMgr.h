@@ -25,6 +25,12 @@ typedef NS_ENUM(NSInteger, DevilShowTime) {
 @property (assign, nonatomic) NSUInteger step; // 当前剧情的进度
 @property (assign, nonatomic) DevilShowTime showTime; // 剧情处于的恶魔模块
 
+// 新的文本控制方式test
+@property (strong, nonatomic) NSArray *plainMessages;//平常的文本
+- (void)loadPlainFile;
+- (void)loadChatFile:(NSString *)prefix;
+
+
 + (instancetype)defaultMgr;
 - (void)writeToFile;
 - (void)messageJson:(NSString *)devil;

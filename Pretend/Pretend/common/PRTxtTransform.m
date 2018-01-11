@@ -17,9 +17,39 @@
         self.isChoice = NO;
         self.isDevil = NO;
         self.nextStep = 1;
-        [self transTXTToJson];
+        //[self transNovelToMyTxt];
+        //[self transTXTToJson];
     }
     return self;
+}
+
+// 要求在""之后也加个句号。。禁用英文符号
+- (void)transNovelToMyTxt {
+    NSString *contentPath = [[NSBundle mainBundle] pathForResource:@"article" ofType:@"txt"]; // 文本存储位置
+    NSString *txtContent = [NSString stringWithContentsOfFile:contentPath encoding:NSUTF8StringEncoding error:nil]; // 文本转nsstring
+    // 统一修改所有英文符号变成中文
+    txtContent = [txtContent stringByReplacingOccurrencesOfString:@"." withString:@"。"];//中文句号
+    txtContent = [txtContent stringByReplacingOccurrencesOfString:@"?" withString:@"？"]; //中文问号
+    txtContent = [txtContent stringByReplacingOccurrencesOfString:@"!" withString:@"！"];//中文感叹号
+    txtContent = [txtContent stringByReplacingOccurrencesOfString:@";" withString:@"；"];//分号
+    // 指定的中文符号后添加回车
+    txtContent = [txtContent stringByReplacingOccurrencesOfString:@"。" withString:@".\n"];//中文句号
+    txtContent = [txtContent stringByReplacingOccurrencesOfString:@"？" withString:@"?\n"]; //中文问号
+    txtContent = [txtContent stringByReplacingOccurrencesOfString:@"！" withString:@"!\n"];//中文感叹号
+    txtContent = [txtContent stringByReplacingOccurrencesOfString:@"..." withString:@"...\n"];//省略号
+//    txtContent = [txtContent stringByReplacingOccurrencesOfString:@"～" withString:@"~\n"];//～号
+//    txtContent = [txtContent stringByReplacingOccurrencesOfString:@"）" withString:@")\n"];//括号
+//    txtContent = [txtContent stringByReplacingOccurrencesOfString:@"】" withString:@"]\n"];//中括号
+    txtContent = [txtContent stringByReplacingOccurrencesOfString:@"；" withString:@";\n"];//分号
+    
+    //转回中文。。
+    txtContent = [txtContent stringByReplacingOccurrencesOfString:@"." withString:@"。"];//中文句号
+    txtContent = [txtContent stringByReplacingOccurrencesOfString:@"?" withString:@"？"]; //中文问号
+    txtContent = [txtContent stringByReplacingOccurrencesOfString:@"!" withString:@"！"];//中文感叹号
+    txtContent = [txtContent stringByReplacingOccurrencesOfString:@";" withString:@"；"];//分号
+    
+    NSString *testFile = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:@"test.txt"];
+    [txtContent writeToFile:testFile atomically:YES encoding:NSUTF8StringEncoding error:nil];
 }
 
 
@@ -39,13 +69,14 @@
 
 // 转换！
 - (void)transTXTToJson {
-    NSString *contentPath = [[NSBundle mainBundle] pathForResource:@"test" ofType:@"txt"]; // 文本存储位置
+    NSString *contentPath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:@"test.txt"];
+    //NSString *contentPath = [[NSBundle mainBundle] pathForResource:@"novel" ofType:@"txt"]; // 文本存储位置
     NSString *txtContent = [NSString stringWithContentsOfFile:contentPath encoding:NSUTF8StringEncoding error:nil]; // 文本转nsstring
     NSArray *array = [txtContent componentsSeparatedByString:@"\n"]; //文本生成的数组
     
-    self.plainFileDirectory = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:@"/plain"]; //普通文本的目录
-    self.devilFileDirectory = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:@"/devil"]; //恶魔文本的目录
-    self.playerFileDirectory = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:@"/player"]; //玩家文本的目录
+    self.plainFileDirectory = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:@"plain"]; //普通文本的目录
+    self.devilFileDirectory = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:@"devil"]; //恶魔文本的目录
+    self.playerFileDirectory = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:@"player"]; //玩家文本的目录
     [[NSFileManager defaultManager] createDirectoryAtPath:self.plainFileDirectory withIntermediateDirectories:YES attributes:nil error:nil];
     [[NSFileManager defaultManager] createDirectoryAtPath:self.devilFileDirectory withIntermediateDirectories:YES attributes:nil error:nil];
     [[NSFileManager defaultManager] createDirectoryAtPath:self.playerFileDirectory withIntermediateDirectories:YES attributes:nil error:nil];
@@ -67,8 +98,9 @@
     NSUInteger step = 1; // 对话文本的计数
     NSUInteger branch = 0; //对话文本的分支数
     
-    for (NSString *str in array) {
+    for (NSString *string in array) {
         // 去掉空白
+        NSString *str = [string stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
         if (!str.length) {
             continue;
         }
@@ -284,7 +316,7 @@
     
     NSLog(@"file path %@",self.plainFile);
     self.test = @"";
-    NSString *testFile = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:@"test.txt"];
+    NSString *testFile = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:@"mytest.txt"];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         while (self.tapCount < count ) {
             [self next];

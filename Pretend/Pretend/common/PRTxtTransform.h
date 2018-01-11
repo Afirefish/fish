@@ -25,5 +25,7 @@
 @property (nonatomic, strong) NSString *test;
 
 - (void)transTXTToJson;
+- (void)transNovelToMyTxt;
 
 @end
+

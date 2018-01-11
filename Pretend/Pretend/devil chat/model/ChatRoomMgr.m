@@ -21,6 +21,13 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) TizaMgr *tiza;
 @property (strong, nonatomic) NSString *filePath;
 
+@property (nonatomic, strong) NSString *plainFile;
+@property (nonatomic, strong) NSString *devilFile;
+@property (nonatomic, strong) NSString *playerFile;
+
+@property (nonatomic, strong) NSString *devilFileDirectory;
+@property (nonatomic, strong) NSString *playerFileDirectory;
+
 @end
 
 @implementation ChatRoomMgr//读取文件中存储的数据,控制器从这个类中获得数据,主要控制所有卡牌数据，json解析，第一个游戏是否结束
@@ -44,6 +51,24 @@ NS_ASSUME_NONNULL_BEGIN
         self.step = self.santa.finished;
     }
     return self;
+}
+
+// 新的文本加载方式
+- (void)loadPlainFile {
+    self.plainFile = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:@"plain/plain.plist"]; //普通文本的目录
+    NSDictionary *plainDic = [[NSDictionary alloc] initWithContentsOfFile:self.plainFile];
+    self.plainMessages = [plainDic objectForKey:@"content"];
+}
+
+- (void)loadChatFile:(NSString *)prefix {
+    self.devilFileDirectory = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:@"devil"]; //恶魔文本的目录
+    self.playerFileDirectory = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:@"player"]; //玩家文本的目录
+    self.devilFile = [self.devilFileDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@devil.plist",prefix]]; //恶魔文本的文件
+    self.playerFile = [self.playerFileDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@player.plist",prefix]]; //玩家文本的文件
+    NSDictionary *playerMessagesDic = [[NSDictionary alloc] initWithContentsOfFile:self.playerFile];
+    self.playerMessages = [playerMessagesDic objectForKey:@"content"];
+    NSDictionary *devilDic = [[NSDictionary alloc] initWithContentsOfFile:self.devilFile];
+    self.devilMessages = [devilDic objectForKey:@"content"];
 }
 
 - (BOOL)isFileFirstCreated {//设定好文件的存储位置，判断是否创建了文件

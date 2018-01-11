@@ -77,26 +77,26 @@ static SantaChatDetail *santaChatDetail = nil;
 //}
 
 //聊天记录的视图在获得高度的时候就有数据源了，不过在处理玩家的选择的视图的时候，还是要重新设置数据
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (tableView == self.chatContentTableView) {
-        NSString *santaChat = [NSString stringWithFormat:@"SantaChat%ld",(long)indexPath.section];
-        SantaChatTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:santaChat];
-        if(cell == nil){
-            cell = [[SantaChatTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:santaChat isDevil:self.isDevil message:self.playerChoice respond:self.devilRespondContent devilName:@"santa"];
-        }
-        self.santaMgr.finishText = self.devilRespondContent;
-        [ChatRoomMgr defaultMgr].showTime = SantaShowTime;
-        return cell;
-    }
-    return nil;
-}
-
-//玩家做出选择之后的处理
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    [super collectionView:collectionView didSelectItemAtIndexPath:indexPath];
-    [self.santaMgr savePreviousStep:self.previousStep];
-    [self.santaMgr saveStep:self.finished];
-}
+//- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+//    if (tableView == self.chatContentTableView) {
+//        NSString *santaChat = [NSString stringWithFormat:@"SantaChat%ld",(long)indexPath.section];
+//        SantaChatTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:santaChat];
+//        if(cell == nil){
+//            cell = [[SantaChatTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:santaChat isDevil:self.isDevil message:self.playerChoice respond:self.devilRespondContent devilName:@"santa"];
+//        }
+//        self.santaMgr.finishText = self.devilRespondContent;
+//        [ChatRoomMgr defaultMgr].showTime = SantaShowTime;
+//        return cell;
+//    }
+//    return nil;
+//}
+//
+////玩家做出选择之后的处理
+//- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+//    [super collectionView:collectionView didSelectItemAtIndexPath:indexPath];
+//    [self.santaMgr savePreviousStep:self.previousStep];
+//    [self.santaMgr saveStep:self.finished];
+//}
 
 #pragma cards
 
