@@ -10,6 +10,8 @@
 #import "ChatRoomMgr.h"
 
 @interface BaseMgr : NSObject
+
+// 剧情控制
 @property (strong, nonatomic) NSMutableSet *cards;// 恶魔的卡牌
 @property (assign, nonatomic) NSUInteger finished;//当前的进度
 @property (strong, nonatomic) NSString *finishText;//上一句剧情
@@ -17,8 +19,6 @@
 
 + (instancetype)defaultMgr;
 - (void)saveCardInfo:(id)arg1;
-- (void)saveStep:(NSUInteger)arg1;
-- (void)savePreviousStep:(NSUInteger)arg1;
 - (void)saveToFile;
 - (void)reset;
 

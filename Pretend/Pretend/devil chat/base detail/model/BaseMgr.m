@@ -48,7 +48,8 @@
     if ([self isFileFirstCreated]) {
         self.previousStep = 1;
         self.finished = 1;
-    } else {
+    }
+    else {
         NSDictionary *dic = [NSDictionary dictionaryWithContentsOfFile:self.filePath];
         if (dic == nil) {
             self.previousStep = 1;
@@ -101,19 +102,9 @@
     [dic writeToFile:self.filePath atomically:YES];
 }
 
-//保存当前进度
-- (void)saveStep:(NSUInteger)step {
-    self.finished = step;
-}
-
 //保存获得的卡牌信息
 - (void)saveCardInfo:(NSNumber *)card {
     [self.cards addObject:card];
-}
-
-//保存上一步的剧情,这里将会用于重新进入游戏的加载
-- (void)savePreviousStep:(NSUInteger)step {
-    self.previousStep = step;
 }
 
 @end

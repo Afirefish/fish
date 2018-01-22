@@ -40,7 +40,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) BOOL isChoice;// 当前是否是对话文本
 @property (nonatomic, strong) NSArray *plainMsgs;// 普通文本
 @property (nonatomic, strong) NSString *plainMsg; //  普通文本的消息
-@property (nonatomic, assign) NSInteger tapCount; // 目前暂时作为进度控制，将要删掉这个问题
 @property (nonatomic, assign) NSInteger nextStep; // 下一步
 
 @property (assign, nonatomic) NSInteger choiceCount;//玩家选项数量
@@ -63,9 +62,6 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)devilRespond;//devil的回复
 
 - (void)reset;//重置
-
-- (void)jsonData:(NSString *)devils;//json解析,旧版逻辑，将被废弃
-
 @end
 
 NS_ASSUME_NONNULL_END

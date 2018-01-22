@@ -55,7 +55,6 @@ static NSString *choice = @"Choice";
 - (void)newLoading {
     [self.chatRoomMgr loadPlainFile];
     self.plainMsgs = self.chatRoomMgr.plainMessages;
-    self.tapCount = 1;
     self.isChoice = NO;
     self.nextStep = 1;
 }
@@ -182,26 +181,63 @@ static NSString *choice = @"Choice";
 
 //玩家做出选择的消息
 - (void)sendMessage {
+    NSString *className = NSStringFromClass([self class]);
+    NSString *devil = [className substringToIndex:className.length - 10];
     // 对于普通文本来说，只需要继续下一句话就好
     if (!self.isChoice) {
         // 解析普通文本
-        if (self.tapCount <= self.plainMsgs.count) {
-            NSDictionary *dic = [self.plainMsgs objectAtIndex:self.tapCount - 1];
+        if (self.finished <= self.plainMsgs.count) {
+            NSDictionary *dic = [self.plainMsgs objectAtIndex:self.finished - 1];
             NSString *message = [dic objectForKey:@"message"];
             NSUInteger index = [[dic objectForKey:@"index"] unsignedIntegerValue];
-            if (index == self.tapCount) {
+            if (index == self.finished) {
                 self.plainMsg = [NSString stringWithFormat:@"%@",message];
             }
-            self.tapCount ++;
+            self.previousStep = self.finished;
+            self.finished ++;
         }
-        
+        // 章节开始,只有这个时候才记录剧情的进度,其他恶魔从这里读取数据来查看是不是自己的剧情
+        if ([self.plainMsg containsString:@"Chapter Begin"]) {
+            NSArray *array = [self.plainMsg componentsSeparatedByString:@" "]; //文本生成的数组
+            NSString *showTime = array.firstObject;
+            if (![showTime isEqualToString:devil]) {
+                self.finished --;
+                self.coverLabel.alpha = 1;
+                self.choicesCollectionView.userInteractionEnabled = NO;
+            }
+            if ([showTime isEqualToString:@"Santa"]) {
+                self.chatRoomMgr.showTime = SantaShowTime;
+            }
+            else if ([showTime isEqualToString:@"Pufu"]) {
+                self.chatRoomMgr.showTime = PufuShowTime;
+            }
+            else if ([showTime isEqualToString:@"Tiza"]) {
+                self.chatRoomMgr.showTime = TizaShowTime;
+            }
+            else if ([showTime isEqualToString:@"Chizi"]) {
+                self.chatRoomMgr.showTime = ChiziShowTime;
+            }
+            else {
+                NSLog(@"错误的章节");
+            }
+            [self.chatRoomMgr updateStep:self.finished];
+            NSLog(@"现在是 %@的剧情",showTime);
+            return;
+        }
+        // 章节结束
+        if ([self.plainMsg containsString:@"Chapter End"]) {
+            NSArray *array = [self.plainMsg componentsSeparatedByString:@" "]; //文本生成的数组
+            NSString *showTime = array.firstObject;
+            NSLog(@"现在 %@剧情结束了",showTime);
+            return;
+        }
         // 如果文本是开始选择的消息的话，刷新玩家选项
-        if ([self.plainMsg containsString:@"BRANCH BEGIN"]) {
+        if ([self.plainMsg containsString:@"Branch Begin"]) {
             self.isChoice = YES;
             // 判断第几个分支
             NSArray *array = [self.plainMsg componentsSeparatedByString:@" "]; //文本生成的数组
             NSString *branchCount = array.firstObject;
-            [self.chatRoomMgr loadChatFile:branchCount];
+            [self.chatRoomMgr loadChatFile:branchCount withDevil:devil];
             self.playerMessages = self.chatRoomMgr.playerMessages;
             self.devilMessages = self.chatRoomMgr.devilMessages;
              // 获取玩家选项数量
@@ -216,19 +252,10 @@ static NSString *choice = @"Choice";
             }
             [self.choicesCollectionView reloadData];
         }
+        // 如果不是开始选择的情况，直接发送这个消息就好
         else {
             self.choicesCollectionView.userInteractionEnabled = NO;
             self.nodeNumber += 1;
-            // 获取玩家选项数量
-            if (self.nextStep <= self.playerMessages.count) {
-                NSDictionary *dic = [self.playerMessages objectAtIndex:self.nextStep - 1];
-                NSNumber *step = [dic objectForKey:@"step"];
-                NSUInteger myStep = [step integerValue];
-                if (myStep == self.nextStep) {
-                    self.choiceArr = [dic objectForKey:@"choice"];
-                    self.choiceCount = self.choiceArr.count;
-                }
-            }
             [self.chatContentTableView reloadData];
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.1 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
                 [self scrollTableToFoot:YES];
@@ -269,11 +296,22 @@ static NSString *choice = @"Choice";
         self.nextStep ++;
     }
     [self.chatContentTableView reloadData];
-    // 在加载完数据之后再改变玩家选项的位置 给0.1s的时间应该ok。。
+    // 因为如果改变isChoice会影响到table加载数据，所以在加载完数据之后再改变玩家选项 给0.5s的时间应该ok。。
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.5 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+        // 如果选项分支结束了，进入普通文本模式
         if (self.nextStep > self.devilMessages.count) {
             self.isChoice = NO;
             self.nextStep = 1;
+        }
+        // 如果有后续，获取下一步的选项
+        else {
+            NSDictionary *dic = [self.playerMessages objectAtIndex:self.nextStep - 1];
+            NSNumber *step = [dic objectForKey:@"step"];
+            NSUInteger myStep = [step integerValue];
+            if (myStep == self.nextStep) {
+                self.choiceArr = [dic objectForKey:@"choice"];
+                self.choiceCount = self.choiceArr.count;
+            }
         }
         [self.choicesCollectionView reloadData];
         [self scrollTableToFoot:YES];
@@ -293,7 +331,7 @@ static NSString *choice = @"Choice";
     return 1;
 }
 
-//聊天记录每一个section仅包括一行，玩家选项定为4个
+//聊天记录每一个section仅包括一行
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return 1;
 }
@@ -302,7 +340,7 @@ static NSString *choice = @"Choice";
     if (!self.isChoice) {
         return 1;
     }
-    // 如果是对话，返回玩家可选选项的个数,在此时就获得了玩家选项的全部数据
+    // 如果是对话，返回玩家可选选项的个数
     else {
         return self.choiceCount;
     }
@@ -317,15 +355,14 @@ static NSString *choice = @"Choice";
         if(cell == nil){
             cell = [[BaseChatTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:baseChat isDevil:NO message:self.plainMsg respond:nil devilName:nil];
         }
-        return cell;
     }
     // 对话文本的话，根据是玩家还是恶魔显示不同的效果
     else {
         if(cell == nil){
             cell = [[BaseChatTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:baseChat isDevil:self.isDevil message:self.playerChoice respond:self.devilRespondContent devilName:@"santa"];
         }
-        return cell;
     }
+    return cell;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -395,15 +432,6 @@ static NSString *choice = @"Choice";
     }
     CGFloat cellHeight = [[self.allCellHeight objectAtIndex:indexPath.section] floatValue];//每次重新加载时，除了最后的cell，高度直接从数组里获取
     return cellHeight;
-}
-
-#pragma json
-
-//解析本地的json
-- (void)jsonData:(NSString *)devil {
-    [self.chatRoomMgr messageJson:devil];
-    self.playerMessages = self.chatRoomMgr.playerMessages;
-    self.devilMessages = self.chatRoomMgr.devilMessages;
 }
 
 @end

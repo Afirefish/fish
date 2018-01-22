@@ -28,7 +28,8 @@ typedef NS_ENUM(NSInteger, DevilShowTime) {
 // 新的文本控制方式test
 @property (strong, nonatomic) NSArray *plainMessages;//平常的文本
 - (void)loadPlainFile;
-- (void)loadChatFile:(NSString *)prefix;
+- (void)loadChatFile:(NSString *)prefix withDevil:(NSString *)devil;
+- (void)updateStep:(NSUInteger)step;
 
 
 + (instancetype)defaultMgr;

@@ -63,24 +63,23 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 // 加载对话文本
-- (void)loadChatFile:(NSString *)prefix {
-    self.devilFileDirectory = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:@"devil"]; //恶魔文本的目录
-    self.playerFileDirectory = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:@"player"]; //玩家文本的目录
-    self.devilFile = [self.devilFileDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@devil.plist",prefix]]; //恶魔文本的文件
-    self.playerFile = [self.playerFileDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@player.plist",prefix]]; //玩家文本的文件
-    NSDictionary *playerMessagesDic = [[NSDictionary alloc] initWithContentsOfFile:self.playerFile];
-    self.playerMessages = [playerMessagesDic objectForKey:@"content"];
+- (void)loadChatFile:(NSString *)file withDevil:(NSString *)devil {
+    self.devilFileDirectory = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@",devil]]; //恶魔文本的目录
+    self.playerFileDirectory = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:[NSString stringWithFormat:@"PlayerTo%@",devil]]; //玩家文本的目录
+    self.devilFile = [self.devilFileDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.plist",file]]; //恶魔文本的文件
+    self.playerFile = [self.playerFileDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.plist",file]]; //玩家文本的文件
+    NSDictionary *playerDic = [[NSDictionary alloc] initWithContentsOfFile:self.playerFile];
+    self.playerMessages = [playerDic objectForKey:@"content"];
     NSDictionary *devilDic = [[NSDictionary alloc] initWithContentsOfFile:self.devilFile];
     self.devilMessages = [devilDic objectForKey:@"content"];
 }
 
 #pragma mark - step manager
 
-
 // 控制全局对话的文件，设定好文件的存储位置，判断是否创建了文件
 - (BOOL)isFileFirstCreated {
     NSString *docPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
-    self.filePath = [docPath stringByAppendingPathComponent:@"chatRoom.plist"];
+    self.filePath = [docPath stringByAppendingPathComponent:@"ChatRoom.txt"];
     NSFileManager *fileMgr = [NSFileManager defaultManager];
     if (![fileMgr fileExistsAtPath:self.filePath]) {
         [fileMgr createFileAtPath:self.filePath contents:nil attributes:nil];
@@ -159,6 +158,34 @@ NS_ASSUME_NONNULL_BEGIN
     NSError *error2 = nil;
     NSDictionary *devilDic = [NSJSONSerialization JSONObjectWithData:devilData options:kNilOptions error:&error2];
     self.devilMessages = [devilDic objectForKey:@"content"];
+}
+
+- (void)updateStep:(NSUInteger)step {
+    self.step = step;
+    self.santa.finished = step;
+    self.pufu.finished = step;
+    self.tiza.finished = step;
+    self.chizi.finished = step;
+    switch (self.showTime) {
+        case SantaShowTime:
+            self.santa.finished = step + 1;
+            break;
+            
+        case PufuShowTime:
+            self.pufu.finished = step + 1;
+            break;
+            
+        case TizaShowTime:
+            self.tiza.finished = step + 1;
+            break;
+            
+        case ChiziShowTime:
+            self.chizi.finished = step + 1;
+            break;
+            
+        default:
+            break;
+    }
 }
 
 // 检查游戏是否通关

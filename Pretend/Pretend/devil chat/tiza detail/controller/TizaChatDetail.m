@@ -39,14 +39,27 @@ static TizaChatDetail *tizaChatDetail = nil;
         self.tizaMgr = [TizaMgr defaultMgr];
         self.previousStep = self.tizaMgr.previousStep;
         self.finished = self.tizaMgr.finished;
-        [self jsonData:@"tiza"];
     }
     return self;
 }
 
-
 - (void)reset {
     tizaChatDetail = [[TizaChatDetail alloc] init];
+}
+
+// 每次进入视图的时候刷新当前的剧情进度
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    self.previousStep = self.tizaMgr.previousStep;
+    self.finished = self.tizaMgr.finished;
+    if (self.chatRoomMgr.showTime != TizaShowTime) {
+        self.coverLabel.alpha = 1;
+        self.choicesCollectionView.userInteractionEnabled = NO;
+    }
+    else {
+        self.coverLabel.alpha = 0;
+        self.choicesCollectionView.userInteractionEnabled = YES;
+    }
 }
 
 //解析json，初始化高度
@@ -66,11 +79,6 @@ static TizaChatDetail *tizaChatDetail = nil;
     self.tableBackgroundView.image = [UIImage imageNamed:@"tizaBG"];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 ////tiza恶魔通过
 //- (void)setfinished:(NSUInteger)finished {
 //    self.finished = 100;
@@ -78,24 +86,32 @@ static TizaChatDetail *tizaChatDetail = nil;
 
 //聊天记录的视图在获得高度的时候就有数据源了，不过在处理玩家的选择的视图的时候，还是要重新设置数据
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (tableView == self.chatContentTableView) {
-        NSString *tizaChat = [NSString stringWithFormat:@"TizaChat%ld",(long)indexPath.section];
-        TizaChatTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:tizaChat];
+    NSString *tizaChat = [NSString stringWithFormat:@"TizaChat%ld",(long)indexPath.section];
+    TizaChatTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:tizaChat];
+    // 如果普通文本的话，读取之后设置为玩家的话的形式显示
+    if (!self.isChoice) {
+        if(cell == nil){
+            cell = [[TizaChatTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:tizaChat isDevil:NO message:self.plainMsg respond:nil devilName:nil];
+        }
+        if (![self.plainMsg containsString:@"Begin"]) {
+            self.tizaMgr.finishText = self.plainMsg;
+        }
+    }
+    // 对话文本的话，根据是玩家还是恶魔显示不同的效果
+    else {
         if(cell == nil){
             cell = [[TizaChatTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:tizaChat isDevil:self.isDevil message:self.playerChoice respond:self.devilRespondContent devilName:@"tiza"];
         }
         self.tizaMgr.finishText = self.devilRespondContent;
-        [ChatRoomMgr defaultMgr].showTime = TizaShowTime;
-        return cell;
     }
-    return nil;
+    return cell;
 }
 
 //玩家做出选择之后的处理
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     [super collectionView:collectionView didSelectItemAtIndexPath:indexPath];
-    [self.tizaMgr savePreviousStep:self.previousStep];
-    [self.tizaMgr saveStep:self.finished];
+    self.tizaMgr.previousStep = self.previousStep;
+    self.tizaMgr.finished = self.finished;
 }
 
 #pragma cards

@@ -39,13 +39,26 @@ static ChiziChatDetail *chiziChatDetail = nil;
         self.chiziMgr = [ChiziMgr defaultMgr];
         self.previousStep = self.chiziMgr.previousStep;
         self.finished = self.chiziMgr.finished;
-        [self jsonData:@"chizi"];
     }
     return self;
 }
 
 - (void)reset {
     chiziChatDetail = [[ChiziChatDetail alloc] init];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    self.previousStep = self.chiziMgr.previousStep;
+    self.finished = self.chiziMgr.finished;
+    if (self.chatRoomMgr.showTime != ChiziShowTime) {
+        self.coverLabel.alpha = 1;
+        self.choicesCollectionView.userInteractionEnabled = NO;
+    }
+    else {
+        self.coverLabel.alpha = 0;
+        self.choicesCollectionView.userInteractionEnabled = YES;
+    }
 }
 
 //解析json，初始化高度
@@ -65,11 +78,6 @@ static ChiziChatDetail *chiziChatDetail = nil;
     self.tableBackgroundView.image = [UIImage imageNamed:@"chiziBG"];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 ////pufu恶魔通过
 //- (void)setfinished:(NSUInteger)finished {
 //    self.finished = 100;
@@ -77,24 +85,32 @@ static ChiziChatDetail *chiziChatDetail = nil;
 
 //聊天记录的视图在获得高度的时候就有数据源了，不过在处理玩家的选择的视图的时候，还是要重新设置数据
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (tableView == self.chatContentTableView) {
-        NSString *chiziChat = [NSString stringWithFormat:@"ChiziChat%ld",(long)indexPath.section];
-        ChiziChatTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:chiziChat];
+    NSString *chiziChat = [NSString stringWithFormat:@"ChiziChat%ld",(long)indexPath.section];
+    ChiziChatTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:chiziChat];
+    // 如果普通文本的话，读取之后设置为玩家的话的形式显示
+    if (!self.isChoice) {
+        if(cell == nil){
+            cell = [[ChiziChatTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:chiziChat isDevil:NO message:self.plainMsg respond:nil devilName:nil];
+        }
+        if (![self.plainMsg containsString:@"Begin"]) {
+            self.chiziMgr.finishText = self.plainMsg;
+        }
+    }
+    // 对话文本的话，根据是玩家还是恶魔显示不同的效果
+    else {
         if(cell == nil){
             cell = [[ChiziChatTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:chiziChat isDevil:self.isDevil message:self.playerChoice respond:self.devilRespondContent devilName:@"chizi"];
         }
         self.chiziMgr.finishText = self.devilRespondContent;
-        [ChatRoomMgr defaultMgr].showTime = ChiziShowTime;
-        return cell;
     }
-    return nil;
+    return cell;
 }
 
 //玩家做出选择之后的处理
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     [super collectionView:collectionView didSelectItemAtIndexPath:indexPath];
-    [self.chiziMgr savePreviousStep:self.previousStep];
-    [self.chiziMgr saveStep:self.finished];
+    self.chiziMgr.previousStep = self.previousStep;
+    self.chiziMgr.finished = self.finished;
 }
 
 #pragma cards

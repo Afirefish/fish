@@ -35,6 +35,8 @@
 		3876A7E71F8DC6FD008A20C9 /* ChiziChatTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3876A7E61F8DC6FD008A20C9 /* ChiziChatTableViewCell.m */; };
 		3876A7F11F8DD4A7008A20C9 /* playerTochizi.json in Resources */ = {isa = PBXBuildFile; fileRef = 3876A7F01F8DD4A7008A20C9 /* playerTochizi.json */; };
 		3876A7F31F8DD4AE008A20C9 /* chizi.json in Resources */ = {isa = PBXBuildFile; fileRef = 3876A7F21F8DD4AE008A20C9 /* chizi.json */; };
+		387BA634201606C700B7A15B /* NSObject+BJLObserving.m in Sources */ = {isa = PBXBuildFile; fileRef = 387BA631201606C600B7A15B /* NSObject+BJLObserving.m */; };
+		387BA635201606C700B7A15B /* NSObject+BJLWillDeallocBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = 387BA633201606C700B7A15B /* NSObject+BJLWillDeallocBlock.m */; };
 		388442A91F8CA6D6005C9044 /* PufuChatTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 388442A81F8CA6D6005C9044 /* PufuChatTableView.m */; };
 		388442AC1F8CA723005C9044 /* PufuChatTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 388442AB1F8CA723005C9044 /* PufuChatTableViewCell.m */; };
 		388442B61F8CAD52005C9044 /* playerTopufu.json in Resources */ = {isa = PBXBuildFile; fileRef = 388442B41F8CAD52005C9044 /* playerTopufu.json */; };
@@ -172,6 +174,10 @@
 		3876A7E61F8DC6FD008A20C9 /* ChiziChatTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChiziChatTableViewCell.m; sourceTree = "<group>"; };
 		3876A7F01F8DD4A7008A20C9 /* playerTochizi.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = playerTochizi.json; sourceTree = "<group>"; };
 		3876A7F21F8DD4AE008A20C9 /* chizi.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = chizi.json; sourceTree = "<group>"; };
+		387BA630201606C600B7A15B /* NSObject+BJLWillDeallocBlock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+BJLWillDeallocBlock.h"; sourceTree = "<group>"; };
+		387BA631201606C600B7A15B /* NSObject+BJLObserving.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+BJLObserving.m"; sourceTree = "<group>"; };
+		387BA632201606C700B7A15B /* NSObject+BJLObserving.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+BJLObserving.h"; sourceTree = "<group>"; };
+		387BA633201606C700B7A15B /* NSObject+BJLWillDeallocBlock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+BJLWillDeallocBlock.m"; sourceTree = "<group>"; };
 		388442A71F8CA6D6005C9044 /* PufuChatTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PufuChatTableView.h; sourceTree = "<group>"; };
 		388442A81F8CA6D6005C9044 /* PufuChatTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PufuChatTableView.m; sourceTree = "<group>"; };
 		388442AA1F8CA723005C9044 /* PufuChatTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PufuChatTableViewCell.h; sourceTree = "<group>"; };
@@ -816,10 +822,17 @@
 		38E2404B1FECBD4000896939 /* common */ = {
 			isa = PBXGroup;
 			children = (
+				387BA632201606C700B7A15B /* NSObject+BJLObserving.h */,
+				387BA631201606C600B7A15B /* NSObject+BJLObserving.m */,
+				387BA630201606C600B7A15B /* NSObject+BJLWillDeallocBlock.h */,
+				387BA633201606C700B7A15B /* NSObject+BJLWillDeallocBlock.m */,
 				38A13E001FE0D1C8002B62B4 /* UIColor+PRCustomColor.h */,
 				38A13E011FE0D1C8002B62B4 /* UIColor+PRCustomColor.m */,
 				38A17BFB2004987200088588 /* PRTxtTransform.h */,
 				38A17BFC2004987200088588 /* PRTxtTransform.m */,
+				383D72442006058D0063FEB6 /* article.txt */,
+				383D7242200600AF0063FEB6 /* novel.txt */,
+				38F7C2D7200374E10085B0BA /* test.txt */,
 			);
 			path = common;
 			sourceTree = "<group>";
@@ -827,9 +840,6 @@
 		38E2404C1FECBD5900896939 /* game start */ = {
 			isa = PBXGroup;
 			children = (
-				383D72442006058D0063FEB6 /* article.txt */,
-				383D7242200600AF0063FEB6 /* novel.txt */,
-				38F7C2D7200374E10085B0BA /* test.txt */,
 				3801A0541F7B5CB3006C3D18 /* PretendedViewController.h */,
 				3801A0551F7B5CB3006C3D18 /* PretendedViewController.m */,
 			);
@@ -1045,9 +1055,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				38C76D201FAB74B700BCBCB9 /* PuriLayout.m in Sources */,
+				387BA635201606C700B7A15B /* NSObject+BJLWillDeallocBlock.m in Sources */,
 				38A17BFD2004987200088588 /* PRTxtTransform.m in Sources */,
 				389C5C871FB0866400494006 /* CardCoverFlowLayout.m in Sources */,
 				38C76D081FA9E64500BCBCB9 /* TWNavigationController.m in Sources */,
+				387BA634201606C700B7A15B /* NSObject+BJLObserving.m in Sources */,
 				38C76CAE1FA19C6B00BCBCB9 /* ChiziMgr.m in Sources */,
 				38C76D171FAAFF3400BCBCB9 /* PuriHandCardLayout.m in Sources */,
 				389C5CA51FB2BA8D00494006 /* ChiziChoiceCollectionViewCell.m in Sources */,

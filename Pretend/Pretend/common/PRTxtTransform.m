@@ -8,19 +8,39 @@
 
 #import "PRTxtTransform.h"
 
+@interface PRTxtTransform ()
+
+@property (nonatomic, assign) NSInteger tapCount;
+@property (nonatomic, assign) BOOL isChoice;
+@property (nonatomic, assign) BOOL isDevil;
+@property (nonatomic, assign) NSInteger nextStep;
+
+@property (nonatomic, strong) NSString *plainFileDirectory;
+@property (nonatomic, strong) NSString *devilFileDirectory;
+@property (nonatomic, strong) NSString *playerFileDirectory;
+
+@property (nonatomic, strong) NSString *plainFile;
+@property (nonatomic, strong) NSString *devilFile;
+@property (nonatomic, strong) NSString *playerFile;
+
+@property (nonatomic, strong) NSString *test;
+
+@end
+
 @implementation PRTxtTransform
 
 - (instancetype)init {
     if (self = [super init]) {
-        //[self setupRightButton];
-        self.tapCount = 1;
-        self.isChoice = NO;
-        self.isDevil = NO;
-        self.nextStep = 1;
-        //[self transNovelToMyTxt];
-        //[self transTXTToJson];
+        [self resetArgs];
     }
     return self;
+}
+
+- (void)resetArgs {
+    self.tapCount = 1;
+    self.isChoice = NO;
+    self.isDevil = NO;
+    self.nextStep = 1;
 }
 
 // 要求在""之后也加个句号。。禁用英文符号
@@ -38,53 +58,31 @@
     txtContent = [txtContent stringByReplacingOccurrencesOfString:@"！" withString:@"!\n"];//中文感叹号
     txtContent = [txtContent stringByReplacingOccurrencesOfString:@"..." withString:@"...\n"];//省略号
     txtContent = [txtContent stringByReplacingOccurrencesOfString:@"；" withString:@";\n"];//分号
-    
     //转回中文。。
     txtContent = [txtContent stringByReplacingOccurrencesOfString:@"." withString:@"。"];//中文句号
     txtContent = [txtContent stringByReplacingOccurrencesOfString:@"?" withString:@"？"]; //中文问号
     txtContent = [txtContent stringByReplacingOccurrencesOfString:@"!" withString:@"！"];//中文感叹号
     txtContent = [txtContent stringByReplacingOccurrencesOfString:@";" withString:@"；"];//分号
     
-    NSString *testFile = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:@"test.txt"];
+    NSString *testFile = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:@"novel.txt"];
     [txtContent writeToFile:testFile atomically:YES encoding:NSUTF8StringEncoding error:nil];
 }
 
-
-//- (void)setupRightButton {
-//    UIButton *button = ({
-//        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-//        button.backgroundColor = [UIColor whiteColor];
-//        button.layer.cornerRadius = 8.0;
-//        button.frame = CGRectMake(0, 0, self.view.frame.size.width, 60);
-//        [button setTitle:@"下一步" forState:UIControlStateNormal];
-//        [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-//        [button addTarget:self action:@selector(next) forControlEvents:UIControlEventTouchUpInside];
-//        button;
-//    });
-//    [self.view addSubview:button];
-//}
-
 // 转换！
-- (void)transTXTToJson {
-    NSString *contentPath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:@"test.txt"];
-    //NSString *contentPath = [[NSBundle mainBundle] pathForResource:@"novel" ofType:@"txt"]; // 文本存储位置
+- (void)transTXTToPlist {
+    NSString *contentPath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:@"novel.txt"];
     NSString *txtContent = [NSString stringWithContentsOfFile:contentPath encoding:NSUTF8StringEncoding error:nil]; // 文本转nsstring
     NSArray *array = [txtContent componentsSeparatedByString:@"\n"]; //文本生成的数组
     
     self.plainFileDirectory = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:@"plain"]; //普通文本的目录
-    self.devilFileDirectory = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:@"devil"]; //恶魔文本的目录
-    self.playerFileDirectory = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:@"player"]; //玩家文本的目录
+
     [[NSFileManager defaultManager] createDirectoryAtPath:self.plainFileDirectory withIntermediateDirectories:YES attributes:nil error:nil];
-    [[NSFileManager defaultManager] createDirectoryAtPath:self.devilFileDirectory withIntermediateDirectories:YES attributes:nil error:nil];
-    [[NSFileManager defaultManager] createDirectoryAtPath:self.playerFileDirectory withIntermediateDirectories:YES attributes:nil error:nil];
     
     self.plainFile = [self.plainFileDirectory stringByAppendingPathComponent:@"plain.plist"]; //普通文本的文件
-    self.devilFile = [self.devilFileDirectory stringByAppendingPathComponent:@"devil.plist"]; //恶魔文本的文件
-    self.playerFile = [self.playerFileDirectory stringByAppendingPathComponent:@"player.plist"]; //玩家文本的文件
     
     NSMutableArray *plainArr = [[NSMutableArray alloc] init]; //存储普通文本的数组
     NSMutableArray *devilArr = [[NSMutableArray alloc] init]; //存储恶魔回复的数组
-    NSMutableArray *playerChoiceArr = [[NSMutableArray alloc] init]; //存储玩家选择的数组
+    NSMutableArray *playerArr = [[NSMutableArray alloc] init]; //存储玩家选择的数组
     
     NSMutableArray *respondArr1,*respondArr2,*respondArr3,*respondArr4; // 最多4个分支的数组
     NSMutableArray *choiceArr1,*choiceArr2,*choiceArr3,*choiceArr4;
@@ -95,6 +93,10 @@
     NSUInteger step = 1; // 对话文本的计数
     NSUInteger branch = 0; //对话文本的分支数
     
+    // 一些开始结束的标志
+    BOOL start = NO;
+    BOOL end = NO;
+    
     for (NSString *string in array) {
         // 去掉空白
         NSString *str = [string stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
@@ -103,12 +105,18 @@
         }
         
         // 开始结束标记
-        if ([str isEqualToString:@"ALL START"] || [str isEqualToString:@"ALL END"]) {
+        if ([str isEqualToString:@"ALL START"]) {
+            start = YES;
+            continue;
+        }
+        
+        if ([str isEqualToString:@"ALL END"]) {
+            end = YES;
             continue;
         }
         
         // 结束分支
-        if ([str containsString:@"BRANCH END"]) {
+        if ([str containsString:@"Branch End"]) {
             // 恶魔
             if (respondArr1) {
                 NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:
@@ -145,45 +153,45 @@
                                      [NSNumber numberWithInteger:1],@"step",
                                      choiceArr1,@"choice",
                                      nil];
-                [playerChoiceArr addObject:dic];
+                [playerArr addObject:dic];
             }
             if (choiceArr2) {
                 NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:
                                      [NSNumber numberWithInteger:2],@"step",
                                      choiceArr2,@"choice",
                                      nil];
-                [playerChoiceArr addObject:dic];
+                [playerArr addObject:dic];
             }
             if (choiceArr3) {
                 NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:
                                      [NSNumber numberWithInteger:3],@"step",
                                      choiceArr3,@"choice",
                                      nil];
-                [playerChoiceArr addObject:dic];
+                [playerArr addObject:dic];
             }
             if (choiceArr4) {
                 NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:
                                      [NSNumber numberWithInteger:4],@"step",
                                      choiceArr4,@"choice",
                                      nil];
-                [playerChoiceArr addObject:dic];
+                [playerArr addObject:dic];
             }
             
             // 判断第几个分支
             NSArray *array = [str componentsSeparatedByString:@" "]; //文本生成的数组
             NSString *branchCount = array.firstObject;
-            self.devilFile = [self.devilFileDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@devil.plist",branchCount]]; //恶魔文本的文件
-            self.playerFile = [self.playerFileDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@player.plist",branchCount]]; //玩家文本的文件
+            self.devilFile = [self.devilFileDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.plist",branchCount]]; //恶魔文本的文件
+            self.playerFile = [self.playerFileDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.plist",branchCount]]; //玩家文本的文件
             
             //写文件
-            NSDictionary *playContent = [NSDictionary dictionaryWithObject:playerChoiceArr forKey:@"content"];
+            NSDictionary *playContent = [NSDictionary dictionaryWithObject:playerArr forKey:@"content"];
             [playContent writeToFile:self.playerFile atomically:YES];
             NSDictionary *devilContent = [NSDictionary dictionaryWithObject:devilArr forKey:@"content"];
             [devilContent writeToFile:self.devilFile atomically:YES];
             
             //初始化
             [devilArr removeAllObjects];
-            [playerChoiceArr removeAllObjects];
+            [playerArr removeAllObjects];
             respondArr1 = nil;
             respondArr2 = nil;
             respondArr3 = nil;
@@ -199,7 +207,7 @@
             continue;
         }
         
-        // 普通文本
+        // 普通文本,分支开始要加入到普通文本中，解析的时候要用到，所以在这里判断
         if (isPlainText) {
             NSNumber *index = [NSNumber numberWithUnsignedInteger:count];
             count++;
@@ -208,9 +216,38 @@
                                  str,@"message",
                                  nil];
             [plainArr addObject:dic];
+            
+            // 新章节开始的时候，设置是属于谁的章节,对话将存储到对应的文件中
+            if ([str containsString:@"Chapter Begin"]) {
+                NSArray *array = [str componentsSeparatedByString:@" "]; //文本生成的数组
+                NSString *devilName = array.firstObject;
+                self.devilFileDirectory = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@",devilName]]; //恶魔文本的目录
+                self.playerFileDirectory = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:[NSString stringWithFormat:@"PlayerTo%@",devilName]]; //玩家文本的目录
+                
+                if (![[NSFileManager defaultManager] fileExistsAtPath:self.devilFileDirectory]) {
+                    [[NSFileManager defaultManager] createDirectoryAtPath:self.devilFileDirectory withIntermediateDirectories:YES attributes:nil error:nil];
+                }
+                if (![[NSFileManager defaultManager] fileExistsAtPath:self.playerFileDirectory]) {
+                    [[NSFileManager defaultManager] createDirectoryAtPath:self.playerFileDirectory withIntermediateDirectories:YES attributes:nil error:nil];
+                }
+                continue;
+//                self.devilFile = [self.devilFileDirectory stringByAppendingPathComponent:@"devil.plist"]; //恶魔文本的文件
+//                self.playerFile = [self.playerFileDirectory stringByAppendingPathComponent:@"player.plist"]; //玩家文本的文件
+            }
+            
+            //  如果某个章节结束了，设置为nil
+            if ([str containsString:@"Chapter End"]) {
+                self.devilFileDirectory = nil;
+                self.playerFileDirectory = nil;
+                self.devilFile = nil;
+                self.playerFile = nil;
+                continue;
+            }
+            
             // 开始分支
-            if ([str containsString:@"BRANCH BEGIN"]) {
+            if ([str containsString:@"Branch Begin"]) {
                 isPlainText = NO;
+                continue;
             }
         }
         
@@ -261,7 +298,7 @@
         // 玩家的回复
         else {
             // 判断是哪个分支
-            if ([str isEqualToString:@"FIRST"] || [str isEqualToString:@"SECOND"] || [str isEqualToString:@"THIRD"] || [str isEqualToString:@"FOURTH"]) {
+            if ([str containsString:@"Fork"]) {
                 branch ++;
                 step = 1;
             }
@@ -312,14 +349,14 @@
     [plainDic writeToFile:self.plainFile atomically:YES];
     
     NSLog(@"file path %@",self.plainFile);
-    self.test = @"";
-    NSString *testFile = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:@"mytest.txt"];
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        while (self.tapCount < count ) {
-            [self next];
-        }
-        [self.test writeToFile:testFile atomically:YES encoding:NSUTF8StringEncoding error:nil];
-    });
+//    self.test = @"";
+//    NSString *testFile = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:@"mytest.txt"];
+//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//        while (self.tapCount < count ) {
+//            [self next];
+//        }
+//        [self.test writeToFile:testFile atomically:YES encoding:NSUTF8StringEncoding error:nil];
+//    });
 }
 
 // 输出测试
@@ -334,7 +371,7 @@
             NSString *message = [dic objectForKey:@"message"];
             NSUInteger index = [[dic objectForKey:@"index"] unsignedIntegerValue];
             if (index == self.tapCount) {
-                if ([message containsString:@"BRANCH BEGIN"]) {
+                if ([message containsString:@"Branch Begin"]) {
                     self.isChoice = YES;
                     
                     // 判断第几个分支
@@ -396,7 +433,7 @@
                 }
                 self.isDevil = NO;
                 if (self.nextStep == [devilMessages count]) {
-                    self.test = [self.test stringByAppendingString:@"BRANCH END\n"];
+                    self.test = [self.test stringByAppendingString:@"Branch End\n"];
                     self.isChoice = NO;
                     self.nextStep = 1;
                 }
