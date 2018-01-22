@@ -37,9 +37,6 @@
     txtContent = [txtContent stringByReplacingOccurrencesOfString:@"？" withString:@"?\n"]; //中文问号
     txtContent = [txtContent stringByReplacingOccurrencesOfString:@"！" withString:@"!\n"];//中文感叹号
     txtContent = [txtContent stringByReplacingOccurrencesOfString:@"..." withString:@"...\n"];//省略号
-//    txtContent = [txtContent stringByReplacingOccurrencesOfString:@"～" withString:@"~\n"];//～号
-//    txtContent = [txtContent stringByReplacingOccurrencesOfString:@"）" withString:@")\n"];//括号
-//    txtContent = [txtContent stringByReplacingOccurrencesOfString:@"】" withString:@"]\n"];//中括号
     txtContent = [txtContent stringByReplacingOccurrencesOfString:@"；" withString:@";\n"];//分号
     
     //转回中文。。

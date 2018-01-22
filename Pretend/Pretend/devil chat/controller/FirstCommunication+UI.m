@@ -56,6 +56,27 @@ NS_ASSUME_NONNULL_BEGIN
     }];
 }
 
+- (void)setupTransButton {
+    self.transButton = ({
+        UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
+        button.backgroundColor = [UIColor clearColor];
+        button.titleLabel.adjustsFontSizeToFitWidth = YES;
+        [button setTitle:@"transform" forState:UIControlStateNormal];
+        [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [button.titleLabel setFont:[UIFont systemFontOfSize:12]];
+        [button.titleLabel setTextAlignment:NSTextAlignmentRight];
+        button;
+    });
+    //    self.skipButton.frame = CGRectMake(self.view.bounds.size.width * 0.8, self.view.bounds.size.height * 0.5, self.view.bounds.size.width * 0.2, self.view.bounds.size.height * 0.1);
+    [self.view addSubview:self.transButton];
+    [self.transButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.backgroudImageView).offset(40.0);
+        make.centerY.equalTo(self.backgroudImageView);
+        make.height.equalTo(@20.0);
+        make.width.equalTo(@50.0);
+    }];
+}
+
 - (void)setupStartLabel {
 //    UIImageView *titleImageView = ({
 //        UIImageView *imageView = [[UIImageView alloc] init];

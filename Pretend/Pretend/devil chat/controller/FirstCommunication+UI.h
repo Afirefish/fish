@@ -14,5 +14,6 @@
 - (void)setupStartTipLabel;
 - (void)setupSkipButton;
 - (void)setupBackGroudImage;
+- (void)setupTransButton;
 
 @end

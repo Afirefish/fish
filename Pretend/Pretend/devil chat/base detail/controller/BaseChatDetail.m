@@ -16,7 +16,6 @@
 
 #import <Masonry.h>
 
-
 #define SCREEN_SIZE ([UIScreen mainScreen].bounds.size)
 #define SCREEN_WIDTH (SCREEN_SIZE.width < SCREEN_SIZE.height ? SCREEN_SIZE.width : SCREEN_SIZE.height)
 #define SCREEN_HEIGHT (SCREEN_SIZE.width > SCREEN_SIZE.height ? SCREEN_SIZE.width : SCREEN_SIZE.height)
@@ -25,20 +24,6 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface BaseChatDetail ()
-@property (nonatomic, assign) BOOL isChoice;
-@property (nonatomic, strong) NSArray *plainMsgs;
-@property (nonatomic, strong) NSString *plainMsg;
-@property (nonatomic, assign) NSInteger tapCount;
-@property (nonatomic, assign) NSInteger nextStep;
-
-@property (nonatomic, strong) NSString *plainFile;
-@property (nonatomic, strong) NSString *devilFile;
-@property (nonatomic, strong) NSString *playerFile;
-
-@property (nonatomic, strong) NSString *plainFileDirectory;
-@property (nonatomic, strong) NSString *devilFileDirectory;
-@property (nonatomic, strong) NSString *playerFileDirectory;
-
 
 @end
 
@@ -75,20 +60,15 @@ static NSString *choice = @"Choice";
     self.nextStep = 1;
 }
 
-// 输出普通文本
-- (void)next {
-    
-    
-    
-}
-
-//初始化聊天节点数，
+//初始化聊天节点数
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationController.navigationBar.tintColor = [UIColor blackColor];
     [self setupContentViewsType];
     [self setupSubviews];
 }
+
+#pragma mark - view
 
 //设置表视图和集合视图类型
 - (void)setupContentViewsType {
@@ -198,11 +178,12 @@ static NSString *choice = @"Choice";
     [self.chatContentTableView scrollToRowAtIndexPath:index atScrollPosition:UITableViewScrollPositionBottom animated:animated]; //滚动到最后一行
 }
 
+#pragma mark - action
+
 //玩家做出选择的消息
 - (void)sendMessage {
     // 对于普通文本来说，只需要继续下一句话就好
     if (!self.isChoice) {
-        
         // 解析普通文本
         if (self.tapCount <= self.plainMsgs.count) {
             NSDictionary *dic = [self.plainMsgs objectAtIndex:self.tapCount - 1];
@@ -223,11 +204,31 @@ static NSString *choice = @"Choice";
             [self.chatRoomMgr loadChatFile:branchCount];
             self.playerMessages = self.chatRoomMgr.playerMessages;
             self.devilMessages = self.chatRoomMgr.devilMessages;
+             // 获取玩家选项数量
+            if (self.nextStep <= self.playerMessages.count) {
+                NSDictionary *dic = [self.playerMessages objectAtIndex:self.nextStep - 1];
+                NSNumber *step = [dic objectForKey:@"step"];
+                NSUInteger myStep = [step integerValue];
+                if (myStep == self.nextStep) {
+                    self.choiceArr = [dic objectForKey:@"choice"];
+                    self.choiceCount = self.choiceArr.count;
+                }
+            }
             [self.choicesCollectionView reloadData];
         }
         else {
             self.choicesCollectionView.userInteractionEnabled = NO;
             self.nodeNumber += 1;
+            // 获取玩家选项数量
+            if (self.nextStep <= self.playerMessages.count) {
+                NSDictionary *dic = [self.playerMessages objectAtIndex:self.nextStep - 1];
+                NSNumber *step = [dic objectForKey:@"step"];
+                NSUInteger myStep = [step integerValue];
+                if (myStep == self.nextStep) {
+                    self.choiceArr = [dic objectForKey:@"choice"];
+                    self.choiceCount = self.choiceArr.count;
+                }
+            }
             [self.chatContentTableView reloadData];
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.1 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
                 [self scrollTableToFoot:YES];
@@ -245,7 +246,7 @@ static NSString *choice = @"Choice";
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.1 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
             [self scrollTableToFoot:YES];
         });
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{//加个延迟有种思考的感觉233
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.5 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{//加个延迟有种思考的感觉233
             [self devilRespond];
         });
     }
@@ -255,6 +256,7 @@ static NSString *choice = @"Choice";
 - (void)devilRespond {
     self.isDevil = YES;
     self.nodeNumber += 1;
+    // 获取恶魔的回复
     if (self.nextStep <= self.devilMessages.count) {
         NSDictionary *dic = [self.devilMessages objectAtIndex:self.nextStep - 1];
         NSNumber *step = [dic objectForKey:@"step"];
@@ -268,7 +270,7 @@ static NSString *choice = @"Choice";
     }
     [self.chatContentTableView reloadData];
     // 在加载完数据之后再改变玩家选项的位置 给0.1s的时间应该ok。。
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.1 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.5 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
         if (self.nextStep > self.devilMessages.count) {
             self.isChoice = NO;
             self.nextStep = 1;
@@ -300,17 +302,8 @@ static NSString *choice = @"Choice";
     if (!self.isChoice) {
         return 1;
     }
-    // 如果是对话，返回玩家可选选项的个数
+    // 如果是对话，返回玩家可选选项的个数,在此时就获得了玩家选项的全部数据
     else {
-        if (self.nextStep <= self.playerMessages.count) {
-            NSDictionary *dic = [self.playerMessages objectAtIndex:self.nextStep - 1];
-            NSNumber *step = [dic objectForKey:@"step"];
-            NSUInteger myStep = [step integerValue];
-            if (myStep == self.nextStep) {
-                self.choiceArr = [dic objectForKey:@"choice"];
-                self.choiceCount = self.choiceArr.count;
-            }
-        }
         return self.choiceCount;
     }
 }
@@ -341,11 +334,10 @@ static NSString *choice = @"Choice";
     if (!self.isChoice) {
         cell.messageLabel.text = @"NEXT";
     }
-    // 如果是对话文本，读取当前的step的玩家的全部可选项，展示
+    // 如果是对话文本，因为在获取选项个数的时候就获得了所有的选项，所以直接读取当前的step的玩家的全部可选项，展示
     else {
         self.choiceDic = [self.choiceArr objectAtIndex:indexPath.row];
-        self.choiceContent = [self.choiceDic objectForKey:@"message"];
-        cell.messageLabel.text = self.choiceContent;
+        cell.messageLabel.text = [self.choiceDic objectForKey:@"message"];
     }
     return cell;
 }
@@ -366,6 +358,7 @@ static NSString *choice = @"Choice";
 
 //玩家做出选择之后的处理
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    // 如果是对话，则需要判断玩家的选择做出响应
     if (self.isChoice) {
         self.playerChoice = [[self.choiceArr objectAtIndex:indexPath.row] objectForKey:@"message"];
         self.choiceIndex = indexPath.row;
@@ -377,22 +370,24 @@ static NSString *choice = @"Choice";
 //设置cell高度，根据文本行数和大小变化
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     CGRect cellRect = CGRectMake(0, 0, 0, 0);
+    NSString *message = @"";
     // 只有当是最新的cell时才会计算
     if (indexPath.section == [tableView numberOfSections] - 1 ) {
         // 普通文本
         if (!self.isChoice) {
-            cellRect = [self.plainMsg boundingRectWithSize:CGSizeMake(self.view.bounds.size.width * 0.7, MAXFLOAT) options:NSStringDrawingUsesFontLeading |NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesDeviceMetrics attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:17]} context:nil];
+            message = self.plainMsg;
         }
         else {
             // 恶魔
             if (self.isDevil == YES) {
-                cellRect = [self.devilRespondContent boundingRectWithSize:CGSizeMake(self.view.bounds.size.width * 0.7, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading | NSStringDrawingUsesDeviceMetrics attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:17]} context:nil];
+                message = self.devilRespondContent;
             }
             // 玩家
             else {
-                cellRect = [self.playerChoice boundingRectWithSize:CGSizeMake(self.view.bounds.size.width * 0.7, MAXFLOAT) options:NSStringDrawingUsesFontLeading |NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesDeviceMetrics attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:17]} context:nil];
+                message = self.playerChoice;
             }
         }
+        cellRect = [message boundingRectWithSize:CGSizeMake(self.view.bounds.size.width * 0.7, MAXFLOAT) options:NSStringDrawingUsesFontLeading |NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesDeviceMetrics attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:17]} context:nil];
         NSNumber *height = [NSNumber numberWithFloat:cellRect.size.height + kCellGap];
         if ([self.allCellHeight count] < self.nodeNumber) {//将正确的高度存入数组
             [self.allCellHeight addObject:height];

@@ -33,11 +33,13 @@ typedef NS_ENUM(NSInteger, DevilShowTime) {
 
 + (instancetype)defaultMgr;
 - (void)writeToFile;
-- (void)messageJson:(NSString *)devil;
 - (void)saveAllCards;
 - (void)chatComplete;
 - (BOOL)checkComplete;
 - (void)reSet;
+
+- (void)messageJson:(NSString *)devil;
+
 @end
 
 NS_ASSUME_NONNULL_END
