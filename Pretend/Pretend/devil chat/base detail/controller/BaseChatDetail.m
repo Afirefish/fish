@@ -8,11 +8,6 @@
 
 #import "BaseChatDetail.h"
 #import "ChatRoomMgr.h"
-#import "BaseChatTableView.h"
-#import "BaseChatTableViewCell.h"
-#import "BaseChoiceCollectionView.h"
-#import "BaseChoiceCollectionViewCell.h"
-#import "UIColor+PRCustomColor.h"
 
 #import <Masonry.h>
 
@@ -30,17 +25,15 @@ NS_ASSUME_NONNULL_BEGIN
 @implementation BaseChatDetail
 
 static NSString *choice = @"Choice";
+static NSString *baseChat = @"BaseChat";
 
 - (instancetype)init {
     if (self = [super init]) {
         self.chatRoomMgr = [ChatRoomMgr defaultMgr];
-        self.nodeNumber = 0;
         self.isDevil = NO;
         self.choiceCount = 1;
-        self.layout = [[UICollectionViewFlowLayout alloc] init];
-        [self.layout setScrollDirection:UICollectionViewScrollDirectionVertical];
-        self.layout.itemSize = CGSizeMake((SCREEN_WIDTH - 40)/2 , 80);
         self.allCellHeight = [[NSMutableArray alloc] init];
+        self.chatMessageList = [[NSMutableArray alloc] init];
         [self newLoading];
     }
     return self;
@@ -63,19 +56,10 @@ static NSString *choice = @"Choice";
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationController.navigationBar.tintColor = [UIColor blackColor];
-    [self setupContentViewsType];
     [self setupSubviews];
 }
 
 #pragma mark - view
-
-//设置表视图和集合视图类型
-- (void)setupContentViewsType {
-    self.chatContentTableView = [[BaseChatTableView alloc] init];
-    self.choicesCollectionView =  [[BaseChoiceCollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:self.layout];
-    [self.choicesCollectionView registerClass:[BaseChoiceCollectionViewCell class]
-                   forCellWithReuseIdentifier:choice];
-}
 
 - (void)setupSubviews {
     [self setupContentViews];
@@ -85,11 +69,13 @@ static NSString *choice = @"Choice";
 //设置表视图和集合视图
 - (void)setupContentViews {
     //聊天内容
+    self.chatContentTableView = [[UITableView alloc] init];
     self.chatContentTableView.delegate = self;
     self.chatContentTableView.dataSource = self;
     self.chatContentTableView.backgroundColor = [UIColor clearColor];
     [self.chatContentTableView setAllowsSelection:NO];
     [self.chatContentTableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];//设置多余cell的分割线不显示
+    [self.chatContentTableView registerClass:[BaseChatTableViewCell class] forCellReuseIdentifier:baseChat];
     [self.view addSubview:self.chatContentTableView];
     [self.chatContentTableView mas_makeConstraints:^(MASConstraintMaker *make) {
         if (@available(iOS 11.0, *)) {
@@ -117,9 +103,14 @@ static NSString *choice = @"Choice";
     }];
     
     //collection view显示的视图
+    self.layout = [[UICollectionViewFlowLayout alloc] init];
+    [self.layout setScrollDirection:UICollectionViewScrollDirectionVertical];
+    self.layout.itemSize = CGSizeMake((SCREEN_WIDTH - 40)/2 , 80);
+    self.choicesCollectionView =  [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:self.layout];
     self.choicesCollectionView.delegate = self;
     self.choicesCollectionView.dataSource = self;
     self.choicesCollectionView.backgroundColor = [UIColor warmShellColor];
+    [self.choicesCollectionView registerClass:[BaseChoiceCollectionViewCell class] forCellWithReuseIdentifier:choice];
     [self.view addSubview:self.choicesCollectionView];
     [self.choicesCollectionView mas_makeConstraints:^(MASConstraintMaker *make) {
         if (@available(iOS 11.0, *)) {
@@ -202,6 +193,9 @@ static NSString *choice = @"Choice";
         }
         if ([self.plainMsg isEqualToString:@"ALL END"]) {
             NSLog(@"游戏通关了");
+            [self.chatRoomMgr chatComplete];
+            self.coverLabel.alpha = 1;
+            self.choicesCollectionView.userInteractionEnabled = NO;
             return;
         }
         // 章节开始,只有这个时候才记录剧情的进度,其他恶魔从这里读取数据来查看是不是自己的剧情
@@ -260,10 +254,11 @@ static NSString *choice = @"Choice";
             }
             [self.choicesCollectionView reloadData];
         }
-        // 如果不是开始选择的情况，直接发送这个消息就好
+        // 如果不是开始选择的情况，直接发送这个消息就好,添加普通文本到聊天记录里
         else {
             self.choicesCollectionView.userInteractionEnabled = NO;
-            self.nodeNumber += 1;
+            BaseChatModel *model =[[BaseChatModel alloc] initWithMsg:self.plainMsg isDevil:self.isDevil isChoice:self.isChoice];
+            [self.chatMessageList addObject:model];
             [self.chatContentTableView reloadData];
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.1 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
                 [self scrollTableToFoot:YES];
@@ -271,12 +266,13 @@ static NSString *choice = @"Choice";
             });
         }
     }
-    // 对于对话文本来说，在玩家选择某一句话之后，对方会有相应的回复
+    // 对于对话文本来说，在玩家选择某一句话之后，对方会有相应的回复，添加玩家选择到聊天记录里
     else {
         self.isDevil = NO;
         self.choicesCollectionView.userInteractionEnabled = NO;
         self.coverLabel.alpha = 1;
-        self.nodeNumber += 1;
+        BaseChatModel *model =[[BaseChatModel alloc] initWithMsg:self.playerChoice isDevil:self.isDevil isChoice:self.isChoice];
+        [self.chatMessageList addObject:model];
         [self.chatContentTableView reloadData];
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.1 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
             [self scrollTableToFoot:YES];
@@ -290,8 +286,7 @@ static NSString *choice = @"Choice";
 //恶魔的回复,仅在对话的时候使用
 - (void)devilRespond {
     self.isDevil = YES;
-    self.nodeNumber += 1;
-    // 获取恶魔的回复
+        // 获取恶魔的回复，添加恶魔的回复到聊天记录里
     if (self.nextStep <= self.devilMessages.count) {
         NSDictionary *dic = [self.devilMessages objectAtIndex:self.nextStep - 1];
         NSNumber *step = [dic objectForKey:@"step"];
@@ -303,6 +298,8 @@ static NSString *choice = @"Choice";
         }
         self.nextStep ++;
     }
+    BaseChatModel *model =[[BaseChatModel alloc] initWithMsg:self.devilRespondContent isDevil:self.isDevil isChoice:self.isChoice];
+    [self.chatMessageList addObject:model];
     [self.chatContentTableView reloadData];
     // 因为如果改变isChoice会影响到table加载数据，所以在加载完数据之后再改变玩家选项 给0.5s的时间应该ok。。
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.5 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
@@ -332,7 +329,7 @@ static NSString *choice = @"Choice";
 
 //聊天记录每一个作为一个新的section，而玩家选项一个section
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return self.nodeNumber;
+    return 1;
 }
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
@@ -341,7 +338,7 @@ static NSString *choice = @"Choice";
 
 //聊天记录每一个section仅包括一行
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 1;
+    return self.chatMessageList.count;
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
@@ -354,22 +351,10 @@ static NSString *choice = @"Choice";
     }
 }
 
-//这里做了点特别的处理，对于聊天记录的视图，每个cell有不同的标志符，对于每个玩家选择，设置为一个标志符（后面实现的时候相当于没有复用了）
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSString *baseChat = [NSString stringWithFormat:@"BaseChat%ld",(long)indexPath.section];
-    BaseChatTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:baseChat];
-    // 如果普通文本的话，读取之后设置为玩家的话的形式显示
-    if (!self.isChoice) {
-        if(cell == nil){
-            cell = [[BaseChatTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:baseChat isDevil:NO message:self.plainMsg respond:nil devilName:nil];
-        }
-    }
-    // 对话文本的话，根据是玩家还是恶魔显示不同的效果
-    else {
-        if(cell == nil){
-            cell = [[BaseChatTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:baseChat isDevil:self.isDevil message:self.playerChoice respond:self.devilRespondContent devilName:@"santa"];
-        }
-    }
+    BaseChatModel *model = [self.chatMessageList objectAtIndex:indexPath.row];
+    BaseChatTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:baseChat forIndexPath:indexPath];
+    [cell updateWithModel:model];
     return cell;
 }
 
@@ -417,7 +402,7 @@ static NSString *choice = @"Choice";
     CGRect cellRect = CGRectMake(0, 0, 0, 0);
     NSString *message = @"";
     // 只有当是最新的cell时才会计算
-    if (indexPath.section == [tableView numberOfSections] - 1 ) {
+    if (indexPath.row == [tableView numberOfRowsInSection:0] - 1 ) {
         // 普通文本
         if (!self.isChoice) {
             message = self.plainMsg;
@@ -433,12 +418,12 @@ static NSString *choice = @"Choice";
             }
         }
         cellRect = [message boundingRectWithSize:CGSizeMake(self.view.bounds.size.width * 0.7, MAXFLOAT) options:NSStringDrawingUsesFontLeading |NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesDeviceMetrics attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:17]} context:nil];
-        NSNumber *height = [NSNumber numberWithFloat:cellRect.size.height + kCellGap];
-        if ([self.allCellHeight count] < self.nodeNumber) {//将正确的高度存入数组
+        NSNumber *height = [NSNumber numberWithFloat:(cellRect.size.height + kCellGap)];
+        if ([self.allCellHeight count] < self.chatMessageList.count) {//将正确的高度存入数组
             [self.allCellHeight addObject:height];
         }
     }
-    CGFloat cellHeight = [[self.allCellHeight objectAtIndex:indexPath.section] floatValue];//每次重新加载时，除了最后的cell，高度直接从数组里获取
+    CGFloat cellHeight = [[self.allCellHeight objectAtIndex:indexPath.row] floatValue];//每次重新加载时，除了最后的cell，高度直接从数组里获取
     return cellHeight;
 }
 

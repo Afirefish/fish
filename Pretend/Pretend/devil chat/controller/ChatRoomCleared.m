@@ -25,6 +25,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.navigationItem.hidesBackButton = YES;
+    self.tabBarController.tabBar.hidden = NO;
     self.view.backgroundColor = [UIColor colorWithRed:255.0/255 green:250.0/255 blue:240.0/255 alpha:1.0];
     self.navigationItem.title = @"Chat Cleared";
     [self setupSubviews];
@@ -109,11 +110,6 @@
     [reStartAlert addAction:cancelAction];
     [self presentViewController:reStartAlert animated:YES completion:nil];
 
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 @end

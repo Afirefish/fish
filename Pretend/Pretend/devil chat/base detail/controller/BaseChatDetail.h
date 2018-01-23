@@ -8,8 +8,12 @@
 
 //聊天的具体内容控制基类
 #import <UIKit/UIKit.h>
+#import "BaseChatModel.h"
+#import "BaseChatTableViewCell.h"
+#import "BaseChoiceCollectionViewCell.h"
+#import "UIColor+PRCustomColor.h"
 
-@class BaseChatTableView,ChatRoomMgr,BaseChoiceCollectionView;
+@class ChatRoomMgr;
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -18,9 +22,9 @@ NS_ASSUME_NONNULL_BEGIN
 /*
  *view部分
  */
-@property (strong, nonatomic) BaseChatTableView *chatContentTableView;//聊天的具体内容
+@property (strong, nonatomic) UITableView *chatContentTableView;//聊天的具体内容
 @property (strong, nonatomic, nullable) UIImageView *tableBackgroundView;//聊天的背景
-@property (strong, nonatomic) BaseChoiceCollectionView *choicesCollectionView;//玩家选项集合
+@property (strong, nonatomic) UICollectionView *choicesCollectionView;//玩家选项集合
 @property (strong, nonatomic, nullable) UIImageView *collectionBackgroudView;//玩家选项的背景视图
 @property (strong, nonatomic) UICollectionViewFlowLayout *layout;//流布局
 @property (strong, nonatomic) UILabel *coverLabel;//覆盖的label
@@ -28,14 +32,12 @@ NS_ASSUME_NONNULL_BEGIN
 /*
  *data部分
  */
-@property (assign, nonatomic) NSInteger nodeNumber;//当前聊天所具有的节点数
 @property (assign, nonatomic) BOOL isDevil;//当前节点是否是devil
 @property (assign, nonatomic) NSUInteger finished;//100代表结束
 @property (assign, nonatomic) NSUInteger previousStep;//上一步
 @property (strong, nonatomic) NSArray *playerMessages;//玩家的回复数据包
 @property (strong, nonatomic) NSArray *devilMessages;//devil的回复数据包
 @property (strong, nonatomic) ChatRoomMgr *chatRoomMgr;
-@property (strong, nonatomic) NSMutableArray *allCellHeight;//保存聊天记录的所有视图的高度
 
 @property (nonatomic, assign) BOOL isChoice;// 当前是否是对话文本
 @property (nonatomic, strong) NSArray *plainMsgs;// 普通文本
@@ -52,7 +54,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) NSDictionary *devilDic;//santa回复的字典
 @property (strong, nonatomic) NSString *devilRespondContent;//santa的回复的信息字符串
 
-- (void)setupContentViewsType;//设置子视图的type
+// 缓存数据，解决复用问题
+@property (strong, nonatomic) NSMutableArray *allCellHeight;//保存聊天记录的所有视图的高度
+@property (strong, nonatomic) NSMutableArray<BaseChatModel *> *chatMessageList;
+
 - (void)setupSubviews;//设置子视图
 - (void)setupContentViews;//设置内容视图
 - (void)setupBackgroundImage;//设置背景图片

@@ -7,38 +7,42 @@
 //
 
 #import "BaseChatTableViewCell.h"
+#import <Masonry.h>
+
+@interface BaseChatTableViewCell ()
+
+@end
 
 @implementation BaseChatTableViewCell
 
-- (void)awakeFromNib {
-    [super awakeFromNib];
-    // Initialization code
-}
-
-//初始化聊天记录的cell样式
-- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier isDevil:(BOOL)isDevil message:(NSString *)message respond:(NSString *)respond devilName:devilName{
-    if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
-        self.backgroundColor = [UIColor clearColor];
-        self.textLabel.numberOfLines = 0;
-        self.textLabel.lineBreakMode = NSLineBreakByWordWrapping;
-        self.textLabel.textColor = [UIColor whiteColor];
-        if (isDevil == YES) {
-            self.textLabel.text = respond;
-            self.imageView.image = [UIImage imageNamed:devilName];
-            //修改头像大小固定为40*40
-            CGSize imageSize = CGSizeMake(40, 40);
-            UIGraphicsBeginImageContext(imageSize);
-            CGRect imageRect = CGRectMake(0, 0, imageSize.width, imageSize.height);
-            [self.imageView.image drawInRect:imageRect];
-            self.imageView.image = UIGraphicsGetImageFromCurrentImageContext();
-            UIGraphicsEndImageContext();
-        } else {
-            self.textLabel.text = message;
-            self.textLabel.textAlignment = NSTextAlignmentRight;
-            self.contentView.backgroundColor = [UIColor clearColor];
-        }
+- (void)updateWithModel:(BaseChatModel *)model {
+    self.backgroundColor = [UIColor clearColor];
+    self.contentView.backgroundColor = [UIColor clearColor];
+    self.textLabel.numberOfLines = 0;
+    self.textLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    self.textLabel.text = model.message;
+    self.textLabel.textColor = [UIColor whiteColor];
+    self.textLabel.font = [UIFont systemFontOfSize:17.0];
+    
+    if (model.isDevil == YES && model.isChoice == YES) {
+        self.textLabel.textAlignment = NSTextAlignmentLeft;
+        //修改头像大小固定为40*40
+        self.imageView.image = [UIImage imageNamed:model.devil];
+        CGSize imageSize = CGSizeMake(35, 35);
+        UIGraphicsBeginImageContext(imageSize);
+        CGRect imageRect = CGRectMake(0, 0, imageSize.width, imageSize.height);
+        [self.imageView.image drawInRect:imageRect];
+        self.imageView.image = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
     }
-    return self;
+    else if (model.isDevil == NO && model.isChoice == YES) {
+        self.textLabel.textAlignment = NSTextAlignmentRight;
+        self.imageView.image = nil;
+    }
+    else {
+        self.textLabel.textAlignment = NSTextAlignmentCenter;
+        self.imageView.image = nil;
+    }
 }
 
 @end

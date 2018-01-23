@@ -18,7 +18,6 @@ typedef NS_ENUM(NSInteger, DevilShowTime) {
 };
 
 @interface ChatRoomMgr : NSObject
-@property (assign, nonatomic) BOOL chatFinished;
 @property (strong, nonatomic, nullable) NSMutableSet *cards;
 @property (strong, nonatomic) NSArray *playerMessages; // 玩家的回复数据包
 @property (strong, nonatomic) NSArray *devilMessages; // devil的回复数据包

@@ -15,6 +15,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ChatRoomMgr ()
+@property (assign, nonatomic) BOOL chatFinished;
 @property (strong, nonatomic) SantaMgr *santa;
 @property (strong, nonatomic) PufuMgr *pufu;
 @property (strong, nonatomic) ChiziMgr *chizi;
@@ -143,23 +144,6 @@ NS_ASSUME_NONNULL_BEGIN
     [dic writeToFile:self.filePath atomically:YES];
 }
 
-// 解析每个恶魔和玩家的json文件,旧版逻辑，将要废弃
-//- (void)messageJson:(NSString *)devil {
-//    NSString *player = [NSString stringWithFormat:@"playerTo%@",devil];
-//    //玩家的选择的json解析
-//    NSString *playerJson = [[NSBundle mainBundle] pathForResource:player ofType:@"json"];
-//    NSData *playerData = [NSData dataWithContentsOfFile:playerJson];
-//    NSError *error1 = nil;
-//    NSDictionary *playerMessagesDic = [NSJSONSerialization JSONObjectWithData:playerData options:kNilOptions error:&error1];
-//    self.playerMessages = [playerMessagesDic objectForKey:@"content"];
-//    //对话的json解析
-//    NSString *devilJson = [[NSBundle mainBundle] pathForResource:devil ofType:@"json"];
-//    NSData *devilData = [NSData dataWithContentsOfFile:devilJson];
-//    NSError *error2 = nil;
-//    NSDictionary *devilDic = [NSJSONSerialization JSONObjectWithData:devilData options:kNilOptions error:&error2];
-//    self.devilMessages = [devilDic objectForKey:@"content"];
-//}
-
 - (void)updateStep:(NSUInteger)step {
     self.step = step;
     self.santa.finished = step;
@@ -190,12 +174,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 // 检查游戏是否通关
 - (BOOL)checkComplete {
-    if (self.santa.finished == 100 && self.pufu.finished == 100 && self.chizi.finished == 100 && self.tiza.finished == 100) {
-        return YES;
-    }
-    else {
-        return NO;
-    }
+    return self.chatFinished;
 }
 
 // 第一个游戏通关

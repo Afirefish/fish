@@ -7,12 +7,7 @@
 //
 
 #import "SantaChatDetail.h"
-#import "ChatRoomMgr.h"
 #import "SantaMgr.h"
-#import "SantaChatTableView.h"
-#import "SantaChatTableViewCell.h"
-#import "SantaChoiceCollectionView.h"
-#import "SantaChoiceCollectionViewCell.h"
 
 #define kCellGap 20
 
@@ -25,6 +20,7 @@
 @implementation SantaChatDetail
 
 static NSString *choice = @"Choice";
+static NSString *santaChat = @"SantaChat";
 static SantaChatDetail *santaChatDetail = nil;
 
 + (instancetype)santaChatDetail {
@@ -51,7 +47,7 @@ static SantaChatDetail *santaChatDetail = nil;
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.previousStep = self.santaMgr.previousStep;
-    self.finished = self.santaMgr.previousStep;
+    self.finished = self.santaMgr.finished;
     if (self.chatRoomMgr.showTime != SantaShowTime) {
         self.coverLabel.alpha = 1;
         self.choicesCollectionView.userInteractionEnabled = NO;
@@ -62,17 +58,16 @@ static SantaChatDetail *santaChatDetail = nil;
     }
 }
 
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    self.santaMgr.finishText = self.chatMessageList.lastObject.message;
+}
+
 //解析json，初始化高度
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = @"Santa";
-}
-
-//重写设置内容视图的类型的方法
-- (void)setupContentViewsType {
-    self.chatContentTableView = [[SantaChatTableView alloc] init];
-    self.choicesCollectionView = [[SantaChoiceCollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:self.layout];
-    [self.choicesCollectionView registerClass:[SantaChoiceCollectionViewCell class] forCellWithReuseIdentifier:choice];
+    [self.chatContentTableView registerClass:[BaseChatTableViewCell class] forCellReuseIdentifier:santaChat];
 }
 
 - (void)setupBackgroundImage {
@@ -84,26 +79,17 @@ static SantaChatDetail *santaChatDetail = nil;
 //    self.finished = 100;
 //}
 
-//聊天记录的视图在获得高度的时候就有数据源了，不过在处理玩家的选择的视图的时候，还是要重新设置数据
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSString *santaChat = [NSString stringWithFormat:@"SantaChat%ld",(long)indexPath.section];
-    SantaChatTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:santaChat];
-    // 如果普通文本的话，读取之后设置为玩家的话的形式显示
-    if (!self.isChoice) {
-        if(cell == nil){
-            cell = [[SantaChatTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:santaChat isDevil:NO message:self.plainMsg respond:nil devilName:nil];
-        }
-        if (![self.plainMsg containsString:@"Begin"] && ![self.plainMsg containsString:@"End"]) {
-            self.santaMgr.finishText = self.plainMsg;
-        }
-    }
-    // 对话文本的话，根据是玩家还是恶魔显示不同的效果
-    else {
-        if(cell == nil){
-            cell = [[SantaChatTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:santaChat isDevil:self.isDevil message:self.playerChoice respond:self.devilRespondContent devilName:@"santa"];
-        }
-        self.santaMgr.finishText = self.devilRespondContent;
-    }
+    BaseChatTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:santaChat forIndexPath:indexPath];
+    BaseChatModel *model = [self.chatMessageList objectAtIndex:indexPath.row];
+    model.devil = @"santa";
+    [cell updateWithModel:model];
+    return cell;
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    BaseChoiceCollectionViewCell *cell = [super collectionView:collectionView cellForItemAtIndexPath:indexPath];
+    cell.backgroudImageView.image = [UIImage imageNamed:@"santaDesert"];
     return cell;
 }
 

@@ -7,12 +7,7 @@
 //
 
 #import "ChiziChatDetail.h"
-#import "ChatRoomMgr.h"
 #import "ChiziMgr.h"
-#import "ChiziChatTableView.h"
-#import "ChiziChatTableViewCell.h"
-#import "ChiziChoiceCollectionView.h"
-#import "ChiziChoiceCollectionViewCell.h"
 
 #define kCellGap 20
 
@@ -25,6 +20,7 @@
 @implementation ChiziChatDetail
 
 static NSString *choice = @"Choice";
+static NSString *chiziChat = @"ChiziChat";
 static ChiziChatDetail *chiziChatDetail = nil;
 
 + (instancetype)chiziChatDetail {
@@ -61,17 +57,16 @@ static ChiziChatDetail *chiziChatDetail = nil;
     }
 }
 
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    self.chiziMgr.finishText = self.chatMessageList.lastObject.message;
+}
+
 //解析json，初始化高度
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = @"Chizi";
-}
-
-//重写子视图设置的方法
-- (void)setupContentViewsType {
-    self.chatContentTableView = [[ChiziChatTableView alloc] init];
-    self.choicesCollectionView = [[ChiziChoiceCollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:self.layout];
-    [self.choicesCollectionView registerClass:[ChiziChoiceCollectionViewCell class] forCellWithReuseIdentifier:choice];
+    [self.chatContentTableView registerClass:[BaseChatTableViewCell class] forCellReuseIdentifier:chiziChat];
 }
 
 - (void)setupBackgroundImage {
@@ -83,26 +78,18 @@ static ChiziChatDetail *chiziChatDetail = nil;
 //    self.finished = 100;
 //}
 
-//聊天记录的视图在获得高度的时候就有数据源了，不过在处理玩家的选择的视图的时候，还是要重新设置数据
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSString *chiziChat = [NSString stringWithFormat:@"ChiziChat%ld",(long)indexPath.section];
-    ChiziChatTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:chiziChat];
-    // 如果普通文本的话，读取之后设置为玩家的话的形式显示
-    if (!self.isChoice) {
-        if(cell == nil){
-            cell = [[ChiziChatTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:chiziChat isDevil:NO message:self.plainMsg respond:nil devilName:nil];
-        }
-        if (![self.plainMsg containsString:@"Begin"] && ![self.plainMsg containsString:@"End"]) {
-            self.chiziMgr.finishText = self.plainMsg;
-        }
-    }
-    // 对话文本的话，根据是玩家还是恶魔显示不同的效果
-    else {
-        if(cell == nil){
-            cell = [[ChiziChatTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:chiziChat isDevil:self.isDevil message:self.playerChoice respond:self.devilRespondContent devilName:@"chizi"];
-        }
-        self.chiziMgr.finishText = self.devilRespondContent;
-    }
+    BaseChatTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:chiziChat forIndexPath:indexPath];
+    BaseChatModel *model = [self.chatMessageList objectAtIndex:indexPath.row];
+    model.devil = @"chizi";
+    [cell updateWithModel:model];
+    self.chiziMgr.finishText = model.message;
+    return cell;
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    BaseChoiceCollectionViewCell *cell = [super collectionView:collectionView cellForItemAtIndexPath:indexPath];
+    cell.backgroudImageView.image = [UIImage imageNamed:@"chiziCastle"];
     return cell;
 }
 

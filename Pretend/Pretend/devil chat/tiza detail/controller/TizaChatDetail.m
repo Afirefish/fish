@@ -7,12 +7,7 @@
 //
 
 #import "TizaChatDetail.h"
-#import "ChatRoomMgr.h"
 #import "TizaMgr.h"
-#import "TizaChatTableView.h"
-#import "TizaChatTableViewCell.h"
-#import "TizaChoiceCollectionView.h"
-#import "TizaChoiceCollectionViewCell.h"
 
 #define kCellGap 20
 
@@ -25,6 +20,7 @@
 @implementation TizaChatDetail
 
 static NSString *choice = @"Choice";
+static NSString *tizaChat = @"TizaChat";
 static TizaChatDetail *tizaChatDetail = nil;
 
 + (instancetype)tizaChatDetail {
@@ -62,17 +58,16 @@ static TizaChatDetail *tizaChatDetail = nil;
     }
 }
 
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    self.tizaMgr.finishText = self.chatMessageList.lastObject.message;
+}
+
 //解析json，初始化高度
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = @"Tiza";
-}
-
-//重写子视图设置的方法
-- (void)setupContentViewsType {
-    self.chatContentTableView = [[TizaChatTableView alloc] initWithFrame:CGRectZero];
-    self.choicesCollectionView = [[TizaChoiceCollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:self.layout];
-    [self.choicesCollectionView registerClass:[TizaChoiceCollectionViewCell class] forCellWithReuseIdentifier:choice];
+    [self.chatContentTableView registerClass:[BaseChatTableViewCell class] forCellReuseIdentifier:tizaChat];
 }
 
 - (void)setupBackgroundImage {
@@ -84,26 +79,18 @@ static TizaChatDetail *tizaChatDetail = nil;
 //    self.finished = 100;
 //}
 
-//聊天记录的视图在获得高度的时候就有数据源了，不过在处理玩家的选择的视图的时候，还是要重新设置数据
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSString *tizaChat = [NSString stringWithFormat:@"TizaChat%ld",(long)indexPath.section];
-    TizaChatTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:tizaChat];
-    // 如果普通文本的话，读取之后设置为玩家的话的形式显示
-    if (!self.isChoice) {
-        if(cell == nil){
-            cell = [[TizaChatTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:tizaChat isDevil:NO message:self.plainMsg respond:nil devilName:nil];
-        }
-        if (![self.plainMsg containsString:@"Begin"] && ![self.plainMsg containsString:@"End"]) {
-            self.tizaMgr.finishText = self.plainMsg;
-        }
-    }
-    // 对话文本的话，根据是玩家还是恶魔显示不同的效果
-    else {
-        if(cell == nil){
-            cell = [[TizaChatTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:tizaChat isDevil:self.isDevil message:self.playerChoice respond:self.devilRespondContent devilName:@"tiza"];
-        }
-        self.tizaMgr.finishText = self.devilRespondContent;
-    }
+    BaseChatTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:tizaChat forIndexPath:indexPath];
+    BaseChatModel *model = [self.chatMessageList objectAtIndex:indexPath.row];
+    model.devil = @"tiza";
+    [cell updateWithModel:model];
+    self.tizaMgr.finishText = model.message;
+    return cell;
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    BaseChoiceCollectionViewCell *cell = [super collectionView:collectionView cellForItemAtIndexPath:indexPath];
+    cell.backgroudImageView.image = [UIImage imageNamed:@"tizaCastle"];
     return cell;
 }
 

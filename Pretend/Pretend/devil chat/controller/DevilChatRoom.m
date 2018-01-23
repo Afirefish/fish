@@ -52,7 +52,7 @@ NS_ASSUME_NONNULL_BEGIN
                              [UIImage imageNamed:@"pufu.png"],
                              [UIImage imageNamed:@"chizi.png"],
                              [UIImage imageNamed:@"tiza.png"]];
-        self.backgroundImage = @[[UIImage imageNamed:@"startDesert"],
+        self.backgroundImage = @[[UIImage imageNamed:@"santaDesert"],
                                  [UIImage imageNamed:@"pufuCastle"],
                                  [UIImage imageNamed:@"chiziCastle"],
                                  [UIImage imageNamed:@"tizaCastle"]];
@@ -66,6 +66,11 @@ NS_ASSUME_NONNULL_BEGIN
     [self.tableView reloadData];
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self checkFinished];
+}
+
 //设置恶魔名字，图片
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -76,7 +81,6 @@ NS_ASSUME_NONNULL_BEGIN
     self.navigationItem.backBarButtonItem = backItem;
     [self setupTableView];
     [self setupSaveBtn];
-    [self checkFinished];
 }
 
 - (void)setupTableView {
@@ -110,7 +114,9 @@ NS_ASSUME_NONNULL_BEGIN
 //检查完成状态
 - (void)checkFinished {
     if ([self.chatRoomMgr checkComplete]) {
-        [self complete];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self complete];
+        });
     }
 }
 

@@ -8,8 +8,10 @@
 
 //聊天的cell的基类
 #import <UIKit/UIKit.h>
+#import "BaseChatModel.h"
 
 @interface BaseChatTableViewCell : UITableViewCell
-- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier isDevil:(BOOL)isDevil message:(NSString *)message respond:(NSString *)respond devilName:(NSString *)devilName;//重写的cell的初始化函数
+
+- (void)updateWithModel:(BaseChatModel *)model;
 
 @end

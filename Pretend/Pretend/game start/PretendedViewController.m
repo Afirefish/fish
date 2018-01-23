@@ -37,11 +37,12 @@ NS_ASSUME_NONNULL_BEGIN
     //第一个视图
     ChatRoomMgr *chatMgr = [ChatRoomMgr defaultMgr];
     //NSLog(@"chat finish %@",chatMgr.chatFinished?@"yes":@"no");
-    if (chatMgr.chatFinished == YES) {//如果第一关完成了，显示结束的画面，否则显示第一个界面
+    if ([chatMgr checkComplete]) {//如果第一关完成了，显示结束的画面，否则显示第一个界面
         ChatRoomCleared *chatCleared = [[ChatRoomCleared alloc] init];
         PRNavigationController *prNC = [[PRNavigationController alloc] initWithRootViewController:chatCleared];
         [childViewControllers addObject:prNC];
-    } else {
+    }
+    else {
         FirstCommunication *firstCommunication = [[FirstCommunication alloc] initWithFirstSence];
         PRNavigationController *prNC = [[PRNavigationController alloc] initWithRootViewController:firstCommunication];
         [childViewControllers addObject:prNC];
@@ -64,14 +65,14 @@ NS_ASSUME_NONNULL_BEGIN
     self.viewControllers = childViewControllers;
 }
 
-- (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController {
-   //设置当第一个导航控制器的子视图数量大于1时，禁止点击tabbar  似乎暂时没用了。。
-    if ([[(UINavigationController *)[tabBarController.viewControllers objectAtIndex:0] viewControllers] count] > 1) {
-        NSLog(@"count %lu",(unsigned long)[[(UINavigationController *)[tabBarController.viewControllers objectAtIndex:0] viewControllers] count]);
-        return  NO;
-    }
-    return YES;
-}
+//- (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController {
+//   //设置当第一个导航控制器的子视图数量大于1时，禁止点击tabbar  似乎暂时没用了。。
+//    if ([[(UINavigationController *)[tabBarController.viewControllers objectAtIndex:0] viewControllers] count] > 1) {
+//        NSLog(@"count %lu",(unsigned long)[[(UINavigationController *)[tabBarController.viewControllers objectAtIndex:0] viewControllers] count]);
+//        return  NO;
+//    }
+//    return YES;
+//}
 
 @end
 
