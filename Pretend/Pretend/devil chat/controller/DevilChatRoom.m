@@ -165,13 +165,13 @@ NS_ASSUME_NONNULL_BEGIN
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     BaseChatDetail *chatDetail = nil;
     if (indexPath.row == 0) {
-        chatDetail = [SantaChatDetail santaChatDetail];
+        chatDetail = [[SantaChatDetail alloc] init];
     } else if (indexPath.row == 1) {
-        chatDetail = [PufuChatDetail pufuChatDetail];
+        chatDetail = [[PufuChatDetail alloc] init];
     } else if (indexPath.row == 2) {
-        chatDetail = [ChiziChatDetail chiziChatDetail];
+        chatDetail = [[ChiziChatDetail alloc] init];
     } else {
-        chatDetail = [TizaChatDetail tizaChatDetail];
+        chatDetail = [[TizaChatDetail alloc] init];
     }
     [self.navigationController pushViewController:chatDetail animated:YES];
 }

@@ -11,6 +11,4 @@
 
 @interface PufuChatDetail : BaseChatDetail
 
-+ (instancetype)pufuChatDetail;
-
 @end

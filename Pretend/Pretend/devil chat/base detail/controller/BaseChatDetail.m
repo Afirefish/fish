@@ -7,7 +7,6 @@
 //
 
 #import "BaseChatDetail.h"
-#import "ChatRoomMgr.h"
 
 #import <Masonry.h>
 
@@ -29,27 +28,9 @@ static NSString *baseChat = @"BaseChat";
 
 - (instancetype)init {
     if (self = [super init]) {
-        self.chatRoomMgr = [ChatRoomMgr defaultMgr];
-        self.isDevil = NO;
-        self.choiceCount = 1;
-        self.allCellHeight = [[NSMutableArray alloc] init];
-        self.chatMessageList = [[NSMutableArray alloc] init];
-        [self newLoading];
+        self.chatMgr = [[BaseMgr alloc] init];
     }
     return self;
-}
-
-// 如果重置，直接初始化这个控制器
-- (void)reset {
-    //虚函数的感觉
-}
-
-// 新的加载
-- (void)newLoading {
-    [self.chatRoomMgr loadPlainFile];
-    self.plainMsgs = self.chatRoomMgr.plainMessages;
-    self.isChoice = NO;
-    self.nextStep = 1;
 }
 
 //初始化聊天节点数
@@ -57,6 +38,11 @@ static NSString *baseChat = @"BaseChat";
     [super viewDidLoad];
     self.navigationController.navigationBar.tintColor = [UIColor blackColor];
     [self setupSubviews];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self scrollTableToFoot:YES];
 }
 
 #pragma mark - view
@@ -172,151 +158,86 @@ static NSString *baseChat = @"BaseChat";
 
 //玩家做出选择的消息
 - (void)sendMessage {
-    NSString *className = NSStringFromClass([self class]);
-    NSString *devil = [className substringToIndex:className.length - 10];
-    // 对于普通文本来说，只需要继续下一句话就好
-    if (!self.isChoice) {
-        // 解析普通文本
-        if (self.finished <= self.plainMsgs.count) {
-            NSDictionary *dic = [self.plainMsgs objectAtIndex:self.finished - 1];
-            NSString *message = [dic objectForKey:@"message"];
-            NSUInteger index = [[dic objectForKey:@"index"] unsignedIntegerValue];
-            if (index == self.finished) {
-                self.plainMsg = [NSString stringWithFormat:@"%@",message];
-            }
-            self.previousStep = self.finished;
-            self.finished ++;
-        }
-        if ([self.plainMsg isEqualToString:@"ALL START"]) {
-            NSLog(@"游戏开始了");
-            return;
-        }
-        if ([self.plainMsg isEqualToString:@"ALL END"]) {
-            NSLog(@"游戏通关了");
-            [self.chatRoomMgr chatComplete];
-            self.coverLabel.alpha = 1;
+    switch ([self.chatMgr loadNewMessage]) {
+        case PlainChat: {
             self.choicesCollectionView.userInteractionEnabled = NO;
-            return;
-        }
-        // 章节开始,只有这个时候才记录剧情的进度,其他恶魔从这里读取数据来查看是不是自己的剧情
-        if ([self.plainMsg containsString:@"Chapter Begin"]) {
-            NSArray *array = [self.plainMsg componentsSeparatedByString:@" "]; //文本生成的数组
-            NSString *showTime = array.firstObject;
-            if (![showTime isEqualToString:devil]) {
-                self.finished --;
-                self.coverLabel.alpha = 1;
-                self.choicesCollectionView.userInteractionEnabled = NO;
-            }
-            if ([showTime isEqualToString:@"Santa"]) {
-                self.chatRoomMgr.showTime = SantaShowTime;
-            }
-            else if ([showTime isEqualToString:@"Pufu"]) {
-                self.chatRoomMgr.showTime = PufuShowTime;
-            }
-            else if ([showTime isEqualToString:@"Tiza"]) {
-                self.chatRoomMgr.showTime = TizaShowTime;
-            }
-            else if ([showTime isEqualToString:@"Chizi"]) {
-                self.chatRoomMgr.showTime = ChiziShowTime;
-            }
-            else {
-                NSLog(@"错误的章节");
-            }
-            [self.chatRoomMgr updateStep:self.finished];
-            NSLog(@"现在是 %@的剧情",showTime);
-            return;
-        }
-        // 章节结束
-        if ([self.plainMsg containsString:@"Chapter End"]) {
-            NSArray *array = [self.plainMsg componentsSeparatedByString:@" "]; //文本生成的数组
-            NSString *showTime = array.firstObject;
-            NSLog(@"现在 %@剧情结束了",showTime);
-            return;
-        }
-        // 如果文本是开始选择的消息的话，刷新玩家选项
-        if ([self.plainMsg containsString:@"Branch Begin"]) {
-            self.isChoice = YES;
-            // 判断第几个分支
-            NSArray *array = [self.plainMsg componentsSeparatedByString:@" "]; //文本生成的数组
-            NSString *branchCount = array.firstObject;
-            [self.chatRoomMgr loadChatFile:branchCount withDevil:devil];
-            self.playerMessages = self.chatRoomMgr.playerMessages;
-            self.devilMessages = self.chatRoomMgr.devilMessages;
-             // 获取玩家选项数量
-            if (self.nextStep <= self.playerMessages.count) {
-                NSDictionary *dic = [self.playerMessages objectAtIndex:self.nextStep - 1];
-                NSNumber *step = [dic objectForKey:@"step"];
-                NSUInteger myStep = [step integerValue];
-                if (myStep == self.nextStep) {
-                    self.choiceArr = [dic objectForKey:@"choice"];
-                    self.choiceCount = self.choiceArr.count;
-                }
-            }
-            [self.choicesCollectionView reloadData];
-        }
-        // 如果不是开始选择的情况，直接发送这个消息就好,添加普通文本到聊天记录里
-        else {
-            self.choicesCollectionView.userInteractionEnabled = NO;
-            BaseChatModel *model =[[BaseChatModel alloc] initWithMsg:self.plainMsg isDevil:self.isDevil isChoice:self.isChoice];
-            [self.chatMessageList addObject:model];
+            BaseChatModel *model =[[BaseChatModel alloc] initWithMsg:self.chatMgr.plainMsg isDevil:self.chatMgr.isDevil isChoice:self.chatMgr.isChoice];
+            [self.chatMgr.chatMessageList addObject:model];
             [self.chatContentTableView reloadData];
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.1 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
                 [self scrollTableToFoot:YES];
                 self.choicesCollectionView.userInteractionEnabled = YES;
             });
+            break;
         }
-    }
-    // 对于对话文本来说，在玩家选择某一句话之后，对方会有相应的回复，添加玩家选择到聊天记录里
-    else {
-        self.isDevil = NO;
-        self.choicesCollectionView.userInteractionEnabled = NO;
-        self.coverLabel.alpha = 1;
-        BaseChatModel *model =[[BaseChatModel alloc] initWithMsg:self.playerChoice isDevil:self.isDevil isChoice:self.isChoice];
-        [self.chatMessageList addObject:model];
-        [self.chatContentTableView reloadData];
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.1 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-            [self scrollTableToFoot:YES];
-        });
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.5 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{//加个延迟有种思考的感觉233
-            [self devilRespond];
-        });
+        case ChatBegin: {
+            NSLog(@"游戏开始了");
+            break;
+        }
+        
+        case ChatComplete: {
+            self.coverLabel.alpha = 1;
+            self.choicesCollectionView.userInteractionEnabled = NO;
+            NSLog(@"游戏通关了");
+            break;
+        }
+            
+        case ChapterBegin: {
+            break;
+        }
+        
+        case OtherChapterBegin: {
+            self.coverLabel.alpha = 1;
+            self.choicesCollectionView.userInteractionEnabled = NO;
+            break;
+        }
+            
+        case ChapterComplete: {
+            break;
+        }
+            
+        case BranchBegin: {
+            [self.choicesCollectionView reloadData];
+            break;
+        }
+            
+        case PlayerTime: {
+            self.choicesCollectionView.userInteractionEnabled = NO;
+            self.coverLabel.alpha = 1;
+            BaseChatModel *model =[[BaseChatModel alloc] initWithMsg:self.chatMgr.playerChoice isDevil:self.chatMgr.isDevil isChoice:self.chatMgr.isChoice];
+            [self.chatMgr.chatMessageList addObject:model];
+            [self.chatContentTableView reloadData];
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.1 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+                [self scrollTableToFoot:YES];
+            });
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.5 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{//加个延迟有种思考的感觉233
+                [self devilRespond];
+            });
+            break;
+        }
+            
+        default:
+            break;
     }
 }
 
 //恶魔的回复,仅在对话的时候使用
 - (void)devilRespond {
-    self.isDevil = YES;
-        // 获取恶魔的回复，添加恶魔的回复到聊天记录里
-    if (self.nextStep <= self.devilMessages.count) {
-        NSDictionary *dic = [self.devilMessages objectAtIndex:self.nextStep - 1];
-        NSNumber *step = [dic objectForKey:@"step"];
-        NSUInteger mystep = [step integerValue];
-        if (mystep == self.nextStep) {
-            self.devilArr = [dic objectForKey:@"choice"];
-            self.devilDic = [self.devilArr objectAtIndex:self.choiceIndex];
-            self.devilRespondContent = [self.devilDic objectForKey:@"message"];
-        }
-        self.nextStep ++;
-    }
-    BaseChatModel *model =[[BaseChatModel alloc] initWithMsg:self.devilRespondContent isDevil:self.isDevil isChoice:self.isChoice];
-    [self.chatMessageList addObject:model];
+    [self.chatMgr devilRespond];
+    BaseChatModel *model =[[BaseChatModel alloc] initWithMsg:self.chatMgr.devilRespondContent isDevil:self.chatMgr.isDevil isChoice:self.chatMgr.isChoice];
+    [self.chatMgr.chatMessageList addObject:model];
     [self.chatContentTableView reloadData];
     // 因为如果改变isChoice会影响到table加载数据，所以在加载完数据之后再改变玩家选项 给0.5s的时间应该ok。。
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.5 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-        // 如果选项分支结束了，进入普通文本模式
-        if (self.nextStep > self.devilMessages.count) {
-            self.isChoice = NO;
-            self.nextStep = 1;
-        }
-        // 如果有后续，获取下一步的选项
-        else {
-            NSDictionary *dic = [self.playerMessages objectAtIndex:self.nextStep - 1];
-            NSNumber *step = [dic objectForKey:@"step"];
-            NSUInteger myStep = [step integerValue];
-            if (myStep == self.nextStep) {
-                self.choiceArr = [dic objectForKey:@"choice"];
-                self.choiceCount = self.choiceArr.count;
-            }
+        switch ([self.chatMgr loadNextChoice]) {
+            case BranchComplete:
+                break;
+                
+            case PlayerTime:
+                break;
+    
+            default:
+                break;
         }
         [self.choicesCollectionView reloadData];
         [self scrollTableToFoot:YES];
@@ -338,21 +259,21 @@ static NSString *baseChat = @"BaseChat";
 
 //聊天记录每一个section仅包括一行
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.chatMessageList.count;
+    return self.chatMgr.chatMessageList.count;
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    if (!self.isChoice) {
+    if (!self.chatMgr.isChoice) {
         return 1;
     }
     // 如果是对话，返回玩家可选选项的个数
     else {
-        return self.choiceCount;
+        return self.chatMgr.choiceCount;
     }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    BaseChatModel *model = [self.chatMessageList objectAtIndex:indexPath.row];
+    BaseChatModel *model = [self.chatMgr.chatMessageList objectAtIndex:indexPath.row];
     BaseChatTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:baseChat forIndexPath:indexPath];
     [cell updateWithModel:model];
     return cell;
@@ -361,13 +282,13 @@ static NSString *baseChat = @"BaseChat";
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     BaseChoiceCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:choice forIndexPath:indexPath];
     // 如果是普通的文本，点击即可进入下一句
-    if (!self.isChoice) {
+    if (!self.chatMgr.isChoice) {
         cell.messageLabel.text = @"NEXT";
     }
     // 如果是对话文本，因为在获取选项个数的时候就获得了所有的选项，所以直接读取当前的step的玩家的全部可选项，展示
     else {
-        self.choiceDic = [self.choiceArr objectAtIndex:indexPath.row];
-        cell.messageLabel.text = [self.choiceDic objectForKey:@"message"];
+        self.chatMgr.choiceDic = [self.chatMgr.choiceArr objectAtIndex:indexPath.row];
+        cell.messageLabel.text = [self.chatMgr.choiceDic objectForKey:@"message"];
     }
     return cell;
 }
@@ -389,9 +310,9 @@ static NSString *baseChat = @"BaseChat";
 //玩家做出选择之后的处理
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     // 如果是对话，则需要判断玩家的选择做出响应
-    if (self.isChoice) {
-        self.playerChoice = [[self.choiceArr objectAtIndex:indexPath.row] objectForKey:@"message"];
-        self.choiceIndex = indexPath.row;
+    if (self.chatMgr.isChoice) {
+        self.chatMgr.playerChoice = [[self.chatMgr.choiceArr objectAtIndex:indexPath.row] objectForKey:@"message"];
+        self.chatMgr.choiceIndex = indexPath.row;
     }
     [self sendMessage];
     [collectionView deselectItemAtIndexPath:indexPath animated:YES];
@@ -404,26 +325,26 @@ static NSString *baseChat = @"BaseChat";
     // 只有当是最新的cell时才会计算
     if (indexPath.row == [tableView numberOfRowsInSection:0] - 1 ) {
         // 普通文本
-        if (!self.isChoice) {
-            message = self.plainMsg;
+        if (!self.chatMgr.isChoice) {
+            message = self.chatMgr.plainMsg;
         }
         else {
             // 恶魔
-            if (self.isDevil == YES) {
-                message = self.devilRespondContent;
+            if (self.chatMgr.isDevil == YES) {
+                message = self.chatMgr.devilRespondContent;
             }
             // 玩家
             else {
-                message = self.playerChoice;
+                message = self.chatMgr.playerChoice;
             }
         }
         cellRect = [message boundingRectWithSize:CGSizeMake(self.view.bounds.size.width * 0.7, MAXFLOAT) options:NSStringDrawingUsesFontLeading |NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesDeviceMetrics attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:17]} context:nil];
         NSNumber *height = [NSNumber numberWithFloat:(cellRect.size.height + kCellGap)];
-        if ([self.allCellHeight count] < self.chatMessageList.count) {//将正确的高度存入数组
-            [self.allCellHeight addObject:height];
+        if ([self.chatMgr.allCellHeight count] < self.chatMgr.chatMessageList.count) {//将正确的高度存入数组
+            [self.chatMgr.allCellHeight addObject:height];
         }
     }
-    CGFloat cellHeight = [[self.allCellHeight objectAtIndex:indexPath.row] floatValue];//每次重新加载时，除了最后的cell，高度直接从数组里获取
+    CGFloat cellHeight = [[self.chatMgr.allCellHeight objectAtIndex:indexPath.row] floatValue];//每次重新加载时，除了最后的cell，高度直接从数组里获取
     return cellHeight;
 }
 

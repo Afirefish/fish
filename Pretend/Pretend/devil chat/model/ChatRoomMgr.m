@@ -45,6 +45,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (instancetype)initWithFile {
     if (self = [super init]) {
         [self loadFromFile];
+        [self loadPlainFile];
         self.santa = [SantaMgr defaultMgr];
         self.pufu = [PufuMgr defaultMgr];
         self.chizi = [ChiziMgr defaultMgr];
@@ -198,6 +199,11 @@ NS_ASSUME_NONNULL_BEGIN
     [self.pufu reset];
     [self.chizi reset];
     [self.tiza reset];
+    self.santa = [SantaMgr defaultMgr];
+    self.pufu = [PufuMgr defaultMgr];
+    self.chizi = [ChiziMgr defaultMgr];
+    self.tiza = [TizaMgr defaultMgr];
+    self.step = self.santa.finished;
     // 当前剧情重置为1,重新写入文件
     self.step = 1;
     NSString *finish = @"NO";

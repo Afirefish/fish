@@ -13,7 +13,6 @@
 
 //说话语气很凶，但是实际是个很好的家伙，没有固定的居住地，偶尔会去chizi的宫殿呆着
 @interface SantaChatDetail ()
-@property (strong, nonatomic) SantaMgr *santaMgr;
 
 @end
 
@@ -21,34 +20,18 @@
 
 static NSString *choice = @"Choice";
 static NSString *santaChat = @"SantaChat";
-static SantaChatDetail *santaChatDetail = nil;
-
-+ (instancetype)santaChatDetail {
-    if (santaChatDetail == nil) {
-        santaChatDetail = [[SantaChatDetail alloc] init];
-    }
-    return santaChatDetail;
-}
 
 // 每次加载从上一步加载，如果上一步是没完成的选择的话，那么允许重新选择
 - (instancetype)init {
     if (self = [super init]) {
-        self.santaMgr = [SantaMgr defaultMgr];
-        self.previousStep = self.santaMgr.previousStep;
-        self.finished = self.santaMgr.previousStep;
+        self.chatMgr = [SantaMgr defaultMgr];
     }
     return self;
 }
 
-- (void)reset {
-    santaChatDetail = [[SantaChatDetail alloc] init];
-}
-
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    self.previousStep = self.santaMgr.previousStep;
-    self.finished = self.santaMgr.finished;
-    if (self.chatRoomMgr.showTime != SantaShowTime) {
+    if ([ChatRoomMgr defaultMgr].showTime != SantaShowTime) {
         self.coverLabel.alpha = 1;
         self.choicesCollectionView.userInteractionEnabled = NO;
     }
@@ -60,7 +43,7 @@ static SantaChatDetail *santaChatDetail = nil;
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    self.santaMgr.finishText = self.chatMessageList.lastObject.message;
+    self.chatMgr.finishText = self.chatMgr.chatMessageList.lastObject.message;
 }
 
 //解析json，初始化高度
@@ -81,7 +64,7 @@ static SantaChatDetail *santaChatDetail = nil;
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     BaseChatTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:santaChat forIndexPath:indexPath];
-    BaseChatModel *model = [self.chatMessageList objectAtIndex:indexPath.row];
+    BaseChatModel *model = [self.chatMgr.chatMessageList objectAtIndex:indexPath.row];
     model.devil = @"santa";
     [cell updateWithModel:model];
     return cell;
@@ -96,8 +79,6 @@ static SantaChatDetail *santaChatDetail = nil;
 //玩家做出选择之后的处理
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     [super collectionView:collectionView didSelectItemAtIndexPath:indexPath];
-    self.santaMgr.previousStep = self.previousStep;
-    self.santaMgr.finished = self.finished;
 }
 
 #pragma cards
@@ -105,7 +86,7 @@ static SantaChatDetail *santaChatDetail = nil;
 //添加卡牌
 - (void)addCards:(NSUInteger)sequence {
     NSNumber *card = [NSNumber numberWithInteger:sequence];
-    [self.santaMgr saveCardInfo:card];
+    [self.chatMgr saveCardInfo:card];
 }
 
 @end

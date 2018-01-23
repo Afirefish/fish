@@ -13,7 +13,6 @@
 
 //设定为比较残忍的人，和santa很合得来，拥有最强大的近战攻击力
 @interface ChiziChatDetail ()
-@property (strong,nonatomic) ChiziMgr *chiziMgr;
 
 @end
 
@@ -21,33 +20,17 @@
 
 static NSString *choice = @"Choice";
 static NSString *chiziChat = @"ChiziChat";
-static ChiziChatDetail *chiziChatDetail = nil;
-
-+ (instancetype)chiziChatDetail {
-    if (chiziChatDetail  == nil) {
-        chiziChatDetail = [[ChiziChatDetail alloc] init];
-    }
-    return chiziChatDetail;
-}
 
 - (instancetype)init {
     if (self = [super init]) {
-        self.chiziMgr = [ChiziMgr defaultMgr];
-        self.previousStep = self.chiziMgr.previousStep;
-        self.finished = self.chiziMgr.finished;
+        self.chatMgr = [ChiziMgr defaultMgr];
     }
     return self;
 }
 
-- (void)reset {
-    chiziChatDetail = [[ChiziChatDetail alloc] init];
-}
-
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    self.previousStep = self.chiziMgr.previousStep;
-    self.finished = self.chiziMgr.finished;
-    if (self.chatRoomMgr.showTime != ChiziShowTime) {
+    if ([ChatRoomMgr defaultMgr].showTime != ChiziShowTime) {
         self.coverLabel.alpha = 1;
         self.choicesCollectionView.userInteractionEnabled = NO;
     }
@@ -59,7 +42,7 @@ static ChiziChatDetail *chiziChatDetail = nil;
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    self.chiziMgr.finishText = self.chatMessageList.lastObject.message;
+    self.chatMgr.finishText = self.chatMgr.chatMessageList.lastObject.message;
 }
 
 //解析json，初始化高度
@@ -80,10 +63,9 @@ static ChiziChatDetail *chiziChatDetail = nil;
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     BaseChatTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:chiziChat forIndexPath:indexPath];
-    BaseChatModel *model = [self.chatMessageList objectAtIndex:indexPath.row];
+    BaseChatModel *model = [self.chatMgr.chatMessageList objectAtIndex:indexPath.row];
     model.devil = @"chizi";
     [cell updateWithModel:model];
-    self.chiziMgr.finishText = model.message;
     return cell;
 }
 
@@ -96,15 +78,13 @@ static ChiziChatDetail *chiziChatDetail = nil;
 //玩家做出选择之后的处理
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     [super collectionView:collectionView didSelectItemAtIndexPath:indexPath];
-    self.chiziMgr.previousStep = self.previousStep;
-    self.chiziMgr.finished = self.finished;
 }
 
 #pragma cards
 //添加卡牌
 - (void)addCards:(NSUInteger)sequence {
     NSNumber *card = [NSNumber numberWithInteger:sequence];
-    [self.chiziMgr saveCardInfo:card];
+    [self.chatMgr saveCardInfo:card];
 }
 
 @end

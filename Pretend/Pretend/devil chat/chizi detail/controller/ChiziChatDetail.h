@@ -11,6 +11,4 @@
 
 @interface ChiziChatDetail : BaseChatDetail
 
-+ (instancetype)chiziChatDetail;
-
 @end

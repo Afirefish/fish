@@ -13,7 +13,6 @@
 
 //排名最后的恶魔，因为实力不济经常被其他低阶恶魔挑战，同时也担任着管理魔界秩序的一些杂务
 @interface TizaChatDetail ()
-@property (strong,nonatomic) TizaMgr *tizaMgr;
 
 @end
 
@@ -21,34 +20,18 @@
 
 static NSString *choice = @"Choice";
 static NSString *tizaChat = @"TizaChat";
-static TizaChatDetail *tizaChatDetail = nil;
-
-+ (instancetype)tizaChatDetail {
-    if (tizaChatDetail  == nil) {
-        tizaChatDetail = [[TizaChatDetail alloc] init];
-    }
-    return tizaChatDetail;
-}
 
 - (instancetype)init {
     if (self = [super init]) {
-        self.tizaMgr = [TizaMgr defaultMgr];
-        self.previousStep = self.tizaMgr.previousStep;
-        self.finished = self.tizaMgr.finished;
+        self.chatMgr = [TizaMgr defaultMgr];
     }
     return self;
-}
-
-- (void)reset {
-    tizaChatDetail = [[TizaChatDetail alloc] init];
 }
 
 // 每次进入视图的时候刷新当前的剧情进度
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    self.previousStep = self.tizaMgr.previousStep;
-    self.finished = self.tizaMgr.finished;
-    if (self.chatRoomMgr.showTime != TizaShowTime) {
+    if ([ChatRoomMgr defaultMgr].showTime != TizaShowTime) {
         self.coverLabel.alpha = 1;
         self.choicesCollectionView.userInteractionEnabled = NO;
     }
@@ -60,7 +43,7 @@ static TizaChatDetail *tizaChatDetail = nil;
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    self.tizaMgr.finishText = self.chatMessageList.lastObject.message;
+    self.chatMgr.finishText = self.chatMgr.chatMessageList.lastObject.message;
 }
 
 //解析json，初始化高度
@@ -81,10 +64,9 @@ static TizaChatDetail *tizaChatDetail = nil;
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     BaseChatTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:tizaChat forIndexPath:indexPath];
-    BaseChatModel *model = [self.chatMessageList objectAtIndex:indexPath.row];
+    BaseChatModel *model = [self.chatMgr.chatMessageList objectAtIndex:indexPath.row];
     model.devil = @"tiza";
     [cell updateWithModel:model];
-    self.tizaMgr.finishText = model.message;
     return cell;
 }
 
@@ -97,15 +79,13 @@ static TizaChatDetail *tizaChatDetail = nil;
 //玩家做出选择之后的处理
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     [super collectionView:collectionView didSelectItemAtIndexPath:indexPath];
-    self.tizaMgr.previousStep = self.previousStep;
-    self.tizaMgr.finished = self.finished;
 }
 
 #pragma cards
 //添加卡牌
 - (void)addCards:(NSUInteger)sequence {
     NSNumber *card = [NSNumber numberWithInteger:sequence];
-    [self.tizaMgr saveCardInfo:card];
+    [self.chatMgr saveCardInfo:card];
 }
 
 @end

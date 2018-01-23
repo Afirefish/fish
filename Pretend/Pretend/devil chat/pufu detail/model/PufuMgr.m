@@ -10,12 +10,20 @@
 #import "PufuMgr.h"
 
 @implementation PufuMgr
+
+static PufuMgr *defaultDevilMgr = nil;
+
 + (instancetype)defaultMgr {
-    static PufuMgr *defaultDevilMgr = nil;
     if (defaultDevilMgr == nil) {
         defaultDevilMgr = [[PufuMgr alloc] init];
     }
     return defaultDevilMgr;
+}
+
+- (void)reset {
+    [super reset];
+    defaultDevilMgr = nil;
+    defaultDevilMgr = [[PufuMgr alloc] init];
 }
 
 @end

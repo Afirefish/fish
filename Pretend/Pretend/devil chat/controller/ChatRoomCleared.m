@@ -96,10 +96,6 @@
     UIAlertAction *reStartComfirmAction = [UIAlertAction actionWithTitle:@"重新开始" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         ChatRoomMgr *chatRoomMgr = [ChatRoomMgr defaultMgr];
         [chatRoomMgr reSet];
-        [[SantaChatDetail santaChatDetail] reset];
-        [[PufuChatDetail pufuChatDetail] reset];
-        [[ChiziChatDetail chiziChatDetail] reset];
-        [[TizaChatDetail tizaChatDetail] reset];
         //NSLog(@"root %@",[self.navigationController.viewControllers firstObject]);
         FirstCommunication *firstSence = [[FirstCommunication alloc] initWithFirstSence];
         [self.navigationController pushViewController:firstSence animated:YES];

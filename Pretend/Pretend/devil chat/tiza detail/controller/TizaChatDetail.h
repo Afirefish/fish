@@ -10,6 +10,5 @@
 #import "BaseChatDetail.h"
 
 @interface TizaChatDetail : BaseChatDetail
-+ (instancetype)tizaChatDetail;
 
 @end

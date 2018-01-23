@@ -11,6 +11,4 @@
 
 @interface SantaChatDetail : BaseChatDetail
 
-+ (instancetype)santaChatDetail;
-
 @end

@@ -11,4 +11,6 @@
 
 @interface SantaMgr : BaseMgr
 
++ (instancetype)defaultMgr;
+
 @end

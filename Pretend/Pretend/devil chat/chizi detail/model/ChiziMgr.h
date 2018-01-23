@@ -11,4 +11,6 @@
 
 @interface ChiziMgr : BaseMgr
 
++ (instancetype)defaultMgr;
+
 @end

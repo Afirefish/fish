@@ -9,12 +9,20 @@
 #import "TizaMgr.h"
 
 @implementation TizaMgr
+
+static TizaMgr *defaultDevilMgr = nil;
+
 + (instancetype)defaultMgr {
-    static TizaMgr *defaultDevilMgr = nil;
     if (defaultDevilMgr == nil) {
         defaultDevilMgr = [[TizaMgr alloc] init];
     }
     return defaultDevilMgr;
+}
+
+- (void)reset {
+    [super reset];
+    defaultDevilMgr = nil;
+    defaultDevilMgr = [[TizaMgr alloc] init];
 }
 
 @end
