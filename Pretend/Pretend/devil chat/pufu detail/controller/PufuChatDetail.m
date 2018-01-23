@@ -87,7 +87,7 @@ static PufuChatDetail *pufuChatDetail = nil;
         if(cell == nil){
             cell = [[PufuChatTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:pufuChat isDevil:NO message:self.plainMsg respond:nil devilName:nil];
         }
-        if (![self.plainMsg containsString:@"Begin"]) {
+        if (![self.plainMsg containsString:@"Begin"] && ![self.plainMsg containsString:@"End"]) {
             self.pufuMgr.finishText = self.plainMsg;
         }
         return cell;

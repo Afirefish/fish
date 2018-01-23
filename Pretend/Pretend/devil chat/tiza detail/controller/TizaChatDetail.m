@@ -93,7 +93,7 @@ static TizaChatDetail *tizaChatDetail = nil;
         if(cell == nil){
             cell = [[TizaChatTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:tizaChat isDevil:NO message:self.plainMsg respond:nil devilName:nil];
         }
-        if (![self.plainMsg containsString:@"Begin"]) {
+        if (![self.plainMsg containsString:@"Begin"] && ![self.plainMsg containsString:@"End"]) {
             self.tizaMgr.finishText = self.plainMsg;
         }
     }

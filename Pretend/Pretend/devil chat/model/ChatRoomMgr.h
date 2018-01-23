@@ -39,7 +39,7 @@ typedef NS_ENUM(NSInteger, DevilShowTime) {
 - (BOOL)checkComplete;
 - (void)reSet;
 
-- (void)messageJson:(NSString *)devil;
+//- (void)messageJson:(NSString *)devil;
 
 @end
 

@@ -144,21 +144,21 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 // 解析每个恶魔和玩家的json文件,旧版逻辑，将要废弃
-- (void)messageJson:(NSString *)devil {
-    NSString *player = [NSString stringWithFormat:@"playerTo%@",devil];
-    //玩家的选择的json解析
-    NSString *playerJson = [[NSBundle mainBundle] pathForResource:player ofType:@"json"];
-    NSData *playerData = [NSData dataWithContentsOfFile:playerJson];
-    NSError *error1 = nil;
-    NSDictionary *playerMessagesDic = [NSJSONSerialization JSONObjectWithData:playerData options:kNilOptions error:&error1];
-    self.playerMessages = [playerMessagesDic objectForKey:@"content"];
-    //对话的json解析
-    NSString *devilJson = [[NSBundle mainBundle] pathForResource:devil ofType:@"json"];
-    NSData *devilData = [NSData dataWithContentsOfFile:devilJson];
-    NSError *error2 = nil;
-    NSDictionary *devilDic = [NSJSONSerialization JSONObjectWithData:devilData options:kNilOptions error:&error2];
-    self.devilMessages = [devilDic objectForKey:@"content"];
-}
+//- (void)messageJson:(NSString *)devil {
+//    NSString *player = [NSString stringWithFormat:@"playerTo%@",devil];
+//    //玩家的选择的json解析
+//    NSString *playerJson = [[NSBundle mainBundle] pathForResource:player ofType:@"json"];
+//    NSData *playerData = [NSData dataWithContentsOfFile:playerJson];
+//    NSError *error1 = nil;
+//    NSDictionary *playerMessagesDic = [NSJSONSerialization JSONObjectWithData:playerData options:kNilOptions error:&error1];
+//    self.playerMessages = [playerMessagesDic objectForKey:@"content"];
+//    //对话的json解析
+//    NSString *devilJson = [[NSBundle mainBundle] pathForResource:devil ofType:@"json"];
+//    NSData *devilData = [NSData dataWithContentsOfFile:devilJson];
+//    NSError *error2 = nil;
+//    NSDictionary *devilDic = [NSJSONSerialization JSONObjectWithData:devilData options:kNilOptions error:&error2];
+//    self.devilMessages = [devilDic objectForKey:@"content"];
+//}
 
 - (void)updateStep:(NSUInteger)step {
     self.step = step;
@@ -168,19 +168,19 @@ NS_ASSUME_NONNULL_BEGIN
     self.chizi.finished = step;
     switch (self.showTime) {
         case SantaShowTime:
-            self.santa.finished = step + 1;
+            self.santa.previousStep = self.santa.finished = step + 1;
             break;
             
         case PufuShowTime:
-            self.pufu.finished = step + 1;
+            self.pufu.previousStep = self.pufu.finished = step + 1;
             break;
             
         case TizaShowTime:
-            self.tiza.finished = step + 1;
+            self.tiza.previousStep = self.tiza.finished = step + 1;
             break;
             
         case ChiziShowTime:
-            self.chizi.finished = step + 1;
+            self.chizi.previousStep = self.chizi.finished = step + 1;
             break;
             
         default:
@@ -199,7 +199,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 // 第一个游戏通关
-- (void)chatComplete{
+- (void)chatComplete {
     self.chatFinished = YES;
     [self saveAllCards];
 }

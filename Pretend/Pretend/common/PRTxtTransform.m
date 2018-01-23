@@ -104,17 +104,6 @@
             continue;
         }
         
-        // 开始结束标记
-        if ([str isEqualToString:@"ALL START"]) {
-            start = YES;
-            continue;
-        }
-        
-        if ([str isEqualToString:@"ALL END"]) {
-            end = YES;
-            continue;
-        }
-        
         // 结束分支
         if ([str containsString:@"Branch End"]) {
             // 恶魔
@@ -216,6 +205,17 @@
                                  str,@"message",
                                  nil];
             [plainArr addObject:dic];
+            
+            // 开始结束标记
+            if ([str isEqualToString:@"ALL START"]) {
+                start = YES;
+                continue;
+            }
+            
+            if ([str isEqualToString:@"ALL END"]) {
+                end = YES;
+                continue;
+            }
             
             // 新章节开始的时候，设置是属于谁的章节,对话将存储到对应的文件中
             if ([str containsString:@"Chapter Begin"]) {

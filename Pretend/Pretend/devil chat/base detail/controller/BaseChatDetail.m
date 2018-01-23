@@ -196,6 +196,14 @@ static NSString *choice = @"Choice";
             self.previousStep = self.finished;
             self.finished ++;
         }
+        if ([self.plainMsg isEqualToString:@"ALL START"]) {
+            NSLog(@"游戏开始了");
+            return;
+        }
+        if ([self.plainMsg isEqualToString:@"ALL END"]) {
+            NSLog(@"游戏通关了");
+            return;
+        }
         // 章节开始,只有这个时候才记录剧情的进度,其他恶魔从这里读取数据来查看是不是自己的剧情
         if ([self.plainMsg containsString:@"Chapter Begin"]) {
             NSArray *array = [self.plainMsg componentsSeparatedByString:@" "]; //文本生成的数组
