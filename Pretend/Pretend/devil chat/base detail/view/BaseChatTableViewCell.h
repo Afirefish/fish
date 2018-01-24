@@ -6,9 +6,10 @@
 //  Copyright © 2017年 戴曦嘉. All rights reserved.
 //
 
-//聊天的cell的基类
 #import <UIKit/UIKit.h>
 #import "BaseChatModel.h"
+
+//聊天的cell的基类
 
 @interface BaseChatTableViewCell : UITableViewCell
 

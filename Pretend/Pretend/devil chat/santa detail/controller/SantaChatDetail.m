@@ -57,11 +57,6 @@ static NSString *santaChat = @"SantaChat";
     self.tableBackgroundView.image = [UIImage imageNamed:@"santaBG"];
 }
 
-////santa恶魔通过
-//- (void)setfinished{
-//    self.finished = 100;
-//}
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     BaseChatTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:santaChat forIndexPath:indexPath];
     BaseChatModel *model = [self.chatMgr.chatMessageList objectAtIndex:indexPath.row];

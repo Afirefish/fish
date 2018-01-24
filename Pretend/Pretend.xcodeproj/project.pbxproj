@@ -46,6 +46,7 @@
 		38A13E051FE10A46002B62B4 /* ChatRoomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 38A13E041FE10A46002B62B4 /* ChatRoomCell.m */; };
 		38A13E081FE1192C002B62B4 /* BaseMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 38A13E071FE1192C002B62B4 /* BaseMgr.m */; };
 		38A17BFD2004987200088588 /* PRTxtTransform.m in Sources */ = {isa = PBXBuildFile; fileRef = 38A17BFC2004987200088588 /* PRTxtTransform.m */; };
+		38BDFB6C2018377400D1BB86 /* FeatureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38BDFB6B2018377400D1BB86 /* FeatureViewController.m */; };
 		38C76C8F1FA073CA00BCBCB9 /* tiza.json in Resources */ = {isa = PBXBuildFile; fileRef = 38C76C8D1FA073CA00BCBCB9 /* tiza.json */; };
 		38C76C901FA073CA00BCBCB9 /* playerTotiza.json in Resources */ = {isa = PBXBuildFile; fileRef = 38C76C8E1FA073CA00BCBCB9 /* playerTotiza.json */; };
 		38C76C9B1FA07BD100BCBCB9 /* DevilChatRoom.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C76C991FA07BD100BCBCB9 /* DevilChatRoom.m */; };
@@ -177,6 +178,8 @@
 		38A13E071FE1192C002B62B4 /* BaseMgr.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseMgr.m; sourceTree = "<group>"; };
 		38A17BFB2004987200088588 /* PRTxtTransform.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PRTxtTransform.h; sourceTree = "<group>"; };
 		38A17BFC2004987200088588 /* PRTxtTransform.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PRTxtTransform.m; sourceTree = "<group>"; };
+		38BDFB6A2018377400D1BB86 /* FeatureViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FeatureViewController.h; sourceTree = "<group>"; };
+		38BDFB6B2018377400D1BB86 /* FeatureViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FeatureViewController.m; sourceTree = "<group>"; };
 		38C76C8D1FA073CA00BCBCB9 /* tiza.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = tiza.json; sourceTree = "<group>"; };
 		38C76C8E1FA073CA00BCBCB9 /* playerTotiza.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = playerTotiza.json; sourceTree = "<group>"; };
 		38C76C981FA07BD100BCBCB9 /* DevilChatRoom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DevilChatRoom.h; sourceTree = "<group>"; };
@@ -725,6 +728,8 @@
 			children = (
 				3801A0541F7B5CB3006C3D18 /* PretendedViewController.h */,
 				3801A0551F7B5CB3006C3D18 /* PretendedViewController.m */,
+				38BDFB6A2018377400D1BB86 /* FeatureViewController.h */,
+				38BDFB6B2018377400D1BB86 /* FeatureViewController.m */,
 			);
 			path = "game start";
 			sourceTree = "<group>";
@@ -964,6 +969,7 @@
 				3801A01A1F7A76B0006C3D18 /* AppDelegate.m in Sources */,
 				389C5C811FB0768B00494006 /* CardSortTestCollectionViewCell.m in Sources */,
 				3801A04D1F7B4404006C3D18 /* DevilCard.m in Sources */,
+				38BDFB6C2018377400D1BB86 /* FeatureViewController.m in Sources */,
 				3801A0171F7A76B0006C3D18 /* main.m in Sources */,
 				38C76D231FAC538900BCBCB9 /* PuriHandCardAttributes.m in Sources */,
 				3801A0771F7E3BF6006C3D18 /* BaseChatTableViewCell.m in Sources */,

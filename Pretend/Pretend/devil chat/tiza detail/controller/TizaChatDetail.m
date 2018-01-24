@@ -57,11 +57,6 @@ static NSString *tizaChat = @"TizaChat";
     self.tableBackgroundView.image = [UIImage imageNamed:@"tizaBG"];
 }
 
-////tiza恶魔通过
-//- (void)setfinished:(NSUInteger)finished {
-//    self.finished = 100;
-//}
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     BaseChatTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:tizaChat forIndexPath:indexPath];
     BaseChatModel *model = [self.chatMgr.chatMessageList objectAtIndex:indexPath.row];

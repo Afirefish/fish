@@ -16,6 +16,11 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/*
+ *基本的控制器，如果实现新的章节，建议继承这个控制器来定义
+ 命名方式参考目前的几个控制器的命名 章节名+ChatDetail以及章节名+Mgr
+ */
+
 @interface BaseChatDetail : UIViewController<UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 
 /*
@@ -39,7 +44,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)setupCoverLabel;//设置选项的mask视图
 
 - (void)sendMessage;//玩家做出选择的消息
-- (void)devilRespond;//devil的回复
+- (void)devilRespond;//对方的回复
 
 @end
 

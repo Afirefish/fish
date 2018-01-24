@@ -56,11 +56,6 @@ static NSString *chiziChat = @"ChiziChat";
     self.tableBackgroundView.image = [UIImage imageNamed:@"chiziBG"];
 }
 
-////pufu恶魔通过
-//- (void)setfinished:(NSUInteger)finished {
-//    self.finished = 100;
-//}
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     BaseChatTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:chiziChat forIndexPath:indexPath];
     BaseChatModel *model = [self.chatMgr.chatMessageList objectAtIndex:indexPath.row];

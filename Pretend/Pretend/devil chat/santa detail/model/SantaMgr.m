@@ -8,7 +8,7 @@
 
 #import "SantaMgr.h"
 
-@implementation SantaMgr //读取每个恶魔的卡牌数据，和每个恶魔的剧情进行状态
+@implementation SantaMgr
 
 static SantaMgr *defaultDevilMgr = nil;
 

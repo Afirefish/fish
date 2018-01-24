@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+// 游戏通关的视图
+
 @interface ChatRoomCleared : UIViewController
 
 @end

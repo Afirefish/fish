@@ -24,7 +24,7 @@
     self.textLabel.textColor = [UIColor whiteColor];
     self.textLabel.font = [UIFont systemFontOfSize:17.0];
     
-    if (model.isDevil == YES && model.isChoice == YES) {
+    if (model.isDevil == YES && model.isChoice == YES && model.devil) {
         self.textLabel.textAlignment = NSTextAlignmentLeft;
         //修改头像大小固定为40*40
         self.imageView.image = [UIImage imageNamed:model.devil];

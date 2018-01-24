@@ -8,7 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+/*
+ *定制的一些颜色
+ */
+
 @interface UIColor (PRCustomColor)
+
 + (instancetype)warmGrayColor; // 暖灰色
 + (instancetype)warmShellColor; // 暖贝壳色
 + (instancetype)lightBlueColor; // 暖蓝色
