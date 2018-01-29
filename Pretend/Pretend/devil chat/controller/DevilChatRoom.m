@@ -74,6 +74,7 @@ NS_ASSUME_NONNULL_BEGIN
 //设置恶魔名字，图片
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.view.backgroundColor = [UIColor whiteColor];
     self.navigationItem.title = @"Devil Chat";
     //重新创建一个barButtonItem
     UIBarButtonItem *backItem = [[UIBarButtonItem alloc]initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];

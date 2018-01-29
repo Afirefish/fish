@@ -24,6 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.view.backgroundColor = [UIColor warmShellColor];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -39,7 +40,6 @@ NS_ASSUME_NONNULL_BEGIN
         UIBarButtonItem *backItem = [[UIBarButtonItem alloc]initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
         //设置backBarButtonItem即可
         self.navigationItem.backBarButtonItem = backItem;
-        self.view.backgroundColor = [UIColor warmShellColor];
         NSLog(@"height---%f,width ----%f",self.view.bounds.size.height,self.view.bounds.size.width);
         [self setupBackGroudImage];
         //标题的标签

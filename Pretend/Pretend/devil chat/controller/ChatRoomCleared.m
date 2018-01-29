@@ -26,7 +26,7 @@
     // Do any additional setup after loading the view.
     self.navigationItem.hidesBackButton = YES;
     self.tabBarController.tabBar.hidden = NO;
-    self.view.backgroundColor = [UIColor colorWithRed:255.0/255 green:250.0/255 blue:240.0/255 alpha:1.0];
+    self.view.backgroundColor = [UIColor whiteColor];
     self.navigationItem.title = @"Chat Cleared";
     [self setupSubviews];
 

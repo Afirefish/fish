@@ -36,13 +36,14 @@ static NSString *baseChat = @"BaseChat";
 //初始化聊天节点数
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.view.backgroundColor = [UIColor whiteColor];
     self.navigationController.navigationBar.tintColor = [UIColor blackColor];
     [self setupSubviews];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    [self scrollTableToFoot:YES];
+    [self scrollTableToFoot:NO];
 }
 
 #pragma mark - view

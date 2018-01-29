@@ -16,6 +16,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.view.backgroundColor = [UIColor whiteColor];
     self.navigationBar.tintColor = [UIColor blackColor];
     [self.navigationBar setTitleTextAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"Courier" size:20],NSForegroundColorAttributeName:[UIColor blackColor]}];
     self.tabBarItem.image = [[UIImage imageNamed:@"littleDevil"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];

@@ -31,6 +31,7 @@ NS_ASSUME_NONNULL_BEGIN
     [super viewDidLoad];
     self.delegate = self;
     // Do any additional setup after loading the view.
+    self.view.backgroundColor = [UIColor whiteColor];
     self.tabBar.tintColor = [UIColor blackColor];
     NSMutableArray *childViewControllers = [[NSMutableArray alloc] init];
     //NSLog(@"file path %@",[[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:@"chatRoom.txt"]);
