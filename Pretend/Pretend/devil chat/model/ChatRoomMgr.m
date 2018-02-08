@@ -11,6 +11,7 @@
 #import "PufuMgr.h"
 #import "TizaMgr.h"
 #import "ChiziMgr.h"
+#import <UIKit/UIApplication.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -51,8 +52,17 @@ NS_ASSUME_NONNULL_BEGIN
         self.chizi = [ChiziMgr defaultMgr];
         self.tiza = [TizaMgr defaultMgr];
         self.step = self.santa.finished;
+        [self addNotify];
     }
     return self;
+}
+
+#pragma mark - notify
+
+// 单例 不会释放，等app死掉的时候再死掉好了
+- (void)addNotify {
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(writeToFile) name:UIApplicationWillEnterForegroundNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(writeToFile) name:UIApplicationWillTerminateNotification object:nil];
 }
 
 #pragma mark - new way to load file

@@ -8,6 +8,8 @@
 
 #import "PRCustomSlider.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface PRCustomSlider ()
 
 @property (nonatomic, strong) UIColor *lineColor;//整条线的颜色
@@ -116,7 +118,7 @@
 }
 
 #pragma mark 触摸
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+- (void)touchesBegan:(NSSet *)touches withEvent:(nullable UIEvent *)event {
     if (!self.enabled) {
         return;
     }
@@ -124,7 +126,7 @@
     [self callbackTouchEnd:NO];
 }
 
-- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
+- (void)touchesMoved:(NSSet *)touches withEvent:(nullable UIEvent *)event {
     if (!self.enabled) {
         return;
     }
@@ -132,7 +134,7 @@
     [self callbackTouchEnd:NO];
 }
 
-- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
+- (void)touchesEnded:(NSSet *)touches withEvent:(nullable UIEvent *)event {
     if (!self.enabled) {
         return;
     }
@@ -140,7 +142,7 @@
     [self callbackTouchEnd:YES];
 }
 
-- (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event {
+- (void)touchesCancelled:(NSSet *)touches withEvent:(nullable UIEvent *)event {
     if (!self.enabled) {
         return;
     }
@@ -195,3 +197,5 @@
 }
 
 @end
+
+NS_ASSUME_NONNULL_END

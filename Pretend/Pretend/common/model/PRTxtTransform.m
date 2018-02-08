@@ -379,11 +379,11 @@
                     NSString *branchCount = array.firstObject;
                     self.devilFile = [self.devilFileDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@devil.plist",branchCount]]; //恶魔文本的文件
                     self.playerFile = [self.playerFileDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@player.plist",branchCount]]; //玩家文本的文件
-                    self.test = [self.test stringByAppendingString:[NSString stringWithFormat:@"index: %ld, message: %@\n",index,message]];
+                    self.test = [self.test stringByAppendingString:[NSString stringWithFormat:@"index: %ld, message: %@\n",(unsigned long)index,message]];
                     //NSLog(@"index: %ld, message: %@",index,message);
                 }
                 else {
-                    self.test = [self.test stringByAppendingString:[NSString stringWithFormat:@"index: %ld, message: %@\n",index,message]];
+                    self.test = [self.test stringByAppendingString:[NSString stringWithFormat:@"index: %ld, message: %@\n",(unsigned long)index,message]];
                    // NSLog(@"index: %ld, message: %@",index,message);
                 }
             }
@@ -401,12 +401,12 @@
                 NSUInteger step = [[dic objectForKey:@"step"] unsignedIntegerValue];
                 NSArray *arr = [dic objectForKey:@"choice"];
                 if (step == self.nextStep) {
-                    self.test = [self.test stringByAppendingString:[NSString stringWithFormat:@"player step %ld\n",step]];
+                    self.test = [self.test stringByAppendingString:[NSString stringWithFormat:@"player step %ld\n",(unsigned long)step]];
                     //NSLog(@"step %ld",step);
                     for (NSDictionary *dic in arr) {
                         NSString *message = [dic objectForKey:@"message"];
                         NSUInteger index = [[dic objectForKey:@"index"] unsignedIntegerValue];
-                        self.test = [self.test stringByAppendingString:[NSString stringWithFormat:@"index: %ld, message: %@\n",index,message]];
+                        self.test = [self.test stringByAppendingString:[NSString stringWithFormat:@"index: %ld, message: %@\n",(unsigned long)index,message]];
                         //NSLog(@"index: %ld, message: %@",index,message);
                     }
                 }
@@ -422,12 +422,12 @@
                 NSUInteger step = [[dic objectForKey:@"step"] unsignedIntegerValue];
                 NSArray *arr = [dic objectForKey:@"choice"];
                 if (step == self.nextStep) {
-                    self.test = [self.test stringByAppendingString:[NSString stringWithFormat:@"devil step %ld\n",step]];
+                    self.test = [self.test stringByAppendingString:[NSString stringWithFormat:@"devil step %ld\n",(unsigned long)step]];
                     //NSLog(@"step %ld",step);
                     for (NSDictionary *dic in arr) {
                         NSString *message = [dic objectForKey:@"message"];
                         NSUInteger index = [[dic objectForKey:@"index"] unsignedIntegerValue];
-                        self.test = [self.test stringByAppendingString:[NSString stringWithFormat:@"index: %ld, message: %@\n",index,message]];
+                        self.test = [self.test stringByAppendingString:[NSString stringWithFormat:@"index: %ld, message: %@\n",(unsigned long)index,message]];
                         //NSLog(@"index: %ld, message: %@",index,message);
                     }
                 }

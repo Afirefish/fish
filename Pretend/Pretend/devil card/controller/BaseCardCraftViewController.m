@@ -192,12 +192,12 @@ static NSString *tableCard = @"TableCard";
         cell.cardName.text = @"霜月";
         cell.cardName.textAlignment = NSTextAlignmentCenter;
         return cell;
-    } else if (collectionView == self.tableCardCraft) {
+    }
+    else {
         TableCardCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:tableCard forIndexPath:indexPath];
         cell.cardImage.image = [UIImage imageNamed:@"p1.png"];
         return cell;
     }
-    return nil;
 }
 
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {

@@ -9,6 +9,8 @@
 #import "PHSelectViewController.h"
 #import <Photos/Photos.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface PHSelectViewController ()<UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
 @property (nonatomic,strong) NSString *filePath;
@@ -78,3 +80,5 @@
 }
 
 @end
+
+NS_ASSUME_NONNULL_END

@@ -10,6 +10,8 @@
 #import "PRVideoViewController.h"
 #import "FeatureViewController.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 static CGFloat kRoundSize = 4.0;
 static CGFloat kControlSpaceS = 5.0;
 static CGFloat kButtonHeight = 40.0;
@@ -28,8 +30,8 @@ static inline BOOL PRIsHorizontalUI(id<UITraitEnvironment> traitEnvironment) {
 
 @property (nonatomic, assign) BOOL isOpeningAnimate;
 
-@property (nonatomic, strong) AVPlayer *player;
-@property (nonatomic, strong) AVPlayerItem *playerItem;
+@property (nonatomic, strong, nullable) AVPlayer *player;
+@property (nonatomic, strong, nullable) AVPlayerItem *playerItem;
 @property (nonatomic, strong) AVPlayerLayer *playerLayer;
 @property (nonatomic, strong) NSURL *videoURL;
 @property (nonatomic, strong) NSURL *musicURL;
@@ -300,7 +302,7 @@ static inline BOOL PRIsHorizontalUI(id<UITraitEnvironment> traitEnvironment) {
     
 }
 
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {
+- (void)observeValueForKeyPath:(nullable NSString *)keyPath ofObject:(nullable id)object change:(nullable NSDictionary<NSKeyValueChangeKey,id> *)change context:(nullable void *)context {
     if (context != &PRKVOContext) {
         // KVO isn't for us.
         [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
@@ -315,7 +317,7 @@ static inline BOOL PRIsHorizontalUI(id<UITraitEnvironment> traitEnvironment) {
         self.durationSeconds = newDurationSeconds;
         self.slider.maximumValue = newDurationSeconds;
         NSInteger wholeMinutes = (NSInteger)trunc(newDurationSeconds / 60);
-        self.duration = [NSString stringWithFormat:@"%02ld:%02ld", (long)wholeMinutes, (NSInteger)trunc(newDurationSeconds) - wholeMinutes * 60];
+        self.duration = [NSString stringWithFormat:@"%02ld:%02ld", (long)wholeMinutes, (unsigned long)trunc(newDurationSeconds) - wholeMinutes * 60];
         if (!self.currentTime) {
             self.currentTime = @"00:00";
         }
@@ -411,7 +413,10 @@ static inline BOOL PRIsHorizontalUI(id<UITraitEnvironment> traitEnvironment) {
     if([self.parentViewController isKindOfClass:[FeatureViewController class]]) {
         [(FeatureViewController *)self.parentViewController stopPlay];
         [self.player pause];
+        self.player = nil;
+        self.playerItem = nil;
         [self.link invalidate];
+        [self.playerView removeFromSuperview];
         [self willMoveToParentViewController:nil]; // 1
         [self.view removeFromSuperview]; // 2
         [self removeFromParentViewController]; // 3
@@ -474,7 +479,7 @@ static inline BOOL PRIsHorizontalUI(id<UITraitEnvironment> traitEnvironment) {
 - (void)updateCurrentTime {
     CGFloat newCurrentSeconds = CMTimeGetSeconds(self.player.currentItem.currentTime);
     NSInteger wholeMinutes = (NSInteger)trunc(newCurrentSeconds / 60);
-    self.currentTime = [NSString stringWithFormat:@"%02ld:%02ld", (long)wholeMinutes, (NSInteger)trunc(newCurrentSeconds) - wholeMinutes * 60];
+    self.currentTime = [NSString stringWithFormat:@"%02ld:%02ld", (long)wholeMinutes, (unsigned long)trunc(newCurrentSeconds) - wholeMinutes * 60];
     dispatch_async(dispatch_get_main_queue(), ^{
         self.timeLabel.text = [NSString stringWithFormat:@"%@/%@", self.currentTime, self.duration];
         if (self.durationSeconds) {
@@ -520,3 +525,5 @@ static inline BOOL PRIsHorizontalUI(id<UITraitEnvironment> traitEnvironment) {
 }
 
 @end
+
+NS_ASSUME_NONNULL_END

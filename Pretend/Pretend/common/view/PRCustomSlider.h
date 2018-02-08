@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 typedef NS_ENUM(NSInteger, PRSliderDirection){
     PRSliderDirectionHorizonal  =   0,
     PRSliderDirectionVertical   =   1
@@ -26,3 +28,5 @@ typedef NS_ENUM(NSInteger, PRSliderDirection){
 - (id)initWithFrame:(CGRect)frame direction:(PRSliderDirection)direction;
 
 @end
+
+NS_ASSUME_NONNULL_END

@@ -12,6 +12,8 @@
 #import "PRTxtTransform.h"
 #import <Masonry.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface FeatureViewController ()
 
 @property (nonatomic, strong) UIProgressView *progressView;
@@ -123,3 +125,5 @@
 }
 
 @end
+
+NS_ASSUME_NONNULL_END

@@ -8,8 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface FeatureViewController : UIViewController
 
 - (void)stopPlay;
 
 @end
+
+NS_ASSUME_NONNULL_END

@@ -10,8 +10,12 @@
 #import <AVKit/AVKit.h>
 #import <Masonry.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface PRVideoViewController : UIViewController
 
 - (instancetype)initWithOpeningAnimate:(BOOL)isOpeningAnimate;
 
 @end
+
+NS_ASSUME_NONNULL_END

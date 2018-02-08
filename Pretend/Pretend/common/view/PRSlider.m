@@ -8,6 +8,8 @@
 
 #import "PRSlider.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 static CGFloat kExpendSize = 20;
 
 @interface PRSlider () {
@@ -26,7 +28,7 @@ CGRect lastBounds;
     return result;
 }
 
-- (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event{
+- (nullable UIView *)hitTest:(CGPoint)point withEvent:(nullable UIEvent *)event{
     UIView *result = [super hitTest:point withEvent:event];
     if (point.x < 0 || point.x > self.bounds.size.width){
         return result;
@@ -45,7 +47,7 @@ CGRect lastBounds;
 }
 
 // 如果点击范围在扩展区域之内的话，返回yes
-- (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *)event{
+- (BOOL)pointInside:(CGPoint)point withEvent:(nullable UIEvent *)event{
     BOOL result = [super pointInside:point withEvent:event];
     if (!result) {
         if ((point.x >= lastBounds.origin.x - kExpendSize) &&
@@ -59,3 +61,5 @@ CGRect lastBounds;
 }
 
 @end
+
+NS_ASSUME_NONNULL_END
