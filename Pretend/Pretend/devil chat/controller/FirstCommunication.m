@@ -13,6 +13,8 @@
 #import "FirstCommunication+UI.h"
 #import "UIColor+PRCustomColor.h"
 #import "PRTxtTransform.h"
+#import "PRVideoViewController.h"
+//#import "PHSelectViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -22,13 +24,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @implementation FirstCommunication
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    self.view.backgroundColor = [UIColor warmShellColor];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
+- (instancetype)init {
+    return [self initWithFirstSence];
 }
 
 //对外部类仅提供第一个场景的初始化方法
@@ -54,8 +51,9 @@ NS_ASSUME_NONNULL_BEGIN
     return self;
 }
 
-- (instancetype)init {
-    return [self initWithFirstSence];
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    self.view.backgroundColor = [UIColor warmShellColor];
 }
 
 - (void)addAction {
@@ -78,11 +76,16 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)transform {
-    PRTxtTransform *trans = [[PRTxtTransform alloc] init];
-    [trans transNovelToMyTxt];
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [trans transTXTToPlist];
-    });
+    [self presentViewController:[[PRVideoViewController alloc] init] animated:YES completion:nil];
+
+//    PHSelectViewController *vc = [[PHSelectViewController alloc] init];
+//    [self presentViewController:vc animated:YES completion:nil];
+    
+//    PRTxtTransform *trans = [[PRTxtTransform alloc] init];
+//    [trans transNovelToMyTxt];
+//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//        [trans transTXTToPlist];
+//    });
 }
 
 //通关场景

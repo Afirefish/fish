@@ -25,6 +25,11 @@
 		3801A07D1F7F302E006C3D18 /* PufuChatDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 3801A07C1F7F302E006C3D18 /* PufuChatDetail.m */; };
 		3801A0801F7F3054006C3D18 /* ChiziChatDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 3801A07F1F7F3054006C3D18 /* ChiziChatDetail.m */; };
 		3801A0831F7F3078006C3D18 /* TizaChatDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 3801A0821F7F3078006C3D18 /* TizaChatDetail.m */; };
+		3808515C2022B54100836D03 /* PHSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3808515B2022B54100836D03 /* PHSelectViewController.m */; };
+		3832119C202ADCF800DB7B7A /* PRVideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3832119B202ADCF800DB7B7A /* PRVideoViewController.m */; };
+		3832119F202AE1D300DB7B7A /* video.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 3832119E202AE1D300DB7B7A /* video.mp4 */; };
+		383211A7202AE2F800DB7B7A /* PRSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 383211A6202AE2F800DB7B7A /* PRSlider.m */; };
+		383211AA202AE53C00DB7B7A /* PRCustomSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 383211A9202AE53C00DB7B7A /* PRCustomSlider.m */; };
 		383BA7001FD799B600B0D207 /* FirstCommunication+UI.m in Sources */ = {isa = PBXBuildFile; fileRef = 383BA6FF1FD799B600B0D207 /* FirstCommunication+UI.m */; };
 		383D7243200600AF0063FEB6 /* novel.txt in Resources */ = {isa = PBXBuildFile; fileRef = 383D7242200600AF0063FEB6 /* novel.txt */; };
 		383D72452006058E0063FEB6 /* article.txt in Resources */ = {isa = PBXBuildFile; fileRef = 383D72442006058D0063FEB6 /* article.txt */; };
@@ -142,6 +147,15 @@
 		3801A07F1F7F3054006C3D18 /* ChiziChatDetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChiziChatDetail.m; sourceTree = "<group>"; };
 		3801A0811F7F3078006C3D18 /* TizaChatDetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TizaChatDetail.h; sourceTree = "<group>"; };
 		3801A0821F7F3078006C3D18 /* TizaChatDetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TizaChatDetail.m; sourceTree = "<group>"; };
+		3808515A2022B54100836D03 /* PHSelectViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PHSelectViewController.h; sourceTree = "<group>"; };
+		3808515B2022B54100836D03 /* PHSelectViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PHSelectViewController.m; sourceTree = "<group>"; };
+		3832119A202ADCF800DB7B7A /* PRVideoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PRVideoViewController.h; sourceTree = "<group>"; };
+		3832119B202ADCF800DB7B7A /* PRVideoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PRVideoViewController.m; sourceTree = "<group>"; };
+		3832119E202AE1D300DB7B7A /* video.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = video.mp4; sourceTree = "<group>"; };
+		383211A5202AE2F800DB7B7A /* PRSlider.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PRSlider.h; sourceTree = "<group>"; };
+		383211A6202AE2F800DB7B7A /* PRSlider.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PRSlider.m; sourceTree = "<group>"; };
+		383211A8202AE53C00DB7B7A /* PRCustomSlider.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PRCustomSlider.h; sourceTree = "<group>"; };
+		383211A9202AE53C00DB7B7A /* PRCustomSlider.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PRCustomSlider.m; sourceTree = "<group>"; };
 		383BA6FE1FD799B600B0D207 /* FirstCommunication+UI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FirstCommunication+UI.h"; sourceTree = "<group>"; };
 		383BA6FF1FD799B600B0D207 /* FirstCommunication+UI.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "FirstCommunication+UI.m"; sourceTree = "<group>"; };
 		383D7242200600AF0063FEB6 /* novel.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = novel.txt; sourceTree = "<group>"; };
@@ -352,6 +366,54 @@
 				3801A03C1F7A76B0006C3D18 /* Info.plist */,
 			);
 			path = PretendUITests;
+			sourceTree = "<group>";
+		};
+		383211A0202AE29200DB7B7A /* view */ = {
+			isa = PBXGroup;
+			children = (
+				383211A5202AE2F800DB7B7A /* PRSlider.h */,
+				383211A6202AE2F800DB7B7A /* PRSlider.m */,
+				383211A8202AE53C00DB7B7A /* PRCustomSlider.h */,
+				383211A9202AE53C00DB7B7A /* PRCustomSlider.m */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		383211A2202AE2A500DB7B7A /* controller */ = {
+			isa = PBXGroup;
+			children = (
+				3808515A2022B54100836D03 /* PHSelectViewController.h */,
+				3808515B2022B54100836D03 /* PHSelectViewController.m */,
+				3832119A202ADCF800DB7B7A /* PRVideoViewController.h */,
+				3832119B202ADCF800DB7B7A /* PRVideoViewController.m */,
+			);
+			path = controller;
+			sourceTree = "<group>";
+		};
+		383211A3202AE2B200DB7B7A /* model */ = {
+			isa = PBXGroup;
+			children = (
+				387BA632201606C700B7A15B /* NSObject+BJLObserving.h */,
+				387BA631201606C600B7A15B /* NSObject+BJLObserving.m */,
+				387BA630201606C600B7A15B /* NSObject+BJLWillDeallocBlock.h */,
+				387BA633201606C700B7A15B /* NSObject+BJLWillDeallocBlock.m */,
+				38A13E001FE0D1C8002B62B4 /* UIColor+PRCustomColor.h */,
+				38A13E011FE0D1C8002B62B4 /* UIColor+PRCustomColor.m */,
+				38A17BFB2004987200088588 /* PRTxtTransform.h */,
+				38A17BFC2004987200088588 /* PRTxtTransform.m */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		383211A4202AE2D500DB7B7A /* resource */ = {
+			isa = PBXGroup;
+			children = (
+				3832119E202AE1D300DB7B7A /* video.mp4 */,
+				383D72442006058D0063FEB6 /* article.txt */,
+				383D7242200600AF0063FEB6 /* novel.txt */,
+				38F7C2D7200374E10085B0BA /* test.txt */,
+			);
+			path = resource;
 			sourceTree = "<group>";
 		};
 		38E240251FECB6D000896939 /* controller */ = {
@@ -708,17 +770,10 @@
 		38E2404B1FECBD4000896939 /* common */ = {
 			isa = PBXGroup;
 			children = (
-				387BA632201606C700B7A15B /* NSObject+BJLObserving.h */,
-				387BA631201606C600B7A15B /* NSObject+BJLObserving.m */,
-				387BA630201606C600B7A15B /* NSObject+BJLWillDeallocBlock.h */,
-				387BA633201606C700B7A15B /* NSObject+BJLWillDeallocBlock.m */,
-				38A13E001FE0D1C8002B62B4 /* UIColor+PRCustomColor.h */,
-				38A13E011FE0D1C8002B62B4 /* UIColor+PRCustomColor.m */,
-				38A17BFB2004987200088588 /* PRTxtTransform.h */,
-				38A17BFC2004987200088588 /* PRTxtTransform.m */,
-				383D72442006058D0063FEB6 /* article.txt */,
-				383D7242200600AF0063FEB6 /* novel.txt */,
-				38F7C2D7200374E10085B0BA /* test.txt */,
+				383211A4202AE2D500DB7B7A /* resource */,
+				383211A3202AE2B200DB7B7A /* model */,
+				383211A2202AE2A500DB7B7A /* controller */,
+				383211A0202AE29200DB7B7A /* view */,
 			);
 			path = common;
 			sourceTree = "<group>";
@@ -854,6 +909,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3801A0251F7A76B0006C3D18 /* LaunchScreen.storyboard in Resources */,
+				3832119F202AE1D300DB7B7A /* video.mp4 in Resources */,
 				3876A7F11F8DD4A7008A20C9 /* playerTochizi.json in Resources */,
 				3801A0221F7A76B0006C3D18 /* Assets.xcassets in Resources */,
 				38CEAA701F8BA0E800BC72EC /* playerTosanta.json in Resources */,
@@ -942,6 +998,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3808515C2022B54100836D03 /* PHSelectViewController.m in Sources */,
+				383211AA202AE53C00DB7B7A /* PRCustomSlider.m in Sources */,
 				38C76D201FAB74B700BCBCB9 /* PuriLayout.m in Sources */,
 				387BA635201606C700B7A15B /* NSObject+BJLWillDeallocBlock.m in Sources */,
 				38A17BFD2004987200088588 /* PRTxtTransform.m in Sources */,
@@ -975,6 +1033,7 @@
 				3801A0771F7E3BF6006C3D18 /* BaseChatTableViewCell.m in Sources */,
 				38C76CEB1FA867D600BCBCB9 /* BaseCardCraftViewController.m in Sources */,
 				389C5C7E1FB057CB00494006 /* CardSortTestViewController.m in Sources */,
+				3832119C202ADCF800DB7B7A /* PRVideoViewController.m in Sources */,
 				38C76CA61FA1901700BCBCB9 /* SantaMgr.m in Sources */,
 				38C76D021FA977FB00BCBCB9 /* TruthMgr.m in Sources */,
 				383BA7001FD799B600B0D207 /* FirstCommunication+UI.m in Sources */,
@@ -982,6 +1041,7 @@
 				38C76D0B1FAAAE2300BCBCB9 /* CardSortViewController.m in Sources */,
 				3801A0831F7F3078006C3D18 /* TizaChatDetail.m in Sources */,
 				389C5C781FAEE89400494006 /* PuriHandCardCell.m in Sources */,
+				383211A7202AE2F800DB7B7A /* PRSlider.m in Sources */,
 				3801A0801F7F3054006C3D18 /* ChiziChatDetail.m in Sources */,
 				38C76CBA1FA1B2B800BCBCB9 /* DevilCardInfo.m in Sources */,
 				38C76CD91FA7561A00BCBCB9 /* DCNavigationController.m in Sources */,
