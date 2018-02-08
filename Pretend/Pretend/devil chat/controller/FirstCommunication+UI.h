@@ -10,10 +10,6 @@
 
 @interface FirstCommunication (UI)
 
-- (void)setupStartLabel;
-- (void)setupStartTipLabel;
-- (void)setupSkipButton;
-- (void)setupBackGroudImage;
-- (void)setupTransButton;
+- (void)setupSubview;
 
 @end

@@ -7,7 +7,6 @@
 //
 
 #import "AppDelegate.h"
-#import "PretendedViewController.h"
 #import "FeatureViewController.h"
 #import "ChatRoomMgr.h"
 
@@ -20,19 +19,10 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    [NSThread sleepForTimeInterval:0.3];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.backgroundColor = [UIColor whiteColor];
-    NSString *bundleVersionKey = (NSString *)kCFBundleVersionKey;
-    NSString *bundleVersion = [NSBundle mainBundle].infoDictionary[bundleVersionKey];
-    NSString *saveVersion = [[NSUserDefaults standardUserDefaults] objectForKey:bundleVersionKey];
-    if ([bundleVersion isEqualToString:saveVersion]) {
-        self.window.rootViewController = [[PretendedViewController alloc] init];
-    }
-    else {
-        [[NSUserDefaults  standardUserDefaults] setObject:bundleVersion forKey:bundleVersionKey];
-        [[NSUserDefaults  standardUserDefaults] synchronize];
-        self.window.rootViewController = [[FeatureViewController alloc] init];
-    }
+    self.window.rootViewController = [[FeatureViewController alloc] init];
     [self.window makeKeyAndVisible];
     return YES;
 }

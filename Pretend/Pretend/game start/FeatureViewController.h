@@ -10,4 +10,6 @@
 
 @interface FeatureViewController : UIViewController
 
+- (void)stopPlay;
+
 @end

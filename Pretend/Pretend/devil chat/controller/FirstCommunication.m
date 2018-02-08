@@ -38,14 +38,7 @@ NS_ASSUME_NONNULL_BEGIN
         //设置backBarButtonItem即可
         self.navigationItem.backBarButtonItem = backItem;
         NSLog(@"height---%f,width ----%f",self.view.bounds.size.height,self.view.bounds.size.width);
-        [self setupBackGroudImage];
-        //标题的标签
-        [self setupStartLabel];
-        //开始的提示。。
-        [self setupStartTipLabel];
-        //跳过。。测试用
-        [self setupSkipButton];
-        [self setupTransButton];
+        [self setupSubview];
         [self addAction];
     }
     return self;
@@ -58,7 +51,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)addAction {
     [self.skipButton addTarget:self action:@selector(skipToEnd) forControlEvents:UIControlEventTouchUpInside];
-    [self.transButton addTarget:self action:@selector(transform) forControlEvents:UIControlEventTouchUpInside];
+    [self.animateButton addTarget:self action:@selector(showOpeningAnimate) forControlEvents:UIControlEventTouchUpInside];
 }
 
 //懒人专用，跳过剧情
@@ -75,7 +68,7 @@ NS_ASSUME_NONNULL_BEGIN
     [self presentViewController:skipAlert animated:YES completion:nil];
 }
 
-- (void)transform {
+- (void)showOpeningAnimate {
     [self presentViewController:[[PRVideoViewController alloc] init] animated:YES completion:nil];
 
 //    PHSelectViewController *vc = [[PHSelectViewController alloc] init];

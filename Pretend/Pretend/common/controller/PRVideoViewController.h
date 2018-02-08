@@ -12,4 +12,6 @@
 
 @interface PRVideoViewController : UIViewController
 
+- (instancetype)initWithOpeningAnimate:(BOOL)isOpeningAnimate;
+
 @end

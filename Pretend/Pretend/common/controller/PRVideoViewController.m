@@ -8,6 +8,7 @@
 
 #import "PRSlider.h"
 #import "PRVideoViewController.h"
+#import "FeatureViewController.h"
 
 static CGFloat kRoundSize = 4.0;
 static CGFloat kControlSpaceS = 5.0;
@@ -25,6 +26,8 @@ static inline BOOL PRIsHorizontalUI(id<UITraitEnvironment> traitEnvironment) {
 
 @interface PRVideoViewController ()
 
+@property (nonatomic, assign) BOOL isOpeningAnimate;
+
 @property (nonatomic, strong) AVPlayer *player;
 @property (nonatomic, strong) AVPlayerItem *playerItem;
 @property (nonatomic, strong) AVPlayerLayer *playerLayer;
@@ -33,6 +36,7 @@ static inline BOOL PRIsHorizontalUI(id<UITraitEnvironment> traitEnvironment) {
 
 @property (nonatomic, strong) UIView *playControlsView;
 @property (nonatomic, strong) UIView *playerView;
+@property (nonatomic, strong) UIButton *exitBtn;
 @property (nonatomic, strong) UIButton *playBtn;
 @property (nonatomic, strong) UIProgressView *playProgress;
 @property (nonatomic, strong) PRSlider *slider;
@@ -44,6 +48,7 @@ static inline BOOL PRIsHorizontalUI(id<UITraitEnvironment> traitEnvironment) {
 @property (nonatomic, strong) NSString *duration;
 @property (nonatomic, assign) BOOL isPlay;
 @property (nonatomic, assign) BOOL isFull;
+@property (nonatomic, assign) BOOL isHide;
 @property (nonatomic, assign) BOOL isPlayWhenEnterBackgroud;
 
 @property (nonatomic, strong) CADisplayLink *link;
@@ -52,17 +57,32 @@ static inline BOOL PRIsHorizontalUI(id<UITraitEnvironment> traitEnvironment) {
 
 @implementation PRVideoViewController
 
+- (instancetype)initWithOpeningAnimate:(BOOL)isOpeningAnimate {
+    if (self = [super init]) {
+        self.isOpeningAnimate = isOpeningAnimate;
+    }
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setupView];
     [self setupPlayer];
-    [self addNotifiy];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    if (!self.isOpeningAnimate) {
+        [self removeNotify];
+        [self removeAllObserver];
+    }
+    [super viewWillDisappear:animated];
 }
 
 #pragma mark - subviews
 
 - (void)setupView {
     self.view.backgroundColor = [UIColor whiteColor];
+    CGFloat statusBarHeight = MAX(20.0, CGRectGetHeight([UIApplication sharedApplication].statusBarFrame));
 
     // 播放控件视图
     self.playControlsView = [[UIView alloc] init];
@@ -81,8 +101,28 @@ static inline BOOL PRIsHorizontalUI(id<UITraitEnvironment> traitEnvironment) {
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     [self.playerView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.equalTo(self.playControlsView);
-        make.top.equalTo(self.playControlsView);
+        make.top.equalTo(self.playControlsView).offset(statusBarHeight);
         make.height.equalTo(@(screenWidth));
+    }];
+    
+    // 退出按钮
+    self.exitBtn = ({
+        UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
+        button.backgroundColor = [UIColor blackColor];
+        button.layer.cornerRadius = kRoundSize;
+        button.clipsToBounds = YES;
+        button.titleLabel.adjustsFontSizeToFitWidth = YES;
+        button.titleLabel.font = [UIFont systemFontOfSize:16.0];
+        [button setTitle:@"X" forState:UIControlStateNormal];
+        [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        button;
+    });
+    [self.playControlsView addSubview:self.exitBtn];
+    [self.exitBtn addTarget:self action:@selector(exit) forControlEvents:UIControlEventTouchUpInside];
+    [self.exitBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(self.playerView).offset(- kControlSpaceS);
+        make.top.equalTo(self.playerView).offset(kControlSpaceS);
+        make.width.height.equalTo(@(kButtonHeight));
     }];
     
     // 播放暂停按钮
@@ -151,14 +191,14 @@ static inline BOOL PRIsHorizontalUI(id<UITraitEnvironment> traitEnvironment) {
     // 播放进度条
     self.playProgress = ({
         UIProgressView *progressView = [[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleBar];
-        progressView.backgroundColor = [UIColor blackColor];
-        progressView.progressTintColor = [UIColor whiteColor];
-        progressView.trackTintColor = [UIColor blackColor];
+        progressView.backgroundColor = [UIColor clearColor];
+        progressView.progressTintColor = [UIColor blackColor];
+        progressView.trackTintColor = [UIColor grayColor];
         progressView;
     });
     [self.playControlsView addSubview:self.playProgress];
     [self.playProgress mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.playBtn.mas_right).offset(kControlSpaceS);
+        make.left.equalTo(self.playBtn.mas_right).offset(kControlSpaceS * 2.0);
         make.right.equalTo(self.timeLabel.mas_left).offset(- kControlSpaceS);
         make.top.equalTo(self.fullScreenBtn);
         make.height.equalTo(@(2.0));
@@ -167,9 +207,9 @@ static inline BOOL PRIsHorizontalUI(id<UITraitEnvironment> traitEnvironment) {
     // 播放进度滑块
     self.slider = ({
         PRSlider *slider = [[PRSlider alloc] init];
-        slider.backgroundColor = [UIColor whiteColor];
-        slider.minimumTrackTintColor = [UIColor whiteColor];
-        slider.maximumTrackTintColor = [UIColor blackColor];
+        slider.backgroundColor = [UIColor clearColor];
+        slider.minimumTrackTintColor = [UIColor blackColor];
+        slider.maximumTrackTintColor = [UIColor grayColor];
         slider.continuous = YES;
         slider;
     });
@@ -179,9 +219,21 @@ static inline BOOL PRIsHorizontalUI(id<UITraitEnvironment> traitEnvironment) {
         make.left.right.height.equalTo(self.playProgress);
         make.top.equalTo(self.playProgress.mas_bottom).offset(kControlSpaceS);
     }];
+    
+    self.isHide = NO;
+    if (self.isOpeningAnimate) {
+        self.playBtn.hidden = YES;
+        self.exitBtn.hidden = YES;
+        self.fullScreenBtn.hidden = YES;
+        self.timeLabel.hidden = YES;
+        self.playProgress.hidden = YES;
+        self.slider.hidden = YES;
+    }
 }
 
+// 每次调用update会改变全屏的状态
 - (void)updateViewWithFullScreen:(BOOL)isFull {
+    CGFloat statusBarHeight = MAX(20.0, CGRectGetHeight([UIApplication sharedApplication].statusBarFrame));
     // 旋转之后的界面如果是竖直的，就设置为全屏
     if (isFull) {
         self.isFull = YES;
@@ -197,15 +249,27 @@ static inline BOOL PRIsHorizontalUI(id<UITraitEnvironment> traitEnvironment) {
         [self.playerView mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.edges.equalTo(self.playControlsView);
         }];
+        if (!self.isOpeningAnimate) {
+            UITapGestureRecognizer *gesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideControls)];
+            [self.view addGestureRecognizer:gesture];
+        }
     }
     else {
         CGFloat width = [UIScreen mainScreen].bounds.size.width;
         self.playerLayer.frame = CGRectMake(0, 0, width, width);
         [self.playerView mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.left.right.equalTo(self.playControlsView);
-            make.top.equalTo(self.playControlsView);
+            make.top.equalTo(self.playControlsView).offset(statusBarHeight);
             make.height.equalTo(@(width));
         }];
+        if (!self.isOpeningAnimate) {
+            for (UIGestureRecognizer *gesture in self.view.gestureRecognizers.copy) {
+                if ([gesture isKindOfClass:[UITapGestureRecognizer class]]) {
+                    [self.view removeGestureRecognizer:gesture];
+                }
+            }
+            [self showAllControls];
+        }
     }
 }
 
@@ -260,26 +324,51 @@ static inline BOOL PRIsHorizontalUI(id<UITraitEnvironment> traitEnvironment) {
         });
     }
     //系统的播放器的当前时间不支持kvo
-    //    else if ([keyPath isEqualToString:@"player.currentItem.currentTime"]) {
-    //        NSValue *newCurrentAsValue = change[NSKeyValueChangeNewKey];
-    //        CMTime newCurrent = [newCurrentAsValue isKindOfClass:[NSValue class]] ? newCurrentAsValue.CMTimeValue : kCMTimeZero;
-    //        BOOL hasValidDuration = CMTIME_IS_NUMERIC(newCurrent) && newCurrent.value != 0;
-    //        CGFloat newCurrentSeconds = hasValidDuration ? CMTimeGetSeconds(newCurrent) : 0.0;
-    //        NSInteger wholeMinutes = (NSInteger)trunc(newCurrentSeconds / 60);
-    //        self.currentTime = [NSString stringWithFormat:@"%02ld:%02ld", (long)wholeMinutes, (NSInteger)trunc(newCurrentSeconds) - wholeMinutes * 60];
-    //        dispatch_async(dispatch_get_main_queue(), ^{
-    //            if (self.duration) {
-    //                self.timeLabel.text = [NSString stringWithFormat:@"%@/%@", self.currentTime, self.duration];
-    //            }
-    //        });
-    //    }
     else {
         [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
     }
 }
 
 - (void)removeAllObserver {
-    [self removeObserver:self forKeyPath:@"playerItem.status" context:&PRKVOContext];
+    [self removeObserver:self forKeyPath:@"player.currentItem.duration" context:&PRKVOContext];
+}
+
+#pragma mark - Notification
+
+- (void)addNotify {
+    if (self.isOpeningAnimate) {
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playDidStop) name:AVPlayerItemDidPlayToEndTimeNotification object:nil];
+    }
+    else {
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pauseWhenEnterBackground) name:UIApplicationDidEnterBackgroundNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(resumeWhenEnterForegrund) name:UIApplicationWillEnterForegroundNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateViewConstraints) name:UIDeviceOrientationDidChangeNotification object:nil];
+    }
+}
+
+- (void)removeNotify {
+    if (self.isOpeningAnimate) {
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:AVPlayerItemDidPlayToEndTimeNotification object:nil];
+    }
+    else {
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationDidEnterBackgroundNotification object:nil];
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationWillEnterForegroundNotification object:nil];
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:UIDeviceOrientationDidChangeNotification object:nil];
+    }
+}
+
+- (void)pauseWhenEnterBackground {
+    self.isPlayWhenEnterBackgroud = self.isPlay;
+    if (self.isPlay) {
+        [self.player pause];
+    }
+}
+
+- (void)resumeWhenEnterForegrund {
+    self.isPlay = self.isPlayWhenEnterBackgroud;
+    if (self.isPlay) {
+        [self.player play];
+    }
 }
 
 #pragma mark - player
@@ -293,7 +382,15 @@ static inline BOOL PRIsHorizontalUI(id<UITraitEnvironment> traitEnvironment) {
     self.playerLayer = [AVPlayerLayer playerLayerWithPlayer:self.player];
     self.playerLayer.frame = CGRectMake(0, 0, width, width);
     [self.playerView.layer addSublayer:self.playerLayer];
-    [self addAllObserver];
+    [self addNotify];
+    if (self.isOpeningAnimate) {
+        [self playVideo];
+        UITapGestureRecognizer *gesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(playDidStop)];
+        [self.view addGestureRecognizer:gesture];
+    }
+    else {
+        [self addAllObserver];
+    }
 }
 
 // 播放视频
@@ -308,6 +405,56 @@ static inline BOOL PRIsHorizontalUI(id<UITraitEnvironment> traitEnvironment) {
         self.isPlay = YES;
         [self.playBtn setTitle:@"PAUSE" forState:UIControlStateNormal];
     }
+}
+
+- (void)playDidStop {
+    if([self.parentViewController isKindOfClass:[FeatureViewController class]]) {
+        [(FeatureViewController *)self.parentViewController stopPlay];
+        [self.player pause];
+        [self.link invalidate];
+        [self willMoveToParentViewController:nil]; // 1
+        [self.view removeFromSuperview]; // 2
+        [self removeFromParentViewController]; // 3
+    }
+}
+
+- (void)hideControls {
+    self.isHide = !self.isHide;
+    if (self.isHide) {
+        self.playBtn.hidden = YES;
+        self.exitBtn.hidden = YES;
+        self.fullScreenBtn.hidden = YES;
+        self.timeLabel.hidden = YES;
+        self.playProgress.hidden = YES;
+        self.slider.hidden = YES;
+    }
+    else {
+        self.playBtn.hidden = NO;
+        self.exitBtn.hidden = NO;
+        self.fullScreenBtn.hidden = NO;
+        self.timeLabel.hidden = NO;
+        self.playProgress.hidden = NO;
+        self.slider.hidden = NO;
+    }
+}
+
+- (void)showAllControls {
+    self.isHide = NO;
+    self.playBtn.hidden = NO;
+    self.exitBtn.hidden = NO;
+    self.fullScreenBtn.hidden = NO;
+    self.timeLabel.hidden = NO;
+    self.playProgress.hidden = NO;
+    self.slider.hidden = NO;
+}
+
+- (void)exit {
+    self.player = nil;
+    self.playerItem = nil;
+    [self.player pause];
+    [self.link invalidate];
+    [self.playerView removeFromSuperview];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 // 跳转到某个时间点
@@ -354,28 +501,6 @@ static inline BOOL PRIsHorizontalUI(id<UITraitEnvironment> traitEnvironment) {
     BOOL isHorizontal = PRIsHorizontalUI(self);
     [self updateViewWithFullScreen:isHorizontal];
     [super updateViewConstraints];
-}
-
-#pragma mark - Notification
-
-- (void)addNotifiy {
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pauseWhenEnterBackground) name:UIApplicationDidEnterBackgroundNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(resumeWhenEnterForegrund) name:UIApplicationWillEnterForegroundNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateViewConstraints) name:UIDeviceOrientationDidChangeNotification object:nil];
-}
-
-- (void)pauseWhenEnterBackground {
-    self.isPlayWhenEnterBackgroud = self.isPlay;
-    if (self.isPlay) {
-        [self.player pause];
-    }
-}
-
-- (void)resumeWhenEnterForegrund {
-    self.isPlay = self.isPlayWhenEnterBackgroud;
-    if (self.isPlay) {
-        [self.player play];
-    }
 }
 
 #pragma mark - status bar

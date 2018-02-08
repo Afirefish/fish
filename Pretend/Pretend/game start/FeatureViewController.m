@@ -8,11 +8,13 @@
 
 #import "FeatureViewController.h"
 #import "PretendedViewController.h"
+#import "PRVideoViewController.h"
 #import "PRTxtTransform.h"
 #import <Masonry.h>
 
 @interface FeatureViewController ()
-@property (nonatomic, strong)UIProgressView *progressView;
+
+@property (nonatomic, strong) UIProgressView *progressView;
 
 @end
 
@@ -21,10 +23,24 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
-    [self setupViews];
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self transform];
-    });
+    NSString *bundleVersionKey = (NSString *)kCFBundleVersionKey;
+    NSString *bundleVersion = [NSBundle mainBundle].infoDictionary[bundleVersionKey];
+    NSString *saveVersion = [[NSUserDefaults standardUserDefaults] objectForKey:bundleVersionKey];
+    if ([bundleVersion isEqualToString:saveVersion]) {
+        // 直接播放开场动画
+        PRVideoViewController *videoVC = [[PRVideoViewController alloc] initWithOpeningAnimate:YES];
+        [self addChildViewController:videoVC]; // 1
+        [self.view addSubview:videoVC.view]; // 2
+        [videoVC didMoveToParentViewController:self]; // 3
+    }
+    else {
+        [[NSUserDefaults  standardUserDefaults] setObject:bundleVersion forKey:bundleVersionKey];
+        [[NSUserDefaults  standardUserDefaults] synchronize];
+        [self setupViews];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self transform];
+        });
+    }
 }
 
 - (void)setupViews {
@@ -55,14 +71,17 @@
         make.height.equalTo(@30.0);
     }];
     self.progressView = ({
-        UIProgressView *progressView = [[UIProgressView alloc] init];
+        UIProgressView *progressView = [[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleBar];
+        progressView.backgroundColor = [UIColor grayColor];
+        progressView.progressTintColor = [UIColor blackColor];
+        progressView.trackTintColor = [UIColor grayColor];
         progressView;
     });
     [self.view addSubview:self.progressView];
     [self.progressView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.equalTo(self.view);
         make.bottom.equalTo(self.view).offset(-60.0);
-        make.height.equalTo(@40.0);
+        make.height.equalTo(@10.0);
     }];
 }
 
@@ -74,9 +93,33 @@
         [trans transTXTToPlist];
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             self.progressView.progress = 1.0;
-            [self presentViewController:[[PretendedViewController alloc] init] animated:YES completion:nil];
+            PRVideoViewController *videoVC = [[PRVideoViewController alloc] initWithOpeningAnimate:YES];
+            [self addChildViewController:videoVC]; // 1
+            [self.view addSubview:videoVC.view]; // 2
+            [videoVC didMoveToParentViewController:self]; // 3
         });
     });
+}
+
+- (void)stopPlay {
+    PretendedViewController *rootVC = [[PretendedViewController alloc] init];
+    [self presentViewController:rootVC animated:YES completion:^{
+        [self removeFromParentViewController];
+    }];
+}
+
+#pragma mark - rotate control
+
+- (BOOL)shouldAutorotate {
+    return YES;
+}
+
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations {
+    return UIInterfaceOrientationMaskLandscape;
+}
+
+- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation {
+    return UIInterfaceOrientationLandscapeLeft;
 }
 
 @end

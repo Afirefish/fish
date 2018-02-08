@@ -16,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface FirstCommunication : UIViewController
 
 @property (nonatomic, strong) UIButton *skipButton;
-@property (nonatomic, strong) UIButton *transButton;
+@property (nonatomic, strong) UIButton *animateButton;
 @property (nonatomic, strong) UIImageView *backgroudImageView;
 - (instancetype)initWithFirstSence;
 

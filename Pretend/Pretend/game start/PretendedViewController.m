@@ -27,6 +27,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @implementation PretendedViewController
 
+- (void)viewWillAppear:(BOOL)animated {
+    [[UIDevice currentDevice] setValue:@(UIDeviceOrientationPortrait) forKey:@"orientation"];
+    [super viewWillAppear:animated];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.delegate = self;
