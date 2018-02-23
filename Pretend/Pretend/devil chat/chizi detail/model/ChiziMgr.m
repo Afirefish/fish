@@ -9,12 +9,20 @@
 #import "ChiziMgr.h"
 
 @implementation ChiziMgr
+
+static ChiziMgr *defaultDevilMgr = nil;
+
 + (instancetype)defaultMgr {
-    static ChiziMgr *defaultDevilMgr = nil;
     if (defaultDevilMgr == nil) {
         defaultDevilMgr = [[ChiziMgr alloc] init];
     }
     return defaultDevilMgr;
+}
+
+- (void)reset {
+    [super reset];
+    defaultDevilMgr = nil;
+    defaultDevilMgr = [[ChiziMgr alloc] init];
 }
 
 @end

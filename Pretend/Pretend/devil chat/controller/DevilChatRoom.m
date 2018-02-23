@@ -19,6 +19,7 @@
 #import "TizaChatDetail.h"
 #import "ChatRoomCleared.h"
 #import "UIColor+PRCustomColor.h"
+#import "PRBGMPlayer.h"
 #import <Masonry.h>
 
 NSString *devilMaster = @"devilMaster";
@@ -52,7 +53,7 @@ NS_ASSUME_NONNULL_BEGIN
                              [UIImage imageNamed:@"pufu.png"],
                              [UIImage imageNamed:@"chizi.png"],
                              [UIImage imageNamed:@"tiza.png"]];
-        self.backgroundImage = @[[UIImage imageNamed:@"startDesert"],
+        self.backgroundImage = @[[UIImage imageNamed:@"santaDesert"],
                                  [UIImage imageNamed:@"pufuCastle"],
                                  [UIImage imageNamed:@"chiziCastle"],
                                  [UIImage imageNamed:@"tizaCastle"]];
@@ -66,9 +67,16 @@ NS_ASSUME_NONNULL_BEGIN
     [self.tableView reloadData];
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self checkFinished];
+    [self playBGM];
+}
+
 //设置恶魔名字，图片
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.view.backgroundColor = [UIColor whiteColor];
     self.navigationItem.title = @"Devil Chat";
     //重新创建一个barButtonItem
     UIBarButtonItem *backItem = [[UIBarButtonItem alloc]initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
@@ -76,7 +84,6 @@ NS_ASSUME_NONNULL_BEGIN
     self.navigationItem.backBarButtonItem = backItem;
     [self setupTableView];
     [self setupSaveBtn];
-    [self checkFinished];
 }
 
 - (void)setupTableView {
@@ -107,10 +114,17 @@ NS_ASSUME_NONNULL_BEGIN
     [self presentViewController:confirm animated:YES completion:nil];
 }
 
+- (void)playBGM {
+    PRBGMPlayer *bgmPlayer = [PRBGMPlayer defaultPlayer];
+    [bgmPlayer playWithFileURL:[[NSBundle mainBundle] URLForResource:@"ChatRoom" withExtension:@"mp3"]];
+}
+
 //检查完成状态
 - (void)checkFinished {
     if ([self.chatRoomMgr checkComplete]) {
-        [self complete];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self complete];
+        });
     }
 }
 
@@ -159,13 +173,13 @@ NS_ASSUME_NONNULL_BEGIN
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     BaseChatDetail *chatDetail = nil;
     if (indexPath.row == 0) {
-        chatDetail = [SantaChatDetail santaChatDetail];
+        chatDetail = [[SantaChatDetail alloc] init];
     } else if (indexPath.row == 1) {
-        chatDetail = [PufuChatDetail pufuChatDetail];
+        chatDetail = [[PufuChatDetail alloc] init];
     } else if (indexPath.row == 2) {
-        chatDetail = [ChiziChatDetail chiziChatDetail];
+        chatDetail = [[ChiziChatDetail alloc] init];
     } else {
-        chatDetail = [TizaChatDetail tizaChatDetail];
+        chatDetail = [[TizaChatDetail alloc] init];
     }
     [self.navigationController pushViewController:chatDetail animated:YES];
 }

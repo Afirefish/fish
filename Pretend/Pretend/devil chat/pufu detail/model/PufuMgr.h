@@ -11,4 +11,6 @@
 
 @interface PufuMgr : BaseMgr
 
++ (instancetype)defaultMgr;
+
 @end

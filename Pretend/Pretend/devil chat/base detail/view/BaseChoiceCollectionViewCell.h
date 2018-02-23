@@ -10,8 +10,11 @@
 #import <Masonry.h>
 #import "UIColor+PRCustomColor.h"
 
+// 玩家选项的cell
+
 @interface BaseChoiceCollectionViewCell : UICollectionViewCell
-@property (strong, nonatomic) UILabel *messageLabel;
-@property (strong, nonatomic) UIImageView *backgroudImageView;
+
+@property (strong, nonatomic) UILabel *messageLabel;            // 选项内容
+@property (strong, nonatomic) UIImageView *backgroudImageView;  //背景图片
 
 @end

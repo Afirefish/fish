@@ -115,7 +115,7 @@
 
 - (void)enterCardFeast {//第一个游戏结束，整理卡牌之后进入
     ChatRoomMgr *chatRoomMgr = [ChatRoomMgr defaultMgr];
-    if (chatRoomMgr.chatFinished == YES) {//判断第一个游戏是否结束
+    if ([chatRoomMgr checkComplete]) {//判断第一个游戏是否结束
         if (self.tipLabel != nil) {
             [self.tipLabel removeFromSuperview];
             self.tipLabel = nil;

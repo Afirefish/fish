@@ -7,15 +7,8 @@
 //
 
 #import "BaseChatDetail.h"
-#import "ChatRoomMgr.h"
-#import "BaseChatTableView.h"
-#import "BaseChatTableViewCell.h"
-#import "BaseChoiceCollectionView.h"
-#import "BaseChoiceCollectionViewCell.h"
-#import "UIColor+PRCustomColor.h"
 
 #import <Masonry.h>
-
 
 #define SCREEN_SIZE ([UIScreen mainScreen].bounds.size)
 #define SCREEN_WIDTH (SCREEN_SIZE.width < SCREEN_SIZE.height ? SCREEN_SIZE.width : SCREEN_SIZE.height)
@@ -31,41 +24,30 @@ NS_ASSUME_NONNULL_BEGIN
 @implementation BaseChatDetail
 
 static NSString *choice = @"Choice";
+static NSString *baseChat = @"BaseChat";
 
 - (instancetype)init {
     if (self = [super init]) {
-        self.chatRoomMgr = [ChatRoomMgr defaultMgr];
-        self.nodeNumber = 0;
-        self.isDevil = NO;
-        self.choiceCount = 4;
-        self.layout = [[UICollectionViewFlowLayout alloc] init];
-        [self.layout setScrollDirection:UICollectionViewScrollDirectionVertical];
-        self.layout.itemSize = CGSizeMake((SCREEN_WIDTH - 40)/2 , 80);
-        self.allCellHeight = [[NSMutableArray alloc] init];
+        self.chatMgr = [[BaseMgr alloc] init];
     }
     return self;
 }
 
-// 如果重置，直接初始化这个控制器
-- (void)reset {
-    //虚函数的感觉
-}
-
-//初始化聊天节点数，
+//初始化聊天节点数
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.view.backgroundColor = [UIColor whiteColor];
     self.navigationController.navigationBar.tintColor = [UIColor blackColor];
-    [self setupContentViewsType];
     [self setupSubviews];
 }
 
-//设置表视图和集合视图类型
-- (void)setupContentViewsType {
-    self.chatContentTableView = [[BaseChatTableView alloc] init];
-    self.choicesCollectionView =  [[BaseChoiceCollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:self.layout];
-    [self.choicesCollectionView registerClass:[BaseChoiceCollectionViewCell class]
-                   forCellWithReuseIdentifier:choice];
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self scrollTableToFoot:NO];
+    [self playBGM];
 }
+
+#pragma mark - view
 
 - (void)setupSubviews {
     [self setupContentViews];
@@ -75,12 +57,13 @@ static NSString *choice = @"Choice";
 //设置表视图和集合视图
 - (void)setupContentViews {
     //聊天内容
-    //    self.chatContent = [[BaseChatTableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT * 0.7) style:UITableViewStylePlain];
+    self.chatContentTableView = [[UITableView alloc] init];
     self.chatContentTableView.delegate = self;
     self.chatContentTableView.dataSource = self;
     self.chatContentTableView.backgroundColor = [UIColor clearColor];
     [self.chatContentTableView setAllowsSelection:NO];
     [self.chatContentTableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];//设置多余cell的分割线不显示
+    [self.chatContentTableView registerClass:[BaseChatTableViewCell class] forCellReuseIdentifier:baseChat];
     [self.view addSubview:self.chatContentTableView];
     [self.chatContentTableView mas_makeConstraints:^(MASConstraintMaker *make) {
         if (@available(iOS 11.0, *)) {
@@ -108,10 +91,14 @@ static NSString *choice = @"Choice";
     }];
     
     //collection view显示的视图
-    //    self.choicesCollectionView = [[BaseChoiceCollectionView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT * 0.7, SCREEN_WIDTH, SCREEN_HEIGHT * 0.3) collectionViewLayout:self.layout];
+    self.layout = [[UICollectionViewFlowLayout alloc] init];
+    [self.layout setScrollDirection:UICollectionViewScrollDirectionVertical];
+    self.layout.itemSize = CGSizeMake((SCREEN_WIDTH - 40)/2 , 80);
+    self.choicesCollectionView =  [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:self.layout];
     self.choicesCollectionView.delegate = self;
     self.choicesCollectionView.dataSource = self;
     self.choicesCollectionView.backgroundColor = [UIColor warmShellColor];
+    [self.choicesCollectionView registerClass:[BaseChoiceCollectionViewCell class] forCellWithReuseIdentifier:choice];
     [self.view addSubview:self.choicesCollectionView];
     [self.choicesCollectionView mas_makeConstraints:^(MASConstraintMaker *make) {
         if (@available(iOS 11.0, *)) {
@@ -142,6 +129,9 @@ static NSString *choice = @"Choice";
 - (void)setupBackgroundImage {
 }
 
+- (void)playBGM {
+}
+
 //玩家不能选择时的视图
 - (void)setupCoverLabel {
     self.coverLabel = ({
@@ -153,7 +143,6 @@ static NSString *choice = @"Choice";
         label.alpha = 0;
         label;
     });
-    //    self.coverLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT * 0.7, SCREEN_WIDTH, SCREEN_HEIGHT * 0.3)];
     [self.view addSubview:self.coverLabel];
     [self.coverLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.choicesCollectionView);
@@ -170,76 +159,142 @@ static NSString *choice = @"Choice";
     [self.chatContentTableView scrollToRowAtIndexPath:index atScrollPosition:UITableViewScrollPositionBottom animated:animated]; //滚动到最后一行
 }
 
+#pragma mark - action
+
 //玩家做出选择的消息
-- (void)sendMessage{
-    self.isDevil = NO;
-    self.choicesCollectionView.userInteractionEnabled = NO;
-    self.coverLabel.alpha = 1;
-    self.nodeNumber += 1;
-    [self.chatContentTableView reloadData];
-    [self scrollTableToFoot:YES];
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{//加个延迟有种思考的感觉233
-        [self devilRespond];
-    });
+- (void)sendMessage {
+    switch ([self.chatMgr loadNewMessage]) {
+        case PlainChat: {
+            self.choicesCollectionView.userInteractionEnabled = NO;
+            BaseChatModel *model =[[BaseChatModel alloc] initWithMsg:self.chatMgr.plainMsg isDevil:self.chatMgr.isDevil isChoice:self.chatMgr.isChoice];
+            [self.chatMgr.chatMessageList addObject:model];
+            [self.chatContentTableView reloadData];
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.1 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+                [self scrollTableToFoot:YES];
+                self.choicesCollectionView.userInteractionEnabled = YES;
+            });
+            break;
+        }
+        case ChatBegin: {
+            NSLog(@"游戏开始了");
+            break;
+        }
+        
+        case ChatComplete: {
+            self.coverLabel.alpha = 1;
+            self.choicesCollectionView.userInteractionEnabled = NO;
+            NSLog(@"游戏通关了");
+            break;
+        }
+            
+        case ChapterBegin: {
+            break;
+        }
+        
+        case OtherChapterBegin: {
+            self.coverLabel.alpha = 1;
+            self.choicesCollectionView.userInteractionEnabled = NO;
+            break;
+        }
+            
+        case ChapterComplete: {
+            break;
+        }
+            
+        case BranchBegin: {
+            [self.choicesCollectionView reloadData];
+            break;
+        }
+            
+        case PlayerTime: {
+            self.choicesCollectionView.userInteractionEnabled = NO;
+            self.coverLabel.alpha = 1;
+            BaseChatModel *model =[[BaseChatModel alloc] initWithMsg:self.chatMgr.playerChoice isDevil:self.chatMgr.isDevil isChoice:self.chatMgr.isChoice];
+            [self.chatMgr.chatMessageList addObject:model];
+            [self.chatContentTableView reloadData];
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.1 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+                [self scrollTableToFoot:YES];
+            });
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.5 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{//加个延迟有种思考的感觉233
+                [self devilRespond];
+            });
+            break;
+        }
+            
+        default:
+            break;
+    }
 }
 
-//恶魔的回复
+//恶魔的回复,仅在对话的时候使用
 - (void)devilRespond {
-    self.isDevil = YES;
-    self.nodeNumber += 1;
+    [self.chatMgr devilRespond];
+    BaseChatModel *model =[[BaseChatModel alloc] initWithMsg:self.chatMgr.devilRespondContent isDevil:self.chatMgr.isDevil isChoice:self.chatMgr.isChoice];
+    [self.chatMgr.chatMessageList addObject:model];
     [self.chatContentTableView reloadData];
-    [self scrollTableToFoot:YES];
-    [self.choicesCollectionView reloadData];
-    self.coverLabel.alpha = 0;
-    self.choicesCollectionView.userInteractionEnabled = YES;
+    // 因为如果改变isChoice会影响到table加载数据，所以在加载完数据之后再改变玩家选项 给0.5s的时间应该ok。。
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.5 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+        switch ([self.chatMgr loadNextChoice]) {
+            case BranchComplete:
+                break;
+                
+            case PlayerTime:
+                break;
+    
+            default:
+                break;
+        }
+        [self.choicesCollectionView reloadData];
+        [self scrollTableToFoot:YES];
+        self.coverLabel.alpha = 0;
+        self.choicesCollectionView.userInteractionEnabled = YES;
+    });
 }
 
 #pragma dataSource
 
 //聊天记录每一个作为一个新的section，而玩家选项一个section
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return self.nodeNumber;
+    return 1;
 }
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
     return 1;
 }
 
-//聊天记录每一个section仅包括一行，玩家选项定为4个
+//聊天记录每一个section仅包括一行
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 1;
+    return self.chatMgr.chatMessageList.count;
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return self.choiceCount;
+    if (!self.chatMgr.isChoice) {
+        return 1;
+    }
+    // 如果是对话，返回玩家可选选项的个数
+    else {
+        return self.chatMgr.choiceCount;
+    }
 }
 
-//这里做了点特别的处理，对于聊天记录的视图，每个cell有不同的标志符，对于每个玩家选择，设置为一个标志符（后面实现的时候相当于没有复用了）
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (tableView == self.chatContentTableView) {
-        NSString *baseChat = [NSString stringWithFormat:@"BaseChat%ld",(long)indexPath.section];
-        BaseChatTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:baseChat];
-        if(cell == nil){
-            cell = [[BaseChatTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:baseChat isDevil:self.isDevil message:self.playerChoice respond:self.devilRespondContent devilName:nil];
-        }
-        return cell;
-    }
-    return nil;
+    BaseChatModel *model = [self.chatMgr.chatMessageList objectAtIndex:indexPath.row];
+    BaseChatTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:baseChat forIndexPath:indexPath];
+    [cell updateWithModel:model];
+    return cell;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    for (NSDictionary *dic in self.playerMessages) {
-        NSNumber *step = [dic objectForKey:@"step"];
-        NSUInteger myStep = [step integerValue];
-        if (myStep == self.finished) {
-            self.choiceArr = [dic objectForKey:@"choice"];
-            self.choiceDic = [self.choiceArr objectAtIndex:indexPath.row];
-            self.choiceContent = [self.choiceDic objectForKey:@"message"];
-            break;
-        }
-    }
     BaseChoiceCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:choice forIndexPath:indexPath];
-    cell.messageLabel.text = self.choiceContent;
+    // 如果是普通的文本，点击即可进入下一句
+    if (!self.chatMgr.isChoice) {
+        cell.messageLabel.text = @"NEXT";
+    }
+    // 如果是对话文本，因为在获取选项个数的时候就获得了所有的选项，所以直接读取当前的step的玩家的全部可选项，展示
+    else {
+        self.chatMgr.choiceDic = [self.chatMgr.choiceArr objectAtIndex:indexPath.row];
+        cell.messageLabel.text = [self.chatMgr.choiceDic objectForKey:@"message"];
+    }
     return cell;
 }
 
@@ -259,12 +314,11 @@ static NSString *choice = @"Choice";
 
 //玩家做出选择之后的处理
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    self.playerChoice = [[self.choiceArr objectAtIndex:indexPath.row] objectForKey:@"message"];
-    NSNumber *index = [[self.choiceArr objectAtIndex:indexPath.row] objectForKey:@"index"];
-    self.choiceIndex = [index integerValue];
-    NSNumber *nextStep = [[self.choiceArr objectAtIndex:indexPath.row] objectForKey:@"nextStep"];
-    self.previousStep = self.finished;
-    self.finished = [nextStep integerValue];
+    // 如果是对话，则需要判断玩家的选择做出响应
+    if (self.chatMgr.isChoice) {
+        self.chatMgr.playerChoice = [[self.chatMgr.choiceArr objectAtIndex:indexPath.row] objectForKey:@"message"];
+        self.chatMgr.choiceIndex = indexPath.row;
+    }
     [self sendMessage];
     [collectionView deselectItemAtIndexPath:indexPath animated:YES];
 }
@@ -272,41 +326,31 @@ static NSString *choice = @"Choice";
 //设置cell高度，根据文本行数和大小变化
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     CGRect cellRect = CGRectMake(0, 0, 0, 0);
-    if (tableView == self.chatContentTableView) {
-        if (indexPath.section == [tableView numberOfSections] - 1 ) {
-            if (self.isDevil == YES) {
-                for (NSDictionary *dic in self.devilMessages) {
-                    NSNumber *step = [dic objectForKey:@"step"];
-                    NSUInteger mystep = [step integerValue];
-                    if (mystep == self.previousStep) {
-                        self.devilArr = [dic objectForKey:@"respond"];
-                        self.devilDic = [self.devilArr objectAtIndex:self.choiceIndex];
-                        self.devilRespondContent = [self.devilDic objectForKey:@"message"];
-                        cellRect = [self.devilRespondContent boundingRectWithSize:CGSizeMake(self.view.bounds.size.width * 0.7, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading | NSStringDrawingUsesDeviceMetrics attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:17]} context:nil];
-                        break;
-                    }
-                }
-            } else {
-                cellRect = [self.playerChoice boundingRectWithSize:CGSizeMake(self.view.bounds.size.width * 0.7, MAXFLOAT) options:NSStringDrawingUsesFontLeading |NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesDeviceMetrics attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:17]} context:nil];
+    NSString *message = @"";
+    // 只有当是最新的cell时才会计算
+    if (indexPath.row == [tableView numberOfRowsInSection:0] - 1 ) {
+        // 普通文本
+        if (!self.chatMgr.isChoice) {
+            message = self.chatMgr.plainMsg;
+        }
+        else {
+            // 恶魔
+            if (self.chatMgr.isDevil == YES) {
+                message = self.chatMgr.devilRespondContent;
             }
-            NSNumber *height = [NSNumber numberWithFloat:cellRect.size.height + kCellGap];
-            if ([self.allCellHeight count] < self.nodeNumber) {//将正确的高度存入数组
-                [self.allCellHeight addObject:height];
+            // 玩家
+            else {
+                message = self.chatMgr.playerChoice;
             }
         }
-        CGFloat cellHeight = [[self.allCellHeight objectAtIndex:indexPath.section] floatValue];//每次重新加载时，除了最后的cell，高度直接从数组里获取
-        return cellHeight;
+        cellRect = [message boundingRectWithSize:CGSizeMake(self.view.bounds.size.width * 0.7, MAXFLOAT) options:NSStringDrawingUsesFontLeading |NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesDeviceMetrics attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:17]} context:nil];
+        NSNumber *height = [NSNumber numberWithFloat:(cellRect.size.height + kCellGap)];
+        if ([self.chatMgr.allCellHeight count] < self.chatMgr.chatMessageList.count) {//将正确的高度存入数组
+            [self.chatMgr.allCellHeight addObject:height];
+        }
     }
-    return 0;
-}
-
-#pragma json
-
-//解析本地的json
-- (void)jsonData:(NSString *)devil {
-    [self.chatRoomMgr messageJson:devil];
-    self.playerMessages = self.chatRoomMgr.playerMessages;
-    self.devilMessages = self.chatRoomMgr.devilMessages;
+    CGFloat cellHeight = [[self.chatMgr.allCellHeight objectAtIndex:indexPath.row] floatValue];//每次重新加载时，除了最后的cell，高度直接从数组里获取
+    return cellHeight;
 }
 
 @end

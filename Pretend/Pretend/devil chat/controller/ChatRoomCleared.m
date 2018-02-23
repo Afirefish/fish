@@ -25,7 +25,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.navigationItem.hidesBackButton = YES;
-    self.view.backgroundColor = [UIColor colorWithRed:255.0/255 green:250.0/255 blue:240.0/255 alpha:1.0];
+    self.tabBarController.tabBar.hidden = NO;
+    self.view.backgroundColor = [UIColor whiteColor];
     self.navigationItem.title = @"Chat Cleared";
     [self setupSubviews];
 
@@ -95,10 +96,6 @@
     UIAlertAction *reStartComfirmAction = [UIAlertAction actionWithTitle:@"重新开始" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         ChatRoomMgr *chatRoomMgr = [ChatRoomMgr defaultMgr];
         [chatRoomMgr reSet];
-        [[SantaChatDetail santaChatDetail] reset];
-        [[PufuChatDetail pufuChatDetail] reset];
-        [[ChiziChatDetail chiziChatDetail] reset];
-        [[TizaChatDetail tizaChatDetail] reset];
         //NSLog(@"root %@",[self.navigationController.viewControllers firstObject]);
         FirstCommunication *firstSence = [[FirstCommunication alloc] initWithFirstSence];
         [self.navigationController pushViewController:firstSence animated:YES];
@@ -109,11 +106,6 @@
     [reStartAlert addAction:cancelAction];
     [self presentViewController:reStartAlert animated:YES completion:nil];
 
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 @end

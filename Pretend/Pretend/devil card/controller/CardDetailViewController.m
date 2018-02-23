@@ -19,7 +19,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.view.backgroundColor = [UIColor colorWithRed:220.0/255 green:220.0/255 blue:220.0/255 alpha:1.0];
+    self.view.backgroundColor = [UIColor whiteColor];
     self.cardDetail = [[UIImageView alloc] init];
     self.cardDetail.contentMode = UIViewContentModeScaleAspectFit;
     [self.view addSubview:self.cardDetail];

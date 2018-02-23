@@ -7,102 +7,85 @@
 //
 
 #import "TizaChatDetail.h"
-#import "ChatRoomMgr.h"
 #import "TizaMgr.h"
-#import "TizaChatTableView.h"
-#import "TizaChatTableViewCell.h"
-#import "TizaChoiceCollectionView.h"
-#import "TizaChoiceCollectionViewCell.h"
 
 #define kCellGap 20
 
 //排名最后的恶魔，因为实力不济经常被其他低阶恶魔挑战，同时也担任着管理魔界秩序的一些杂务
 @interface TizaChatDetail ()
-@property (strong,nonatomic) TizaMgr *tizaMgr;
 
 @end
 
 @implementation TizaChatDetail
 
 static NSString *choice = @"Choice";
-static TizaChatDetail *tizaChatDetail = nil;
-
-+ (instancetype)tizaChatDetail {
-    if (tizaChatDetail  == nil) {
-        tizaChatDetail = [[TizaChatDetail alloc] init];
-    }
-    return tizaChatDetail;
-}
+static NSString *tizaChat = @"TizaChat";
 
 - (instancetype)init {
     if (self = [super init]) {
-        self.tizaMgr = [TizaMgr defaultMgr];
-        self.previousStep = self.tizaMgr.previousStep;
-        self.finished = self.tizaMgr.finished;
-        [self jsonData:@"tiza"];
+        self.chatMgr = [TizaMgr defaultMgr];
     }
     return self;
 }
 
+// 每次进入视图的时候刷新当前的剧情进度
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    if ([ChatRoomMgr defaultMgr].showTime != TizaShowTime) {
+        self.coverLabel.alpha = 1;
+        self.choicesCollectionView.userInteractionEnabled = NO;
+    }
+    else {
+        self.coverLabel.alpha = 0;
+        self.choicesCollectionView.userInteractionEnabled = YES;
+    }
+}
 
-- (void)reset {
-    tizaChatDetail = [[TizaChatDetail alloc] init];
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    self.chatMgr.finishText = self.chatMgr.chatMessageList.lastObject.message;
 }
 
 //解析json，初始化高度
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = @"Tiza";
-}
-
-//重写子视图设置的方法
-- (void)setupContentViewsType {
-    self.chatContentTableView = [[TizaChatTableView alloc] initWithFrame:CGRectZero];
-    self.choicesCollectionView = [[TizaChoiceCollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:self.layout];
-    [self.choicesCollectionView registerClass:[TizaChoiceCollectionViewCell class] forCellWithReuseIdentifier:choice];
+    [self.chatContentTableView registerClass:[BaseChatTableViewCell class] forCellReuseIdentifier:tizaChat];
 }
 
 - (void)setupBackgroundImage {
     self.tableBackgroundView.image = [UIImage imageNamed:@"tizaBG"];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)playBGM {
+    PRBGMPlayer *bgmPlayer = [PRBGMPlayer defaultPlayer];
+    [bgmPlayer playWithFileURL:[[NSBundle mainBundle] URLForResource:@"TizaChat" withExtension:@"mp3"]];
 }
 
-////tiza恶魔通过
-//- (void)setfinished:(NSUInteger)finished {
-//    self.finished = 100;
-//}
-
-//聊天记录的视图在获得高度的时候就有数据源了，不过在处理玩家的选择的视图的时候，还是要重新设置数据
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (tableView == self.chatContentTableView) {
-        NSString *tizaChat = [NSString stringWithFormat:@"TizaChat%ld",(long)indexPath.section];
-        TizaChatTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:tizaChat];
-        if(cell == nil){
-            cell = [[TizaChatTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:tizaChat isDevil:self.isDevil message:self.playerChoice respond:self.devilRespondContent devilName:@"tiza"];
-        }
-        self.tizaMgr.finishText = self.devilRespondContent;
-        [ChatRoomMgr defaultMgr].showTime = TizaShowTime;
-        return cell;
-    }
-    return nil;
+    BaseChatTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:tizaChat forIndexPath:indexPath];
+    BaseChatModel *model = [self.chatMgr.chatMessageList objectAtIndex:indexPath.row];
+    model.devil = @"tiza";
+    [cell updateWithModel:model];
+    return cell;
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    BaseChoiceCollectionViewCell *cell = [super collectionView:collectionView cellForItemAtIndexPath:indexPath];
+    cell.backgroudImageView.image = [UIImage imageNamed:@"tizaCastle"];
+    return cell;
 }
 
 //玩家做出选择之后的处理
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     [super collectionView:collectionView didSelectItemAtIndexPath:indexPath];
-    [self.tizaMgr savePreviousStep:self.previousStep];
-    [self.tizaMgr saveStep:self.finished];
 }
 
 #pragma cards
 //添加卡牌
 - (void)addCards:(NSUInteger)sequence {
     NSNumber *card = [NSNumber numberWithInteger:sequence];
-    [self.tizaMgr saveCardInfo:card];
+    [self.chatMgr saveCardInfo:card];
 }
 
 @end

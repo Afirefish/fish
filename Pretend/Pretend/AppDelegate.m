@@ -7,8 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#import "PretendedViewController.h"
-#import "ChatRoomMgr.h"
+#import "FeatureViewController.h"
 
 @interface AppDelegate ()
 
@@ -19,9 +18,10 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    [NSThread sleepForTimeInterval:0.3];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.backgroundColor = [UIColor whiteColor];
-    self.window.rootViewController = [[PretendedViewController alloc] init];
+    self.window.rootViewController = [[FeatureViewController alloc] init];
     [self.window makeKeyAndVisible];
     return YES;
 }
@@ -50,8 +50,6 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-    ChatRoomMgr *chatRoomMgr = [ChatRoomMgr defaultMgr];
-    [chatRoomMgr writeToFile];
 }
 
 

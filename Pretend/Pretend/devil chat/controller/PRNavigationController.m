@@ -16,15 +16,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.view.backgroundColor = [UIColor whiteColor];
     self.navigationBar.tintColor = [UIColor blackColor];
     [self.navigationBar setTitleTextAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"Courier" size:20],NSForegroundColorAttributeName:[UIColor blackColor]}];
     self.tabBarItem.image = [[UIImage imageNamed:@"littleDevil"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     self.tabBarItem.selectedImage = [[UIImage imageNamed:@"littleDevil"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     self.tabBarItem.title = [NSString stringWithFormat:@"Chat"];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
 }
 
 - (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated {//隐藏tabbar

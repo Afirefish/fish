@@ -8,46 +8,46 @@
 
 //聊天的具体内容控制基类
 #import <UIKit/UIKit.h>
-
-@class BaseChatTableView,ChatRoomMgr,BaseChoiceCollectionView;
+#import "BaseChatModel.h"
+#import "BaseMgr.h"
+#import "BaseChatTableViewCell.h"
+#import "BaseChoiceCollectionViewCell.h"
+#import "UIColor+PRCustomColor.h"
+#import "PRBGMPlayer.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
+/*
+ *基本的控制器，如果实现新的章节，建议继承这个控制器来定义
+ 命名方式参考目前的几个控制器的命名 章节名+ChatDetail以及章节名+Mgr
+ */
+
 @interface BaseChatDetail : UIViewController<UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 
-@property (strong, nonatomic) BaseChatTableView *chatContentTableView;//聊天的具体内容
+/*
+ *view部分
+ */
+@property (strong, nonatomic) UITableView *chatContentTableView;//聊天的具体内容
 @property (strong, nonatomic, nullable) UIImageView *tableBackgroundView;//聊天的背景
-@property (assign, nonatomic) NSInteger nodeNumber;//当前聊天所具有的节点数
-@property (assign, nonatomic) BOOL isDevil;//当前节点是否是devil
-@property (strong, nonatomic) NSString *playerChoice;//玩家的选择
-@property (strong, nonatomic) NSArray *playerMessages;//玩家的回复数据包
-@property (strong, nonatomic) NSArray *devilMessages;//devil的回复数据包
-@property (strong, nonatomic) ChatRoomMgr *chatRoomMgr;
-@property (strong, nonatomic) UILabel *coverLabel;//覆盖的label
-@property (strong, nonatomic) BaseChoiceCollectionView *choicesCollectionView;//玩家选项集合
+@property (strong, nonatomic) UICollectionView *choicesCollectionView;//玩家选项集合
 @property (strong, nonatomic, nullable) UIImageView *collectionBackgroudView;//玩家选项的背景视图
 @property (strong, nonatomic) UICollectionViewFlowLayout *layout;//流布局
-@property (assign, nonatomic) NSInteger choiceCount;//玩家选项数量
-@property (strong, nonatomic) NSArray *choiceArr;//玩家所有选择的数组
-@property (strong, nonatomic) NSDictionary *choiceDic;//玩家所有选择数组中的元素
-@property (strong, nonatomic) NSString *choiceContent;//玩家选择字典中具体的信息字符串
-@property (assign, nonatomic) NSUInteger finished;//100代表结束
-@property (assign, nonatomic) NSUInteger choiceIndex;//玩家选择的回复的索引
-@property (assign, nonatomic) NSUInteger previousStep;//上一步
-@property (strong, nonatomic) NSArray *devilArr;//santa的回复的数组
-@property (strong, nonatomic) NSDictionary *devilDic;//santa回复的字典
-@property (strong, nonatomic) NSString *devilRespondContent;//santa的回复的信息字符串
-@property (strong, nonatomic) NSMutableArray *allCellHeight;//保存聊天记录的所有视图的高度
+@property (strong, nonatomic) UILabel *coverLabel;//覆盖的label
 
-- (void)setupContentViewsType;//设置子视图的type
+/*
+ *data部分
+ */
+@property (strong, nonatomic) BaseMgr *chatMgr;
+
 - (void)setupSubviews;//设置子视图
 - (void)setupContentViews;//设置内容视图
 - (void)setupBackgroundImage;//设置背景图片
 - (void)setupCoverLabel;//设置选项的mask视图
+
+- (void)playBGM; //播放音乐
 - (void)sendMessage;//玩家做出选择的消息
-- (void)devilRespond;//devil的回复
-- (void)jsonData:(NSString *)devil;//json解析
-- (void)reset;//重置
+- (void)devilRespond;//对方的回复
+
 @end
 
 NS_ASSUME_NONNULL_END

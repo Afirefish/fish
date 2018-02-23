@@ -13,6 +13,9 @@
 #import "FirstCommunication+UI.h"
 #import "UIColor+PRCustomColor.h"
 #import "PRTxtTransform.h"
+#import "PRVideoViewController.h"
+#import "PRBGMPlayer.h"
+//#import "PHSelectViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -22,12 +25,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @implementation FirstCommunication
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
+- (instancetype)init {
+    return [self initWithFirstSence];
 }
 
 //对外部类仅提供第一个场景的初始化方法
@@ -39,38 +38,51 @@ NS_ASSUME_NONNULL_BEGIN
         UIBarButtonItem *backItem = [[UIBarButtonItem alloc]initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
         //设置backBarButtonItem即可
         self.navigationItem.backBarButtonItem = backItem;
-        self.view.backgroundColor = [UIColor warmShellColor];
         NSLog(@"height---%f,width ----%f",self.view.bounds.size.height,self.view.bounds.size.width);
-        [self setupBackGroudImage];
-        //标题的标签
-        [self setupStartLabel];
-        //开始的提示。。
-        [self setupStartTipLabel];
-        //跳过。。测试用
-        [self setupSkipButton];
-        [self.skipButton addTarget:self action:@selector(skipToEnd) forControlEvents:UIControlEventTouchUpInside];
+        [self setupSubview];
+        [self addAction];
     }
     return self;
 }
 
-- (instancetype)init {
-    return [self initWithFirstSence];
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    self.view.backgroundColor = [UIColor warmShellColor];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self playBGM];
+}
+
+- (void)addAction {
+    [self.skipButton addTarget:self action:@selector(skipToEnd) forControlEvents:UIControlEventTouchUpInside];
+    [self.animateButton addTarget:self action:@selector(showOpeningAnimate) forControlEvents:UIControlEventTouchUpInside];
 }
 
 //懒人专用，跳过剧情
 - (void)skipToEnd {
-    PRTxtTransform *trans = [[PRTxtTransform alloc] init];
-    [trans transTXTToJson];
-//    //emmmmmm.....
-//    //NSLog(@"root %@",[self.navigationController.viewControllers firstObject]);
-//    UIAlertController *skipAlert = [UIAlertController alertControllerWithTitle:@"确定要跳过这里吗？" message:@"点击确定则会跳过这里的剧情，将无法获得稀有卡片！!" preferredStyle:UIAlertControllerStyleAlert];
-//    UIAlertAction *skipComfirmAction = [UIAlertAction actionWithTitle:@"确定跳过!" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-//        [self showFinishScene];
-//    }];
-//    [skipAlert addAction:skipComfirmAction];
-//    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
-//    [skipAlert addAction:cancelAction];
-//    [self presentViewController:skipAlert animated:YES completion:nil];
+    //emmmmmm.....
+    //NSLog(@"root %@",[self.navigationController.viewControllers firstObject]);
+    UIAlertController *skipAlert = [UIAlertController alertControllerWithTitle:@"确定要跳过这里吗？" message:@"点击确定则会跳过这里的剧情，将无法获得稀有卡片！!" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *skipComfirmAction = [UIAlertAction actionWithTitle:@"确定跳过!" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [self showFinishScene];
+    }];
+    [skipAlert addAction:skipComfirmAction];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+    [skipAlert addAction:cancelAction];
+    [self presentViewController:skipAlert animated:YES completion:nil];
+}
+
+- (void)showOpeningAnimate {
+    PRBGMPlayer *bgmPlayer = [PRBGMPlayer defaultPlayer];
+    [bgmPlayer pause];
+    [self presentViewController:[[PRVideoViewController alloc] init] animated:YES completion:nil];
+}
+
+- (void)playBGM {
+    PRBGMPlayer *bgmPlayer = [PRBGMPlayer defaultPlayer];
+    [bgmPlayer playWithFileURL:[[NSBundle mainBundle] URLForResource:@"bgm" withExtension:@"mp3"]];
 }
 
 //通关场景
