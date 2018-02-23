@@ -44,6 +44,7 @@ static NSString *baseChat = @"BaseChat";
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     [self scrollTableToFoot:NO];
+    [self playBGM];
 }
 
 #pragma mark - view
@@ -126,6 +127,9 @@ static NSString *baseChat = @"BaseChat";
 }
 
 - (void)setupBackgroundImage {
+}
+
+- (void)playBGM {
 }
 
 //玩家不能选择时的视图

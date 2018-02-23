@@ -19,6 +19,7 @@
 #import "TizaChatDetail.h"
 #import "ChatRoomCleared.h"
 #import "UIColor+PRCustomColor.h"
+#import "PRBGMPlayer.h"
 #import <Masonry.h>
 
 NSString *devilMaster = @"devilMaster";
@@ -69,6 +70,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     [self checkFinished];
+    [self playBGM];
 }
 
 //设置恶魔名字，图片
@@ -110,6 +112,11 @@ NS_ASSUME_NONNULL_BEGIN
     UIAlertAction *confirmAction = [UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:nil];
     [confirm addAction:confirmAction];
     [self presentViewController:confirm animated:YES completion:nil];
+}
+
+- (void)playBGM {
+    PRBGMPlayer *bgmPlayer = [PRBGMPlayer defaultPlayer];
+    [bgmPlayer playWithFileURL:[[NSBundle mainBundle] URLForResource:@"ChatRoom" withExtension:@"mp3"]];
 }
 
 //检查完成状态

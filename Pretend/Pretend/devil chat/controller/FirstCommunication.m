@@ -14,6 +14,7 @@
 #import "UIColor+PRCustomColor.h"
 #import "PRTxtTransform.h"
 #import "PRVideoViewController.h"
+#import "PRBGMPlayer.h"
 //#import "PHSelectViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
@@ -49,6 +50,11 @@ NS_ASSUME_NONNULL_BEGIN
     self.view.backgroundColor = [UIColor warmShellColor];
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self playBGM];
+}
+
 - (void)addAction {
     [self.skipButton addTarget:self action:@selector(skipToEnd) forControlEvents:UIControlEventTouchUpInside];
     [self.animateButton addTarget:self action:@selector(showOpeningAnimate) forControlEvents:UIControlEventTouchUpInside];
@@ -69,16 +75,14 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)showOpeningAnimate {
+    PRBGMPlayer *bgmPlayer = [PRBGMPlayer defaultPlayer];
+    [bgmPlayer pause];
     [self presentViewController:[[PRVideoViewController alloc] init] animated:YES completion:nil];
+}
 
-//    PHSelectViewController *vc = [[PHSelectViewController alloc] init];
-//    [self presentViewController:vc animated:YES completion:nil];
-    
-//    PRTxtTransform *trans = [[PRTxtTransform alloc] init];
-//    [trans transNovelToMyTxt];
-//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//        [trans transTXTToPlist];
-//    });
+- (void)playBGM {
+    PRBGMPlayer *bgmPlayer = [PRBGMPlayer defaultPlayer];
+    [bgmPlayer playWithFileURL:[[NSBundle mainBundle] URLForResource:@"bgm" withExtension:@"mp3"]];
 }
 
 //通关场景

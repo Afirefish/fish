@@ -57,6 +57,11 @@ static NSString *tizaChat = @"TizaChat";
     self.tableBackgroundView.image = [UIImage imageNamed:@"tizaBG"];
 }
 
+- (void)playBGM {
+    PRBGMPlayer *bgmPlayer = [PRBGMPlayer defaultPlayer];
+    [bgmPlayer playWithFileURL:[[NSBundle mainBundle] URLForResource:@"TizaChat" withExtension:@"mp3"]];
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     BaseChatTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:tizaChat forIndexPath:indexPath];
     BaseChatModel *model = [self.chatMgr.chatMessageList objectAtIndex:indexPath.row];

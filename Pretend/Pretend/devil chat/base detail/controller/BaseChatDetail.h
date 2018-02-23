@@ -13,6 +13,7 @@
 #import "BaseChatTableViewCell.h"
 #import "BaseChoiceCollectionViewCell.h"
 #import "UIColor+PRCustomColor.h"
+#import "PRBGMPlayer.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -43,6 +44,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)setupBackgroundImage;//设置背景图片
 - (void)setupCoverLabel;//设置选项的mask视图
 
+- (void)playBGM; //播放音乐
 - (void)sendMessage;//玩家做出选择的消息
 - (void)devilRespond;//对方的回复
 

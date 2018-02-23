@@ -57,6 +57,11 @@ static NSString *santaChat = @"SantaChat";
     self.tableBackgroundView.image = [UIImage imageNamed:@"santaBG"];
 }
 
+- (void)playBGM {
+    PRBGMPlayer *bgmPlayer = [PRBGMPlayer defaultPlayer];
+    [bgmPlayer playWithFileURL:[[NSBundle mainBundle] URLForResource:@"SantaChat" withExtension:@"mp3"]];
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     BaseChatTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:santaChat forIndexPath:indexPath];
     BaseChatModel *model = [self.chatMgr.chatMessageList objectAtIndex:indexPath.row];
