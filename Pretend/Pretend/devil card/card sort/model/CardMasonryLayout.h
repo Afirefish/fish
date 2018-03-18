@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
+/**
+ 动态高度布局
+ */
 @interface CardMasonryLayout : UICollectionViewLayout
 @property (nonatomic, assign) NSUInteger numberOfColumns;
 @property (nonatomic, assign) CGFloat interItemSpacing;

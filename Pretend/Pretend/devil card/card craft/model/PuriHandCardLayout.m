@@ -46,7 +46,7 @@
 }
 
 - (CGSize)collectionViewContentSize {//返回collectionView的内容的尺寸
-    CGSize contentSize = CGSizeMake([self.collectionView numberOfItemsInSection:0] * ITEM_WIDTH, COLLECTION_SIZE.height);//collection view的内容宽设定为cell数量乘上cell的宽度，高度设定为collection view自身高度
+    CGSize contentSize = CGSizeMake([self.collectionView numberOfItemsInSection:0] * ITEM_WIDTH + self.collectionView.frame.size.width / 2, COLLECTION_SIZE.height);//collection view的内容宽设定为cell数量乘上cell的宽度，高度设定为collection view自身高度 再加上 最初的一半的偏移量
     return contentSize;
 }
 

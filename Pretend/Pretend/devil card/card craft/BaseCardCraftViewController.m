@@ -24,14 +24,18 @@ static NSString *tableCard = @"TableCard";
 
 @interface BaseCardCraftViewController ()
 
-@property (nonatomic,strong) UICollectionView *handCard;//玩家手牌
-@property (nonatomic, strong) UICollectionView *tableCardCraft;//桌面卡牌对战
-@property (assign, nonatomic) NSInteger handCardCount;// 手牌数量
-@property (assign, nonatomic) NSInteger tableCardCount;//桌面卡牌数量
-@property (strong, nonatomic) NSString *crafterName;//对战者名字
-@property (strong, nonatomic) UILabel *crafterLabel;//对战者的label
-@property (strong, nonatomic) UILabel *crafterLP;//对战者的生命值
-@property (strong, nonatomic) UILabel *PuriLP;//puri的生命值
+@property (nonatomic,strong) UICollectionView *handCardCollectionView;                      // 玩家手牌视图
+@property (nonatomic, strong) UICollectionView *tableCardCollectionView;                    // 桌面卡牌对战视图
+@property (assign, nonatomic) NSInteger handCardCount;                                      // 手牌数量
+@property (assign, nonatomic) NSInteger tableCardCount;                                     // 桌面卡牌数量
+@property (strong, nonatomic) NSString *crafterName;                                        // 对战者名字
+@property (strong, nonatomic) UILabel *crafterLabel;                                        // 对战者的label
+@property (strong, nonatomic) UILabel *crafterLP;                                           // 对战者的生命值
+@property (strong, nonatomic) UILabel *PuriLP;                                              // puri的生命值
+// 桌面卡牌数组，添加或者删除来控制 桌面局势
+@property (strong, nonatomic) NSMutableArray<UIImage *> *tableCards;
+// puri手牌卡组
+@property (strong, nonatomic) NSMutableArray<UIImage *> *handCards;
 
 @end
 
@@ -41,6 +45,7 @@ static NSString *tableCard = @"TableCard";
     if (self = [super init]) {
         self.navigationItem.title = [NSString stringWithFormat:@"%@ craft",name];
         self.crafterName = name;
+        [self loadStartCards];
     }
     return self;
 }
@@ -51,9 +56,6 @@ static NSString *tableCard = @"TableCard";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    self.handCardCount = 6;
-    self.tableCardCount = 8;
     self.view.backgroundColor = [UIColor whiteColor];
     [self setupSubviews];
 }
@@ -61,14 +63,14 @@ static NSString *tableCard = @"TableCard";
 -(void)setupSubviews {
     //使用手牌的布局 不能兼容旋转
     PuriHandCardLayout *puriLayout = [[PuriHandCardLayout alloc] init];
-    self.handCard = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:puriLayout];
-    self.handCard.delegate = self;
-    self.handCard.dataSource = self;
-    self.handCard.backgroundColor = [UIColor whiteColor];//[UIColor colorWithRed:220.0/255 green:220.0/255 blue:220.0/255 alpha:1.0];
-    self.handCard.showsVerticalScrollIndicator = NO;
-    [self.view addSubview:self.handCard];
-    [self.handCard registerClass:[PuriHandCardCell class] forCellWithReuseIdentifier:puriCard];
-    [self.handCard mas_makeConstraints:^(MASConstraintMaker *make) {
+    self.handCardCollectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:puriLayout];
+    self.handCardCollectionView.delegate = self;
+    self.handCardCollectionView.dataSource = self;
+    self.handCardCollectionView.backgroundColor = [UIColor whiteColor];//[UIColor colorWithRed:220.0/255 green:220.0/255 blue:220.0/255 alpha:1.0];
+    self.handCardCollectionView.showsVerticalScrollIndicator = NO;
+    [self.view addSubview:self.handCardCollectionView];
+    [self.handCardCollectionView registerClass:[PuriHandCardCell class] forCellWithReuseIdentifier:puriCard];
+    [self.handCardCollectionView mas_makeConstraints:^(MASConstraintMaker *make) {
         if (@available(iOS 11.0, *)) {
             make.left.equalTo(self.view.mas_safeAreaLayoutGuideLeft);
             make.right.equalTo(self.view.mas_safeAreaLayoutGuideRight);
@@ -86,13 +88,13 @@ static NSString *tableCard = @"TableCard";
     CGFloat height = (CGRectGetHeight(self.view.frame) - 60.0) / 4.0 ;
     CGFloat width = height * ITEM_WIDTH / ITEM_HEIGHT + 4.0;
     tableLayout.itemSize = CGSizeMake(width, height);
-    self.tableCardCraft = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:tableLayout];
-    self.tableCardCraft.backgroundColor = [UIColor colorWithRed:220.0/255 green:220.0/255 blue:220.0/255 alpha:1.0];
-    self.tableCardCraft.delegate = self;
-    self.tableCardCraft.dataSource = self;
-    [self.view addSubview:self.tableCardCraft];
-    [self.tableCardCraft registerClass:[TableCardCollectionViewCell class] forCellWithReuseIdentifier:tableCard];
-    [self.tableCardCraft mas_makeConstraints:^(MASConstraintMaker *make) {
+    self.tableCardCollectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:tableLayout];
+    self.tableCardCollectionView.backgroundColor = [UIColor colorWithRed:220.0/255 green:220.0/255 blue:220.0/255 alpha:1.0];
+    self.tableCardCollectionView.delegate = self;
+    self.tableCardCollectionView.dataSource = self;
+    [self.view addSubview:self.tableCardCollectionView];
+    [self.tableCardCollectionView registerClass:[TableCardCollectionViewCell class] forCellWithReuseIdentifier:tableCard];
+    [self.tableCardCollectionView mas_makeConstraints:^(MASConstraintMaker *make) {
         if (@available(iOS 11.0, *)) {
             make.left.equalTo(self.view.mas_safeAreaLayoutGuideLeft);
             make.right.equalTo(self.view.mas_safeAreaLayoutGuideRight);
@@ -100,7 +102,7 @@ static NSString *tableCard = @"TableCard";
         else {
             make.right.left.equalTo(self.view);
         }
-        make.bottom.equalTo(self.handCard.mas_top);
+        make.bottom.equalTo(self.handCardCollectionView.mas_top);
         make.height.equalTo(@(CGRectGetHeight(self.view.frame) * 0.5));
     }];
     
@@ -119,7 +121,7 @@ static NSString *tableCard = @"TableCard";
     [self.view addSubview:self.crafterLabel];
     [self.crafterLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self.view);
-        make.bottom.equalTo(self.tableCardCraft.mas_top).offset(-10.0);
+        make.bottom.equalTo(self.tableCardCollectionView.mas_top).offset(-10.0);
         make.height.equalTo(@30.0);
         make.width.equalTo(@((SCREEN_WIDTH - 40) / 3));
     }];
@@ -171,12 +173,28 @@ static NSString *tableCard = @"TableCard";
     }];
 }
 
+#pragma mark - card craft
+
+- (void)loadStartCards {
+    self.handCards = [[NSMutableArray alloc] init];
+    self.tableCards = [[NSMutableArray alloc] init];
+    self.handCardCount = 6;
+    self.tableCardCount = 8;
+    for (NSInteger i = 0; i < self.handCardCount; i++) {
+        [self.handCards addObject:[UIImage imageNamed:[NSString stringWithFormat:@"p%td", i+1]]];
+    }
+}
+
+#pragma mark - collection view
+
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    if (collectionView == self.handCard) {
-        return self.handCardCount;
-    } else if (collectionView == self.tableCardCraft) {
+    if (collectionView == self.handCardCollectionView) {
+        return self.handCards.count;
+    }
+    else if (collectionView == self.tableCardCollectionView) {
         return self.tableCardCount;
-    } else {
+    }
+    else {
         return 0;
     }
 }
@@ -185,17 +203,49 @@ static NSString *tableCard = @"TableCard";
     return 1;
 }
 
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    if (collectionView == self.handCardCollectionView) {
+        if (self.tableCards.count >= self.tableCardCount) {
+            UIAlertController *confirm = [UIAlertController alertControllerWithTitle:@"桌面卡牌已满" message:nil preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *confirmAction = [UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:nil];
+            [confirm addAction:confirmAction];
+            [self presentViewController:confirm animated:YES completion:nil];
+        }
+        else {
+            UIImage *image = [self.handCards objectAtIndex:indexPath.row];
+            [self.handCards removeObjectAtIndex:indexPath.row];
+            [self.tableCards addObject:image];
+            [self.handCardCollectionView reloadData];
+            [self.tableCardCollectionView reloadData];
+        }
+    }
+}
+
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    if (collectionView == self.handCard) {
+    if (collectionView == self.handCardCollectionView) {
         PuriHandCardCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:puriCard forIndexPath:indexPath];
-        cell.cardImage.image = [UIImage imageNamed:@"p1.png"];
-        cell.cardName.text = @"霜月";
-        cell.cardName.textAlignment = NSTextAlignmentCenter;
+        UIImage *image = nil;
+        if (self.handCards.count && self.handCards.count > indexPath.row) {
+            image = [self.handCards objectAtIndex:indexPath.row];
+        }
+        if (image) {
+            cell.cardImage.image = image;
+            cell.cardName.text = [NSString stringWithFormat:@"霜月%td", indexPath.row] ;
+        }
         return cell;
     }
     else {
         TableCardCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:tableCard forIndexPath:indexPath];
-        cell.cardImage.image = [UIImage imageNamed:@"p1.png"];
+        UIImage *image = nil;
+        if (self.tableCards.count && self.tableCards.count > indexPath.row) {
+            image = [self.tableCards objectAtIndex:indexPath.row];
+        }
+        if (image) {
+            cell.cardImage.image = image;
+        }
+        else {
+            cell.cardImage.image = nil;
+        }
         return cell;
     }
 }

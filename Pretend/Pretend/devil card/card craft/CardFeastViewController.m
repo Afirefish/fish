@@ -44,38 +44,42 @@ NSString *cardCrafter = @"cardCrafter";
 //            make.edges.equalTo(self.view);
 //        }
 //    }];
-    
+    // 设置底部的对战名单视图
     [self setupCollectionView];
+    // 设置对战进展视图
     [self setupScrollView];
+    // 为视图添加响应的图片 目前默认图片
     [self showQuarterFinal];
     [self.collectionView registerClass:[CardCrafterCell class] forCellWithReuseIdentifier:cardCrafter];
     //[self addBtnTarget];
 }
 
+// 这里将会对应设置每个cell的对战状况，玩家从一侧开始战斗，另一侧同玩家一起计算出对战的结果 目前暂定为默认图片
 - (void)showQuarterFinal {
     for (UIImageView *view in self.quarterFinalView) {
         view.image = [UIImage imageNamed:@"chiziCrafter"];
         view.userInteractionEnabled = YES;
-        UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(yuiCraft)];
+        UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(craftWithCurrentDevil)];
         tapGesture.numberOfTapsRequired = 1;
         [view addGestureRecognizer:tapGesture];
     }
     for (UIImageView *view in self.semiFinalView) {
         view.image = [UIImage imageNamed:@"chiziCrafter"];
         view.userInteractionEnabled = YES;
-        UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(kiritoCraft)];
+        UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(craftWithCurrentDevil)];
         tapGesture.numberOfTapsRequired = 1;
         [view addGestureRecognizer:tapGesture];
     }
     self.championView.image = [UIImage imageNamed:@"chiziCrafter"];
     self.championView.userInteractionEnabled = YES;
-    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(asunaCraft)];
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(craftWithCurrentDevil)];
     tapGesture.numberOfTapsRequired = 1;
     [self.championView addGestureRecognizer:tapGesture];
 }
 
 #pragma mark - collectionView delegate
 
+// 底部的卡牌选择之后的响应，目前没有任何事件
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     NSLog(@"cell select");
 }
@@ -90,13 +94,22 @@ NSString *cardCrafter = @"cardCrafter";
     return 8;
 }
 
+// 这里将要通过传入一个对战名单来决定每个cell的样子，固定之后一般不会改变
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     CardCrafterCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cardCrafter forIndexPath:indexPath];
     cell.imageView.image = [UIImage imageNamed:@"chiziCrafter"];
     return cell;
 }
 
-#pragma deprecated
+- (void)craftWithCurrentDevil {
+    NSString *devil = @"santa";
+    NSLog(@"%@ CRAFT",devil);
+    BaseCardCraftViewController *devilCraft = [[BaseCardCraftViewController alloc] initWithName:devil];
+//    devilCraft.navigationItem.title = devil;
+    [self.navigationController pushViewController:devilCraft animated:YES];
+}
+
+#pragma mark - deprecated
 
 - (void)addBtnTarget {
     [self.feastView.yuiBtn addTarget:self action:@selector(yuiCraft) forControlEvents:UIControlEventTouchUpInside];

@@ -383,6 +383,110 @@
 			path = PretendUITests;
 			sourceTree = "<group>";
 		};
+		3826FB5C205E3D2E00C6990E /* card sort */ = {
+			isa = PBXGroup;
+			children = (
+				3826FB64205E3E2A00C6990E /* model */,
+				3826FB5F205E3DB100C6990E /* view */,
+				3826FB5E205E3DA200C6990E /* controller */,
+			);
+			path = "card sort";
+			sourceTree = "<group>";
+		};
+		3826FB5D205E3D5C00C6990E /* card craft */ = {
+			isa = PBXGroup;
+			children = (
+				3826FB63205E3E2200C6990E /* model */,
+				3826FB62205E3E1D00C6990E /* view */,
+				3826FB60205E3E0F00C6990E /* controller */,
+				38C76CDA1FA7568B00BCBCB9 /* CardFeastViewController.h */,
+				38C76CDB1FA7568B00BCBCB9 /* CardFeastViewController.m */,
+				38E240221FECB69300896939 /* CardFeastViewController+UI.h */,
+				38E240231FECB69300896939 /* CardFeastViewController+UI.m */,
+				38C76CE91FA867D600BCBCB9 /* BaseCardCraftViewController.h */,
+				38C76CEA1FA867D600BCBCB9 /* BaseCardCraftViewController.m */,
+			);
+			path = "card craft";
+			sourceTree = "<group>";
+		};
+		3826FB5E205E3DA200C6990E /* controller */ = {
+			isa = PBXGroup;
+			children = (
+				38C76D091FAAAE2300BCBCB9 /* CardSortViewController.h */,
+				38C76D0A1FAAAE2300BCBCB9 /* CardSortViewController.m */,
+				389C5C7C1FB057CB00494006 /* CardSortTestViewController.h */,
+				389C5C7D1FB057CB00494006 /* CardSortTestViewController.m */,
+				38C76D121FAAD0C200BCBCB9 /* CardDetailViewController.h */,
+				38C76D131FAAD0C200BCBCB9 /* CardDetailViewController.m */,
+			);
+			path = controller;
+			sourceTree = "<group>";
+		};
+		3826FB5F205E3DB100C6990E /* view */ = {
+			isa = PBXGroup;
+			children = (
+				38C76D0C1FAAAFC800BCBCB9 /* CardCell.h */,
+				38C76D0D1FAAAFC800BCBCB9 /* CardCell.m */,
+				389C5C7F1FB0768B00494006 /* CardSortTestCollectionViewCell.h */,
+				389C5C801FB0768B00494006 /* CardSortTestCollectionViewCell.m */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		3826FB60205E3E0F00C6990E /* controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = controller;
+			sourceTree = "<group>";
+		};
+		3826FB62205E3E1D00C6990E /* view */ = {
+			isa = PBXGroup;
+			children = (
+				38C76CE31FA8550300BCBCB9 /* FeastView.h */,
+				38C76CE41FA8550300BCBCB9 /* FeastView.m */,
+				38E2404D1FF0954700896939 /* CardCrafterCell.h */,
+				38E2404E1FF0954700896939 /* CardCrafterCell.m */,
+				389C5C761FAEE89400494006 /* PuriHandCardCell.h */,
+				389C5C771FAEE89400494006 /* PuriHandCardCell.m */,
+				389C5C881FB15E4500494006 /* TableCardCollectionViewCell.h */,
+				389C5C891FB15E4500494006 /* TableCardCollectionViewCell.m */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		3826FB63205E3E2200C6990E /* model */ = {
+			isa = PBXGroup;
+			children = (
+				38C76CBB1FA1B4F500BCBCB9 /* Crafter.h */,
+				38C76CBC1FA1B4F500BCBCB9 /* Crafter.m */,
+				38C76CBE1FA1B62400BCBCB9 /* Puri.h */,
+				38C76CBF1FA1B62400BCBCB9 /* Puri.m */,
+				38C76CC11FA1B65900BCBCB9 /* Devil.h */,
+				38C76CC21FA1B65900BCBCB9 /* Devil.m */,
+				38C76CB81FA1B2B800BCBCB9 /* DevilCardInfo.h */,
+				38C76CB91FA1B2B800BCBCB9 /* DevilCardInfo.m */,
+				38C76D151FAAFF3400BCBCB9 /* PuriHandCardLayout.h */,
+				38C76D161FAAFF3400BCBCB9 /* PuriHandCardLayout.m */,
+				38C76D211FAC538900BCBCB9 /* PuriHandCardAttributes.h */,
+				38C76D221FAC538900BCBCB9 /* PuriHandCardAttributes.m */,
+				38C76D1E1FAB74B700BCBCB9 /* PuriLayout.h */,
+				38C76D1F1FAB74B700BCBCB9 /* PuriLayout.m */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		3826FB64205E3E2A00C6990E /* model */ = {
+			isa = PBXGroup;
+			children = (
+				389C5C791FB04F9B00494006 /* CardMasonryLayout.h */,
+				389C5C7A1FB04F9B00494006 /* CardMasonryLayout.m */,
+				389C5C851FB0866400494006 /* CardCoverFlowLayout.h */,
+				389C5C861FB0866400494006 /* CardCoverFlowLayout.m */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
 		383211A0202AE29200DB7B7A /* view */ = {
 			isa = PBXGroup;
 			children = (
@@ -442,18 +546,6 @@
 				38C76CD81FA7561A00BCBCB9 /* DCNavigationController.m */,
 				3801A04B1F7B4404006C3D18 /* DevilCard.h */,
 				3801A04C1F7B4404006C3D18 /* DevilCard.m */,
-				38C76D091FAAAE2300BCBCB9 /* CardSortViewController.h */,
-				38C76D0A1FAAAE2300BCBCB9 /* CardSortViewController.m */,
-				389C5C7C1FB057CB00494006 /* CardSortTestViewController.h */,
-				389C5C7D1FB057CB00494006 /* CardSortTestViewController.m */,
-				38C76D121FAAD0C200BCBCB9 /* CardDetailViewController.h */,
-				38C76D131FAAD0C200BCBCB9 /* CardDetailViewController.m */,
-				38C76CDA1FA7568B00BCBCB9 /* CardFeastViewController.h */,
-				38C76CDB1FA7568B00BCBCB9 /* CardFeastViewController.m */,
-				38E240221FECB69300896939 /* CardFeastViewController+UI.h */,
-				38E240231FECB69300896939 /* CardFeastViewController+UI.m */,
-				38C76CE91FA867D600BCBCB9 /* BaseCardCraftViewController.h */,
-				38C76CEA1FA867D600BCBCB9 /* BaseCardCraftViewController.m */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -461,18 +553,6 @@
 		38E240261FECB71300896939 /* view */ = {
 			isa = PBXGroup;
 			children = (
-				38C76CE31FA8550300BCBCB9 /* FeastView.h */,
-				38C76CE41FA8550300BCBCB9 /* FeastView.m */,
-				38C76D0C1FAAAFC800BCBCB9 /* CardCell.h */,
-				38C76D0D1FAAAFC800BCBCB9 /* CardCell.m */,
-				38E2404D1FF0954700896939 /* CardCrafterCell.h */,
-				38E2404E1FF0954700896939 /* CardCrafterCell.m */,
-				389C5C7F1FB0768B00494006 /* CardSortTestCollectionViewCell.h */,
-				389C5C801FB0768B00494006 /* CardSortTestCollectionViewCell.m */,
-				389C5C761FAEE89400494006 /* PuriHandCardCell.h */,
-				389C5C771FAEE89400494006 /* PuriHandCardCell.m */,
-				389C5C881FB15E4500494006 /* TableCardCollectionViewCell.h */,
-				389C5C891FB15E4500494006 /* TableCardCollectionViewCell.m */,
 				38C76D0F1FAACAF900BCBCB9 /* CardSelectedBackground.h */,
 				38C76D101FAACAF900BCBCB9 /* CardSelectedBackground.m */,
 			);
@@ -484,26 +564,8 @@
 			children = (
 				38C76CB51FA1B1E700BCBCB9 /* CardCraftMgr.h */,
 				38C76CB61FA1B1E700BCBCB9 /* CardCraftMgr.m */,
-				38C76CBB1FA1B4F500BCBCB9 /* Crafter.h */,
-				38C76CBC1FA1B4F500BCBCB9 /* Crafter.m */,
-				38C76CBE1FA1B62400BCBCB9 /* Puri.h */,
-				38C76CBF1FA1B62400BCBCB9 /* Puri.m */,
-				38C76CC11FA1B65900BCBCB9 /* Devil.h */,
-				38C76CC21FA1B65900BCBCB9 /* Devil.m */,
-				38C76CB81FA1B2B800BCBCB9 /* DevilCardInfo.h */,
-				38C76CB91FA1B2B800BCBCB9 /* DevilCardInfo.m */,
 				38C76CDD1FA8493E00BCBCB9 /* UIImage+Rotate.h */,
 				38C76CDE1FA8493E00BCBCB9 /* UIImage+Rotate.m */,
-				38C76D151FAAFF3400BCBCB9 /* PuriHandCardLayout.h */,
-				38C76D161FAAFF3400BCBCB9 /* PuriHandCardLayout.m */,
-				38C76D211FAC538900BCBCB9 /* PuriHandCardAttributes.h */,
-				38C76D221FAC538900BCBCB9 /* PuriHandCardAttributes.m */,
-				38C76D1E1FAB74B700BCBCB9 /* PuriLayout.h */,
-				38C76D1F1FAB74B700BCBCB9 /* PuriLayout.m */,
-				389C5C791FB04F9B00494006 /* CardMasonryLayout.h */,
-				389C5C7A1FB04F9B00494006 /* CardMasonryLayout.m */,
-				389C5C851FB0866400494006 /* CardCoverFlowLayout.h */,
-				389C5C861FB0866400494006 /* CardCoverFlowLayout.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -511,6 +573,8 @@
 		38E2402B1FECB81700896939 /* devil card */ = {
 			isa = PBXGroup;
 			children = (
+				3826FB5C205E3D2E00C6990E /* card sort */,
+				3826FB5D205E3D5C00C6990E /* card craft */,
 				38E240291FECB78700896939 /* model */,
 				38E240261FECB71300896939 /* view */,
 				38E240251FECB6D000896939 /* controller */,

@@ -13,7 +13,8 @@
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
-        self.cardImage= [[UIImageView alloc] initWithFrame:CGRectMake(2, 2, self.frame.size.width - 4, self.frame.size.height - 4)];
+        self.cardImage = [[UIImageView alloc] initWithFrame:CGRectMake(2, 2, self.frame.size.width - 4, self.frame.size.height - 4)];
+        self.cardImage.backgroundColor = [UIColor whiteColor];
         [self.contentView addSubview:self.cardImage];
         CardSelectedBackground *cardSelected = [[CardSelectedBackground alloc] initWithFrame:CGRectZero];
         self.selectedBackgroundView = cardSelected;

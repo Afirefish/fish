@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+
+/**
+ 仅作为测试用类
+ */
 @interface CardSortTestViewController : UIViewController<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 
 @end

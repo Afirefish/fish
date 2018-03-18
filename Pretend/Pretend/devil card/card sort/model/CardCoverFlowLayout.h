@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+
+/**
+ 封面相册布局
+ */
 @interface CardCoverFlowLayout : UICollectionViewFlowLayout
 
 @end

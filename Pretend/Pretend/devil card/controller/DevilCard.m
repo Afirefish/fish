@@ -34,12 +34,12 @@
     // Do any additional setup after loading the view.
     self.navigationItem.title = @"Devil Card";
     self.view.backgroundColor = [UIColor smokeWhiteColor];
-    [self setupBackGroudImage];
+    [self setupBackgroudImage];
     [self setupSubviews];
 }
 
 //设置背景图片
-- (void)setupBackGroudImage {
+- (void)setupBackgroudImage {
     self.backgroudImageView = ({
         UIImageView *imageView = [[UIImageView alloc] init];
         imageView.contentMode = UIViewContentModeScaleAspectFill;
@@ -122,8 +122,8 @@
         }
         CardFeastViewController *cardFeast = [[CardFeastViewController alloc] init];
         [self.navigationController pushViewController:cardFeast animated:YES];
-        //[self presentViewController:dcNC animated:YES completion:nil];
-    } else {
+    }
+    else {
         if (self.tipLabel == nil) {
             [self setupTipLabel];
         }
@@ -147,10 +147,6 @@
         make.top.equalTo(self.sortBtn.mas_bottom).offset(10.0);
         make.bottom.equalTo(self.enterBtn.mas_top).offset(10.0);
     }];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
 }
 
 @end

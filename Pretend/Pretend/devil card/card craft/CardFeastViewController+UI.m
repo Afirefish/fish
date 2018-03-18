@@ -45,7 +45,7 @@
     //self.scrollView.translatesAutoresizingMaskIntoConstraints = NO;
     //self.scrollView.alwaysBounceVertical = YES;
     //self.scrollView.alwaysBounceHorizontal = YES;
-    self.scrollView.contentSize = CGSizeMake(screenWidth * 2, itemWidth * 3 + 80);
+    self.scrollView.contentSize = CGSizeMake(screenWidth * 2, itemWidth * 3 + 80.0);
     [self.view addSubview:self.scrollView];
     [self.scrollView mas_makeConstraints:^(MASConstraintMaker *make) {
         if (@available(iOS 11.0, *)) {
