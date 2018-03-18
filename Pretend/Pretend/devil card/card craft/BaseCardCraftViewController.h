@@ -10,6 +10,6 @@
 
 @interface BaseCardCraftViewController : UIViewController<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 
-- (instancetype)initWithName:(id)arg1;
+- (instancetype)initWithDevilID:(NSUInteger)ID;
 
 @end

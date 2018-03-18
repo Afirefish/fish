@@ -13,6 +13,12 @@
 #import "TableCardCollectionViewCell.h"
 #import <Masonry.h>
 
+// craft data
+
+#import "DevilCardInfo.h"
+#import "Devil.h"
+#import "Puri.h"
+
 #define SCREEN_SIZE ([UIScreen mainScreen].bounds.size)
 #define SCREEN_WIDTH SCREEN_SIZE.width
 #define SCREEN_HEIGHT SCREEN_SIZE.height
@@ -28,24 +34,29 @@ static NSString *tableCard = @"TableCard";
 @property (nonatomic, strong) UICollectionView *tableCardCollectionView;                    // 桌面卡牌对战视图
 @property (assign, nonatomic) NSInteger handCardCount;                                      // 手牌数量
 @property (assign, nonatomic) NSInteger tableCardCount;                                     // 桌面卡牌数量
-@property (strong, nonatomic) NSString *crafterName;                                        // 对战者名字
+@property (assign, nonatomic) NSUInteger crafterID;                                          // 对战者名字
 @property (strong, nonatomic) UILabel *crafterLabel;                                        // 对战者的label
 @property (strong, nonatomic) UILabel *crafterLP;                                           // 对战者的生命值
 @property (strong, nonatomic) UILabel *PuriLP;                                              // puri的生命值
 // 桌面卡牌数组，添加或者删除来控制 桌面局势
-@property (strong, nonatomic) NSMutableArray<UIImage *> *tableCards;
+@property (strong, nonatomic) NSMutableArray<DevilCardInfo *> *tableCards;
 // puri手牌卡组
-@property (strong, nonatomic) NSMutableArray<UIImage *> *handCards;
+@property (strong, nonatomic) NSMutableArray<DevilCardInfo *> *handCards;
+// puri
+@property (strong, nonatomic) Puri *puri;
+// devil
+@property (strong, nonatomic) Devil *devil;
 
 @end
 
 @implementation BaseCardCraftViewController
 
-- (instancetype)initWithName:(NSString *)name {
+- (instancetype)initWithDevilID:(NSUInteger)ID {
     if (self = [super init]) {
-        self.navigationItem.title = [NSString stringWithFormat:@"%@ craft",name];
-        self.crafterName = name;
+        [self loadStartStatus];
         [self loadStartCards];
+        self.navigationItem.title = self.devil.name;
+        self.crafterID = ID;
     }
     return self;
 }
@@ -109,7 +120,7 @@ static NSString *tableCard = @"TableCard";
     //对战对手的label
     self.crafterLabel = ({
         UILabel *label = [[UILabel alloc] init];
-        label.text = self.crafterName;
+        label.text = self.devil.name;
         label.font = [UIFont systemFontOfSize:30.0];
         label.layer.cornerRadius = 8.0;
         label.clipsToBounds = YES;
@@ -154,7 +165,7 @@ static NSString *tableCard = @"TableCard";
         UILabel *label = [[UILabel alloc] init];
         label.layer.cornerRadius = 8.0;
         label.clipsToBounds = YES;
-        label.text = [NSString stringWithFormat:@"%@:10",self.crafterName];
+        label.text = [NSString stringWithFormat:@"%@:10",self.devil.name];
         label.font = [UIFont systemFontOfSize:30.0];
         label.textAlignment = NSTextAlignmentCenter;
         label.backgroundColor = [UIColor whiteColor];
@@ -175,14 +186,44 @@ static NSString *tableCard = @"TableCard";
 
 #pragma mark - card craft
 
+// 加载对战者的状态
+- (void)loadStartStatus {
+    self.puri = [Puri commonPuri];
+    DevilMode mode = EasyMode;
+    if (self.puri.defeatedCrafterCount == 0) {
+        mode = EasyMode;
+    }
+    else if (self.puri.defeatedCrafterCount == 1) {
+        mode = HardMode;
+    }
+    else {
+        mode = CrazyMode;
+    }
+    self.devil = [[Devil alloc] initWithDevilID:self.crafterID withHardMode:mode];
+}
+
+// 加载初始手牌
 - (void)loadStartCards {
     self.handCards = [[NSMutableArray alloc] init];
     self.tableCards = [[NSMutableArray alloc] init];
     self.handCardCount = 6;
     self.tableCardCount = 8;
     for (NSInteger i = 0; i < self.handCardCount; i++) {
-        [self.handCards addObject:[UIImage imageNamed:[NSString stringWithFormat:@"p%td", i+1]]];
+        DevilCardInfo *info = [[DevilCardInfo alloc] initWithCardSequence:i + 1];
+        [self.handCards addObject:info];
     }
+}
+
+- (void)puriTimeEnd {
+    
+}
+
+- (void)devilTimeEnd {
+    
+}
+
+- (void)getNewHandCard {
+    
 }
 
 #pragma mark - collection view
@@ -212,9 +253,9 @@ static NSString *tableCard = @"TableCard";
             [self presentViewController:confirm animated:YES completion:nil];
         }
         else {
-            UIImage *image = [self.handCards objectAtIndex:indexPath.row];
+            DevilCardInfo *info = [self.handCards objectAtIndex:indexPath.row];
             [self.handCards removeObjectAtIndex:indexPath.row];
-            [self.tableCards addObject:image];
+            [self.tableCards addObject:info];
             [self.handCardCollectionView reloadData];
             [self.tableCardCollectionView reloadData];
         }
@@ -225,12 +266,14 @@ static NSString *tableCard = @"TableCard";
     if (collectionView == self.handCardCollectionView) {
         PuriHandCardCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:puriCard forIndexPath:indexPath];
         UIImage *image = nil;
+        DevilCardInfo *info = nil;
         if (self.handCards.count && self.handCards.count > indexPath.row) {
-            image = [self.handCards objectAtIndex:indexPath.row];
+            info = [self.handCards objectAtIndex:indexPath.row];
+            image = info.cardImage;
         }
         if (image) {
             cell.cardImage.image = image;
-            cell.cardName.text = [NSString stringWithFormat:@"霜月%td", indexPath.row] ;
+            cell.cardName.text = info.cardName;
         }
         return cell;
     }
@@ -238,7 +281,8 @@ static NSString *tableCard = @"TableCard";
         TableCardCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:tableCard forIndexPath:indexPath];
         UIImage *image = nil;
         if (self.tableCards.count && self.tableCards.count > indexPath.row) {
-            image = [self.tableCards objectAtIndex:indexPath.row];
+            DevilCardInfo *info = [self.tableCards objectAtIndex:indexPath.row];
+            image = info.cardImage;
         }
         if (image) {
             cell.cardImage.image = image;

@@ -11,6 +11,7 @@
 #import "Devil.h"
 #import "Puri.h"
 #import "DevilCardInfo.h"
+#import "PRBGMPlayer.h"
 
 @implementation CardCraftMgr
 
@@ -26,7 +27,7 @@
     if (self = [super init]) {
         [self loadFromFile];
         self.craftFinished = YES;
-        self.PuriCrafter = [[Puri alloc] init];
+        self.puriCrafter = [[Puri alloc] init];
     }
     return self;
 }
@@ -51,6 +52,11 @@
         }
     }
     //还要加一些随机生成的卡牌
+}
+
+- (void)playBGM {
+    PRBGMPlayer *bgmPlayer = [PRBGMPlayer defaultPlayer];
+    [bgmPlayer playWithFileURL:[[NSBundle mainBundle] URLForResource:@"bgm" withExtension:@"mp3"]];
 }
 
 @end

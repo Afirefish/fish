@@ -104,7 +104,7 @@ NSString *cardCrafter = @"cardCrafter";
 - (void)craftWithCurrentDevil {
     NSString *devil = @"santa";
     NSLog(@"%@ CRAFT",devil);
-    BaseCardCraftViewController *devilCraft = [[BaseCardCraftViewController alloc] initWithName:devil];
+    BaseCardCraftViewController *devilCraft = [[BaseCardCraftViewController alloc] initWithDevilID:0];
 //    devilCraft.navigationItem.title = devil;
     [self.navigationController pushViewController:devilCraft animated:YES];
 }
@@ -124,56 +124,56 @@ NSString *cardCrafter = @"cardCrafter";
 
 - (void)yuiCraft {
     NSLog(@"YUI CRAFT");
-    BaseCardCraftViewController *yuiCraft = [[BaseCardCraftViewController alloc] initWithName:@"Yui"];
+    BaseCardCraftViewController *yuiCraft = [[BaseCardCraftViewController alloc] initWithDevilID:0];
     yuiCraft.navigationItem.title = @"Yui";
     [self.navigationController pushViewController:yuiCraft animated:YES];
 }
 
 - (void)kiritoCraft {
     NSLog(@"KIRITO CRAFT");
-    BaseCardCraftViewController *kiritoCraft = [[BaseCardCraftViewController alloc] initWithName:@"Kirito"];
+    BaseCardCraftViewController *kiritoCraft = [[BaseCardCraftViewController alloc] initWithDevilID:0];
     kiritoCraft.navigationItem.title = @"Kirito";
     [self.navigationController pushViewController:kiritoCraft animated:YES];
 }
 
 - (void)asunaCraft {
     NSLog(@"ASUNA CRAFT");
-    BaseCardCraftViewController *asunaCraft = [[BaseCardCraftViewController alloc] initWithName:@"Asuna"];
+    BaseCardCraftViewController *asunaCraft = [[BaseCardCraftViewController alloc] initWithDevilID:0];
     asunaCraft.navigationItem.title = @"Asuna";
     [self.navigationController pushViewController:asunaCraft animated:YES];
 }
 
 - (void)leafaCraft {
     NSLog(@"LEAFA CRAFT");
-    BaseCardCraftViewController *leafaCraft = [[BaseCardCraftViewController alloc] initWithName:@"Leafa"];
+    BaseCardCraftViewController *leafaCraft = [[BaseCardCraftViewController alloc] initWithDevilID:0];
     leafaCraft.navigationItem.title = @"Leafa";
     [self.navigationController pushViewController:leafaCraft animated:YES];
 }
 
 - (void)silicaCraft {
     NSLog(@"SILICA CRAFT");
-    BaseCardCraftViewController *silicaCraft = [[BaseCardCraftViewController alloc] initWithName:@"Silica"];
+    BaseCardCraftViewController *silicaCraft = [[BaseCardCraftViewController alloc] initWithDevilID:0];
     silicaCraft.navigationItem.title = @"Silica";
     [self.navigationController pushViewController:silicaCraft animated:YES];
 }
 
 - (void)agilCraft {
     NSLog(@"AGIL CRAFT");
-    BaseCardCraftViewController *agilCraft = [[BaseCardCraftViewController alloc] initWithName:@"Agil"];
+    BaseCardCraftViewController *agilCraft = [[BaseCardCraftViewController alloc] initWithDevilID:0];
     agilCraft.navigationItem.title = @"Agil";
     [self.navigationController pushViewController:agilCraft animated:YES];
 }
 
 - (void)kleinCraft {
     NSLog(@"KLEIN CRAFT");
-    BaseCardCraftViewController *kleinCraft = [[BaseCardCraftViewController alloc] initWithName:@"Klein"];
+    BaseCardCraftViewController *kleinCraft = [[BaseCardCraftViewController alloc] initWithDevilID:0];
     kleinCraft.navigationItem.title = @"Klein";
     [self.navigationController pushViewController:kleinCraft animated:YES];
 }
 
 - (void)lisbethCraft {
     NSLog(@"LISBETH CRAFT");
-    BaseCardCraftViewController *lisbethCraft = [[BaseCardCraftViewController alloc] initWithName:@"Lisbeth"];
+    BaseCardCraftViewController *lisbethCraft = [[BaseCardCraftViewController alloc] initWithDevilID:0];
     lisbethCraft.navigationItem.title = @"Lisbeth";
     [self.navigationController pushViewController:lisbethCraft animated:YES];
 }
