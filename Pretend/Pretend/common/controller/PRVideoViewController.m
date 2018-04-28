@@ -425,22 +425,12 @@ static inline BOOL PRIsHorizontalUI(id<UITraitEnvironment> traitEnvironment) {
 
 - (void)hideControls {
     self.isHide = !self.isHide;
-    if (self.isHide) {
-        self.playBtn.hidden = YES;
-        self.exitBtn.hidden = YES;
-        self.fullScreenBtn.hidden = YES;
-        self.timeLabel.hidden = YES;
-        self.playProgress.hidden = YES;
-        self.slider.hidden = YES;
-    }
-    else {
-        self.playBtn.hidden = NO;
-        self.exitBtn.hidden = NO;
-        self.fullScreenBtn.hidden = NO;
-        self.timeLabel.hidden = NO;
-        self.playProgress.hidden = NO;
-        self.slider.hidden = NO;
-    }
+    self.playBtn.hidden = self.isHide;
+    self.exitBtn.hidden = self.isHide;
+    self.fullScreenBtn.hidden = self.isHide;
+    self.timeLabel.hidden = self.isHide;
+    self.playProgress.hidden = self.isHide;
+    self.slider.hidden = self.isHide;
 }
 
 - (void)showAllControls {
@@ -454,9 +444,9 @@ static inline BOOL PRIsHorizontalUI(id<UITraitEnvironment> traitEnvironment) {
 }
 
 - (void)exit {
+    [self.player pause];
     self.player = nil;
     self.playerItem = nil;
-    [self.player pause];
     [self.link invalidate];
     [self.playerView removeFromSuperview];
     [self dismissViewControllerAnimated:YES completion:nil];
