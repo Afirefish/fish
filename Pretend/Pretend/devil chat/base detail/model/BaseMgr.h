@@ -26,6 +26,8 @@ typedef NS_ENUM(NSInteger, ChatStatus) {
     OtherChapterBegin = 1009,
 };
 
+
+
 @interface BaseMgr : NSObject
 
 // 数据存储
@@ -33,7 +35,7 @@ typedef NS_ENUM(NSInteger, ChatStatus) {
 @property (strong, nonatomic) NSMutableArray *allCellHeight;//保存聊天记录的所有视图的高度
 @property (strong, nonatomic) NSMutableArray<BaseChatModel *> *chatMessageList;//当前聊天列表的全部消息
 
-@property (assign, nonatomic) BOOL isDevil;//当前节点是否是devil
+@property (assign, nonatomic) BOOL isDevil;//当前节点是否是AI
 @property (strong, nonatomic) NSArray *playerMessages;//玩家的回复数据包
 @property (strong, nonatomic) NSArray *devilMessages;//对方的回复数据包
 
@@ -49,7 +51,7 @@ typedef NS_ENUM(NSInteger, ChatStatus) {
 
 @property (strong, nonatomic) NSArray *devilArr;//对方的回复的数组
 @property (strong, nonatomic) NSDictionary *devilDic;//对方回复的字典
-@property (strong, nonatomic) NSString *devilRespondContent;//santa的回复的信息字符串
+@property (strong, nonatomic) NSString *devilRespondContent;//AI的回复的信息字符串
 
 
 // 剧情控制
@@ -58,28 +60,17 @@ typedef NS_ENUM(NSInteger, ChatStatus) {
 @property (strong, nonatomic) NSString *finishText;//上一句剧情
 @property (assign, nonatomic) NSUInteger previousStep;//上一步的进度
 
-/*加载新文本
- */
+/** 加载新文本*/
 - (ChatStatus)loadNewMessage;
-/*
- 对方回复
- */
+/** AI回复 */
 - (void)devilRespond;
-/*
- 加载玩家下一个选项
- */
+/** 加载玩家下一个选项 */
 - (ChatStatus)loadNextChoice;
-/*
- 保存当前卡牌的进度
- */
+/** 保存当前卡牌的进度 */
 - (void)saveCardInfo:(id)arg1;
-/*
- 保存当前剧情进度
- */
+/** 保存当前剧情进度*/
 - (void)saveToFile;
-/*
- 重置
- */
+/** 重置 */
 - (void)reset;
 
 @end

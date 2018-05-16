@@ -55,6 +55,4 @@ SECOND
 
 second BRANCH END
 
-三色好棒哇
-
 ALL END

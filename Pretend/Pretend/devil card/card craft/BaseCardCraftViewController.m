@@ -34,9 +34,11 @@ static NSString *tableCard = @"TableCard";
 @property (nonatomic, strong) UICollectionView *tableCardCollectionView;                    // 桌面卡牌对战视图
 @property (assign, nonatomic) NSInteger handCardCount;                                      // 手牌数量
 @property (assign, nonatomic) NSInteger tableCardCount;                                     // 桌面卡牌数量
-@property (assign, nonatomic) NSUInteger crafterID;                                          // 对战者名字
+@property (assign, nonatomic) NSUInteger crafterID;                                         // 对战者名字
 @property (strong, nonatomic) UILabel *crafterLabel;                                        // 对战者的label
+@property (strong, nonatomic) UIImageView *crafterAvatar;                                   // 对站者的头像
 @property (strong, nonatomic) UILabel *crafterLP;                                           // 对战者的生命值
+@property (strong, nonatomic) UIImageView *PuriAvatar;                                      // Puri的名字
 @property (strong, nonatomic) UILabel *PuriLP;                                              // puri的生命值
 // 桌面卡牌数组，添加或者删除来控制 桌面局势
 @property (strong, nonatomic) NSMutableArray<DevilCardInfo *> *tableCards;
@@ -121,7 +123,7 @@ static NSString *tableCard = @"TableCard";
     self.crafterLabel = ({
         UILabel *label = [[UILabel alloc] init];
         label.text = self.devil.name;
-        label.font = [UIFont systemFontOfSize:30.0];
+        label.font = [UIFont fontWithName:@"Zapfino" size:30.0];
         label.layer.cornerRadius = 8.0;
         label.clipsToBounds = YES;
         label.textAlignment = NSTextAlignmentCenter;
@@ -140,7 +142,7 @@ static NSString *tableCard = @"TableCard";
     //puri的lifePoint
     self.PuriLP = ({
         UILabel *label = [[UILabel alloc] init];
-        label.text = @"Puri:10";
+        label.text = @"20";
         label.layer.cornerRadius = 8.0;
         label.clipsToBounds = YES;
         label.font = [UIFont systemFontOfSize:30.0];
@@ -151,7 +153,7 @@ static NSString *tableCard = @"TableCard";
     //    self.PuriLP = [[UILabel alloc] initWithFrame:CGRectMake((SCREEN_WIDTH + SCREEN_HEIGHT / 9) / 2 + (SCREEN_WIDTH - SCREEN_HEIGHT / 9) * 0.2 / 2, 64, (SCREEN_WIDTH - SCREEN_HEIGHT / 9) * 0.8 / 2, SCREEN_HEIGHT / 9)];
     [self.view addSubview:self.PuriLP];
     [self.PuriLP mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.width.height.equalTo(self.crafterLabel);
+        make.centerY.height.equalTo(self.crafterLabel);
         if (@available(iOS 11.0, *)) {
             make.right.equalTo(self.view.mas_safeAreaLayoutGuideRight).offset(-10.0);
         }
@@ -160,12 +162,42 @@ static NSString *tableCard = @"TableCard";
         }
     }];
     
+    // puri 的头像
+    self.PuriAvatar = ({
+        UIImageView *imageView = [[UIImageView alloc] init];
+        imageView.image = [UIImage imageNamed:@"PuriAvatar"];
+        imageView;
+    });
+    [self.view addSubview:self.PuriAvatar];
+    [self.PuriAvatar mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.height.width.equalTo(@40.0);
+        make.right.equalTo(self.PuriLP.mas_left);
+        make.centerY.equalTo (self.crafterLabel);
+    }];
+    
+    // 对手的头像
+    self.crafterAvatar = ({
+        UIImageView *imageView = [[UIImageView alloc] init];
+        imageView.image = [UIImage imageNamed:@"crafterAvatar"];
+        imageView;
+    });
+    [self.view addSubview:self.crafterAvatar];
+    [self.crafterAvatar mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.height.width.equalTo(@40.0);
+        make.centerY.equalTo (self.crafterLabel);
+        if (@available(iOS 11.0, *)) {
+            make.left.equalTo(self.view.mas_safeAreaLayoutGuideLeft).offset(10.0);
+        }
+        else {
+            make.left.equalTo(self.view).offset(10.0);
+        }
+    }];
     //对手的lifepoint
     self.crafterLP = ({
         UILabel *label = [[UILabel alloc] init];
         label.layer.cornerRadius = 8.0;
         label.clipsToBounds = YES;
-        label.text = [NSString stringWithFormat:@"%@:10",self.devil.name];
+        label.text = @"20";
         label.font = [UIFont systemFontOfSize:30.0];
         label.textAlignment = NSTextAlignmentCenter;
         label.backgroundColor = [UIColor whiteColor];
@@ -174,13 +206,8 @@ static NSString *tableCard = @"TableCard";
     //    self.crafterLP = [[UILabel alloc] initWithFrame:CGRectMake(0, 64, (SCREEN_WIDTH - SCREEN_HEIGHT / 9) * 0.8 / 2, SCREEN_HEIGHT / 9)];
     [self.view addSubview:self.crafterLP];
     [self.crafterLP mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.width.height.equalTo(self.crafterLabel);
-        if (@available(iOS 11.0, *)) {
-            make.left.equalTo(self.view.mas_safeAreaLayoutGuideLeft).offset(10.0);
-        }
-        else {
-            make.left.equalTo(self.view).offset(10.0);
-        }
+        make.centerY.height.equalTo(self.crafterLabel);
+        make.left.equalTo(self.crafterAvatar.mas_right);
     }];
 }
 

@@ -89,6 +89,17 @@ static NSString *baseChat = @"BaseChat";
     [self.tableBackgroundView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.chatContentTableView);
     }];
+    // 设置显示文字时候的蒙版视图，便于用户看得清文字。。。
+    self.overlayView = ({
+        UIView *view = [[UIView alloc] init];
+        view.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.5];
+        view;
+    });
+    [self.view addSubview:self.overlayView];
+    [self.view insertSubview:self.overlayView aboveSubview:self.tableBackgroundView];
+    [self.overlayView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self.tableBackgroundView);
+    }];
     
     //collection view显示的视图
     self.layout = [[UICollectionViewFlowLayout alloc] init];

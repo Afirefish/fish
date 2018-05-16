@@ -43,7 +43,7 @@
     self.nextStep = 1;
 }
 
-// 要求在""之后也加个句号。。禁用英文符号
+// 转换成分行的txt文本
 - (void)transNovelToMyTxt {
     NSString *contentPath = [[NSBundle mainBundle] pathForResource:@"article" ofType:@"txt"]; // 文本存储位置
     NSString *txtContent = [NSString stringWithContentsOfFile:contentPath encoding:NSUTF8StringEncoding error:nil]; // 文本转nsstring
@@ -66,24 +66,26 @@
     txtContent = [txtContent stringByReplacingOccurrencesOfString:@";" withString:@"；"];//分号
     
     NSString *testFile = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:@"novel.txt"];
+    NSLog(@"test file path %@", testFile);
     [txtContent writeToFile:testFile atomically:YES encoding:NSUTF8StringEncoding error:nil];
 }
 
-// 转换！
+// 转换成json数据
 - (void)transTXTToPlist {
+    // 一些变量初始化工作
     NSString *contentPath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:@"novel.txt"];
     NSString *txtContent = [NSString stringWithContentsOfFile:contentPath encoding:NSUTF8StringEncoding error:nil]; // 文本转nsstring
-    NSArray *array = [txtContent componentsSeparatedByString:@"\n"]; //文本生成的数组
+    NSArray *array = [txtContent componentsSeparatedByString:@"\n"]; // 文本生成的数组
     
-    self.plainFileDirectory = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:@"plain"]; //普通文本的目录
+    self.plainFileDirectory = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:@"plain"]; // 普通文本的目录
 
     [[NSFileManager defaultManager] createDirectoryAtPath:self.plainFileDirectory withIntermediateDirectories:YES attributes:nil error:nil];
     
-    self.plainFile = [self.plainFileDirectory stringByAppendingPathComponent:@"plain.plist"]; //普通文本的文件
+    self.plainFile = [self.plainFileDirectory stringByAppendingPathComponent:@"plain.plist"]; // 普通文本的文件
     
-    NSMutableArray *plainArr = [[NSMutableArray alloc] init]; //存储普通文本的数组
-    NSMutableArray *devilArr = [[NSMutableArray alloc] init]; //存储恶魔回复的数组
-    NSMutableArray *playerArr = [[NSMutableArray alloc] init]; //存储玩家选择的数组
+    NSMutableArray *plainArr = [[NSMutableArray alloc] init]; // 存储普通文本的数组
+    NSMutableArray *devilArr = [[NSMutableArray alloc] init]; // 存储恶魔回复的数组
+    NSMutableArray *playerArr = [[NSMutableArray alloc] init]; // 存储玩家选择的数组
     
     NSMutableArray *respondArr1,*respondArr2,*respondArr3,*respondArr4; // 最多4个分支的数组
     NSMutableArray *choiceArr1,*choiceArr2,*choiceArr3,*choiceArr4;
@@ -98,6 +100,7 @@
     BOOL start = NO;
     BOOL end = NO;
     
+    // 开始解析
     for (NSString *string in array) {
         // 去掉空白
         NSString *str = [string stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
@@ -350,6 +353,8 @@
     [plainDic writeToFile:self.plainFile atomically:YES];
     
     NSLog(@"file path %@",self.plainFile);
+
+}
 //    self.test = @"";
 //    NSString *testFile = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:@"mytest.txt"];
 //    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -358,7 +363,6 @@
 //        }
 //        [self.test writeToFile:testFile atomically:YES encoding:NSUTF8StringEncoding error:nil];
 //    });
-}
 
 // 输出测试
 - (void)next {

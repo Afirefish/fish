@@ -23,12 +23,12 @@ NS_ASSUME_NONNULL_BEGIN
  */
 
 @interface BaseChatDetail : UIViewController<UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
-
 /*
  *view部分
  */
 @property (strong, nonatomic) UITableView *chatContentTableView;//聊天的具体内容
 @property (strong, nonatomic, nullable) UIImageView *tableBackgroundView;//聊天的背景
+@property (strong, nonatomic) UIView *overlayView; // 蒙版视图，用于显示文字
 @property (strong, nonatomic) UICollectionView *choicesCollectionView;//玩家选项集合
 @property (strong, nonatomic, nullable) UIImageView *collectionBackgroudView;//玩家选项的背景视图
 @property (strong, nonatomic) UICollectionViewFlowLayout *layout;//流布局

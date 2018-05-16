@@ -13,7 +13,7 @@
 - (instancetype)initWithCardSequence:(NSUInteger)cardSequence {
     if (self = [super init]) {
         self.cardSequence = cardSequence;
-        self.cardName = [NSString stringWithFormat:@"萝莉%td",cardSequence];
+        self.cardName = [NSString stringWithFormat:@"卡牌%td",cardSequence];
         self.cardType = RoleCard;
         self.cardLP = 4;
         self.cardFunction = @"暂时没有卡牌效果";

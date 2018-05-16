@@ -11,10 +11,15 @@
 
 @interface PRBGMPlayer : NSObject
 
+// 单例模式创建音乐播放器
 + (instancetype)defaultPlayer;
+// 播放
 - (void)play;
+// 暂停
 - (void)pause;
+// 播放指定的URL
 - (void)playWithFileURL:(NSURL *)url;
+// 播放器销毁
 - (void)destroy;
 
 @end

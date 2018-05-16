@@ -13,7 +13,7 @@
 - (instancetype)initWithDevilID:(NSUInteger)ID withHardMode:(DevilMode)mode{
     if (self = [super init]) {
         self.devilID = ID;
-        self.name = [NSString stringWithFormat:@"devil%td",ID];
+        self.name = @"Luoki";//[NSString stringWithFormat:@"devil%td",ID];
         self.mode = mode;
         self.appearance = [UIImage imageNamed:@"chiziCrafter"];
         self.cards = [[NSMutableSet alloc] init];
