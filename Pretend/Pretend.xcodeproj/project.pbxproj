@@ -34,6 +34,9 @@
 		383BA7001FD799B600B0D207 /* FirstCommunication+UI.m in Sources */ = {isa = PBXBuildFile; fileRef = 383BA6FF1FD799B600B0D207 /* FirstCommunication+UI.m */; };
 		383D7243200600AF0063FEB6 /* novel.txt in Resources */ = {isa = PBXBuildFile; fileRef = 383D7242200600AF0063FEB6 /* novel.txt */; };
 		383D72452006058E0063FEB6 /* article.txt in Resources */ = {isa = PBXBuildFile; fileRef = 383D72442006058D0063FEB6 /* article.txt */; };
+		3850CDCC20BC5C9A00E45D8B /* PRProgressBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3850CDCB20BC5C9A00E45D8B /* PRProgressBaseView.m */; };
+		3850CDCF20BC5CCE00E45D8B /* PRProgressBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 3850CDCE20BC5CCE00E45D8B /* PRProgressBar.m */; };
+		3850CDD220BC5D0400E45D8B /* PRProgressIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 3850CDD120BC5D0400E45D8B /* PRProgressIndicator.m */; };
 		3876A7F11F8DD4A7008A20C9 /* playerTochizi.json in Resources */ = {isa = PBXBuildFile; fileRef = 3876A7F01F8DD4A7008A20C9 /* playerTochizi.json */; };
 		3876A7F31F8DD4AE008A20C9 /* chizi.json in Resources */ = {isa = PBXBuildFile; fileRef = 3876A7F21F8DD4AE008A20C9 /* chizi.json */; };
 		387BA634201606C700B7A15B /* NSObject+BJLObserving.m in Sources */ = {isa = PBXBuildFile; fileRef = 387BA631201606C600B7A15B /* NSObject+BJLObserving.m */; };
@@ -169,6 +172,12 @@
 		383BA6FF1FD799B600B0D207 /* FirstCommunication+UI.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "FirstCommunication+UI.m"; sourceTree = "<group>"; };
 		383D7242200600AF0063FEB6 /* novel.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = novel.txt; sourceTree = "<group>"; };
 		383D72442006058D0063FEB6 /* article.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = article.txt; sourceTree = "<group>"; };
+		3850CDCA20BC5C9A00E45D8B /* PRProgressBaseView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PRProgressBaseView.h; sourceTree = "<group>"; };
+		3850CDCB20BC5C9A00E45D8B /* PRProgressBaseView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PRProgressBaseView.m; sourceTree = "<group>"; };
+		3850CDCD20BC5CCE00E45D8B /* PRProgressBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PRProgressBar.h; sourceTree = "<group>"; };
+		3850CDCE20BC5CCE00E45D8B /* PRProgressBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PRProgressBar.m; sourceTree = "<group>"; };
+		3850CDD020BC5D0400E45D8B /* PRProgressIndicator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PRProgressIndicator.h; sourceTree = "<group>"; };
+		3850CDD120BC5D0400E45D8B /* PRProgressIndicator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PRProgressIndicator.m; sourceTree = "<group>"; };
 		3876A7F01F8DD4A7008A20C9 /* playerTochizi.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = playerTochizi.json; sourceTree = "<group>"; };
 		3876A7F21F8DD4AE008A20C9 /* chizi.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = chizi.json; sourceTree = "<group>"; };
 		387BA630201606C600B7A15B /* NSObject+BJLWillDeallocBlock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+BJLWillDeallocBlock.h"; sourceTree = "<group>"; };
@@ -539,6 +548,19 @@
 			path = resource;
 			sourceTree = "<group>";
 		};
+		3850CDC920BC5C7200E45D8B /* progress view */ = {
+			isa = PBXGroup;
+			children = (
+				3850CDCA20BC5C9A00E45D8B /* PRProgressBaseView.h */,
+				3850CDCB20BC5C9A00E45D8B /* PRProgressBaseView.m */,
+				3850CDCD20BC5CCE00E45D8B /* PRProgressBar.h */,
+				3850CDCE20BC5CCE00E45D8B /* PRProgressBar.m */,
+				3850CDD020BC5D0400E45D8B /* PRProgressIndicator.h */,
+				3850CDD120BC5D0400E45D8B /* PRProgressIndicator.m */,
+			);
+			path = "progress view";
+			sourceTree = "<group>";
+		};
 		38E240251FECB6D000896939 /* controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -868,6 +890,7 @@
 		38E2404C1FECBD5900896939 /* game start */ = {
 			isa = PBXGroup;
 			children = (
+				3850CDC920BC5C7200E45D8B /* progress view */,
 				3801A0541F7B5CB3006C3D18 /* PretendedViewController.h */,
 				3801A0551F7B5CB3006C3D18 /* PretendedViewController.m */,
 				38BDFB6A2018377400D1BB86 /* FeatureViewController.h */,
@@ -1101,6 +1124,7 @@
 				38C76D081FA9E64500BCBCB9 /* TWNavigationController.m in Sources */,
 				387BA634201606C700B7A15B /* NSObject+BJLObserving.m in Sources */,
 				38C76CAE1FA19C6B00BCBCB9 /* ChiziMgr.m in Sources */,
+				3850CDCF20BC5CCE00E45D8B /* PRProgressBar.m in Sources */,
 				38C76D171FAAFF3400BCBCB9 /* PuriHandCardLayout.m in Sources */,
 				38C76C9E1FA07C1700BCBCB9 /* ChatRoomCleared.m in Sources */,
 				38C76CB71FA1B1E700BCBCB9 /* CardCraftMgr.m in Sources */,
@@ -1127,10 +1151,12 @@
 				38C76CEB1FA867D600BCBCB9 /* BaseCardCraftViewController.m in Sources */,
 				389C5C7E1FB057CB00494006 /* CardSortTestViewController.m in Sources */,
 				3832119C202ADCF800DB7B7A /* PRVideoViewController.m in Sources */,
+				3850CDD220BC5D0400E45D8B /* PRProgressIndicator.m in Sources */,
 				38C76CA61FA1901700BCBCB9 /* SantaMgr.m in Sources */,
 				38C76D021FA977FB00BCBCB9 /* TruthMgr.m in Sources */,
 				383BA7001FD799B600B0D207 /* FirstCommunication+UI.m in Sources */,
 				38C76CC01FA1B62400BCBCB9 /* Puri.m in Sources */,
+				3850CDCC20BC5C9A00E45D8B /* PRProgressBaseView.m in Sources */,
 				38C76D0B1FAAAE2300BCBCB9 /* CardSortViewController.m in Sources */,
 				3801A0831F7F3078006C3D18 /* TizaChatDetail.m in Sources */,
 				389C5C781FAEE89400494006 /* PuriHandCardCell.m in Sources */,

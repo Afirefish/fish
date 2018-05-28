@@ -1,3 +1,4 @@
 target 'Pretend' do
  pod 'Masonry'
+ pod 'pop'
 end

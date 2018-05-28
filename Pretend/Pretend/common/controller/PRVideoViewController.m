@@ -411,15 +411,18 @@ static inline BOOL PRIsHorizontalUI(id<UITraitEnvironment> traitEnvironment) {
 
 - (void)playDidStop {
     if([self.parentViewController isKindOfClass:[FeatureViewController class]]) {
-        [(FeatureViewController *)self.parentViewController stopPlay];
-        [self.player pause];
-        self.player = nil;
-        self.playerItem = nil;
-        [self.link invalidate];
-        [self.playerView removeFromSuperview];
-        [self willMoveToParentViewController:nil]; // 1
-        [self.view removeFromSuperview]; // 2
-        [self removeFromParentViewController]; // 3
+        __weak typeof(self) weakSelf = self;
+        [(FeatureViewController *)self.parentViewController stopPlay:^{
+            __strong __typeof(self) strongSelf = weakSelf;
+            [strongSelf.player pause];
+            strongSelf.player = nil;
+            strongSelf.playerItem = nil;
+            [strongSelf.link invalidate];
+            [strongSelf.playerView removeFromSuperview];
+            [strongSelf willMoveToParentViewController:nil]; // 1
+            [strongSelf.view removeFromSuperview]; // 2
+            [strongSelf removeFromParentViewController]; // 3
+        }];
     }
 }
 

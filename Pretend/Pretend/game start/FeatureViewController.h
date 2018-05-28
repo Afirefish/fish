@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface FeatureViewController : UIViewController
 
-- (void)stopPlay;
+- (void)stopPlay:(void (^ __nullable)(void))completion;
 
 @end
 

@@ -44,7 +44,7 @@
 }
 
 // 转换成分行的txt文本
-- (void)transNovelToMyTxt {
+- (BOOL)transNovelToMyTxt {
     NSString *contentPath = [[NSBundle mainBundle] pathForResource:@"article" ofType:@"txt"]; // 文本存储位置
     NSString *txtContent = [NSString stringWithContentsOfFile:contentPath encoding:NSUTF8StringEncoding error:nil]; // 文本转nsstring
     // 统一修改所有英文符号变成中文
@@ -67,11 +67,11 @@
     
     NSString *testFile = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:@"novel.txt"];
     NSLog(@"test file path %@", testFile);
-    [txtContent writeToFile:testFile atomically:YES encoding:NSUTF8StringEncoding error:nil];
+    return [txtContent writeToFile:testFile atomically:YES encoding:NSUTF8StringEncoding error:nil];
 }
 
 // 转换成json数据
-- (void)transTXTToPlist {
+- (BOOL)transTXTToPlist {
     // 一些变量初始化工作
     NSString *contentPath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:@"novel.txt"];
     NSString *txtContent = [NSString stringWithContentsOfFile:contentPath encoding:NSUTF8StringEncoding error:nil]; // 文本转nsstring
@@ -350,9 +350,8 @@
         }
     }
     NSDictionary *plainDic = [NSDictionary dictionaryWithObject:plainArr forKey:@"content"];
-    [plainDic writeToFile:self.plainFile atomically:YES];
-    
     NSLog(@"file path %@",self.plainFile);
+    return [plainDic writeToFile:self.plainFile atomically:YES];
 
 }
 //    self.test = @"";
