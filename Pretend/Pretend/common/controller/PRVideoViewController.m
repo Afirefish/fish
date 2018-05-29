@@ -40,7 +40,6 @@ static inline BOOL PRIsHorizontalUI(id<UITraitEnvironment> traitEnvironment) {
 @property (nonatomic, strong) UIView *playerView;
 @property (nonatomic, strong) UIButton *exitBtn;
 @property (nonatomic, strong) UIButton *playBtn;
-@property (nonatomic, strong) UIProgressView *playProgress;
 @property (nonatomic, strong) PRSlider *slider;
 @property (nonatomic, strong) UILabel *timeLabel;
 @property (nonatomic, strong) UIButton *fullScreenBtn;
@@ -85,7 +84,7 @@ static inline BOOL PRIsHorizontalUI(id<UITraitEnvironment> traitEnvironment) {
 - (void)setupView {
     self.view.backgroundColor = [UIColor whiteColor];
     CGFloat statusBarHeight = MAX(20.0, CGRectGetHeight([UIApplication sharedApplication].statusBarFrame));
-
+    
     // 播放控件视图
     self.playControlsView = [[UIView alloc] init];
     [self.view addSubview:self.playControlsView];
@@ -106,6 +105,11 @@ static inline BOOL PRIsHorizontalUI(id<UITraitEnvironment> traitEnvironment) {
         make.top.equalTo(self.playControlsView).offset(statusBarHeight);
         make.height.equalTo(@(screenWidth));
     }];
+    
+    // 如果是开场动画，则不需要其他控制
+    if (self.isOpeningAnimate) {
+        return;
+    }
     
     // 退出按钮
     self.exitBtn = ({
@@ -190,22 +194,6 @@ static inline BOOL PRIsHorizontalUI(id<UITraitEnvironment> traitEnvironment) {
         make.height.equalTo(@(kButtonHeight));
     }];
     
-    // 播放进度条
-    self.playProgress = ({
-        UIProgressView *progressView = [[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleBar];
-        progressView.backgroundColor = [UIColor clearColor];
-        progressView.progressTintColor = [UIColor blackColor];
-        progressView.trackTintColor = [UIColor grayColor];
-        progressView;
-    });
-    [self.playControlsView addSubview:self.playProgress];
-    [self.playProgress mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.playBtn.mas_right).offset(kControlSpaceS * 2.0);
-        make.right.equalTo(self.timeLabel.mas_left).offset(- kControlSpaceS);
-        make.top.equalTo(self.fullScreenBtn);
-        make.height.equalTo(@(2.0));
-    }];
-    
     // 播放进度滑块
     self.slider = ({
         PRSlider *slider = [[PRSlider alloc] init];
@@ -218,19 +206,13 @@ static inline BOOL PRIsHorizontalUI(id<UITraitEnvironment> traitEnvironment) {
     [self.playControlsView addSubview:self.slider];
     [self.slider addTarget:self action:@selector(seekTime) forControlEvents:UIControlEventValueChanged];
     [self.slider mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.height.equalTo(self.playProgress);
-        make.top.equalTo(self.playProgress.mas_bottom).offset(kControlSpaceS);
+        make.left.equalTo(self.playBtn.mas_right).offset(kControlSpaceS * 2.0);
+        make.right.equalTo(self.timeLabel.mas_left).offset(- kControlSpaceS);
+        make.top.equalTo(self.fullScreenBtn.mas_centerY);
+        make.height.equalTo(@(2.0));
     }];
     
     self.isHide = NO;
-    if (self.isOpeningAnimate) {
-        self.playBtn.hidden = YES;
-        self.exitBtn.hidden = YES;
-        self.fullScreenBtn.hidden = YES;
-        self.timeLabel.hidden = YES;
-        self.playProgress.hidden = YES;
-        self.slider.hidden = YES;
-    }
 }
 
 // 每次调用update会改变全屏的状态
@@ -432,7 +414,6 @@ static inline BOOL PRIsHorizontalUI(id<UITraitEnvironment> traitEnvironment) {
     self.exitBtn.hidden = self.isHide;
     self.fullScreenBtn.hidden = self.isHide;
     self.timeLabel.hidden = self.isHide;
-    self.playProgress.hidden = self.isHide;
     self.slider.hidden = self.isHide;
 }
 
@@ -442,7 +423,6 @@ static inline BOOL PRIsHorizontalUI(id<UITraitEnvironment> traitEnvironment) {
     self.exitBtn.hidden = NO;
     self.fullScreenBtn.hidden = NO;
     self.timeLabel.hidden = NO;
-    self.playProgress.hidden = NO;
     self.slider.hidden = NO;
 }
 
@@ -476,7 +456,6 @@ static inline BOOL PRIsHorizontalUI(id<UITraitEnvironment> traitEnvironment) {
     dispatch_async(dispatch_get_main_queue(), ^{
         self.timeLabel.text = [NSString stringWithFormat:@"%@/%@", self.currentTime, self.duration];
         if (self.durationSeconds) {
-            self.playProgress.progress = newCurrentSeconds / self.durationSeconds;
             self.slider.value = newCurrentSeconds;
         }
     });
