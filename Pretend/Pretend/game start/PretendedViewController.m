@@ -60,14 +60,14 @@ NS_ASSUME_NONNULL_BEGIN
         DCNavigationController *dcNC = [[DCNavigationController alloc] initWithRootViewController:devilCard];
         [childViewControllers addObject:dcNC];
     }
-    //第三个视图
-    DevilRoom *devilRoom = [[DevilRoom alloc] init];
-    DRNavigationController *drNC = [[DRNavigationController alloc] initWithRootViewController:devilRoom];
-    [childViewControllers addObject:drNC];
-    //第四个视图
-    TrueWorld *trueWorld  = [[TrueWorld alloc] init];
-    TWNavigationController *twNC = [[TWNavigationController alloc] initWithRootViewController:trueWorld];
-    [childViewControllers addObject:twNC];
+//    //第三个视图
+//    DevilRoom *devilRoom = [[DevilRoom alloc] init];
+//    DRNavigationController *drNC = [[DRNavigationController alloc] initWithRootViewController:devilRoom];
+//    [childViewControllers addObject:drNC];
+//    //第四个视图
+//    TrueWorld *trueWorld  = [[TrueWorld alloc] init];
+//    TWNavigationController *twNC = [[TWNavigationController alloc] initWithRootViewController:trueWorld];
+//    [childViewControllers addObject:twNC];
     self.viewControllers = childViewControllers;
 }
 

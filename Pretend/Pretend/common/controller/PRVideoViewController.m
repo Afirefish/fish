@@ -113,14 +113,11 @@ static inline BOOL PRIsHorizontalUI(id<UITraitEnvironment> traitEnvironment) {
     
     // 退出按钮
     self.exitBtn = ({
-        UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
-        button.backgroundColor = [UIColor blackColor];
+        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+//        button.backgroundColor = [UIColor blackColor];
         button.layer.cornerRadius = kRoundSize;
         button.clipsToBounds = YES;
-        button.titleLabel.adjustsFontSizeToFitWidth = YES;
-        button.titleLabel.font = [UIFont systemFontOfSize:16.0];
-        [button setTitle:@"X" forState:UIControlStateNormal];
-        [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [button setImage:[UIImage imageNamed:@"exit"] forState:UIControlStateNormal];
         button;
     });
     [self.playControlsView addSubview:self.exitBtn];
@@ -131,16 +128,27 @@ static inline BOOL PRIsHorizontalUI(id<UITraitEnvironment> traitEnvironment) {
         make.width.height.equalTo(@(kButtonHeight));
     }];
     
+    UIView *overlayview = ({
+        UIView *view = [[UIView alloc] init];
+        view.backgroundColor = [UIColor blackColor];
+        view;
+    });
+    [self.playControlsView addSubview:overlayview];
+    [overlayview mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.height.equalTo(@(kButtonHeight));
+        make.left.right.equalTo(self.view);
+        make.bottom.equalTo(self.playerView).offset(- kControlSpaceS);
+    }];
+    
     // 播放暂停按钮
     self.playBtn = ({
-        UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
-        button.backgroundColor = [UIColor blackColor];
+        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+//        button.backgroundColor = [UIColor clearColor];
         button.layer.cornerRadius = kRoundSize;
         button.clipsToBounds = YES;
-        button.titleLabel.adjustsFontSizeToFitWidth = YES;
-        button.titleLabel.font = [UIFont systemFontOfSize:16.0];
-        [button setTitle:@"PLAY" forState:UIControlStateNormal];
-        [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [button setImage:[UIImage imageNamed:@"play"] forState:UIControlStateNormal];
+        [button setImage:[UIImage imageNamed:@"pause"] forState:UIControlStateSelected];
+        button.selected = NO;
         button;
     });
     self.isPlay = NO;
@@ -154,15 +162,13 @@ static inline BOOL PRIsHorizontalUI(id<UITraitEnvironment> traitEnvironment) {
     
     // 全屏按钮
     self.fullScreenBtn = ({
-        UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
-        button.backgroundColor = [UIColor blackColor];
+        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+//        button.backgroundColor = [UIColor clearColor];
         button.layer.cornerRadius = kRoundSize;
         button.clipsToBounds = YES;
-        button.titleLabel.textAlignment = NSTextAlignmentRight;
-        button.titleLabel.adjustsFontSizeToFitWidth = YES;
-        [button setTitle:@"FULL" forState:UIControlStateNormal];
-        [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        button.titleLabel.font = [UIFont systemFontOfSize:12.0];
+        [button setImage:[UIImage imageNamed:@"fullscreen"] forState:UIControlStateNormal];
+        [button setImage:[UIImage imageNamed:@"window"] forState:UIControlStateSelected];
+        button.selected = NO;
         button;
     });
     self.isFull = NO;
@@ -176,7 +182,7 @@ static inline BOOL PRIsHorizontalUI(id<UITraitEnvironment> traitEnvironment) {
     // 时间标签
     self.timeLabel = ({
         UILabel *label = [[UILabel alloc] init];
-        label.backgroundColor = [UIColor blackColor];
+        label.backgroundColor = [UIColor clearColor];
         label.textAlignment = NSTextAlignmentLeft;
         label.textColor = [UIColor whiteColor];
         label.text = @"当前时间/总时间";
@@ -198,7 +204,7 @@ static inline BOOL PRIsHorizontalUI(id<UITraitEnvironment> traitEnvironment) {
     self.slider = ({
         PRSlider *slider = [[PRSlider alloc] init];
         slider.backgroundColor = [UIColor clearColor];
-        slider.minimumTrackTintColor = [UIColor blackColor];
+        slider.minimumTrackTintColor = [UIColor orangeColor];
         slider.maximumTrackTintColor = [UIColor grayColor];
         slider.continuous = YES;
         slider;
@@ -221,12 +227,12 @@ static inline BOOL PRIsHorizontalUI(id<UITraitEnvironment> traitEnvironment) {
     // 旋转之后的界面如果是竖直的，就设置为全屏
     if (isFull) {
         self.isFull = YES;
-        [self.fullScreenBtn setTitle:@"WINDOW" forState:UIControlStateNormal];
+        self.fullScreenBtn.selected = YES;
     }
     // 旋转之后的界面如果是水平的，设置为窗口
     else {
         self.isFull = NO;
-        [self.fullScreenBtn setTitle:@"FULL" forState:UIControlStateNormal];
+        self.fullScreenBtn.selected = NO;
     }
     if (isFull) {
         self.playerLayer.frame = self.view.frame;
@@ -382,12 +388,12 @@ static inline BOOL PRIsHorizontalUI(id<UITraitEnvironment> traitEnvironment) {
     if (self.isPlay) {
         [self.player pause];
         self.isPlay = NO;
-        [self.playBtn setTitle:@"PLAY" forState:UIControlStateNormal];
+        self.playBtn.selected = NO;
     }
     else {
         [self.player play];
         self.isPlay = YES;
-        [self.playBtn setTitle:@"PAUSE" forState:UIControlStateNormal];
+        self.playBtn.selected = YES;
     }
 }
 

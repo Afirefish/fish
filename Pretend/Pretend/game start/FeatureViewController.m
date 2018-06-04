@@ -34,27 +34,28 @@ NS_ASSUME_NONNULL_BEGIN
     NSString *bundleVersionKey = (NSString *)kCFBundleVersionKey;
     NSString *bundleVersion = [NSBundle mainBundle].infoDictionary[bundleVersionKey];
     NSString *saveVersion = [[NSUserDefaults standardUserDefaults] objectForKey:bundleVersionKey];
-    if ([bundleVersion isEqualToString:saveVersion]) {
-        // 直接播放开场动画
-        PRVideoViewController *videoVC = [[PRVideoViewController alloc] initWithOpeningAnimate:YES];
-        [self addChildViewController:videoVC]; // 1
-        [self.view addSubview:videoVC.view]; // 2
-        [videoVC didMoveToParentViewController:self]; // 3
-    }
-    else {
+//    if ([bundleVersion isEqualToString:saveVersion]) {
+//        // 直接播放开场动画
+//        PRVideoViewController *videoVC = [[PRVideoViewController alloc] initWithOpeningAnimate:YES];
+//        [self addChildViewController:videoVC]; // 1
+//        [self.view addSubview:videoVC.view]; // 2
+//        [videoVC didMoveToParentViewController:self]; // 3
+//    }
+//    else {
         [[NSUserDefaults  standardUserDefaults] setObject:bundleVersion forKey:bundleVersionKey];
         [[NSUserDefaults  standardUserDefaults] synchronize];
         [self setupViews];
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [self transform];
         });
-    }
+//    }
 }
 
 - (void)setupViews {
     UIImageView *imageView = ({
         UIImageView *imageView = [[UIImageView alloc] init];
         imageView.backgroundColor = [UIColor cyanColor];
+        imageView.image = [UIImage imageNamed:@"puri_black"];
         imageView.contentMode = UIViewContentModeScaleAspectFill;
         imageView.clipsToBounds = YES;
         imageView;
@@ -81,7 +82,7 @@ NS_ASSUME_NONNULL_BEGIN
     UILabel *stateLabel = ({
         UILabel *label = [[UILabel alloc] init];
         label.textAlignment = NSTextAlignmentCenter;
-        label.textColor = [UIColor blackColor];
+        label.textColor = [UIColor whiteColor];
         label.text = @"正在为初次启动转换文本，请稍候";
         label.font = [UIFont systemFontOfSize:17];
         label.adjustsFontSizeToFitWidth = YES;
@@ -89,7 +90,7 @@ NS_ASSUME_NONNULL_BEGIN
     });
     [self.view addSubview:stateLabel];
     [stateLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.equalTo(self.view);
+        make.left.equalTo(self.view).offset(60.0);
         make.centerY.equalTo(self.view);
         make.height.equalTo(@30.0);
     }];
