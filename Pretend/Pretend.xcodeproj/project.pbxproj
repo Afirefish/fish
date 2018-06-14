@@ -35,6 +35,9 @@
 		3850CDCC20BC5C9A00E45D8B /* PRProgressBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3850CDCB20BC5C9A00E45D8B /* PRProgressBaseView.m */; };
 		3850CDCF20BC5CCE00E45D8B /* PRProgressBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 3850CDCE20BC5CCE00E45D8B /* PRProgressBar.m */; };
 		3850CDD220BC5D0400E45D8B /* PRProgressIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 3850CDD120BC5D0400E45D8B /* PRProgressIndicator.m */; };
+		38748E6020D239E700700891 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 38748E5F20D239E700700891 /* libsqlite3.tbd */; };
+		38748E6320D23A4300700891 /* PRDBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 38748E6220D23A4300700891 /* PRDBManager.m */; };
+		38748E6620D25BF600700891 /* PRConstantSQL.m in Sources */ = {isa = PBXBuildFile; fileRef = 38748E6520D25BF600700891 /* PRConstantSQL.m */; };
 		3876A7F11F8DD4A7008A20C9 /* playerTochizi.json in Resources */ = {isa = PBXBuildFile; fileRef = 3876A7F01F8DD4A7008A20C9 /* playerTochizi.json */; };
 		3876A7F31F8DD4AE008A20C9 /* chizi.json in Resources */ = {isa = PBXBuildFile; fileRef = 3876A7F21F8DD4AE008A20C9 /* chizi.json */; };
 		387BA634201606C700B7A15B /* NSObject+BJLObserving.m in Sources */ = {isa = PBXBuildFile; fileRef = 387BA631201606C600B7A15B /* NSObject+BJLObserving.m */; };
@@ -174,6 +177,11 @@
 		3850CDCE20BC5CCE00E45D8B /* PRProgressBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PRProgressBar.m; sourceTree = "<group>"; };
 		3850CDD020BC5D0400E45D8B /* PRProgressIndicator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PRProgressIndicator.h; sourceTree = "<group>"; };
 		3850CDD120BC5D0400E45D8B /* PRProgressIndicator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PRProgressIndicator.m; sourceTree = "<group>"; };
+		38748E5F20D239E700700891 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		38748E6120D23A4300700891 /* PRDBManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PRDBManager.h; sourceTree = "<group>"; };
+		38748E6220D23A4300700891 /* PRDBManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PRDBManager.m; sourceTree = "<group>"; };
+		38748E6420D25BF600700891 /* PRConstantSQL.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PRConstantSQL.h; sourceTree = "<group>"; };
+		38748E6520D25BF600700891 /* PRConstantSQL.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PRConstantSQL.m; sourceTree = "<group>"; };
 		3876A7F01F8DD4A7008A20C9 /* playerTochizi.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = playerTochizi.json; sourceTree = "<group>"; };
 		3876A7F21F8DD4AE008A20C9 /* chizi.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = chizi.json; sourceTree = "<group>"; };
 		387BA630201606C600B7A15B /* NSObject+BJLWillDeallocBlock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+BJLWillDeallocBlock.h"; sourceTree = "<group>"; };
@@ -292,6 +300,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				38748E6020D239E700700891 /* libsqlite3.tbd in Frameworks */,
 				FEB8F7668BFCA7D04939BC7C /* libPods-Pretend.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -316,6 +325,7 @@
 		2AA6CFA4835DFD7BAA736578 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				38748E5F20D239E700700891 /* libsqlite3.tbd */,
 				D33B925DDB6AA3EAC9B48AB8 /* libPods-Pretend.a */,
 			);
 			name = Frameworks;
@@ -352,6 +362,7 @@
 				38E240311FECB96D00896939 /* devil room */,
 				38E2402B1FECB81700896939 /* devil card */,
 				38E240321FECB9BD00896939 /* devil chat */,
+				38748E5E20D2399600700891 /* database */,
 				38E2404B1FECBD4000896939 /* common */,
 				38E2404C1FECBD5900896939 /* game start */,
 				3801A0211F7A76B0006C3D18 /* Assets.xcassets */,
@@ -553,6 +564,17 @@
 				3850CDD120BC5D0400E45D8B /* PRProgressIndicator.m */,
 			);
 			path = "progress view";
+			sourceTree = "<group>";
+		};
+		38748E5E20D2399600700891 /* database */ = {
+			isa = PBXGroup;
+			children = (
+				38748E6120D23A4300700891 /* PRDBManager.h */,
+				38748E6220D23A4300700891 /* PRDBManager.m */,
+				38748E6420D25BF600700891 /* PRConstantSQL.h */,
+				38748E6520D25BF600700891 /* PRConstantSQL.m */,
+			);
+			path = database;
 			sourceTree = "<group>";
 		};
 		38E240251FECB6D000896939 /* controller */ = {
@@ -1143,6 +1165,7 @@
 				38C76CEB1FA867D600BCBCB9 /* BaseCardCraftViewController.m in Sources */,
 				389C5C7E1FB057CB00494006 /* CardSortTestViewController.m in Sources */,
 				3832119C202ADCF800DB7B7A /* PRVideoViewController.m in Sources */,
+				38748E6620D25BF600700891 /* PRConstantSQL.m in Sources */,
 				3850CDD220BC5D0400E45D8B /* PRProgressIndicator.m in Sources */,
 				38C76CA61FA1901700BCBCB9 /* SantaMgr.m in Sources */,
 				38C76D021FA977FB00BCBCB9 /* TruthMgr.m in Sources */,
@@ -1169,6 +1192,7 @@
 				38C76CDF1FA8493E00BCBCB9 /* UIImage+Rotate.m in Sources */,
 				3801A0531F7B4439006C3D18 /* TrueWorld.m in Sources */,
 				3801A0651F7E0F9D006C3D18 /* BaseChatDetail.m in Sources */,
+				38748E6320D23A4300700891 /* PRDBManager.m in Sources */,
 				38A13E081FE1192C002B62B4 /* BaseMgr.m in Sources */,
 				38C76CA21FA1850600BCBCB9 /* ChatRoomMgr.m in Sources */,
 				3801A07D1F7F302E006C3D18 /* PufuChatDetail.m in Sources */,

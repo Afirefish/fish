@@ -38,6 +38,7 @@ static inline BOOL PRIsHorizontalUI(id<UITraitEnvironment> traitEnvironment) {
 
 @property (nonatomic, strong) UIView *playControlsView;
 @property (nonatomic, strong) UIView *playerView;
+@property (nonatomic, strong) UIView *overlayView;
 @property (nonatomic, strong) UIButton *exitBtn;
 @property (nonatomic, strong) UIButton *playBtn;
 @property (nonatomic, strong) PRSlider *slider;
@@ -128,13 +129,13 @@ static inline BOOL PRIsHorizontalUI(id<UITraitEnvironment> traitEnvironment) {
         make.width.height.equalTo(@(kButtonHeight));
     }];
     
-    UIView *overlayview = ({
+    self.overlayView = ({
         UIView *view = [[UIView alloc] init];
         view.backgroundColor = [UIColor blackColor];
         view;
     });
-    [self.playControlsView addSubview:overlayview];
-    [overlayview mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.playControlsView addSubview:self.overlayView];
+    [self.overlayView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.height.equalTo(@(kButtonHeight));
         make.left.right.equalTo(self.view);
         make.bottom.equalTo(self.playerView).offset(- kControlSpaceS);
@@ -267,9 +268,12 @@ static inline BOOL PRIsHorizontalUI(id<UITraitEnvironment> traitEnvironment) {
 
 - (void)addAllObserver {
     [self addObserver:self forKeyPath:@"player.currentItem.duration" options:NSKeyValueObservingOptionNew context:&PRKVOContext];
-    //    [self addObserver:self forKeyPath:@"player.currentItem.currentTime" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionInitial  context:&PRKVOContext];
     
     //     对于不支持kvo的当前时间，用nstimer或者CADisplayLink来刷新
+    
+    // 这个是通过加入runloop之中，与屏幕刷新频率同步来刷新数据
+    self.link = [CADisplayLink displayLinkWithTarget:self selector:@selector(updateCurrentTime)];
+    [self.link addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSDefaultRunLoopMode];
     
     //  一、这个是个block的方式创建了一个nstimer，通过这个来刷新播放当前时间
     //        __weak __typeof(self) weakSelf = self;
@@ -283,10 +287,6 @@ static inline BOOL PRIsHorizontalUI(id<UITraitEnvironment> traitEnvironment) {
     //                                                 strongSelf.currentTime = [NSString stringWithFormat:@"%02ld:%02ld", (long)wholeMinutes, (NSInteger)trunc(newCurrentSeconds) - wholeMinutes * 60];
     //                                                 strongSelf.timeLabel.text = [NSString stringWithFormat:@"%@/%@", strongSelf.currentTime, strongSelf.duration];
     //                                             }];
-    
-    // 二、这个是通过加入runloop之中，与屏幕刷新频率同步来刷新数据
-    self.link = [CADisplayLink displayLinkWithTarget:self selector:@selector(updateCurrentTime)];
-    [self.link addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSDefaultRunLoopMode];
     
 }
 
@@ -416,6 +416,7 @@ static inline BOOL PRIsHorizontalUI(id<UITraitEnvironment> traitEnvironment) {
 
 - (void)hideControls {
     self.isHide = !self.isHide;
+    self.overlayView.hidden = self.isHide;
     self.playBtn.hidden = self.isHide;
     self.exitBtn.hidden = self.isHide;
     self.fullScreenBtn.hidden = self.isHide;
@@ -425,6 +426,7 @@ static inline BOOL PRIsHorizontalUI(id<UITraitEnvironment> traitEnvironment) {
 
 - (void)showAllControls {
     self.isHide = NO;
+    self.overlayView.hidden = NO;
     self.playBtn.hidden = NO;
     self.exitBtn.hidden = NO;
     self.fullScreenBtn.hidden = NO;

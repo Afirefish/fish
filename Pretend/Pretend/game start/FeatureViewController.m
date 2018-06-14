@@ -14,6 +14,8 @@
 #import "PRProgressIndicator.h"
 #import "PRProgressBar.h"
 
+#import "PRDBManager.h"
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface FeatureViewController ()<PRProgressDelegate> {
@@ -34,21 +36,21 @@ NS_ASSUME_NONNULL_BEGIN
     NSString *bundleVersionKey = (NSString *)kCFBundleVersionKey;
     NSString *bundleVersion = [NSBundle mainBundle].infoDictionary[bundleVersionKey];
     NSString *saveVersion = [[NSUserDefaults standardUserDefaults] objectForKey:bundleVersionKey];
-//    if ([bundleVersion isEqualToString:saveVersion]) {
-//        // 直接播放开场动画
-//        PRVideoViewController *videoVC = [[PRVideoViewController alloc] initWithOpeningAnimate:YES];
-//        [self addChildViewController:videoVC]; // 1
-//        [self.view addSubview:videoVC.view]; // 2
-//        [videoVC didMoveToParentViewController:self]; // 3
-//    }
-//    else {
+    if ([bundleVersion isEqualToString:saveVersion]) {
+        // 直接播放开场动画
+        PRVideoViewController *videoVC = [[PRVideoViewController alloc] initWithOpeningAnimate:YES];
+        [self addChildViewController:videoVC]; // 1
+        [self.view addSubview:videoVC.view]; // 2
+        [videoVC didMoveToParentViewController:self]; // 3
+    }
+    else {
         [[NSUserDefaults  standardUserDefaults] setObject:bundleVersion forKey:bundleVersionKey];
         [[NSUserDefaults  standardUserDefaults] synchronize];
         [self setupViews];
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [self transform];
         });
-//    }
+    }
 }
 
 - (void)setupViews {

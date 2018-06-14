@@ -187,14 +187,12 @@ static NSString *baseChat = @"BaseChat";
             break;
         }
         case ChatBegin: {
-            NSLog(@"游戏开始了");
             break;
         }
         
         case ChatComplete: {
             self.coverLabel.alpha = 1;
             self.choicesCollectionView.userInteractionEnabled = NO;
-            NSLog(@"游戏通关了");
             break;
         }
             
@@ -226,7 +224,7 @@ static NSString *baseChat = @"BaseChat";
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.1 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
                 [self scrollTableToFoot:YES];
             });
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.5 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{//加个延迟有种思考的感觉233
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.5 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
                 [self devilRespond];
             });
             break;
@@ -237,13 +235,13 @@ static NSString *baseChat = @"BaseChat";
     }
 }
 
-//恶魔的回复,仅在对话的时候使用
+//AI的回复,仅在对话的时候使用
 - (void)devilRespond {
     [self.chatMgr devilRespond];
     BaseChatModel *model =[[BaseChatModel alloc] initWithMsg:self.chatMgr.devilRespondContent isDevil:self.chatMgr.isDevil isChoice:self.chatMgr.isChoice];
     [self.chatMgr.chatMessageList addObject:model];
     [self.chatContentTableView reloadData];
-    // 因为如果改变isChoice会影响到table加载数据，所以在加载完数据之后再改变玩家选项 给0.5s的时间应该ok。。
+    // 因为如果改变isChoice会影响到table加载数据，所以在加载完数据之后再改变玩家选项
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.5 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
         switch ([self.chatMgr loadNextChoice]) {
             case BranchComplete:
@@ -345,7 +343,7 @@ static NSString *baseChat = @"BaseChat";
             message = self.chatMgr.plainMsg;
         }
         else {
-            // 恶魔
+            // AI
             if (self.chatMgr.isDevil == YES) {
                 message = self.chatMgr.devilRespondContent;
             }
