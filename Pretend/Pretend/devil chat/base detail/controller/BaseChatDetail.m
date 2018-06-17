@@ -18,6 +18,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface BaseChatDetail ()
+@property (nonatomic, strong, nullable) NSTimer *timer;
 
 @end
 
@@ -44,7 +45,17 @@ static NSString *baseChat = @"BaseChat";
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     [self scrollTableToFoot:NO];
+    self.choicesCollectionView.hidden = YES;
+    self.controlsView.hidden = NO;
     [self playBGM];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    if (self.timer) {
+        [self.timer invalidate];
+        self.timer = nil;
+    }
 }
 
 #pragma mark - view
@@ -77,7 +88,7 @@ static NSString *baseChat = @"BaseChat";
             make.bottom.equalTo(self.view).offset(-140);
         }
     }];
-    //设置tableview背景视图
+    // 设置tableview背景视图
     self.tableBackgroundView = ({
         UIImageView *imageView = [[UIImageView alloc] init];
         imageView.contentMode = UIViewContentModeScaleAspectFill;
@@ -101,7 +112,7 @@ static NSString *baseChat = @"BaseChat";
         make.edges.equalTo(self.tableBackgroundView);
     }];
     
-    //collection view显示的视图
+    // collection view显示的视图
     self.layout = [[UICollectionViewFlowLayout alloc] init];
     [self.layout setScrollDirection:UICollectionViewScrollDirectionVertical];
     self.layout.itemSize = CGSizeMake((SCREEN_WIDTH - 40)/2 , 80);
@@ -122,7 +133,16 @@ static NSString *baseChat = @"BaseChat";
         }
         make.top.equalTo(self.chatContentTableView.mas_bottom);
     }];
-    //设置collectionview背景视图
+    // 设置controlsView
+    self.controlsView = [[BaseChatControlsView alloc] init];
+    [self.controlsView.nextBtn addTarget:self action:@selector(sendMessage) forControlEvents:UIControlEventTouchUpInside];
+    [self.controlsView.autoPlayBtn addTarget:self action:@selector(autoLoadMessage) forControlEvents:UIControlEventTouchUpInside];
+    [self.controlsView.fastPlayBtn addTarget:self action:@selector(fastLoadMessage) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:self.controlsView];
+    [self.controlsView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self.choicesCollectionView);
+    }];
+    // 设置collectionview背景视图
     self.collectionBackgroudView = ({
         UIImageView *imageView = [[UIImageView alloc] init];
         imageView.contentMode = UIViewContentModeScaleAspectFill;
@@ -176,41 +196,59 @@ static NSString *baseChat = @"BaseChat";
 - (void)sendMessage {
     switch ([self.chatMgr loadNewMessage]) {
         case PlainChat: {
-            self.choicesCollectionView.userInteractionEnabled = NO;
+            self.choicesCollectionView.hidden = YES;
+            self.controlsView.hidden = NO;
             BaseChatModel *model =[[BaseChatModel alloc] initWithMsg:self.chatMgr.plainMsg isDevil:self.chatMgr.isDevil isChoice:self.chatMgr.isChoice];
             [self.chatMgr.chatMessageList addObject:model];
             [self.chatContentTableView reloadData];
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.1 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
                 [self scrollTableToFoot:YES];
-                self.choicesCollectionView.userInteractionEnabled = YES;
             });
             break;
         }
+        
         case ChatBegin: {
+            [self sendMessage];
             break;
         }
         
         case ChatComplete: {
+            if (self.timer) {
+                [self.timer invalidate];
+                self.timer = nil;
+            }
             self.coverLabel.alpha = 1;
             self.choicesCollectionView.userInteractionEnabled = NO;
             break;
         }
             
         case ChapterBegin: {
+            [self sendMessage];
             break;
         }
         
         case OtherChapterBegin: {
+            if (self.timer) {
+                [self.timer invalidate];
+                self.timer = nil;
+            }
             self.coverLabel.alpha = 1;
             self.choicesCollectionView.userInteractionEnabled = NO;
             break;
         }
             
         case ChapterComplete: {
+            [self sendMessage];
             break;
         }
             
         case BranchBegin: {
+            if (self.timer) {
+                [self.timer invalidate];
+                self.timer = nil;
+            }
+            self.choicesCollectionView.hidden = NO;
+            self.controlsView.hidden = YES;
             [self.choicesCollectionView reloadData];
             break;
         }
@@ -245,19 +283,57 @@ static NSString *baseChat = @"BaseChat";
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.5 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
         switch ([self.chatMgr loadNextChoice]) {
             case BranchComplete:
+                self.choicesCollectionView.hidden = YES;
+                self.controlsView.hidden = NO;
                 break;
                 
             case PlayerTime:
+                [self.choicesCollectionView reloadData];
                 break;
     
             default:
                 break;
         }
-        [self.choicesCollectionView reloadData];
         [self scrollTableToFoot:YES];
         self.coverLabel.alpha = 0;
         self.choicesCollectionView.userInteractionEnabled = YES;
     });
+}
+
+// 自动播放
+- (void)autoLoadMessage {
+    if (self.timer) {
+        [self.timer invalidate];
+        self.timer = nil;
+    }
+    self.isAutoPlaying = !self.isAutoPlaying;
+    if (self.isAutoPlaying) {
+        self.controlsView.tipLabel.text = @"自动播放中...";
+        self.timer = [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(sendMessage) userInfo:nil repeats:YES];
+    }
+    else {
+        self.controlsView.tipLabel.text = @"普通模式...";
+        [self.timer invalidate];
+        self.timer = nil;
+    }
+}
+
+// 快速播放
+- (void)fastLoadMessage {
+    if (self.timer) {
+        [self.timer invalidate];
+        self.timer = nil;
+    }
+    self.isfastPlaying = !self.isfastPlaying;
+    if (self.isfastPlaying) {
+        self.controlsView.tipLabel.text = @"快进模式...";
+        self.timer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(sendMessage) userInfo:nil repeats:YES];
+    }
+    else {
+        self.controlsView.tipLabel.text = @"普通模式...";
+        [self.timer invalidate];
+        self.timer = nil;
+    }
 }
 
 #pragma dataSource
@@ -278,7 +354,7 @@ static NSString *baseChat = @"BaseChat";
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     if (!self.chatMgr.isChoice) {
-        return 1;
+        return 0;
     }
     // 如果是对话，返回玩家可选选项的个数
     else {
@@ -295,12 +371,8 @@ static NSString *baseChat = @"BaseChat";
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     BaseChoiceCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:choice forIndexPath:indexPath];
-    // 如果是普通的文本，点击即可进入下一句
-    if (!self.chatMgr.isChoice) {
-        cell.messageLabel.text = @"NEXT";
-    }
     // 如果是对话文本，因为在获取选项个数的时候就获得了所有的选项，所以直接读取当前的step的玩家的全部可选项，展示
-    else {
+    if (self.chatMgr.isChoice) {
         self.chatMgr.choiceDic = [self.chatMgr.choiceArr objectAtIndex:indexPath.row];
         cell.messageLabel.text = [self.chatMgr.choiceDic objectForKey:@"message"];
     }

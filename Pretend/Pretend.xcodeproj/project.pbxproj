@@ -38,6 +38,7 @@
 		38748E6020D239E700700891 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 38748E5F20D239E700700891 /* libsqlite3.tbd */; };
 		38748E6320D23A4300700891 /* PRDBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 38748E6220D23A4300700891 /* PRDBManager.m */; };
 		38748E6620D25BF600700891 /* PRConstantSQL.m in Sources */ = {isa = PBXBuildFile; fileRef = 38748E6520D25BF600700891 /* PRConstantSQL.m */; };
+		38748E6920D3943500700891 /* BaseChatControlsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 38748E6820D3943500700891 /* BaseChatControlsView.m */; };
 		3876A7F11F8DD4A7008A20C9 /* playerTochizi.json in Resources */ = {isa = PBXBuildFile; fileRef = 3876A7F01F8DD4A7008A20C9 /* playerTochizi.json */; };
 		3876A7F31F8DD4AE008A20C9 /* chizi.json in Resources */ = {isa = PBXBuildFile; fileRef = 3876A7F21F8DD4AE008A20C9 /* chizi.json */; };
 		387BA634201606C700B7A15B /* NSObject+BJLObserving.m in Sources */ = {isa = PBXBuildFile; fileRef = 387BA631201606C600B7A15B /* NSObject+BJLObserving.m */; };
@@ -182,6 +183,8 @@
 		38748E6220D23A4300700891 /* PRDBManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PRDBManager.m; sourceTree = "<group>"; };
 		38748E6420D25BF600700891 /* PRConstantSQL.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PRConstantSQL.h; sourceTree = "<group>"; };
 		38748E6520D25BF600700891 /* PRConstantSQL.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PRConstantSQL.m; sourceTree = "<group>"; };
+		38748E6720D3943500700891 /* BaseChatControlsView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseChatControlsView.h; sourceTree = "<group>"; };
+		38748E6820D3943500700891 /* BaseChatControlsView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseChatControlsView.m; sourceTree = "<group>"; };
 		3876A7F01F8DD4A7008A20C9 /* playerTochizi.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = playerTochizi.json; sourceTree = "<group>"; };
 		3876A7F21F8DD4AE008A20C9 /* chizi.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = chizi.json; sourceTree = "<group>"; };
 		387BA630201606C600B7A15B /* NSObject+BJLWillDeallocBlock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+BJLWillDeallocBlock.h"; sourceTree = "<group>"; };
@@ -805,6 +808,8 @@
 				3801A0761F7E3BF6006C3D18 /* BaseChatTableViewCell.m */,
 				389C5C911FB1E39900494006 /* BaseChoiceCollectionViewCell.h */,
 				389C5C921FB1E39900494006 /* BaseChoiceCollectionViewCell.m */,
+				38748E6720D3943500700891 /* BaseChatControlsView.h */,
+				38748E6820D3943500700891 /* BaseChatControlsView.m */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -1147,6 +1152,7 @@
 				38C76CAA1FA19C1600BCBCB9 /* PufuMgr.m in Sources */,
 				38C76D111FAACAF900BCBCB9 /* CardSelectedBackground.m in Sources */,
 				38C76CE51FA8550300BCBCB9 /* FeastView.m in Sources */,
+				38748E6920D3943500700891 /* BaseChatControlsView.m in Sources */,
 				389C5C7B1FB04F9B00494006 /* CardMasonryLayout.m in Sources */,
 				389C5C8A1FB15E4500494006 /* TableCardCollectionViewCell.m in Sources */,
 				3801A04A1F7B43CF006C3D18 /* FirstCommunication.m in Sources */,

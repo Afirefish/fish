@@ -60,6 +60,10 @@ static dispatch_once_t onceToken;
     }
 }
 
+- (BOOL)isPlaying {
+    return self.player.isPlaying;
+}
+
 - (void)playWithFileURL:(NSURL *)url {
     [self removeNotify];
     NSError *error = nil;

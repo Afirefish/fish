@@ -11,6 +11,7 @@
 
 @interface PRBGMPlayer : NSObject
 
+@property (nonatomic, assign) BOOL isPlaying;
 // 单例模式创建音乐播放器
 + (instancetype)defaultPlayer;
 // 播放
