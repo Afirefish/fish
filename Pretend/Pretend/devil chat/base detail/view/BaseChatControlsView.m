@@ -28,19 +28,16 @@
     
     [self.autoPlayBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.centerY.equalTo(self);
-        make.width.equalTo(self).multipliedBy(0.3);
-        make.height.equalTo(self).multipliedBy(0.6);
+        make.width.height.equalTo(self.mas_width).multipliedBy(0.2);
     }];
     [self.nextBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self).offset(10.0);
-        make.width.equalTo(self).multipliedBy(0.15);
-        make.height.equalTo(self).multipliedBy(0.4);
+        make.right.equalTo(self.autoPlayBtn.mas_left).offset(-10.0);
+        make.width.height.equalTo(self.mas_width).multipliedBy(0.15);
         make.centerY.equalTo(self);
     }];
     [self.fastPlayBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(self).offset(-10.0);
-        make.width.equalTo(self).multipliedBy(0.15);
-        make.height.equalTo(self).multipliedBy(0.3);
+        make.left.equalTo(self.autoPlayBtn.mas_right).offset(10.0);
+        make.width.height.equalTo(self.mas_width).multipliedBy(0.15);
         make.centerY.equalTo(self);
     }];
     [self.tipLabel mas_makeConstraints:^(MASConstraintMaker *make) {

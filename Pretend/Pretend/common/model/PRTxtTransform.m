@@ -48,18 +48,23 @@
     NSString *contentPath = [[NSBundle mainBundle] pathForResource:@"article" ofType:@"txt"]; // 文本存储位置
     NSString *txtContent = [NSString stringWithContentsOfFile:contentPath encoding:NSUTF8StringEncoding error:nil]; // 文本转nsstring
     // 统一修改所有英文符号变成中文
-    txtContent = [txtContent stringByReplacingOccurrencesOfString:@"." withString:@"。"];//中文句号
     txtContent = [txtContent stringByReplacingOccurrencesOfString:@"?" withString:@"？"]; //中文问号
     txtContent = [txtContent stringByReplacingOccurrencesOfString:@"!" withString:@"！"];//中文感叹号
     txtContent = [txtContent stringByReplacingOccurrencesOfString:@";" withString:@"；"];//分号
     // 指定的中文符号后添加回车
-    txtContent = [txtContent stringByReplacingOccurrencesOfString:@"。" withString:@".\n"];//中文句号
+    txtContent = [txtContent stringByReplacingOccurrencesOfString:@"...]" withString:@"...]\n"];//省略号
+    txtContent = [txtContent stringByReplacingOccurrencesOfString:@"。。。" withString:@"..."];//省略号
+    txtContent = [txtContent stringByReplacingOccurrencesOfString:@"[" withString:@"\n["];//中文句号和双引号还原
+    txtContent = [txtContent stringByReplacingOccurrencesOfString:@"。]" withString:@".]\n"];//中文句号和双引号还原
+    txtContent = [txtContent stringByReplacingOccurrencesOfString:@"？]" withString:@"?]\n"];//中文问号和双引号还原
+    txtContent = [txtContent stringByReplacingOccurrencesOfString:@"！]" withString:@"!]\n"];//中文问号和双引号还原
+    txtContent = [txtContent stringByReplacingOccurrencesOfString:@"。" withString:@".\n"];//中文句号,此时已经过滤了在语句中的了
     txtContent = [txtContent stringByReplacingOccurrencesOfString:@"？" withString:@"?\n"]; //中文问号
     txtContent = [txtContent stringByReplacingOccurrencesOfString:@"！" withString:@"!\n"];//中文感叹号
-    txtContent = [txtContent stringByReplacingOccurrencesOfString:@"。。。" withString:@"...\n"];//省略号
     txtContent = [txtContent stringByReplacingOccurrencesOfString:@"；" withString:@";\n"];//分号
-    txtContent = [txtContent stringByReplacingOccurrencesOfString:@"~" withString:@"~\n"];//~号
+    txtContent = [txtContent stringByReplacingOccurrencesOfString:@"~]" withString:@"~]\n"];//~号
     //转回中文。。
+    txtContent = [txtContent stringByReplacingOccurrencesOfString:@"..." withString:@"。。。"];//中文句号
     txtContent = [txtContent stringByReplacingOccurrencesOfString:@"." withString:@"。"];//中文句号
     txtContent = [txtContent stringByReplacingOccurrencesOfString:@"?" withString:@"？"]; //中文问号
     txtContent = [txtContent stringByReplacingOccurrencesOfString:@"!" withString:@"！"];//中文感叹号

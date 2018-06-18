@@ -82,8 +82,8 @@ NS_ASSUME_NONNULL_BEGIN
     UIBarButtonItem *backItem = [[UIBarButtonItem alloc]initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
     //设置backBarButtonItem即可
     self.navigationItem.backBarButtonItem = backItem;
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"save"] style:UIBarButtonItemStylePlain target:self action:@selector(saveToFile)];
     [self setupTableView];
-    [self setupSaveBtn];
 }
 
 - (void)setupTableView {
@@ -95,16 +95,16 @@ NS_ASSUME_NONNULL_BEGIN
     [self.tableView registerClass:[ChatRoomCell class] forCellReuseIdentifier:devilMaster];
 }
 
-- (void)setupSaveBtn {
-    UIButton *saveBtn = [UIButton buttonWithType:UIButtonTypeSystem];
-    saveBtn.frame = CGRectMake(0, 0, 44, 44);
-    [saveBtn setTitle:@"save" forState:UIControlStateNormal];
-    [saveBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    saveBtn.titleLabel.font = [UIFont systemFontOfSize:16];
-    [saveBtn addTarget:self action:@selector(saveToFile) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *saveItem = [[UIBarButtonItem alloc] initWithCustomView:saveBtn];
-    self.navigationItem.rightBarButtonItem = saveItem;
-}
+//- (void)setupSaveBtn {
+//    UIButton *saveBtn = [UIButton buttonWithType:UIButtonTypeSystem];
+//    saveBtn.frame = CGRectMake(0, 0, 44, 44);
+//    [saveBtn setTitle:@"save" forState:UIControlStateNormal];
+//    [saveBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+//    saveBtn.titleLabel.font = [UIFont systemFontOfSize:16];
+//    [saveBtn addTarget:self action:@selector(saveToFile) forControlEvents:UIControlEventTouchUpInside];
+//    UIBarButtonItem *saveItem = [[UIBarButtonItem alloc] initWithCustomView:saveBtn];
+//    self.navigationItem.rightBarButtonItem = saveItem;
+//}
 
 - (void)saveToFile {//保存
     [self.chatRoomMgr writeToFile];

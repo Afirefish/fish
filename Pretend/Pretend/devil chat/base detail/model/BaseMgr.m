@@ -210,6 +210,10 @@
     if ([self isFileFirstCreated]) {
         NSLog(@"create file");
     }
+    if (self.isChoice) {
+        self.previousStep --;
+        self.finished --;
+    }
     NSNumber *previousStep = [NSNumber numberWithUnsignedInteger:self.previousStep];
     NSNumber *finished = [NSNumber numberWithUnsignedInteger:self.finished];
     NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:

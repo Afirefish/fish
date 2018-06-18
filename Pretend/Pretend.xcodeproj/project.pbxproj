@@ -39,13 +39,9 @@
 		38748E6320D23A4300700891 /* PRDBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 38748E6220D23A4300700891 /* PRDBManager.m */; };
 		38748E6620D25BF600700891 /* PRConstantSQL.m in Sources */ = {isa = PBXBuildFile; fileRef = 38748E6520D25BF600700891 /* PRConstantSQL.m */; };
 		38748E6920D3943500700891 /* BaseChatControlsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 38748E6820D3943500700891 /* BaseChatControlsView.m */; };
-		3876A7F11F8DD4A7008A20C9 /* playerTochizi.json in Resources */ = {isa = PBXBuildFile; fileRef = 3876A7F01F8DD4A7008A20C9 /* playerTochizi.json */; };
-		3876A7F31F8DD4AE008A20C9 /* chizi.json in Resources */ = {isa = PBXBuildFile; fileRef = 3876A7F21F8DD4AE008A20C9 /* chizi.json */; };
 		387BA634201606C700B7A15B /* NSObject+BJLObserving.m in Sources */ = {isa = PBXBuildFile; fileRef = 387BA631201606C600B7A15B /* NSObject+BJLObserving.m */; };
 		387BA635201606C700B7A15B /* NSObject+BJLWillDeallocBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = 387BA633201606C700B7A15B /* NSObject+BJLWillDeallocBlock.m */; };
 		387BA6382016E37200B7A15B /* BaseChatModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 387BA6372016E37200B7A15B /* BaseChatModel.m */; };
-		388442B61F8CAD52005C9044 /* playerTopufu.json in Resources */ = {isa = PBXBuildFile; fileRef = 388442B41F8CAD52005C9044 /* playerTopufu.json */; };
-		388442B71F8CAD52005C9044 /* pufu.json in Resources */ = {isa = PBXBuildFile; fileRef = 388442B51F8CAD52005C9044 /* pufu.json */; };
 		389C5C781FAEE89400494006 /* PuriHandCardCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 389C5C771FAEE89400494006 /* PuriHandCardCell.m */; };
 		389C5C7B1FB04F9B00494006 /* CardMasonryLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 389C5C7A1FB04F9B00494006 /* CardMasonryLayout.m */; };
 		389C5C7E1FB057CB00494006 /* CardSortTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 389C5C7D1FB057CB00494006 /* CardSortTestViewController.m */; };
@@ -65,8 +61,6 @@
 		38A17BFD2004987200088588 /* PRTxtTransform.m in Sources */ = {isa = PBXBuildFile; fileRef = 38A17BFC2004987200088588 /* PRTxtTransform.m */; };
 		38A573FD20C4FEC600479601 /* video.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 38A573FC20C4FEC600479601 /* video.mp4 */; };
 		38BDFB6C2018377400D1BB86 /* FeatureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38BDFB6B2018377400D1BB86 /* FeatureViewController.m */; };
-		38C76C8F1FA073CA00BCBCB9 /* tiza.json in Resources */ = {isa = PBXBuildFile; fileRef = 38C76C8D1FA073CA00BCBCB9 /* tiza.json */; };
-		38C76C901FA073CA00BCBCB9 /* playerTotiza.json in Resources */ = {isa = PBXBuildFile; fileRef = 38C76C8E1FA073CA00BCBCB9 /* playerTotiza.json */; };
 		38C76C9B1FA07BD100BCBCB9 /* DevilChatRoom.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C76C991FA07BD100BCBCB9 /* DevilChatRoom.m */; };
 		38C76C9E1FA07C1700BCBCB9 /* ChatRoomCleared.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C76C9D1FA07C1700BCBCB9 /* ChatRoomCleared.m */; };
 		38C76CA21FA1850600BCBCB9 /* ChatRoomMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C76CA11FA1850600BCBCB9 /* ChatRoomMgr.m */; };
@@ -97,8 +91,6 @@
 		38C76D171FAAFF3400BCBCB9 /* PuriHandCardLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C76D161FAAFF3400BCBCB9 /* PuriHandCardLayout.m */; };
 		38C76D201FAB74B700BCBCB9 /* PuriLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C76D1F1FAB74B700BCBCB9 /* PuriLayout.m */; };
 		38C76D231FAC538900BCBCB9 /* PuriHandCardAttributes.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C76D221FAC538900BCBCB9 /* PuriHandCardAttributes.m */; };
-		38CEAA6E1F8BA0B600BC72EC /* santa.json in Resources */ = {isa = PBXBuildFile; fileRef = 38CEAA6D1F8BA0B600BC72EC /* santa.json */; };
-		38CEAA701F8BA0E800BC72EC /* playerTosanta.json in Resources */ = {isa = PBXBuildFile; fileRef = 38CEAA6F1F8BA0E800BC72EC /* playerTosanta.json */; };
 		38E240241FECB69300896939 /* CardFeastViewController+UI.m in Sources */ = {isa = PBXBuildFile; fileRef = 38E240231FECB69300896939 /* CardFeastViewController+UI.m */; };
 		38E2404F1FF0954700896939 /* CardCrafterCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 38E2404E1FF0954700896939 /* CardCrafterCell.m */; };
 		FEB8F7668BFCA7D04939BC7C /* libPods-Pretend.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D33B925DDB6AA3EAC9B48AB8 /* libPods-Pretend.a */; };
@@ -185,16 +177,12 @@
 		38748E6520D25BF600700891 /* PRConstantSQL.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PRConstantSQL.m; sourceTree = "<group>"; };
 		38748E6720D3943500700891 /* BaseChatControlsView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseChatControlsView.h; sourceTree = "<group>"; };
 		38748E6820D3943500700891 /* BaseChatControlsView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseChatControlsView.m; sourceTree = "<group>"; };
-		3876A7F01F8DD4A7008A20C9 /* playerTochizi.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = playerTochizi.json; sourceTree = "<group>"; };
-		3876A7F21F8DD4AE008A20C9 /* chizi.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = chizi.json; sourceTree = "<group>"; };
 		387BA630201606C600B7A15B /* NSObject+BJLWillDeallocBlock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+BJLWillDeallocBlock.h"; sourceTree = "<group>"; };
 		387BA631201606C600B7A15B /* NSObject+BJLObserving.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+BJLObserving.m"; sourceTree = "<group>"; };
 		387BA632201606C700B7A15B /* NSObject+BJLObserving.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+BJLObserving.h"; sourceTree = "<group>"; };
 		387BA633201606C700B7A15B /* NSObject+BJLWillDeallocBlock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+BJLWillDeallocBlock.m"; sourceTree = "<group>"; };
 		387BA6362016E37200B7A15B /* BaseChatModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseChatModel.h; sourceTree = "<group>"; };
 		387BA6372016E37200B7A15B /* BaseChatModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseChatModel.m; sourceTree = "<group>"; };
-		388442B41F8CAD52005C9044 /* playerTopufu.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = playerTopufu.json; sourceTree = "<group>"; };
-		388442B51F8CAD52005C9044 /* pufu.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = pufu.json; sourceTree = "<group>"; };
 		389C5C761FAEE89400494006 /* PuriHandCardCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PuriHandCardCell.h; sourceTree = "<group>"; };
 		389C5C771FAEE89400494006 /* PuriHandCardCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PuriHandCardCell.m; sourceTree = "<group>"; };
 		389C5C791FB04F9B00494006 /* CardMasonryLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardMasonryLayout.h; sourceTree = "<group>"; };
@@ -226,8 +214,6 @@
 		38A573FC20C4FEC600479601 /* video.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = video.mp4; sourceTree = "<group>"; };
 		38BDFB6A2018377400D1BB86 /* FeatureViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FeatureViewController.h; sourceTree = "<group>"; };
 		38BDFB6B2018377400D1BB86 /* FeatureViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FeatureViewController.m; sourceTree = "<group>"; };
-		38C76C8D1FA073CA00BCBCB9 /* tiza.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = tiza.json; sourceTree = "<group>"; };
-		38C76C8E1FA073CA00BCBCB9 /* playerTotiza.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = playerTotiza.json; sourceTree = "<group>"; };
 		38C76C981FA07BD100BCBCB9 /* DevilChatRoom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DevilChatRoom.h; sourceTree = "<group>"; };
 		38C76C991FA07BD100BCBCB9 /* DevilChatRoom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DevilChatRoom.m; sourceTree = "<group>"; };
 		38C76C9C1FA07C1700BCBCB9 /* ChatRoomCleared.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatRoomCleared.h; sourceTree = "<group>"; };
@@ -287,8 +273,6 @@
 		38C76D1F1FAB74B700BCBCB9 /* PuriLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PuriLayout.m; sourceTree = "<group>"; };
 		38C76D211FAC538900BCBCB9 /* PuriHandCardAttributes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PuriHandCardAttributes.h; sourceTree = "<group>"; };
 		38C76D221FAC538900BCBCB9 /* PuriHandCardAttributes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PuriHandCardAttributes.m; sourceTree = "<group>"; };
-		38CEAA6D1F8BA0B600BC72EC /* santa.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = santa.json; sourceTree = "<group>"; };
-		38CEAA6F1F8BA0E800BC72EC /* playerTosanta.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = playerTosanta.json; sourceTree = "<group>"; };
 		38E240221FECB69300896939 /* CardFeastViewController+UI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CardFeastViewController+UI.h"; sourceTree = "<group>"; };
 		38E240231FECB69300896939 /* CardFeastViewController+UI.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "CardFeastViewController+UI.m"; sourceTree = "<group>"; };
 		38E2404D1FF0954700896939 /* CardCrafterCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CardCrafterCell.h; sourceTree = "<group>"; };
@@ -749,8 +733,6 @@
 			children = (
 				38E240401FECBB9300896939 /* controller */,
 				38E2403F1FECBB8200896939 /* model */,
-				38CEAA6F1F8BA0E800BC72EC /* playerTosanta.json */,
-				38CEAA6D1F8BA0B600BC72EC /* santa.json */,
 				389E43D1203FA6AD00AD107F /* SantaChat.mp3 */,
 			);
 			path = "santa detail";
@@ -761,8 +743,6 @@
 			children = (
 				38E240431FECBBC900896939 /* controller */,
 				38E240421FECBBB700896939 /* model */,
-				388442B41F8CAD52005C9044 /* playerTopufu.json */,
-				388442B51F8CAD52005C9044 /* pufu.json */,
 				389E43D3203FA6B700AD107F /* PufuChat.mp3 */,
 			);
 			path = "pufu detail";
@@ -773,8 +753,6 @@
 			children = (
 				38E240461FECBCD400896939 /* controller */,
 				38E240451FECBCC400896939 /* model */,
-				3876A7F01F8DD4A7008A20C9 /* playerTochizi.json */,
-				3876A7F21F8DD4AE008A20C9 /* chizi.json */,
 				389E43D5203FA6C400AD107F /* ChiziChat.mp3 */,
 			);
 			path = "chizi detail";
@@ -785,8 +763,6 @@
 			children = (
 				38E240491FECBD0300896939 /* controller */,
 				38E240481FECBCF200896939 /* model */,
-				38C76C8D1FA073CA00BCBCB9 /* tiza.json */,
-				38C76C8E1FA073CA00BCBCB9 /* playerTotiza.json */,
 				389E43D7203FA6CE00AD107F /* TizaChat.mp3 */,
 			);
 			path = "tiza detail";
@@ -1040,20 +1016,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				3801A0251F7A76B0006C3D18 /* LaunchScreen.storyboard in Resources */,
-				3876A7F11F8DD4A7008A20C9 /* playerTochizi.json in Resources */,
 				3801A0221F7A76B0006C3D18 /* Assets.xcassets in Resources */,
 				389E43D4203FA6B700AD107F /* PufuChat.mp3 in Resources */,
 				38A573FD20C4FEC600479601 /* video.mp4 in Resources */,
-				38CEAA701F8BA0E800BC72EC /* playerTosanta.json in Resources */,
-				38C76C901FA073CA00BCBCB9 /* playerTotiza.json in Resources */,
-				388442B71F8CAD52005C9044 /* pufu.json in Resources */,
-				388442B61F8CAD52005C9044 /* playerTopufu.json in Resources */,
-				3876A7F31F8DD4AE008A20C9 /* chizi.json in Resources */,
 				38C76CF91FA8A91C00BCBCB9 /* consider.json in Resources */,
 				389E43D02034186A00AD107F /* bgm.mp3 in Resources */,
-				38C76C8F1FA073CA00BCBCB9 /* tiza.json in Resources */,
 				389E43D6203FA6C400AD107F /* ChiziChat.mp3 in Resources */,
-				38CEAA6E1F8BA0B600BC72EC /* santa.json in Resources */,
 				389E43DA203FA8B200AD107F /* ChatRoom.mp3 in Resources */,
 				389E43D2203FA6AE00AD107F /* SantaChat.mp3 in Resources */,
 				389E43D8203FA6CE00AD107F /* TizaChat.mp3 in Resources */,

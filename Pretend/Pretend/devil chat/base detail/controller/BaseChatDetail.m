@@ -39,14 +39,13 @@ static NSString *baseChat = @"BaseChat";
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     self.navigationController.navigationBar.tintColor = [UIColor blackColor];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"music_play"] style:UIBarButtonItemStylePlain target:self action:@selector(playMusic)];
     [self setupSubviews];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     [self scrollTableToFoot:NO];
-    self.choicesCollectionView.hidden = YES;
-    self.controlsView.hidden = NO;
     [self playBGM];
 }
 
@@ -155,6 +154,7 @@ static NSString *baseChat = @"BaseChat";
         make.edges.equalTo(self.choicesCollectionView);
     }];
     [self setupBackgroundImage];
+    [self refreshView];
 }
 
 - (void)setupBackgroundImage {
@@ -192,6 +192,18 @@ static NSString *baseChat = @"BaseChat";
 
 #pragma mark - action
 
+- (void)refreshView {
+    if (self.chatMgr.isChoice) {
+        [self.choicesCollectionView reloadData];
+        self.choicesCollectionView.hidden = NO;
+        self.controlsView.hidden = YES;
+    }
+    else {
+        self.choicesCollectionView.hidden = YES;
+        self.controlsView.hidden = NO;
+    }
+}
+
 //玩家做出选择的消息
 - (void)sendMessage {
     switch ([self.chatMgr loadNewMessage]) {
@@ -202,7 +214,7 @@ static NSString *baseChat = @"BaseChat";
             [self.chatMgr.chatMessageList addObject:model];
             [self.chatContentTableView reloadData];
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.1 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-                [self scrollTableToFoot:YES];
+                [self scrollTableToFoot:self.isfastPlaying?NO:YES];
             });
             break;
         }
@@ -214,11 +226,15 @@ static NSString *baseChat = @"BaseChat";
         
         case ChatComplete: {
             if (self.timer) {
+                self.isfastPlaying = NO;
+                self.isAutoPlaying = NO;
                 [self.timer invalidate];
                 self.timer = nil;
+                self.controlsView.tipLabel.text = @"普通模式...";
             }
             self.coverLabel.alpha = 1;
-            self.choicesCollectionView.userInteractionEnabled = NO;
+            self.choicesCollectionView.hidden = YES;
+            self.controlsView.hidden = YES;
             break;
         }
             
@@ -229,8 +245,11 @@ static NSString *baseChat = @"BaseChat";
         
         case OtherChapterBegin: {
             if (self.timer) {
+                self.isfastPlaying = NO;
+                self.isAutoPlaying = NO;
                 [self.timer invalidate];
                 self.timer = nil;
+                self.controlsView.tipLabel.text = @"普通模式...";
             }
             self.coverLabel.alpha = 1;
             self.choicesCollectionView.userInteractionEnabled = NO;
@@ -244,8 +263,11 @@ static NSString *baseChat = @"BaseChat";
             
         case BranchBegin: {
             if (self.timer) {
+                self.isfastPlaying = NO;
+                self.isAutoPlaying = NO;
                 [self.timer invalidate];
                 self.timer = nil;
+                self.controlsView.tipLabel.text = @"普通模式...";
             }
             self.choicesCollectionView.hidden = NO;
             self.controlsView.hidden = YES;
@@ -260,7 +282,7 @@ static NSString *baseChat = @"BaseChat";
             [self.chatMgr.chatMessageList addObject:model];
             [self.chatContentTableView reloadData];
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.1 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-                [self scrollTableToFoot:YES];
+                [self scrollTableToFoot:self.isfastPlaying?NO:YES];
             });
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.5 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
                 [self devilRespond];
@@ -294,7 +316,7 @@ static NSString *baseChat = @"BaseChat";
             default:
                 break;
         }
-        [self scrollTableToFoot:YES];
+        [self scrollTableToFoot:self.isfastPlaying?NO:YES];
         self.coverLabel.alpha = 0;
         self.choicesCollectionView.userInteractionEnabled = YES;
     });
@@ -308,6 +330,7 @@ static NSString *baseChat = @"BaseChat";
     }
     self.isAutoPlaying = !self.isAutoPlaying;
     if (self.isAutoPlaying) {
+        self.isfastPlaying = NO;
         self.controlsView.tipLabel.text = @"自动播放中...";
         self.timer = [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(sendMessage) userInfo:nil repeats:YES];
     }
@@ -326,13 +349,24 @@ static NSString *baseChat = @"BaseChat";
     }
     self.isfastPlaying = !self.isfastPlaying;
     if (self.isfastPlaying) {
+        self.isAutoPlaying = NO;
         self.controlsView.tipLabel.text = @"快进模式...";
-        self.timer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(sendMessage) userInfo:nil repeats:YES];
+        self.timer = [NSTimer scheduledTimerWithTimeInterval:0.2 target:self selector:@selector(sendMessage) userInfo:nil repeats:YES];
     }
     else {
         self.controlsView.tipLabel.text = @"普通模式...";
         [self.timer invalidate];
         self.timer = nil;
+    }
+}
+
+- (void)playMusic {
+    PRBGMPlayer *bgmPlayer = [PRBGMPlayer defaultPlayer];
+    if (bgmPlayer.isPlaying) {
+        [bgmPlayer pause];
+    }
+    else {
+        [bgmPlayer play];
     }
 }
 
@@ -409,7 +443,7 @@ static NSString *baseChat = @"BaseChat";
     CGRect cellRect = CGRectMake(0, 0, 0, 0);
     NSString *message = @"";
     // 只有当是最新的cell时才会计算
-    if (indexPath.row == [tableView numberOfRowsInSection:0] - 1 ) {
+    if (indexPath.row >= self.chatMgr.allCellHeight.count ) {
         // 普通文本
         if (!self.chatMgr.isChoice) {
             message = self.chatMgr.plainMsg;
