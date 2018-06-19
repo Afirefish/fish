@@ -12,19 +12,19 @@
 #define kStartSpace 20.0
 
 typedef enum PRProgressState{
-    //初始
+    // 初始
     PRProgressStateOringin = 0,
-    //进度条生成
+    // 进度条生成
     PRProgressStateReady,
-    //进度条执行
+    // 进度条执行
     PRProgressStateRunning,
-    //完成即100%
+    // 完成即100%
     PRProgressStateSuccess,
-    //失败动画中
+    // 失败动画中
     PRProgressStatefailAnim,
-    //失败
+    // 失败
     PRProgressStatefailed,
-    //恢复到初始状态
+    // 恢复到初始状态
     PRProgressStateResume
 } ProgressState;
 

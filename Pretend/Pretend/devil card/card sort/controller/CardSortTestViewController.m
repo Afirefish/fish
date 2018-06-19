@@ -30,7 +30,7 @@
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor whiteColor];
     self.navigationItem.title = @"Card Sort";
-    //保存当前卡牌设置,暂未实现
+    // 保存当前卡牌设置,暂未实现
     UIButton *saveBtn = [UIButton buttonWithType:UIButtonTypeSystem];
     saveBtn.frame = CGRectMake(0, 0, 44, 44);
     [saveBtn setTitle:@"save" forState:UIControlStateNormal];

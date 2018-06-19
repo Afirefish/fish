@@ -8,6 +8,8 @@
 
 #import "PRTxtTransform.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface PRTxtTransform ()
 
 @property (nonatomic, assign) NSInteger tapCount;
@@ -15,13 +17,13 @@
 @property (nonatomic, assign) BOOL isDevil;
 @property (nonatomic, assign) NSInteger nextStep;
 
-@property (nonatomic, strong) NSString *plainFileDirectory;
-@property (nonatomic, strong) NSString *devilFileDirectory;
-@property (nonatomic, strong) NSString *playerFileDirectory;
+@property (nonatomic, strong, nullable) NSString *plainFileDirectory;
+@property (nonatomic, strong, nullable) NSString *devilFileDirectory;
+@property (nonatomic, strong, nullable) NSString *playerFileDirectory;
 
 @property (nonatomic, strong) NSString *plainFile;
-@property (nonatomic, strong) NSString *devilFile;
-@property (nonatomic, strong) NSString *playerFile;
+@property (nonatomic, strong, nullable) NSString *devilFile;
+@property (nonatomic, strong, nullable) NSString *playerFile;
 
 @property (nonatomic, strong) NSString *test;
 
@@ -48,27 +50,27 @@
     NSString *contentPath = [[NSBundle mainBundle] pathForResource:@"article" ofType:@"txt"]; // 文本存储位置
     NSString *txtContent = [NSString stringWithContentsOfFile:contentPath encoding:NSUTF8StringEncoding error:nil]; // 文本转nsstring
     // 统一修改所有英文符号变成中文
-    txtContent = [txtContent stringByReplacingOccurrencesOfString:@"?" withString:@"？"]; //中文问号
-    txtContent = [txtContent stringByReplacingOccurrencesOfString:@"!" withString:@"！"];//中文感叹号
-    txtContent = [txtContent stringByReplacingOccurrencesOfString:@";" withString:@"；"];//分号
+    txtContent = [txtContent stringByReplacingOccurrencesOfString:@"?" withString:@"？"]; // 中文问号
+    txtContent = [txtContent stringByReplacingOccurrencesOfString:@"!" withString:@"！"]; // 中文感叹号
+    txtContent = [txtContent stringByReplacingOccurrencesOfString:@";" withString:@"；"]; // 分号
     // 指定的中文符号后添加回车
-    txtContent = [txtContent stringByReplacingOccurrencesOfString:@"...]" withString:@"...]\n"];//省略号
-    txtContent = [txtContent stringByReplacingOccurrencesOfString:@"。。。" withString:@"..."];//省略号
-    txtContent = [txtContent stringByReplacingOccurrencesOfString:@"[" withString:@"\n["];//中文句号和双引号还原
-    txtContent = [txtContent stringByReplacingOccurrencesOfString:@"。]" withString:@".]\n"];//中文句号和双引号还原
-    txtContent = [txtContent stringByReplacingOccurrencesOfString:@"？]" withString:@"?]\n"];//中文问号和双引号还原
-    txtContent = [txtContent stringByReplacingOccurrencesOfString:@"！]" withString:@"!]\n"];//中文问号和双引号还原
-    txtContent = [txtContent stringByReplacingOccurrencesOfString:@"。" withString:@".\n"];//中文句号,此时已经过滤了在语句中的了
-    txtContent = [txtContent stringByReplacingOccurrencesOfString:@"？" withString:@"?\n"]; //中文问号
-    txtContent = [txtContent stringByReplacingOccurrencesOfString:@"！" withString:@"!\n"];//中文感叹号
-    txtContent = [txtContent stringByReplacingOccurrencesOfString:@"；" withString:@";\n"];//分号
-    txtContent = [txtContent stringByReplacingOccurrencesOfString:@"~]" withString:@"~]\n"];//~号
-    //转回中文。。
-    txtContent = [txtContent stringByReplacingOccurrencesOfString:@"..." withString:@"。。。"];//中文句号
-    txtContent = [txtContent stringByReplacingOccurrencesOfString:@"." withString:@"。"];//中文句号
-    txtContent = [txtContent stringByReplacingOccurrencesOfString:@"?" withString:@"？"]; //中文问号
-    txtContent = [txtContent stringByReplacingOccurrencesOfString:@"!" withString:@"！"];//中文感叹号
-    txtContent = [txtContent stringByReplacingOccurrencesOfString:@";" withString:@"；"];//分号
+    txtContent = [txtContent stringByReplacingOccurrencesOfString:@"...]" withString:@"...]\n"]; // 省略号
+    txtContent = [txtContent stringByReplacingOccurrencesOfString:@"。。。" withString:@"..."]; // 省略号
+    txtContent = [txtContent stringByReplacingOccurrencesOfString:@"[" withString:@"\n["]; // 中括号
+    txtContent = [txtContent stringByReplacingOccurrencesOfString:@"。]" withString:@".]\n"]; // 中文句号和中括号还原
+    txtContent = [txtContent stringByReplacingOccurrencesOfString:@"？]" withString:@"?]\n"]; // 中文问号和中括号还原
+    txtContent = [txtContent stringByReplacingOccurrencesOfString:@"！]" withString:@"!]\n"]; // 中文感叹号和中括号还原
+    txtContent = [txtContent stringByReplacingOccurrencesOfString:@"。" withString:@".\n"]; // 中文句号,此时已经过滤了在语句中的了
+    txtContent = [txtContent stringByReplacingOccurrencesOfString:@"？" withString:@"?\n"]; // 中文问号
+    txtContent = [txtContent stringByReplacingOccurrencesOfString:@"！" withString:@"!\n"]; // 中文感叹号
+    txtContent = [txtContent stringByReplacingOccurrencesOfString:@"；" withString:@";\n"]; // 分号
+    txtContent = [txtContent stringByReplacingOccurrencesOfString:@"~]" withString:@"~]\n"]; // ~号
+    // 转回中文。。
+    txtContent = [txtContent stringByReplacingOccurrencesOfString:@"..." withString:@"。。。"]; // 中文句号
+    txtContent = [txtContent stringByReplacingOccurrencesOfString:@"." withString:@"。"]; // 中文句号
+    txtContent = [txtContent stringByReplacingOccurrencesOfString:@"?" withString:@"？"]; // 中文问号
+    txtContent = [txtContent stringByReplacingOccurrencesOfString:@"!" withString:@"！"]; // 中文感叹号
+    txtContent = [txtContent stringByReplacingOccurrencesOfString:@";" withString:@"；"]; // 分号
     
     NSString *testFile = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:@"novel.txt"];
     NSLog(@"test file path %@", testFile);
@@ -176,18 +178,18 @@
             }
             
             // 判断第几个分支
-            NSArray *array = [str componentsSeparatedByString:@" "]; //文本生成的数组
+            NSArray *array = [str componentsSeparatedByString:@" "]; // 文本生成的数组
             NSString *branchCount = array.firstObject;
-            self.devilFile = [self.devilFileDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.plist",branchCount]]; //恶魔文本的文件
-            self.playerFile = [self.playerFileDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.plist",branchCount]]; //玩家文本的文件
+            self.devilFile = [self.devilFileDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.plist",branchCount]]; // 恶魔文本的文件
+            self.playerFile = [self.playerFileDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.plist",branchCount]]; // 玩家文本的文件
             
-            //写文件
+            // 写文件
             NSDictionary *playContent = [NSDictionary dictionaryWithObject:playerArr forKey:@"content"];
             [playContent writeToFile:self.playerFile atomically:YES];
             NSDictionary *devilContent = [NSDictionary dictionaryWithObject:devilArr forKey:@"content"];
             [devilContent writeToFile:self.devilFile atomically:YES];
             
-            //初始化
+            // 初始化
             [devilArr removeAllObjects];
             [playerArr removeAllObjects];
             respondArr1 = nil;
@@ -228,10 +230,10 @@
             
             // 新章节开始的时候，设置是属于谁的章节,对话将存储到对应的文件中
             if ([str containsString:@"Chapter Begin"]) {
-                NSArray *array = [str componentsSeparatedByString:@" "]; //文本生成的数组
+                NSArray *array = [str componentsSeparatedByString:@" "]; // 文本生成的数组
                 NSString *devilName = array.firstObject;
-                self.devilFileDirectory = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@",devilName]]; //恶魔文本的目录
-                self.playerFileDirectory = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:[NSString stringWithFormat:@"PlayerTo%@",devilName]]; //玩家文本的目录
+                self.devilFileDirectory = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@",devilName]]; // 恶魔文本的目录
+                self.playerFileDirectory = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:[NSString stringWithFormat:@"PlayerTo%@",devilName]]; // 玩家文本的目录
                 
                 if (![[NSFileManager defaultManager] fileExistsAtPath:self.devilFileDirectory]) {
                     [[NSFileManager defaultManager] createDirectoryAtPath:self.devilFileDirectory withIntermediateDirectories:YES attributes:nil error:nil];
@@ -384,10 +386,10 @@
                     self.isChoice = YES;
                     
                     // 判断第几个分支
-                    NSArray *array = [message componentsSeparatedByString:@" "]; //文本生成的数组
+                    NSArray *array = [message componentsSeparatedByString:@" "]; // 文本生成的数组
                     NSString *branchCount = array.firstObject;
-                    self.devilFile = [self.devilFileDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@devil.plist",branchCount]]; //恶魔文本的文件
-                    self.playerFile = [self.playerFileDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@player.plist",branchCount]]; //玩家文本的文件
+                    self.devilFile = [self.devilFileDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@devil.plist",branchCount]]; // 恶魔文本的文件
+                    self.playerFile = [self.playerFileDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@player.plist",branchCount]]; // 玩家文本的文件
                     self.test = [self.test stringByAppendingString:[NSString stringWithFormat:@"index: %ld, message: %@\n",(unsigned long)index,message]];
                     //NSLog(@"index: %ld, message: %@",index,message);
                 }
@@ -399,9 +401,9 @@
             self.tapCount ++;
         }
     }
-    //解析对话文件
+    // 解析对话文件
     else {
-        //玩家的选择的json解析
+        // 玩家的选择的json解析
         if (!self.isDevil) {
             NSDictionary *playerMessagesDic = [[NSDictionary alloc] initWithContentsOfFile:self.playerFile];
             NSArray *playerMessages = [playerMessagesDic objectForKey:@"content"];
@@ -422,7 +424,7 @@
                 self.isDevil = YES;
             }
         }
-        //恶魔的json解析
+        // 恶魔的json解析
         else {
             NSDictionary *devilDic = [[NSDictionary alloc] initWithContentsOfFile:self.devilFile];
             NSArray *devilMessages = [devilDic objectForKey:@"content"];
@@ -454,5 +456,6 @@
     }
 }
 
-
 @end
+
+NS_ASSUME_NONNULL_END

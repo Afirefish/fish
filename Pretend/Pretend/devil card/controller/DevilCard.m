@@ -41,7 +41,7 @@
     [self setupSubviews];
 }
 
-//设置背景图片
+// 设置背景图片
 - (void)setupBackgroudImage {
     self.backgroudImageView = ({
         UIImageView *imageView = [[UIImageView alloc] init];
@@ -65,7 +65,7 @@
 }
 
 - (void)setupSubviews {
-    //卡牌整理
+    // 卡牌整理
     self.sortBtn = ({
         UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
         button.backgroundColor = [UIColor clearColor];
@@ -84,7 +84,7 @@
         make.height.equalTo(@30.0);
     }];
 
-    //进入会场
+    // 进入会场
     self.enterBtn = ({
         UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
         button.backgroundColor = [UIColor clearColor];
@@ -116,9 +116,9 @@
 //    [self.navigationController pushViewController:cardSort animated:YES];
 //}
 
-- (void)enterCardFeast {//第一个游戏结束，整理卡牌之后进入
+- (void)enterCardFeast { // 第一个游戏结束，整理卡牌之后进入
     ChatRoomMgr *chatRoomMgr = [ChatRoomMgr defaultMgr];
-    if ([chatRoomMgr checkComplete]) {//判断第一个游戏是否结束
+    if ([chatRoomMgr checkComplete]) { // 判断第一个游戏是否结束
         if (self.tipLabel != nil) {
             [self.tipLabel removeFromSuperview];
             self.tipLabel = nil;

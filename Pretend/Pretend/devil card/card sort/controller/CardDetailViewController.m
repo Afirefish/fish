@@ -36,7 +36,7 @@
     }];
 }
 
-- (void)viewWillAppear:(BOOL)animated {//在这里处理可以使动画很平滑
+- (void)viewWillAppear:(BOOL)animated { // 在这里处理可以使动画很平滑
     [super viewWillAppear:animated];
     self.cardDetail.image = self.cardImage;
 }

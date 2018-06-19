@@ -8,6 +8,8 @@
 
 #import "PRDBManager.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @implementation PRDBManager
 
 - (void)testDB {
@@ -239,3 +241,5 @@
 }
 
 @end
+
+NS_ASSUME_NONNULL_END

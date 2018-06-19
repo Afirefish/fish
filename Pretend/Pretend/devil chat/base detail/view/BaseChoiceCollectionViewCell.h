@@ -15,6 +15,6 @@
 @interface BaseChoiceCollectionViewCell : UICollectionViewCell
 
 @property (strong, nonatomic) UILabel *messageLabel;            // 选项内容
-@property (strong, nonatomic) UIImageView *backgroudImageView;  //背景图片
+@property (strong, nonatomic) UIImageView *backgroudImageView;  // 背景图片
 
 @end

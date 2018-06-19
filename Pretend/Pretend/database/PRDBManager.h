@@ -11,8 +11,10 @@
 #import "PRConstantSQL.h"
 #import "DevilCardInfo.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface PRDBManager : NSObject
-// 数据库位置,使用前请先初始化这个
+// 数据库位置,使用前请先初始化路径
 @property (nonatomic, strong) NSString *databasePath;
 @property (nonatomic, strong) NSString *plotDBPath;
 @property (nonatomic, strong) NSString *cardDBPath;
@@ -35,3 +37,5 @@
 - (BOOL)deleteDB:(NSString *)deleteSql table:(NSString *)table from:(int)fromRowID toID:(int)toRowID clearSeq:(BOOL)clear;
 
 @end
+
+NS_ASSUME_NONNULL_END

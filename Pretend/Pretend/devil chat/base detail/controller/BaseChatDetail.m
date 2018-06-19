@@ -34,7 +34,7 @@ static NSString *baseChat = @"BaseChat";
     return self;
 }
 
-//初始化聊天节点数
+// 初始化聊天节点数
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
@@ -65,9 +65,9 @@ static NSString *baseChat = @"BaseChat";
     [self setupCoverLabel];
 }
 
-//设置表视图和集合视图
+// 设置表视图和集合视图
 - (void)setupContentViews {
-    //聊天内容
+    // 聊天内容
     self.chatContentTableView = [[UITableView alloc] init];
     self.chatContentTableView.delegate = self;
     self.chatContentTableView.dataSource = self;
@@ -164,7 +164,7 @@ static NSString *baseChat = @"BaseChat";
 - (void)playBGM {
 }
 
-//玩家不能选择时的视图
+// 玩家不能选择时的视图
 - (void)setupCoverLabel {
     self.coverLabel = ({
         UILabel *label = [[UILabel alloc] init];
@@ -181,14 +181,14 @@ static NSString *baseChat = @"BaseChat";
     }];
 }
 
-//滚动到底部
+// 滚动到底部
 - (void)scrollTableToFoot:(BOOL)animated {
     NSInteger section = [self.chatContentTableView numberOfSections];
     if (section<1) return;  //无数据时不执行 要不会crash
     NSInteger row = [self.chatContentTableView numberOfRowsInSection:section-1];
     if (row<1) return;
     NSIndexPath *index = [NSIndexPath indexPathForRow:row-1 inSection:section-1];  //取最后一行数据
-    [self.chatContentTableView scrollToRowAtIndexPath:index atScrollPosition:UITableViewScrollPositionBottom animated:animated]; //滚动到最后一行
+    [self.chatContentTableView scrollToRowAtIndexPath:index atScrollPosition:UITableViewScrollPositionBottom animated:animated]; // 滚动到最后一行
 }
 
 #pragma mark - action
@@ -205,7 +205,7 @@ static NSString *baseChat = @"BaseChat";
     }
 }
 
-//玩家做出选择的消息
+// 玩家做出选择的消息
 - (void)sendMessage {
     switch ([self.chatMgr loadNewMessage]) {
         case PlainChat: {
@@ -296,7 +296,7 @@ static NSString *baseChat = @"BaseChat";
     }
 }
 
-//AI的回复,仅在对话的时候使用
+// AI的回复,仅在对话的时候使用
 - (void)devilRespond {
     [self.chatMgr devilRespond];
     BaseChatModel *model =[[BaseChatModel alloc] initWithMsg:self.chatMgr.devilRespondContent isDevil:self.chatMgr.isDevil isChoice:self.chatMgr.isChoice];
@@ -375,7 +375,7 @@ static NSString *baseChat = @"BaseChat";
 
 #pragma dataSource
 
-//聊天记录每一个作为一个新的section，而玩家选项一个section
+// 聊天记录每一个作为一个新的section，而玩家选项一个section
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
@@ -384,7 +384,7 @@ static NSString *baseChat = @"BaseChat";
     return 1;
 }
 
-//聊天记录每一个section仅包括一行
+// 聊天记录每一个section仅包括一行
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.chatMgr.chatMessageList.count;
 }
@@ -430,7 +430,7 @@ static NSString *baseChat = @"BaseChat";
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
-//玩家做出选择之后的处理
+// 玩家做出选择之后的处理
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     // 如果是对话，则需要判断玩家的选择做出响应
     if (self.chatMgr.isChoice) {
@@ -441,7 +441,7 @@ static NSString *baseChat = @"BaseChat";
     [collectionView deselectItemAtIndexPath:indexPath animated:YES];
 }
 
-//设置cell高度，根据文本行数和大小变化
+// 设置cell高度，根据文本行数和大小变化
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     CGRect cellRect = CGRectMake(0, 0, 0, 0);
     NSString *message = @"";

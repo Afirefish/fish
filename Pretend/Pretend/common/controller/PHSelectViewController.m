@@ -32,11 +32,11 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)uploadPic {
-    //创建UIImagePickerController
+    // 创建UIImagePickerController
     self.pickVC = [[UIImagePickerController alloc] init];
-    //设置图片源类型
-    self.pickVC.sourceType = UIImagePickerControllerSourceTypePhotoLibrary; //取出所有图片资源的相簿
-    //设置代理
+    // 设置图片源类型
+    self.pickVC.sourceType = UIImagePickerControllerSourceTypePhotoLibrary; // 取出所有图片资源的相簿
+    // 设置代理
     self.pickVC.delegate = self;
     [self presentViewController:self.pickVC animated:YES completion:nil];
 }
@@ -64,7 +64,7 @@ NS_ASSUME_NONNULL_BEGIN
                     CIImage *ciImage = [CIImage imageWithData:imageData];
                     CIContext *context = [CIContext context];
                     NSData *jpgData = [context JPEGRepresentationOfImage:ciImage colorSpace:ciImage.colorSpace options:@{}];
-                    //图片保存的路径
+                    // 图片保存的路径
                     NSString * DocumentsPath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
                     NSFileManager *fileManager = [NSFileManager defaultManager];
                     [fileManager createDirectoryAtPath:DocumentsPath withIntermediateDirectories:YES attributes:nil error:nil];

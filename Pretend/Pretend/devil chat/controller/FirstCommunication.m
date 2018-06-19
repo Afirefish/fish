@@ -29,14 +29,14 @@ NS_ASSUME_NONNULL_BEGIN
     return [self initWithFirstSence];
 }
 
-//对外部类仅提供第一个场景的初始化方法
+// 对外部类仅提供第一个场景的初始化方法
 - (instancetype)initWithFirstSence{
     if (self = [super init]) {
         self.navigationItem.hidesBackButton = YES;
         self.navigationItem.title = @"Pretend";
-        //重新创建一个barButtonItem
+        // 重新创建一个barButtonItem
         UIBarButtonItem *backItem = [[UIBarButtonItem alloc]initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
-        //设置backBarButtonItem即可
+        // 设置backBarButtonItem即可
         self.navigationItem.backBarButtonItem = backItem;
         NSLog(@"height---%f,width ----%f",self.view.bounds.size.height,self.view.bounds.size.width);
         [self setupSubview];
@@ -60,10 +60,10 @@ NS_ASSUME_NONNULL_BEGIN
     [self.animateButton addTarget:self action:@selector(showOpeningAnimate) forControlEvents:UIControlEventTouchUpInside];
 }
 
-//懒人专用，跳过剧情
+// 懒人专用，跳过剧情
 - (void)skipToEnd {
-    //emmmmmm.....
-    //NSLog(@"root %@",[self.navigationController.viewControllers firstObject]);
+    // emmmmmm.....
+    // NSLog(@"root %@",[self.navigationController.viewControllers firstObject]);
     UIAlertController *skipAlert = [UIAlertController alertControllerWithTitle:@"确定要跳过这里吗？" message:@"点击确定则会跳过这里的剧情，将无法获得稀有卡片！!" preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *skipComfirmAction = [UIAlertAction actionWithTitle:@"确定跳过!" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         [self showFinishScene];
@@ -85,7 +85,7 @@ NS_ASSUME_NONNULL_BEGIN
     [bgmPlayer playWithFileURL:[[NSBundle mainBundle] URLForResource:@"bgm" withExtension:@"mp3"]];
 }
 
-//通关场景
+// 通关场景
 - (void)showFinishScene {
     ChatRoomMgr *mainMgr = [ChatRoomMgr defaultMgr];
     [mainMgr chatComplete];
@@ -94,7 +94,7 @@ NS_ASSUME_NONNULL_BEGIN
     [self removeFromParentViewController];
 }
 
-//响应触摸显示场景
+// 响应触摸显示场景
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(nullable UIEvent *)event {
     NSUInteger numberOfTaps = [[touches anyObject] tapCount];
     if (numberOfTaps == 1) {
@@ -102,7 +102,7 @@ NS_ASSUME_NONNULL_BEGIN
     }
 }
 
-//第一个场景
+// 第一个场景
 - (void)showFirstSence {
     NSString *message = @"";
     if ([ChatRoomMgr defaultMgr].step == 1) {
@@ -120,7 +120,7 @@ NS_ASSUME_NONNULL_BEGIN
     [self presentViewController:firstAlert animated:YES completion:nil];
 }
 
-//显示具体的几个聊天房间
+// 显示具体的几个聊天房间
 - (void)showChatRoom {
     DevilChatRoom *selectChat = [DevilChatRoom defaultChatRoom];
     [self.navigationController pushViewController:selectChat animated:YES];

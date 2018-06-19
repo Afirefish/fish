@@ -33,7 +33,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)setupView {
     self.backgroundColor = [UIColor warmShellColor];
-    //设置头像
+    // 设置头像
     self.headImageView = ({
         UIImageView *imageView = [[UIImageView alloc] init];
         imageView.contentMode = UIViewContentModeScaleAspectFill;
@@ -47,7 +47,7 @@ NS_ASSUME_NONNULL_BEGIN
         make.bottom.equalTo(self.contentView).offset(-5.0);
         make.width.equalTo(self.headImageView.mas_height);
     }];
-    //设置背景视图
+    // 设置背景视图
     self.backgroundImageView = ({
         UIImageView *imageView = [[UIImageView alloc] init];
         imageView.contentMode = UIViewContentModeScaleAspectFill;
@@ -62,7 +62,7 @@ NS_ASSUME_NONNULL_BEGIN
         make.top.right.bottom.equalTo(self.contentView);
     }];
     
-    //设置名字
+    // 设置名字
     self.nameLabel = ({
         UILabel *label = [[UILabel alloc] init];
         label.textAlignment = NSTextAlignmentCenter;
@@ -77,7 +77,7 @@ NS_ASSUME_NONNULL_BEGIN
         make.height.equalTo(@30.0);
         make.width.equalTo(@60.0);
     }];
-    //设置当前剧情进度信息
+    // 设置当前剧情进度信息
     self.messageLabel = ({
         UILabel *label = [[UILabel alloc] init];
         label.textAlignment = NSTextAlignmentLeft;
@@ -91,7 +91,7 @@ NS_ASSUME_NONNULL_BEGIN
         make.top.equalTo(self.contentView.mas_centerY);
         make.left.equalTo(self.nameLabel);
     }];
-    //设置当前剧情是否是当前cell
+    // 设置当前剧情是否是当前cell
     self.sign = ({
         UILabel *label = [[UILabel alloc] init];
         label.text = @"🐟";

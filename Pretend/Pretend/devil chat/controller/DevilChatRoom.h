@@ -13,6 +13,6 @@
 */
 @interface DevilChatRoom : UITableViewController
 
-+ (instancetype)defaultChatRoom; //单例
++ (instancetype)defaultChatRoom; // 单例
 
 @end
