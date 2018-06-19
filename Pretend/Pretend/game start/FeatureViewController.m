@@ -10,6 +10,7 @@
 #import "PretendedViewController.h"
 #import "PRVideoViewController.h"
 #import "PRTxtTransform.h"
+#import "DevilCardMgr.h"
 #import <Masonry.h>
 #import "PRProgressIndicator.h"
 #import "PRProgressBar.h"
@@ -33,6 +34,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
+
     NSString *bundleVersionKey = (NSString *)kCFBundleVersionKey;
     NSString *bundleVersion = [NSBundle mainBundle].infoDictionary[bundleVersionKey];
     NSString *saveVersion = [[NSUserDefaults standardUserDefaults] objectForKey:bundleVersionKey];
@@ -47,6 +49,8 @@ NS_ASSUME_NONNULL_BEGIN
         [[NSUserDefaults  standardUserDefaults] setObject:bundleVersion forKey:bundleVersionKey];
         [[NSUserDefaults  standardUserDefaults] synchronize];
         [self setupViews];
+        DevilCardMgr *mgr = [DevilCardMgr defaultMgr];
+        [mgr saveBaseCardToDB];
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [self transform];
         });
@@ -111,8 +115,30 @@ NS_ASSUME_NONNULL_BEGIN
     else {
         [self.progressBar generateFailStyle];
         [self.indicator generateFailStyle];
+        UITapGestureRecognizer *ges = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(retry)];
+        [self.view addGestureRecognizer:ges];
     }
 
+}
+
+- (void)retry {
+    [self.progressBar removeFromSuperview];
+    [self.indicator removeFromSuperview];
+    
+    self.progressBar = [[PRProgressBar alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height - 100, 50, 80)];
+    self.progressBar.offsetY = 20;
+    self.progressBar.delegate = self;
+    [self.view addSubview:self.progressBar];
+    
+    self.indicator = [[PRProgressIndicator alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height - 90, 48, 60)];
+    self.indicator.offsetY = 30;
+    self.indicator.delegate = self;
+    [self.view addSubview:self.indicator];
+    
+    [self.progressBar generateReadyStyle];
+    [self.indicator generateReadyStyle];
+    
+    [self transform];
 }
 
 - (void)progressView:(PRProgressBaseView *)progressView changedState:(ProgressState)state {

@@ -16,6 +16,7 @@
     if (self = [super initWithFrame:frame]) {
         self.cardImage= [[UIImageView alloc] initWithFrame:CGRectMake(2, 2, self.frame.size.width - 4, self.frame.size.height - 20)];
         self.cardName = [[UILabel alloc] initWithFrame:CGRectMake(0, self.frame.size.height - 18, self.frame.size.width, 18)];
+        self.cardName.textAlignment = NSTextAlignmentCenter;
         [self.contentView addSubview:self.cardName];
         [self.contentView addSubview:self.cardImage];
         CardSelectedBackground *cardSelected = [[CardSelectedBackground alloc] initWithFrame:CGRectZero];

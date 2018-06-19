@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "ChatRoomMgr.h"
+#import "DevilCardMgr.h"
 #import "BaseChatModel.h"
 
 /*
@@ -70,6 +71,8 @@ typedef NS_ENUM(NSInteger, ChatStatus) {
 - (void)saveCardInfo:(id)arg1;
 /** 保存当前剧情进度*/
 - (void)saveToFile;
+- (void)loadAllCard;
+- (void)clearAllCard;
 /** 重置 */
 - (void)reset;
 

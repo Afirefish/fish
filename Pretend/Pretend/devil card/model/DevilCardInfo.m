@@ -17,9 +17,13 @@
         self.cardType = RoleCard;
         self.cardLP = 4;
         self.cardFunction = @"暂时没有卡牌效果";
-        self.cardImage = [UIImage imageNamed:[NSString stringWithFormat:@"p%td",cardSequence]];
     }
     return self;
+}
+
+- (NSString *)description {
+    return [NSString stringWithFormat:@"card seq : %td, card name : %@, card type : %td, card lp : %td, card attack : %td, card image %@",
+            self.cardSequence, self.cardName, self.cardType, self.cardLP, self.cardAttack, self.cardImage];
 }
 
 @end

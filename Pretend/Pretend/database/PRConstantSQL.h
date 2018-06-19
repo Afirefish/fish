@@ -13,4 +13,9 @@ FOUNDATION_EXPORT NSString * const updatePlotsSQL;
 FOUNDATION_EXPORT NSString * const queryPlotsSQL;
 FOUNDATION_EXPORT NSString * const deletePlotsSQL;
 
+FOUNDATION_EXPORT NSString * const createCardsSQL;
+FOUNDATION_EXPORT NSString * const updateCardsSQL;
+FOUNDATION_EXPORT NSString * const queryCardsSQL;
+FOUNDATION_EXPORT NSString * const deleteCardsSQL;
+FOUNDATION_EXPORT NSString * const updateCardAvailable;
 FOUNDATION_EXPORT NSString * const updateSeqSQL;

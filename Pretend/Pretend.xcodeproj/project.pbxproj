@@ -35,6 +35,8 @@
 		3850CDCC20BC5C9A00E45D8B /* PRProgressBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3850CDCB20BC5C9A00E45D8B /* PRProgressBaseView.m */; };
 		3850CDCF20BC5CCE00E45D8B /* PRProgressBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 3850CDCE20BC5CCE00E45D8B /* PRProgressBar.m */; };
 		3850CDD220BC5D0400E45D8B /* PRProgressIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 3850CDD120BC5D0400E45D8B /* PRProgressIndicator.m */; };
+		3873AD7820D7DC62007CC8D3 /* DevilCardMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 3873AD7720D7DC62007CC8D3 /* DevilCardMgr.m */; };
+		3873AD7A20D8956E007CC8D3 /* article2.txt in Resources */ = {isa = PBXBuildFile; fileRef = 3873AD7920D8956E007CC8D3 /* article2.txt */; };
 		38748E6020D239E700700891 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 38748E5F20D239E700700891 /* libsqlite3.tbd */; };
 		38748E6320D23A4300700891 /* PRDBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 38748E6220D23A4300700891 /* PRDBManager.m */; };
 		38748E6620D25BF600700891 /* PRConstantSQL.m in Sources */ = {isa = PBXBuildFile; fileRef = 38748E6520D25BF600700891 /* PRConstantSQL.m */; };
@@ -170,6 +172,9 @@
 		3850CDCE20BC5CCE00E45D8B /* PRProgressBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PRProgressBar.m; sourceTree = "<group>"; };
 		3850CDD020BC5D0400E45D8B /* PRProgressIndicator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PRProgressIndicator.h; sourceTree = "<group>"; };
 		3850CDD120BC5D0400E45D8B /* PRProgressIndicator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PRProgressIndicator.m; sourceTree = "<group>"; };
+		3873AD7620D7DC62007CC8D3 /* DevilCardMgr.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DevilCardMgr.h; sourceTree = "<group>"; };
+		3873AD7720D7DC62007CC8D3 /* DevilCardMgr.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DevilCardMgr.m; sourceTree = "<group>"; };
+		3873AD7920D8956E007CC8D3 /* article2.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = article2.txt; sourceTree = "<group>"; };
 		38748E5F20D239E700700891 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		38748E6120D23A4300700891 /* PRDBManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PRDBManager.h; sourceTree = "<group>"; };
 		38748E6220D23A4300700891 /* PRDBManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PRDBManager.m; sourceTree = "<group>"; };
@@ -402,12 +407,6 @@
 				3826FB63205E3E2200C6990E /* model */,
 				3826FB62205E3E1D00C6990E /* view */,
 				3826FB60205E3E0F00C6990E /* controller */,
-				38C76CDA1FA7568B00BCBCB9 /* CardFeastViewController.h */,
-				38C76CDB1FA7568B00BCBCB9 /* CardFeastViewController.m */,
-				38E240221FECB69300896939 /* CardFeastViewController+UI.h */,
-				38E240231FECB69300896939 /* CardFeastViewController+UI.m */,
-				38C76CE91FA867D600BCBCB9 /* BaseCardCraftViewController.h */,
-				38C76CEA1FA867D600BCBCB9 /* BaseCardCraftViewController.m */,
 			);
 			path = "card craft";
 			sourceTree = "<group>";
@@ -439,6 +438,12 @@
 		3826FB60205E3E0F00C6990E /* controller */ = {
 			isa = PBXGroup;
 			children = (
+				38C76CDA1FA7568B00BCBCB9 /* CardFeastViewController.h */,
+				38C76CDB1FA7568B00BCBCB9 /* CardFeastViewController.m */,
+				38E240221FECB69300896939 /* CardFeastViewController+UI.h */,
+				38E240231FECB69300896939 /* CardFeastViewController+UI.m */,
+				38C76CE91FA867D600BCBCB9 /* BaseCardCraftViewController.h */,
+				38C76CEA1FA867D600BCBCB9 /* BaseCardCraftViewController.m */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -461,14 +466,14 @@
 		3826FB63205E3E2200C6990E /* model */ = {
 			isa = PBXGroup;
 			children = (
+				38C76CB51FA1B1E700BCBCB9 /* CardCraftMgr.h */,
+				38C76CB61FA1B1E700BCBCB9 /* CardCraftMgr.m */,
 				38C76CBB1FA1B4F500BCBCB9 /* Crafter.h */,
 				38C76CBC1FA1B4F500BCBCB9 /* Crafter.m */,
 				38C76CBE1FA1B62400BCBCB9 /* Puri.h */,
 				38C76CBF1FA1B62400BCBCB9 /* Puri.m */,
 				38C76CC11FA1B65900BCBCB9 /* Devil.h */,
 				38C76CC21FA1B65900BCBCB9 /* Devil.m */,
-				38C76CB81FA1B2B800BCBCB9 /* DevilCardInfo.h */,
-				38C76CB91FA1B2B800BCBCB9 /* DevilCardInfo.m */,
 				38C76D151FAAFF3400BCBCB9 /* PuriHandCardLayout.h */,
 				38C76D161FAAFF3400BCBCB9 /* PuriHandCardLayout.m */,
 				38C76D211FAC538900BCBCB9 /* PuriHandCardAttributes.h */,
@@ -534,6 +539,7 @@
 			children = (
 				389E43D9203FA8B200AD107F /* ChatRoom.mp3 */,
 				389E43CF2034186A00AD107F /* bgm.mp3 */,
+				3873AD7920D8956E007CC8D3 /* article2.txt */,
 				383D72442006058D0063FEB6 /* article.txt */,
 				38A573FC20C4FEC600479601 /* video.mp4 */,
 			);
@@ -587,8 +593,10 @@
 		38E240291FECB78700896939 /* model */ = {
 			isa = PBXGroup;
 			children = (
-				38C76CB51FA1B1E700BCBCB9 /* CardCraftMgr.h */,
-				38C76CB61FA1B1E700BCBCB9 /* CardCraftMgr.m */,
+				38C76CB81FA1B2B800BCBCB9 /* DevilCardInfo.h */,
+				38C76CB91FA1B2B800BCBCB9 /* DevilCardInfo.m */,
+				3873AD7620D7DC62007CC8D3 /* DevilCardMgr.h */,
+				3873AD7720D7DC62007CC8D3 /* DevilCardMgr.m */,
 				38C76CDD1FA8493E00BCBCB9 /* UIImage+Rotate.h */,
 				38C76CDE1FA8493E00BCBCB9 /* UIImage+Rotate.m */,
 			);
@@ -1016,6 +1024,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3801A0251F7A76B0006C3D18 /* LaunchScreen.storyboard in Resources */,
+				3873AD7A20D8956E007CC8D3 /* article2.txt in Resources */,
 				3801A0221F7A76B0006C3D18 /* Assets.xcassets in Resources */,
 				389E43D4203FA6B700AD107F /* PufuChat.mp3 in Resources */,
 				38A573FD20C4FEC600479601 /* video.mp4 in Resources */,
@@ -1111,6 +1120,7 @@
 				38C76D081FA9E64500BCBCB9 /* TWNavigationController.m in Sources */,
 				387BA634201606C700B7A15B /* NSObject+BJLObserving.m in Sources */,
 				38C76CAE1FA19C6B00BCBCB9 /* ChiziMgr.m in Sources */,
+				3873AD7820D7DC62007CC8D3 /* DevilCardMgr.m in Sources */,
 				3850CDCF20BC5CCE00E45D8B /* PRProgressBar.m in Sources */,
 				38C76D171FAAFF3400BCBCB9 /* PuriHandCardLayout.m in Sources */,
 				38C76C9E1FA07C1700BCBCB9 /* ChatRoomCleared.m in Sources */,

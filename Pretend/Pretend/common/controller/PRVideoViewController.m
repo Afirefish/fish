@@ -49,6 +49,7 @@ static inline BOOL PRIsHorizontalUI(id<UITraitEnvironment> traitEnvironment) {
 @property (nonatomic, strong) NSString *currentTime;
 @property (nonatomic, strong) NSString *duration;
 @property (nonatomic, assign) BOOL isPlay;
+@property (nonatomic, assign) BOOL isFinish;
 @property (nonatomic, assign) BOOL isFull;
 @property (nonatomic, assign) BOOL isHide;
 @property (nonatomic, assign) BOOL isPlayWhenEnterBackgroud;
@@ -153,6 +154,7 @@ static inline BOOL PRIsHorizontalUI(id<UITraitEnvironment> traitEnvironment) {
         button;
     });
     self.isPlay = NO;
+    self.isFinish = NO;
     [self.playControlsView addSubview:self.playBtn];
     [self.playBtn addTarget:self action:@selector(playVideo) forControlEvents:UIControlEventTouchUpInside];
     [self.playBtn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -331,8 +333,11 @@ static inline BOOL PRIsHorizontalUI(id<UITraitEnvironment> traitEnvironment) {
     }
     else {
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pauseWhenEnterBackground) name:UIApplicationDidEnterBackgroundNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pauseWhenEnterBackground) name:UIApplicationWillResignActiveNotification object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(resumeWhenEnterForegrund) name:UIApplicationWillEnterForegroundNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(resumeWhenEnterForegrund) name:UIApplicationDidBecomeActiveNotification object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateViewConstraints) name:UIDeviceOrientationDidChangeNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playFinish) name:AVPlayerItemDidPlayToEndTimeNotification object:nil];
     }
 }
 
@@ -385,6 +390,11 @@ static inline BOOL PRIsHorizontalUI(id<UITraitEnvironment> traitEnvironment) {
 
 // 播放视频
 - (void)playVideo {
+    if (self.isFinish) {
+        self.isFinish = NO;
+        self.slider.value = 0;
+        [self seekTime];
+    }
     if (self.isPlay) {
         [self.player pause];
         self.isPlay = NO;
@@ -395,6 +405,12 @@ static inline BOOL PRIsHorizontalUI(id<UITraitEnvironment> traitEnvironment) {
         self.isPlay = YES;
         self.playBtn.selected = YES;
     }
+}
+
+- (void)playFinish {
+    self.playBtn.selected = NO;
+    self.isPlay = NO;
+    self.isFinish = YES;
 }
 
 - (void)playDidStop {
@@ -446,6 +462,9 @@ static inline BOOL PRIsHorizontalUI(id<UITraitEnvironment> traitEnvironment) {
 // 跳转到某个时间点
 - (void)seekTime {
     if (self.player.status == AVPlayerStatusReadyToPlay) {
+        if (self.isFinish) {
+            self.isFinish = NO;
+        }
         CGFloat value = self.slider.value;
         CMTime time = CMTimeMake(value, 1);
         __weak __typeof(self) weakSelf = self;

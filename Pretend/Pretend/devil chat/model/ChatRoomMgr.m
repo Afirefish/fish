@@ -61,6 +61,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 // 单例 不会释放，等app死掉的时候再死掉好了
 - (void)addNotify {
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(writeToFile) name:UIApplicationWillResignActiveNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(writeToFile) name:UIApplicationWillEnterForegroundNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(writeToFile) name:UIApplicationWillTerminateNotification object:nil];
 }
@@ -192,6 +193,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)chatComplete {
     self.chatFinished = YES;
     [self saveAllCards];
+    [[[BaseMgr alloc] init] loadAllCard];
 }
 
 // 保存所有卡牌信息
@@ -209,6 +211,7 @@ NS_ASSUME_NONNULL_BEGIN
     [self.pufu reset];
     [self.chizi reset];
     [self.tiza reset];
+    [[[BaseMgr alloc] init] clearAllCard];
     self.santa = [SantaMgr defaultMgr];
     self.pufu = [PufuMgr defaultMgr];
     self.chizi = [ChiziMgr defaultMgr];

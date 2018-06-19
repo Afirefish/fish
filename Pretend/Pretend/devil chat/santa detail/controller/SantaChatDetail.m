@@ -55,6 +55,9 @@ static NSString *santaChat = @"SantaChat";
 
 - (void)setupBackgroundImage {
     self.tableBackgroundView.image = [UIImage imageNamed:@"santaBG"];
+    [self.controlsView.fastPlayBtn setImage:[UIImage imageNamed:@"fast_play_santa"] forState:UIControlStateNormal];
+    [self.controlsView.autoPlayBtn setImage:[UIImage imageNamed:@"auto_play_santa"] forState:UIControlStateNormal];
+    [self.controlsView.nextBtn setImage:[UIImage imageNamed:@"next_santa"] forState:UIControlStateNormal];
 }
 
 - (void)playBGM {

@@ -13,6 +13,7 @@
 #import "DCNavigationController.h"
 #import "CardSortViewController.h"
 #import "CardFeastViewController.h"
+#import "BaseCardCraftViewController.h"
 #import "UIColor+PRCustomColor.h"
 #import <Masonry.h>
 
@@ -33,6 +34,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.navigationItem.title = @"Devil Card";
+    UIBarButtonItem *backItem = [[UIBarButtonItem alloc]initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+    self.navigationItem.backBarButtonItem = backItem;
     self.view.backgroundColor = [UIColor smokeWhiteColor];
     [self setupBackgroudImage];
     [self setupSubviews];
@@ -120,8 +123,8 @@
             [self.tipLabel removeFromSuperview];
             self.tipLabel = nil;
         }
-        CardFeastViewController *cardFeast = [[CardFeastViewController alloc] init];
-        [self.navigationController pushViewController:cardFeast animated:YES];
+        BaseCardCraftViewController *devilCraft = [[BaseCardCraftViewController alloc] initWithDevilID:0];
+        [self.navigationController pushViewController:devilCraft animated:YES];
     }
     else {
         if (self.tipLabel == nil) {

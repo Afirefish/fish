@@ -39,7 +39,8 @@ static NSString *baseChat = @"BaseChat";
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     self.navigationController.navigationBar.tintColor = [UIColor blackColor];
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"music_play"] style:UIBarButtonItemStylePlain target:self action:@selector(playMusic)];
+    UIImage *image = [PRBGMPlayer defaultPlayer].isPlaying?[UIImage imageNamed:@"music_play"]:[UIImage imageNamed:@"music_stop"];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:image style:UIBarButtonItemStylePlain target:self action:@selector(playMusic)];
     [self setupSubviews];
 }
 
@@ -368,6 +369,8 @@ static NSString *baseChat = @"BaseChat";
     else {
         [bgmPlayer play];
     }
+    UIImage *image = [PRBGMPlayer defaultPlayer].isPlaying?[UIImage imageNamed:@"music_play"]:[UIImage imageNamed:@"music_stop"];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:image style:UIBarButtonItemStylePlain target:self action:@selector(playMusic)];
 }
 
 #pragma dataSource

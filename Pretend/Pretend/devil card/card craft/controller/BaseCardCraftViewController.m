@@ -16,6 +16,7 @@
 // craft data
 
 #import "DevilCardInfo.h"
+#import "DevilCardMgr.h"
 #import "Devil.h"
 #import "Puri.h"
 
@@ -142,7 +143,7 @@ static NSString *tableCard = @"TableCard";
     //puri的lifePoint
     self.PuriLP = ({
         UILabel *label = [[UILabel alloc] init];
-        label.text = @"20";
+        label.text = @"1";
         label.layer.cornerRadius = 8.0;
         label.clipsToBounds = YES;
         label.font = [UIFont systemFontOfSize:30.0];
@@ -197,7 +198,7 @@ static NSString *tableCard = @"TableCard";
         UILabel *label = [[UILabel alloc] init];
         label.layer.cornerRadius = 8.0;
         label.clipsToBounds = YES;
-        label.text = @"20";
+        label.text = @"1";
         label.font = [UIFont systemFontOfSize:30.0];
         label.textAlignment = NSTextAlignmentCenter;
         label.backgroundColor = [UIColor whiteColor];
@@ -234,11 +235,12 @@ static NSString *tableCard = @"TableCard";
     self.handCards = [[NSMutableArray alloc] init];
     self.tableCards = [[NSMutableArray alloc] init];
     self.handCardCount = 6;
-    self.tableCardCount = 8;
-    for (NSInteger i = 0; i < self.handCardCount; i++) {
-        DevilCardInfo *info = [[DevilCardInfo alloc] initWithCardSequence:i + 1];
-        [self.handCards addObject:info];
-    }
+    self.tableCardCount = 6;
+    self.handCards = [DevilCardMgr defaultMgr].presentCards;
+//    for (NSInteger i = 0; i < self.handCardCount; i++) {
+//        DevilCardInfo *info = [[DevilCardInfo alloc] initWithCardSequence:i + 1];
+//        [self.handCards addObject:info];
+//    }
 }
 
 - (void)puriTimeEnd {
@@ -251,6 +253,38 @@ static NSString *tableCard = @"TableCard";
 
 - (void)getNewHandCard {
     
+}
+
+- (void)testBattle:(DevilCardInfo *)card {
+    [self.handCards removeObject:card];
+    srand((unsigned)time(0));
+    int i = rand() % self.handCards.count;
+    DevilCardInfo *devil = [self.handCards objectAtIndex:i];
+    [self.tableCards addObject:devil];
+    [self.tableCards addObject:card];
+    [self.handCardCollectionView reloadData];
+    [self.tableCardCollectionView reloadData];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self compare:card with:devil];
+    });
+}
+
+- (void)compare:(DevilCardInfo *)card1 with:(DevilCardInfo *)card2 {
+    NSString *message = @"";
+    if (card1.cardAttack >= card2.cardLP && card1.cardLP >= card2.cardAttack) {
+        message = @"YOU WIN";
+        self.crafterLP.text = @"0";
+    }
+    else {
+        self.PuriLP.text = @"0";
+        message = @"YOU LOSE";
+    }
+    UIAlertController *confirm = [UIAlertController alertControllerWithTitle:message message:nil preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *confirmAction = [UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [self.navigationController popViewControllerAnimated:YES];
+    }];
+    [confirm addAction:confirmAction];
+    [self presentViewController:confirm animated:YES completion:nil];
 }
 
 #pragma mark - collection view
@@ -281,10 +315,7 @@ static NSString *tableCard = @"TableCard";
         }
         else {
             DevilCardInfo *info = [self.handCards objectAtIndex:indexPath.row];
-            [self.handCards removeObjectAtIndex:indexPath.row];
-            [self.tableCards addObject:info];
-            [self.handCardCollectionView reloadData];
-            [self.tableCardCollectionView reloadData];
+            [self testBattle:info];
         }
     }
 }
@@ -296,7 +327,7 @@ static NSString *tableCard = @"TableCard";
         DevilCardInfo *info = nil;
         if (self.handCards.count && self.handCards.count > indexPath.row) {
             info = [self.handCards objectAtIndex:indexPath.row];
-            image = info.cardImage;
+            image = [UIImage imageNamed:info.cardImage];
         }
         if (image) {
             cell.cardImage.image = image;
@@ -309,7 +340,7 @@ static NSString *tableCard = @"TableCard";
         UIImage *image = nil;
         if (self.tableCards.count && self.tableCards.count > indexPath.row) {
             DevilCardInfo *info = [self.tableCards objectAtIndex:indexPath.row];
-            image = info.cardImage;
+            image = [UIImage imageNamed:info.cardImage];
         }
         if (image) {
             cell.cardImage.image = image;

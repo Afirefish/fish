@@ -50,7 +50,7 @@
 - (UIButton *)nextBtn {
     if (!_nextBtn) {
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-        [button setImage:[UIImage imageNamed:@"next"] forState:UIControlStateNormal];
+        [button setImage:[UIImage imageNamed:@"next_santa"] forState:UIControlStateNormal];
         _nextBtn = button;
     }
     return _nextBtn;
@@ -59,7 +59,7 @@
 - (UIButton *)autoPlayBtn {
     if (!_autoPlayBtn) {
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-        [button setImage:[UIImage imageNamed:@"auto_play"] forState:UIControlStateNormal];
+        [button setImage:[UIImage imageNamed:@"auto_play_santa"] forState:UIControlStateNormal];
         _autoPlayBtn = button;
     }
     return _autoPlayBtn;
@@ -68,7 +68,7 @@
 - (UIButton *)fastPlayBtn {
     if (!_fastPlayBtn) {
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-        [button setImage:[UIImage imageNamed:@"fast_play"] forState:UIControlStateNormal];
+        [button setImage:[UIImage imageNamed:@"fast_play_santa"] forState:UIControlStateNormal];
         _fastPlayBtn = button;
     }
     return _fastPlayBtn;

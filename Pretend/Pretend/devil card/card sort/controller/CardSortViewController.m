@@ -9,6 +9,7 @@
 #import "CardSortViewController.h"
 #import "CardCell.h"
 #import "CardDetailViewController.h"
+#import "DevilCardMgr.h"
 #import <Masonry.h>
 
 #define SCREEN_SIZE ([UIScreen mainScreen].bounds.size)
@@ -29,15 +30,17 @@
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor whiteColor];
     self.navigationItem.title = @"Card Sort";
-    //保存当前卡牌设置,暂未实现
-    UIButton *saveBtn = [UIButton buttonWithType:UIButtonTypeSystem];
-    saveBtn.frame = CGRectMake(0, 0, 44, 44);
-    [saveBtn setTitle:@"save" forState:UIControlStateNormal];
-    [saveBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    saveBtn.titleLabel.font = [UIFont systemFontOfSize:16];
-    //[saveBtn addTarget:self action:@selector(saveToFile) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *saveItem = [[UIBarButtonItem alloc] initWithCustomView:saveBtn];
-    self.navigationItem.rightBarButtonItem = saveItem;
+    UIBarButtonItem *backItem = [[UIBarButtonItem alloc]initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+    self.navigationItem.backBarButtonItem = backItem;
+//    //保存当前卡牌设置,暂未实现
+//    UIButton *saveBtn = [UIButton buttonWithType:UIButtonTypeSystem];
+//    saveBtn.frame = CGRectMake(0, 0, 44, 44);
+//    [saveBtn setTitle:@"save" forState:UIControlStateNormal];
+//    [saveBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+//    saveBtn.titleLabel.font = [UIFont systemFontOfSize:16];
+//    //[saveBtn addTarget:self action:@selector(saveToFile) forControlEvents:UIControlEventTouchUpInside];
+//    UIBarButtonItem *saveItem = [[UIBarButtonItem alloc] initWithCustomView:saveBtn];
+//    self.navigationItem.rightBarButtonItem = saveItem;
     
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
     [layout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
@@ -72,11 +75,11 @@
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return 60;
+    return 6;
 }
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-    return 2;
+    return 1;
 }
 
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
@@ -87,16 +90,24 @@
     static NSString *card = @"devilCard";
     [self.cardCollect registerClass:[CardCell class] forCellWithReuseIdentifier:card];
     CardCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:card forIndexPath:indexPath];
-    cell.cardImage.image = [UIImage imageNamed:@"p1.png"];
-    cell.cardName.text = @"霜月";
+    for (DevilCardInfo *card in [DevilCardMgr defaultMgr].presentCards) {
+        if (card.cardSequence == indexPath.row + 1) {
+            cell.cardImage.image = [UIImage imageNamed:card.cardImage];
+            cell.cardName.text = card.cardName;
+            return cell;
+        }
+    }
+    cell.cardImage.image = [UIImage imageNamed:@"card_back"];
+    cell.cardName.text = @"暂未解锁";
     cell.cardName.textAlignment = NSTextAlignmentCenter;
     return cell;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     CardDetailViewController *cardDetail = [[CardDetailViewController alloc] init];
-    cardDetail.cardImage = [UIImage imageNamed:@"p1.png"];
-    cardDetail.navigationItem.title = @"霜月";
+    CardCell *cell = (CardCell *)[collectionView cellForItemAtIndexPath:indexPath];
+    cardDetail.cardImage = cell.cardImage.image;
+    cardDetail.navigationItem.title = cell.cardName.text;
     [self.navigationController pushViewController:cardDetail animated:YES];
 }
 

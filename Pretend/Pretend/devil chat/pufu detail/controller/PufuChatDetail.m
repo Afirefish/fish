@@ -53,6 +53,9 @@ static NSString *pufuChat = @"PufuChat";
 
 - (void)setupBackgroundImage {
     self.tableBackgroundView.image = [UIImage imageNamed:@"pufuBG"];
+    [self.controlsView.fastPlayBtn setImage:[UIImage imageNamed:@"fast_play_pufu"] forState:UIControlStateNormal];
+    [self.controlsView.autoPlayBtn setImage:[UIImage imageNamed:@"auto_play_pufu"] forState:UIControlStateNormal];
+    [self.controlsView.nextBtn setImage:[UIImage imageNamed:@"next_pufu"] forState:UIControlStateNormal];
 }
 
 - (void)playBGM {
