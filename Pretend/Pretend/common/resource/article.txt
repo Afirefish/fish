@@ -129,10 +129,12 @@ Third Branch Begin
 First Fork
 
 Puri走了进去。
+[欢迎来到终焉亭！]
 
 Second Fork
 
 Puri想要寻找别的旅馆，在小镇走了一圈，但是并没有发现别的旅馆，又回到了终焉亭。
+[你好，请问你需要什么吗？]
 
 Third Branch End
 
@@ -281,13 +283,7 @@ Fourth Branch Begin
 First Fork
 
 [可以委托你去拿到血色虹草吗？]
-[我可以尝试，不过不能保证一定能成功，也不确定时间。]
-[嗯嗯，这是10紫魔晶的报酬。如果成功了，可以给你更多。]
-[好，成交。]
-
-
-Puri于是回到旅馆悠闲地等待Track的成果。
-二个月之后，Track带着血色虹草回到了终焉楼阁，Puri对Track表达了感谢之后，带着虹草向着飞蛇城出发。
+[这个委托我不接收，我可以帮助训练你。]
 
 Second Fork
 
