@@ -13,6 +13,7 @@
 #import "DCNavigationController.h"
 #import "CardSortViewController.h"
 #import "CardFeastViewController.h"
+#import "BaseCardCraftViewController.h"
 #import "UIColor+PRCustomColor.h"
 #import <Masonry.h>
 
@@ -33,13 +34,15 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.navigationItem.title = @"Devil Card";
+    UIBarButtonItem *backItem = [[UIBarButtonItem alloc]initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+    self.navigationItem.backBarButtonItem = backItem;
     self.view.backgroundColor = [UIColor smokeWhiteColor];
-    [self setupBackGroudImage];
+    [self setupBackgroudImage];
     [self setupSubviews];
 }
 
-//设置背景图片
-- (void)setupBackGroudImage {
+// 设置背景图片
+- (void)setupBackgroudImage {
     self.backgroudImageView = ({
         UIImageView *imageView = [[UIImageView alloc] init];
         imageView.contentMode = UIViewContentModeScaleAspectFill;
@@ -62,7 +65,7 @@
 }
 
 - (void)setupSubviews {
-    //卡牌整理
+    // 卡牌整理
     self.sortBtn = ({
         UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
         button.backgroundColor = [UIColor clearColor];
@@ -81,7 +84,7 @@
         make.height.equalTo(@30.0);
     }];
 
-    //进入会场
+    // 进入会场
     self.enterBtn = ({
         UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
         button.backgroundColor = [UIColor clearColor];
@@ -113,17 +116,17 @@
 //    [self.navigationController pushViewController:cardSort animated:YES];
 //}
 
-- (void)enterCardFeast {//第一个游戏结束，整理卡牌之后进入
+- (void)enterCardFeast { // 第一个游戏结束，整理卡牌之后进入
     ChatRoomMgr *chatRoomMgr = [ChatRoomMgr defaultMgr];
-    if ([chatRoomMgr checkComplete]) {//判断第一个游戏是否结束
+    if ([chatRoomMgr checkComplete]) { // 判断第一个游戏是否结束
         if (self.tipLabel != nil) {
             [self.tipLabel removeFromSuperview];
             self.tipLabel = nil;
         }
-        CardFeastViewController *cardFeast = [[CardFeastViewController alloc] init];
-        [self.navigationController pushViewController:cardFeast animated:YES];
-        //[self presentViewController:dcNC animated:YES completion:nil];
-    } else {
+        BaseCardCraftViewController *devilCraft = [[BaseCardCraftViewController alloc] initWithDevilID:0];
+        [self.navigationController pushViewController:devilCraft animated:YES];
+    }
+    else {
         if (self.tipLabel == nil) {
             [self setupTipLabel];
         }
@@ -147,10 +150,6 @@
         make.top.equalTo(self.sortBtn.mas_bottom).offset(10.0);
         make.bottom.equalTo(self.enterBtn.mas_top).offset(10.0);
     }];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
 }
 
 @end

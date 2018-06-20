@@ -27,20 +27,23 @@
 		3801A0831F7F3078006C3D18 /* TizaChatDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 3801A0821F7F3078006C3D18 /* TizaChatDetail.m */; };
 		3808515C2022B54100836D03 /* PHSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3808515B2022B54100836D03 /* PHSelectViewController.m */; };
 		3832119C202ADCF800DB7B7A /* PRVideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3832119B202ADCF800DB7B7A /* PRVideoViewController.m */; };
-		3832119F202AE1D300DB7B7A /* video.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 3832119E202AE1D300DB7B7A /* video.mp4 */; };
 		383211A7202AE2F800DB7B7A /* PRSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 383211A6202AE2F800DB7B7A /* PRSlider.m */; };
 		383211AA202AE53C00DB7B7A /* PRCustomSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 383211A9202AE53C00DB7B7A /* PRCustomSlider.m */; };
 		383211AD202C81CD00DB7B7A /* PRBGMPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 383211AC202C81CD00DB7B7A /* PRBGMPlayer.m */; };
 		383BA7001FD799B600B0D207 /* FirstCommunication+UI.m in Sources */ = {isa = PBXBuildFile; fileRef = 383BA6FF1FD799B600B0D207 /* FirstCommunication+UI.m */; };
-		383D7243200600AF0063FEB6 /* novel.txt in Resources */ = {isa = PBXBuildFile; fileRef = 383D7242200600AF0063FEB6 /* novel.txt */; };
 		383D72452006058E0063FEB6 /* article.txt in Resources */ = {isa = PBXBuildFile; fileRef = 383D72442006058D0063FEB6 /* article.txt */; };
-		3876A7F11F8DD4A7008A20C9 /* playerTochizi.json in Resources */ = {isa = PBXBuildFile; fileRef = 3876A7F01F8DD4A7008A20C9 /* playerTochizi.json */; };
-		3876A7F31F8DD4AE008A20C9 /* chizi.json in Resources */ = {isa = PBXBuildFile; fileRef = 3876A7F21F8DD4AE008A20C9 /* chizi.json */; };
+		3850CDCC20BC5C9A00E45D8B /* PRProgressBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3850CDCB20BC5C9A00E45D8B /* PRProgressBaseView.m */; };
+		3850CDCF20BC5CCE00E45D8B /* PRProgressBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 3850CDCE20BC5CCE00E45D8B /* PRProgressBar.m */; };
+		3850CDD220BC5D0400E45D8B /* PRProgressIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 3850CDD120BC5D0400E45D8B /* PRProgressIndicator.m */; };
+		3873AD7820D7DC62007CC8D3 /* DevilCardMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 3873AD7720D7DC62007CC8D3 /* DevilCardMgr.m */; };
+		3873AD7A20D8956E007CC8D3 /* article2.txt in Resources */ = {isa = PBXBuildFile; fileRef = 3873AD7920D8956E007CC8D3 /* article2.txt */; };
+		38748E6020D239E700700891 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 38748E5F20D239E700700891 /* libsqlite3.tbd */; };
+		38748E6320D23A4300700891 /* PRDBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 38748E6220D23A4300700891 /* PRDBManager.m */; };
+		38748E6620D25BF600700891 /* PRConstantSQL.m in Sources */ = {isa = PBXBuildFile; fileRef = 38748E6520D25BF600700891 /* PRConstantSQL.m */; };
+		38748E6920D3943500700891 /* BaseChatControlsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 38748E6820D3943500700891 /* BaseChatControlsView.m */; };
 		387BA634201606C700B7A15B /* NSObject+BJLObserving.m in Sources */ = {isa = PBXBuildFile; fileRef = 387BA631201606C600B7A15B /* NSObject+BJLObserving.m */; };
 		387BA635201606C700B7A15B /* NSObject+BJLWillDeallocBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = 387BA633201606C700B7A15B /* NSObject+BJLWillDeallocBlock.m */; };
 		387BA6382016E37200B7A15B /* BaseChatModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 387BA6372016E37200B7A15B /* BaseChatModel.m */; };
-		388442B61F8CAD52005C9044 /* playerTopufu.json in Resources */ = {isa = PBXBuildFile; fileRef = 388442B41F8CAD52005C9044 /* playerTopufu.json */; };
-		388442B71F8CAD52005C9044 /* pufu.json in Resources */ = {isa = PBXBuildFile; fileRef = 388442B51F8CAD52005C9044 /* pufu.json */; };
 		389C5C781FAEE89400494006 /* PuriHandCardCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 389C5C771FAEE89400494006 /* PuriHandCardCell.m */; };
 		389C5C7B1FB04F9B00494006 /* CardMasonryLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 389C5C7A1FB04F9B00494006 /* CardMasonryLayout.m */; };
 		389C5C7E1FB057CB00494006 /* CardSortTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 389C5C7D1FB057CB00494006 /* CardSortTestViewController.m */; };
@@ -58,9 +61,8 @@
 		38A13E051FE10A46002B62B4 /* ChatRoomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 38A13E041FE10A46002B62B4 /* ChatRoomCell.m */; };
 		38A13E081FE1192C002B62B4 /* BaseMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 38A13E071FE1192C002B62B4 /* BaseMgr.m */; };
 		38A17BFD2004987200088588 /* PRTxtTransform.m in Sources */ = {isa = PBXBuildFile; fileRef = 38A17BFC2004987200088588 /* PRTxtTransform.m */; };
+		38A573FD20C4FEC600479601 /* video.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 38A573FC20C4FEC600479601 /* video.mp4 */; };
 		38BDFB6C2018377400D1BB86 /* FeatureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38BDFB6B2018377400D1BB86 /* FeatureViewController.m */; };
-		38C76C8F1FA073CA00BCBCB9 /* tiza.json in Resources */ = {isa = PBXBuildFile; fileRef = 38C76C8D1FA073CA00BCBCB9 /* tiza.json */; };
-		38C76C901FA073CA00BCBCB9 /* playerTotiza.json in Resources */ = {isa = PBXBuildFile; fileRef = 38C76C8E1FA073CA00BCBCB9 /* playerTotiza.json */; };
 		38C76C9B1FA07BD100BCBCB9 /* DevilChatRoom.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C76C991FA07BD100BCBCB9 /* DevilChatRoom.m */; };
 		38C76C9E1FA07C1700BCBCB9 /* ChatRoomCleared.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C76C9D1FA07C1700BCBCB9 /* ChatRoomCleared.m */; };
 		38C76CA21FA1850600BCBCB9 /* ChatRoomMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C76CA11FA1850600BCBCB9 /* ChatRoomMgr.m */; };
@@ -91,11 +93,8 @@
 		38C76D171FAAFF3400BCBCB9 /* PuriHandCardLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C76D161FAAFF3400BCBCB9 /* PuriHandCardLayout.m */; };
 		38C76D201FAB74B700BCBCB9 /* PuriLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C76D1F1FAB74B700BCBCB9 /* PuriLayout.m */; };
 		38C76D231FAC538900BCBCB9 /* PuriHandCardAttributes.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C76D221FAC538900BCBCB9 /* PuriHandCardAttributes.m */; };
-		38CEAA6E1F8BA0B600BC72EC /* santa.json in Resources */ = {isa = PBXBuildFile; fileRef = 38CEAA6D1F8BA0B600BC72EC /* santa.json */; };
-		38CEAA701F8BA0E800BC72EC /* playerTosanta.json in Resources */ = {isa = PBXBuildFile; fileRef = 38CEAA6F1F8BA0E800BC72EC /* playerTosanta.json */; };
 		38E240241FECB69300896939 /* CardFeastViewController+UI.m in Sources */ = {isa = PBXBuildFile; fileRef = 38E240231FECB69300896939 /* CardFeastViewController+UI.m */; };
 		38E2404F1FF0954700896939 /* CardCrafterCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 38E2404E1FF0954700896939 /* CardCrafterCell.m */; };
-		38F7C2D8200374E10085B0BA /* test.txt in Resources */ = {isa = PBXBuildFile; fileRef = 38F7C2D7200374E10085B0BA /* test.txt */; };
 		FEB8F7668BFCA7D04939BC7C /* libPods-Pretend.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D33B925DDB6AA3EAC9B48AB8 /* libPods-Pretend.a */; };
 /* End PBXBuildFile section */
 
@@ -158,7 +157,6 @@
 		3808515B2022B54100836D03 /* PHSelectViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PHSelectViewController.m; sourceTree = "<group>"; };
 		3832119A202ADCF800DB7B7A /* PRVideoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PRVideoViewController.h; sourceTree = "<group>"; };
 		3832119B202ADCF800DB7B7A /* PRVideoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PRVideoViewController.m; sourceTree = "<group>"; };
-		3832119E202AE1D300DB7B7A /* video.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = video.mp4; sourceTree = "<group>"; };
 		383211A5202AE2F800DB7B7A /* PRSlider.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PRSlider.h; sourceTree = "<group>"; };
 		383211A6202AE2F800DB7B7A /* PRSlider.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PRSlider.m; sourceTree = "<group>"; };
 		383211A8202AE53C00DB7B7A /* PRCustomSlider.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PRCustomSlider.h; sourceTree = "<group>"; };
@@ -167,18 +165,29 @@
 		383211AC202C81CD00DB7B7A /* PRBGMPlayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PRBGMPlayer.m; sourceTree = "<group>"; };
 		383BA6FE1FD799B600B0D207 /* FirstCommunication+UI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FirstCommunication+UI.h"; sourceTree = "<group>"; };
 		383BA6FF1FD799B600B0D207 /* FirstCommunication+UI.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "FirstCommunication+UI.m"; sourceTree = "<group>"; };
-		383D7242200600AF0063FEB6 /* novel.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = novel.txt; sourceTree = "<group>"; };
 		383D72442006058D0063FEB6 /* article.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = article.txt; sourceTree = "<group>"; };
-		3876A7F01F8DD4A7008A20C9 /* playerTochizi.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = playerTochizi.json; sourceTree = "<group>"; };
-		3876A7F21F8DD4AE008A20C9 /* chizi.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = chizi.json; sourceTree = "<group>"; };
+		3850CDCA20BC5C9A00E45D8B /* PRProgressBaseView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PRProgressBaseView.h; sourceTree = "<group>"; };
+		3850CDCB20BC5C9A00E45D8B /* PRProgressBaseView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PRProgressBaseView.m; sourceTree = "<group>"; };
+		3850CDCD20BC5CCE00E45D8B /* PRProgressBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PRProgressBar.h; sourceTree = "<group>"; };
+		3850CDCE20BC5CCE00E45D8B /* PRProgressBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PRProgressBar.m; sourceTree = "<group>"; };
+		3850CDD020BC5D0400E45D8B /* PRProgressIndicator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PRProgressIndicator.h; sourceTree = "<group>"; };
+		3850CDD120BC5D0400E45D8B /* PRProgressIndicator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PRProgressIndicator.m; sourceTree = "<group>"; };
+		3873AD7620D7DC62007CC8D3 /* DevilCardMgr.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DevilCardMgr.h; sourceTree = "<group>"; };
+		3873AD7720D7DC62007CC8D3 /* DevilCardMgr.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DevilCardMgr.m; sourceTree = "<group>"; };
+		3873AD7920D8956E007CC8D3 /* article2.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = article2.txt; sourceTree = "<group>"; };
+		38748E5F20D239E700700891 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		38748E6120D23A4300700891 /* PRDBManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PRDBManager.h; sourceTree = "<group>"; };
+		38748E6220D23A4300700891 /* PRDBManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PRDBManager.m; sourceTree = "<group>"; };
+		38748E6420D25BF600700891 /* PRConstantSQL.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PRConstantSQL.h; sourceTree = "<group>"; };
+		38748E6520D25BF600700891 /* PRConstantSQL.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PRConstantSQL.m; sourceTree = "<group>"; };
+		38748E6720D3943500700891 /* BaseChatControlsView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseChatControlsView.h; sourceTree = "<group>"; };
+		38748E6820D3943500700891 /* BaseChatControlsView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseChatControlsView.m; sourceTree = "<group>"; };
 		387BA630201606C600B7A15B /* NSObject+BJLWillDeallocBlock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+BJLWillDeallocBlock.h"; sourceTree = "<group>"; };
 		387BA631201606C600B7A15B /* NSObject+BJLObserving.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+BJLObserving.m"; sourceTree = "<group>"; };
 		387BA632201606C700B7A15B /* NSObject+BJLObserving.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+BJLObserving.h"; sourceTree = "<group>"; };
 		387BA633201606C700B7A15B /* NSObject+BJLWillDeallocBlock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+BJLWillDeallocBlock.m"; sourceTree = "<group>"; };
 		387BA6362016E37200B7A15B /* BaseChatModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseChatModel.h; sourceTree = "<group>"; };
 		387BA6372016E37200B7A15B /* BaseChatModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseChatModel.m; sourceTree = "<group>"; };
-		388442B41F8CAD52005C9044 /* playerTopufu.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = playerTopufu.json; sourceTree = "<group>"; };
-		388442B51F8CAD52005C9044 /* pufu.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = pufu.json; sourceTree = "<group>"; };
 		389C5C761FAEE89400494006 /* PuriHandCardCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PuriHandCardCell.h; sourceTree = "<group>"; };
 		389C5C771FAEE89400494006 /* PuriHandCardCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PuriHandCardCell.m; sourceTree = "<group>"; };
 		389C5C791FB04F9B00494006 /* CardMasonryLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardMasonryLayout.h; sourceTree = "<group>"; };
@@ -207,10 +216,9 @@
 		38A13E071FE1192C002B62B4 /* BaseMgr.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseMgr.m; sourceTree = "<group>"; };
 		38A17BFB2004987200088588 /* PRTxtTransform.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PRTxtTransform.h; sourceTree = "<group>"; };
 		38A17BFC2004987200088588 /* PRTxtTransform.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PRTxtTransform.m; sourceTree = "<group>"; };
+		38A573FC20C4FEC600479601 /* video.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = video.mp4; sourceTree = "<group>"; };
 		38BDFB6A2018377400D1BB86 /* FeatureViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FeatureViewController.h; sourceTree = "<group>"; };
 		38BDFB6B2018377400D1BB86 /* FeatureViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FeatureViewController.m; sourceTree = "<group>"; };
-		38C76C8D1FA073CA00BCBCB9 /* tiza.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = tiza.json; sourceTree = "<group>"; };
-		38C76C8E1FA073CA00BCBCB9 /* playerTotiza.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = playerTotiza.json; sourceTree = "<group>"; };
 		38C76C981FA07BD100BCBCB9 /* DevilChatRoom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DevilChatRoom.h; sourceTree = "<group>"; };
 		38C76C991FA07BD100BCBCB9 /* DevilChatRoom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DevilChatRoom.m; sourceTree = "<group>"; };
 		38C76C9C1FA07C1700BCBCB9 /* ChatRoomCleared.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatRoomCleared.h; sourceTree = "<group>"; };
@@ -270,13 +278,10 @@
 		38C76D1F1FAB74B700BCBCB9 /* PuriLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PuriLayout.m; sourceTree = "<group>"; };
 		38C76D211FAC538900BCBCB9 /* PuriHandCardAttributes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PuriHandCardAttributes.h; sourceTree = "<group>"; };
 		38C76D221FAC538900BCBCB9 /* PuriHandCardAttributes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PuriHandCardAttributes.m; sourceTree = "<group>"; };
-		38CEAA6D1F8BA0B600BC72EC /* santa.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = santa.json; sourceTree = "<group>"; };
-		38CEAA6F1F8BA0E800BC72EC /* playerTosanta.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = playerTosanta.json; sourceTree = "<group>"; };
 		38E240221FECB69300896939 /* CardFeastViewController+UI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CardFeastViewController+UI.h"; sourceTree = "<group>"; };
 		38E240231FECB69300896939 /* CardFeastViewController+UI.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "CardFeastViewController+UI.m"; sourceTree = "<group>"; };
 		38E2404D1FF0954700896939 /* CardCrafterCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CardCrafterCell.h; sourceTree = "<group>"; };
 		38E2404E1FF0954700896939 /* CardCrafterCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CardCrafterCell.m; sourceTree = "<group>"; };
-		38F7C2D7200374E10085B0BA /* test.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = test.txt; sourceTree = "<group>"; };
 		4D56EA3242F97FEDFA0D68FC /* Pods-Pretend.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pretend.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Pretend/Pods-Pretend.debug.xcconfig"; sourceTree = "<group>"; };
 		D33B925DDB6AA3EAC9B48AB8 /* libPods-Pretend.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Pretend.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4A1AF25F2E2AE883639043E /* Pods-Pretend.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pretend.release.xcconfig"; path = "Pods/Target Support Files/Pods-Pretend/Pods-Pretend.release.xcconfig"; sourceTree = "<group>"; };
@@ -287,6 +292,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				38748E6020D239E700700891 /* libsqlite3.tbd in Frameworks */,
 				FEB8F7668BFCA7D04939BC7C /* libPods-Pretend.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -311,6 +317,7 @@
 		2AA6CFA4835DFD7BAA736578 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				38748E5F20D239E700700891 /* libsqlite3.tbd */,
 				D33B925DDB6AA3EAC9B48AB8 /* libPods-Pretend.a */,
 			);
 			name = Frameworks;
@@ -347,6 +354,7 @@
 				38E240311FECB96D00896939 /* devil room */,
 				38E2402B1FECB81700896939 /* devil card */,
 				38E240321FECB9BD00896939 /* devil chat */,
+				38748E5E20D2399600700891 /* database */,
 				38E2404B1FECBD4000896939 /* common */,
 				38E2404C1FECBD5900896939 /* game start */,
 				3801A0211F7A76B0006C3D18 /* Assets.xcassets */,
@@ -381,6 +389,110 @@
 				3801A03C1F7A76B0006C3D18 /* Info.plist */,
 			);
 			path = PretendUITests;
+			sourceTree = "<group>";
+		};
+		3826FB5C205E3D2E00C6990E /* card sort */ = {
+			isa = PBXGroup;
+			children = (
+				3826FB64205E3E2A00C6990E /* model */,
+				3826FB5F205E3DB100C6990E /* view */,
+				3826FB5E205E3DA200C6990E /* controller */,
+			);
+			path = "card sort";
+			sourceTree = "<group>";
+		};
+		3826FB5D205E3D5C00C6990E /* card craft */ = {
+			isa = PBXGroup;
+			children = (
+				3826FB63205E3E2200C6990E /* model */,
+				3826FB62205E3E1D00C6990E /* view */,
+				3826FB60205E3E0F00C6990E /* controller */,
+			);
+			path = "card craft";
+			sourceTree = "<group>";
+		};
+		3826FB5E205E3DA200C6990E /* controller */ = {
+			isa = PBXGroup;
+			children = (
+				38C76D091FAAAE2300BCBCB9 /* CardSortViewController.h */,
+				38C76D0A1FAAAE2300BCBCB9 /* CardSortViewController.m */,
+				389C5C7C1FB057CB00494006 /* CardSortTestViewController.h */,
+				389C5C7D1FB057CB00494006 /* CardSortTestViewController.m */,
+				38C76D121FAAD0C200BCBCB9 /* CardDetailViewController.h */,
+				38C76D131FAAD0C200BCBCB9 /* CardDetailViewController.m */,
+			);
+			path = controller;
+			sourceTree = "<group>";
+		};
+		3826FB5F205E3DB100C6990E /* view */ = {
+			isa = PBXGroup;
+			children = (
+				38C76D0C1FAAAFC800BCBCB9 /* CardCell.h */,
+				38C76D0D1FAAAFC800BCBCB9 /* CardCell.m */,
+				389C5C7F1FB0768B00494006 /* CardSortTestCollectionViewCell.h */,
+				389C5C801FB0768B00494006 /* CardSortTestCollectionViewCell.m */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		3826FB60205E3E0F00C6990E /* controller */ = {
+			isa = PBXGroup;
+			children = (
+				38C76CDA1FA7568B00BCBCB9 /* CardFeastViewController.h */,
+				38C76CDB1FA7568B00BCBCB9 /* CardFeastViewController.m */,
+				38E240221FECB69300896939 /* CardFeastViewController+UI.h */,
+				38E240231FECB69300896939 /* CardFeastViewController+UI.m */,
+				38C76CE91FA867D600BCBCB9 /* BaseCardCraftViewController.h */,
+				38C76CEA1FA867D600BCBCB9 /* BaseCardCraftViewController.m */,
+			);
+			path = controller;
+			sourceTree = "<group>";
+		};
+		3826FB62205E3E1D00C6990E /* view */ = {
+			isa = PBXGroup;
+			children = (
+				38C76CE31FA8550300BCBCB9 /* FeastView.h */,
+				38C76CE41FA8550300BCBCB9 /* FeastView.m */,
+				38E2404D1FF0954700896939 /* CardCrafterCell.h */,
+				38E2404E1FF0954700896939 /* CardCrafterCell.m */,
+				389C5C761FAEE89400494006 /* PuriHandCardCell.h */,
+				389C5C771FAEE89400494006 /* PuriHandCardCell.m */,
+				389C5C881FB15E4500494006 /* TableCardCollectionViewCell.h */,
+				389C5C891FB15E4500494006 /* TableCardCollectionViewCell.m */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		3826FB63205E3E2200C6990E /* model */ = {
+			isa = PBXGroup;
+			children = (
+				38C76CB51FA1B1E700BCBCB9 /* CardCraftMgr.h */,
+				38C76CB61FA1B1E700BCBCB9 /* CardCraftMgr.m */,
+				38C76CBB1FA1B4F500BCBCB9 /* Crafter.h */,
+				38C76CBC1FA1B4F500BCBCB9 /* Crafter.m */,
+				38C76CBE1FA1B62400BCBCB9 /* Puri.h */,
+				38C76CBF1FA1B62400BCBCB9 /* Puri.m */,
+				38C76CC11FA1B65900BCBCB9 /* Devil.h */,
+				38C76CC21FA1B65900BCBCB9 /* Devil.m */,
+				38C76D151FAAFF3400BCBCB9 /* PuriHandCardLayout.h */,
+				38C76D161FAAFF3400BCBCB9 /* PuriHandCardLayout.m */,
+				38C76D211FAC538900BCBCB9 /* PuriHandCardAttributes.h */,
+				38C76D221FAC538900BCBCB9 /* PuriHandCardAttributes.m */,
+				38C76D1E1FAB74B700BCBCB9 /* PuriLayout.h */,
+				38C76D1F1FAB74B700BCBCB9 /* PuriLayout.m */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		3826FB64205E3E2A00C6990E /* model */ = {
+			isa = PBXGroup;
+			children = (
+				389C5C791FB04F9B00494006 /* CardMasonryLayout.h */,
+				389C5C7A1FB04F9B00494006 /* CardMasonryLayout.m */,
+				389C5C851FB0866400494006 /* CardCoverFlowLayout.h */,
+				389C5C861FB0866400494006 /* CardCoverFlowLayout.m */,
+			);
+			path = model;
 			sourceTree = "<group>";
 		};
 		383211A0202AE29200DB7B7A /* view */ = {
@@ -427,12 +539,35 @@
 			children = (
 				389E43D9203FA8B200AD107F /* ChatRoom.mp3 */,
 				389E43CF2034186A00AD107F /* bgm.mp3 */,
-				3832119E202AE1D300DB7B7A /* video.mp4 */,
+				3873AD7920D8956E007CC8D3 /* article2.txt */,
 				383D72442006058D0063FEB6 /* article.txt */,
-				383D7242200600AF0063FEB6 /* novel.txt */,
-				38F7C2D7200374E10085B0BA /* test.txt */,
+				38A573FC20C4FEC600479601 /* video.mp4 */,
 			);
 			path = resource;
+			sourceTree = "<group>";
+		};
+		3850CDC920BC5C7200E45D8B /* progress view */ = {
+			isa = PBXGroup;
+			children = (
+				3850CDCA20BC5C9A00E45D8B /* PRProgressBaseView.h */,
+				3850CDCB20BC5C9A00E45D8B /* PRProgressBaseView.m */,
+				3850CDCD20BC5CCE00E45D8B /* PRProgressBar.h */,
+				3850CDCE20BC5CCE00E45D8B /* PRProgressBar.m */,
+				3850CDD020BC5D0400E45D8B /* PRProgressIndicator.h */,
+				3850CDD120BC5D0400E45D8B /* PRProgressIndicator.m */,
+			);
+			path = "progress view";
+			sourceTree = "<group>";
+		};
+		38748E5E20D2399600700891 /* database */ = {
+			isa = PBXGroup;
+			children = (
+				38748E6120D23A4300700891 /* PRDBManager.h */,
+				38748E6220D23A4300700891 /* PRDBManager.m */,
+				38748E6420D25BF600700891 /* PRConstantSQL.h */,
+				38748E6520D25BF600700891 /* PRConstantSQL.m */,
+			);
+			path = database;
 			sourceTree = "<group>";
 		};
 		38E240251FECB6D000896939 /* controller */ = {
@@ -442,18 +577,6 @@
 				38C76CD81FA7561A00BCBCB9 /* DCNavigationController.m */,
 				3801A04B1F7B4404006C3D18 /* DevilCard.h */,
 				3801A04C1F7B4404006C3D18 /* DevilCard.m */,
-				38C76D091FAAAE2300BCBCB9 /* CardSortViewController.h */,
-				38C76D0A1FAAAE2300BCBCB9 /* CardSortViewController.m */,
-				389C5C7C1FB057CB00494006 /* CardSortTestViewController.h */,
-				389C5C7D1FB057CB00494006 /* CardSortTestViewController.m */,
-				38C76D121FAAD0C200BCBCB9 /* CardDetailViewController.h */,
-				38C76D131FAAD0C200BCBCB9 /* CardDetailViewController.m */,
-				38C76CDA1FA7568B00BCBCB9 /* CardFeastViewController.h */,
-				38C76CDB1FA7568B00BCBCB9 /* CardFeastViewController.m */,
-				38E240221FECB69300896939 /* CardFeastViewController+UI.h */,
-				38E240231FECB69300896939 /* CardFeastViewController+UI.m */,
-				38C76CE91FA867D600BCBCB9 /* BaseCardCraftViewController.h */,
-				38C76CEA1FA867D600BCBCB9 /* BaseCardCraftViewController.m */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -461,18 +584,6 @@
 		38E240261FECB71300896939 /* view */ = {
 			isa = PBXGroup;
 			children = (
-				38C76CE31FA8550300BCBCB9 /* FeastView.h */,
-				38C76CE41FA8550300BCBCB9 /* FeastView.m */,
-				38C76D0C1FAAAFC800BCBCB9 /* CardCell.h */,
-				38C76D0D1FAAAFC800BCBCB9 /* CardCell.m */,
-				38E2404D1FF0954700896939 /* CardCrafterCell.h */,
-				38E2404E1FF0954700896939 /* CardCrafterCell.m */,
-				389C5C7F1FB0768B00494006 /* CardSortTestCollectionViewCell.h */,
-				389C5C801FB0768B00494006 /* CardSortTestCollectionViewCell.m */,
-				389C5C761FAEE89400494006 /* PuriHandCardCell.h */,
-				389C5C771FAEE89400494006 /* PuriHandCardCell.m */,
-				389C5C881FB15E4500494006 /* TableCardCollectionViewCell.h */,
-				389C5C891FB15E4500494006 /* TableCardCollectionViewCell.m */,
 				38C76D0F1FAACAF900BCBCB9 /* CardSelectedBackground.h */,
 				38C76D101FAACAF900BCBCB9 /* CardSelectedBackground.m */,
 			);
@@ -482,28 +593,12 @@
 		38E240291FECB78700896939 /* model */ = {
 			isa = PBXGroup;
 			children = (
-				38C76CB51FA1B1E700BCBCB9 /* CardCraftMgr.h */,
-				38C76CB61FA1B1E700BCBCB9 /* CardCraftMgr.m */,
-				38C76CBB1FA1B4F500BCBCB9 /* Crafter.h */,
-				38C76CBC1FA1B4F500BCBCB9 /* Crafter.m */,
-				38C76CBE1FA1B62400BCBCB9 /* Puri.h */,
-				38C76CBF1FA1B62400BCBCB9 /* Puri.m */,
-				38C76CC11FA1B65900BCBCB9 /* Devil.h */,
-				38C76CC21FA1B65900BCBCB9 /* Devil.m */,
 				38C76CB81FA1B2B800BCBCB9 /* DevilCardInfo.h */,
 				38C76CB91FA1B2B800BCBCB9 /* DevilCardInfo.m */,
+				3873AD7620D7DC62007CC8D3 /* DevilCardMgr.h */,
+				3873AD7720D7DC62007CC8D3 /* DevilCardMgr.m */,
 				38C76CDD1FA8493E00BCBCB9 /* UIImage+Rotate.h */,
 				38C76CDE1FA8493E00BCBCB9 /* UIImage+Rotate.m */,
-				38C76D151FAAFF3400BCBCB9 /* PuriHandCardLayout.h */,
-				38C76D161FAAFF3400BCBCB9 /* PuriHandCardLayout.m */,
-				38C76D211FAC538900BCBCB9 /* PuriHandCardAttributes.h */,
-				38C76D221FAC538900BCBCB9 /* PuriHandCardAttributes.m */,
-				38C76D1E1FAB74B700BCBCB9 /* PuriLayout.h */,
-				38C76D1F1FAB74B700BCBCB9 /* PuriLayout.m */,
-				389C5C791FB04F9B00494006 /* CardMasonryLayout.h */,
-				389C5C7A1FB04F9B00494006 /* CardMasonryLayout.m */,
-				389C5C851FB0866400494006 /* CardCoverFlowLayout.h */,
-				389C5C861FB0866400494006 /* CardCoverFlowLayout.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -511,6 +606,8 @@
 		38E2402B1FECB81700896939 /* devil card */ = {
 			isa = PBXGroup;
 			children = (
+				3826FB5C205E3D2E00C6990E /* card sort */,
+				3826FB5D205E3D5C00C6990E /* card craft */,
 				38E240291FECB78700896939 /* model */,
 				38E240261FECB71300896939 /* view */,
 				38E240251FECB6D000896939 /* controller */,
@@ -644,8 +741,6 @@
 			children = (
 				38E240401FECBB9300896939 /* controller */,
 				38E2403F1FECBB8200896939 /* model */,
-				38CEAA6F1F8BA0E800BC72EC /* playerTosanta.json */,
-				38CEAA6D1F8BA0B600BC72EC /* santa.json */,
 				389E43D1203FA6AD00AD107F /* SantaChat.mp3 */,
 			);
 			path = "santa detail";
@@ -656,8 +751,6 @@
 			children = (
 				38E240431FECBBC900896939 /* controller */,
 				38E240421FECBBB700896939 /* model */,
-				388442B41F8CAD52005C9044 /* playerTopufu.json */,
-				388442B51F8CAD52005C9044 /* pufu.json */,
 				389E43D3203FA6B700AD107F /* PufuChat.mp3 */,
 			);
 			path = "pufu detail";
@@ -668,8 +761,6 @@
 			children = (
 				38E240461FECBCD400896939 /* controller */,
 				38E240451FECBCC400896939 /* model */,
-				3876A7F01F8DD4A7008A20C9 /* playerTochizi.json */,
-				3876A7F21F8DD4AE008A20C9 /* chizi.json */,
 				389E43D5203FA6C400AD107F /* ChiziChat.mp3 */,
 			);
 			path = "chizi detail";
@@ -680,8 +771,6 @@
 			children = (
 				38E240491FECBD0300896939 /* controller */,
 				38E240481FECBCF200896939 /* model */,
-				38C76C8D1FA073CA00BCBCB9 /* tiza.json */,
-				38C76C8E1FA073CA00BCBCB9 /* playerTotiza.json */,
 				389E43D7203FA6CE00AD107F /* TizaChat.mp3 */,
 			);
 			path = "tiza detail";
@@ -703,6 +792,8 @@
 				3801A0761F7E3BF6006C3D18 /* BaseChatTableViewCell.m */,
 				389C5C911FB1E39900494006 /* BaseChoiceCollectionViewCell.h */,
 				389C5C921FB1E39900494006 /* BaseChoiceCollectionViewCell.m */,
+				38748E6720D3943500700891 /* BaseChatControlsView.h */,
+				38748E6820D3943500700891 /* BaseChatControlsView.m */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -804,6 +895,7 @@
 		38E2404C1FECBD5900896939 /* game start */ = {
 			isa = PBXGroup;
 			children = (
+				3850CDC920BC5C7200E45D8B /* progress view */,
 				3801A0541F7B5CB3006C3D18 /* PretendedViewController.h */,
 				3801A0551F7B5CB3006C3D18 /* PretendedViewController.m */,
 				38BDFB6A2018377400D1BB86 /* FeatureViewController.h */,
@@ -886,7 +978,7 @@
 		3801A00A1F7A76B0006C3D18 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0920;
+				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = "戴曦嘉";
 				TargetAttributes = {
 					3801A0111F7A76B0006C3D18 = {
@@ -932,22 +1024,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				3801A0251F7A76B0006C3D18 /* LaunchScreen.storyboard in Resources */,
-				3832119F202AE1D300DB7B7A /* video.mp4 in Resources */,
-				3876A7F11F8DD4A7008A20C9 /* playerTochizi.json in Resources */,
+				3873AD7A20D8956E007CC8D3 /* article2.txt in Resources */,
 				3801A0221F7A76B0006C3D18 /* Assets.xcassets in Resources */,
 				389E43D4203FA6B700AD107F /* PufuChat.mp3 in Resources */,
-				38CEAA701F8BA0E800BC72EC /* playerTosanta.json in Resources */,
-				38C76C901FA073CA00BCBCB9 /* playerTotiza.json in Resources */,
-				383D7243200600AF0063FEB6 /* novel.txt in Resources */,
-				388442B71F8CAD52005C9044 /* pufu.json in Resources */,
-				388442B61F8CAD52005C9044 /* playerTopufu.json in Resources */,
-				3876A7F31F8DD4AE008A20C9 /* chizi.json in Resources */,
+				38A573FD20C4FEC600479601 /* video.mp4 in Resources */,
 				38C76CF91FA8A91C00BCBCB9 /* consider.json in Resources */,
 				389E43D02034186A00AD107F /* bgm.mp3 in Resources */,
-				38C76C8F1FA073CA00BCBCB9 /* tiza.json in Resources */,
-				38F7C2D8200374E10085B0BA /* test.txt in Resources */,
 				389E43D6203FA6C400AD107F /* ChiziChat.mp3 in Resources */,
-				38CEAA6E1F8BA0B600BC72EC /* santa.json in Resources */,
 				389E43DA203FA8B200AD107F /* ChatRoom.mp3 in Resources */,
 				389E43D2203FA6AE00AD107F /* SantaChat.mp3 in Resources */,
 				389E43D8203FA6CE00AD107F /* TizaChat.mp3 in Resources */,
@@ -1037,6 +1120,8 @@
 				38C76D081FA9E64500BCBCB9 /* TWNavigationController.m in Sources */,
 				387BA634201606C700B7A15B /* NSObject+BJLObserving.m in Sources */,
 				38C76CAE1FA19C6B00BCBCB9 /* ChiziMgr.m in Sources */,
+				3873AD7820D7DC62007CC8D3 /* DevilCardMgr.m in Sources */,
+				3850CDCF20BC5CCE00E45D8B /* PRProgressBar.m in Sources */,
 				38C76D171FAAFF3400BCBCB9 /* PuriHandCardLayout.m in Sources */,
 				38C76C9E1FA07C1700BCBCB9 /* ChatRoomCleared.m in Sources */,
 				38C76CB71FA1B1E700BCBCB9 /* CardCraftMgr.m in Sources */,
@@ -1045,6 +1130,7 @@
 				38C76CAA1FA19C1600BCBCB9 /* PufuMgr.m in Sources */,
 				38C76D111FAACAF900BCBCB9 /* CardSelectedBackground.m in Sources */,
 				38C76CE51FA8550300BCBCB9 /* FeastView.m in Sources */,
+				38748E6920D3943500700891 /* BaseChatControlsView.m in Sources */,
 				389C5C7B1FB04F9B00494006 /* CardMasonryLayout.m in Sources */,
 				389C5C8A1FB15E4500494006 /* TableCardCollectionViewCell.m in Sources */,
 				3801A04A1F7B43CF006C3D18 /* FirstCommunication.m in Sources */,
@@ -1063,10 +1149,13 @@
 				38C76CEB1FA867D600BCBCB9 /* BaseCardCraftViewController.m in Sources */,
 				389C5C7E1FB057CB00494006 /* CardSortTestViewController.m in Sources */,
 				3832119C202ADCF800DB7B7A /* PRVideoViewController.m in Sources */,
+				38748E6620D25BF600700891 /* PRConstantSQL.m in Sources */,
+				3850CDD220BC5D0400E45D8B /* PRProgressIndicator.m in Sources */,
 				38C76CA61FA1901700BCBCB9 /* SantaMgr.m in Sources */,
 				38C76D021FA977FB00BCBCB9 /* TruthMgr.m in Sources */,
 				383BA7001FD799B600B0D207 /* FirstCommunication+UI.m in Sources */,
 				38C76CC01FA1B62400BCBCB9 /* Puri.m in Sources */,
+				3850CDCC20BC5C9A00E45D8B /* PRProgressBaseView.m in Sources */,
 				38C76D0B1FAAAE2300BCBCB9 /* CardSortViewController.m in Sources */,
 				3801A0831F7F3078006C3D18 /* TizaChatDetail.m in Sources */,
 				389C5C781FAEE89400494006 /* PuriHandCardCell.m in Sources */,
@@ -1087,6 +1176,7 @@
 				38C76CDF1FA8493E00BCBCB9 /* UIImage+Rotate.m in Sources */,
 				3801A0531F7B4439006C3D18 /* TrueWorld.m in Sources */,
 				3801A0651F7E0F9D006C3D18 /* BaseChatDetail.m in Sources */,
+				38748E6320D23A4300700891 /* PRDBManager.m in Sources */,
 				38A13E081FE1192C002B62B4 /* BaseMgr.m in Sources */,
 				38C76CA21FA1850600BCBCB9 /* ChatRoomMgr.m in Sources */,
 				3801A07D1F7F302E006C3D18 /* PufuChatDetail.m in Sources */,
@@ -1153,6 +1243,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -1160,6 +1251,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -1208,6 +1300,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -1215,6 +1308,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;

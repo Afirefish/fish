@@ -8,10 +8,12 @@
 
 #import "PRBGMPlayer.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface PRBGMPlayer ()
 
 @property (nonatomic, strong) NSURL *BGMURL;
-@property (nonatomic, strong) AVAudioPlayer *player;
+@property (nonatomic, strong, nullable) AVAudioPlayer *player;
 
 @end
 
@@ -60,6 +62,10 @@ static dispatch_once_t onceToken;
     }
 }
 
+- (BOOL)isPlaying {
+    return self.player.isPlaying;
+}
+
 - (void)playWithFileURL:(NSURL *)url {
     [self removeNotify];
     NSError *error = nil;
@@ -104,3 +110,5 @@ static dispatch_once_t onceToken;
 }
 
 @end
+
+NS_ASSUME_NONNULL_END

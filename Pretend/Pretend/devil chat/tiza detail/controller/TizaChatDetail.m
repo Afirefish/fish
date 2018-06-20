@@ -55,6 +55,9 @@ static NSString *tizaChat = @"TizaChat";
 
 - (void)setupBackgroundImage {
     self.tableBackgroundView.image = [UIImage imageNamed:@"tizaBG"];
+    [self.controlsView.fastPlayBtn setImage:[UIImage imageNamed:@"fast_play_tiza"] forState:UIControlStateNormal];
+    [self.controlsView.autoPlayBtn setImage:[UIImage imageNamed:@"auto_play_tiza"] forState:UIControlStateNormal];
+    [self.controlsView.nextBtn setImage:[UIImage imageNamed:@"next_tiza"] forState:UIControlStateNormal];
 }
 
 - (void)playBGM {

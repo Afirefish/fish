@@ -14,7 +14,7 @@
 
 - (instancetype) initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
-        //设置玩家选项内容
+        // 设置玩家选项内容
         self.messageLabel = ({
             UILabel *label = [[UILabel alloc] init];
             label.adjustsFontSizeToFitWidth = YES;
@@ -32,7 +32,7 @@
             make.edges.equalTo(self.contentView);
         }];
         
-        //设置当前情景选项的背景图片
+        // 设置当前情景选项的背景图片
         self.backgroudImageView = ({
             UIImageView *imageView = [[UIImageView alloc] init];
             imageView.contentMode = UIViewContentModeScaleAspectFill;

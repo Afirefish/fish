@@ -26,7 +26,7 @@
     
     if (model.isDevil == YES && model.isChoice == YES && model.devil) {
         self.textLabel.textAlignment = NSTextAlignmentLeft;
-        //修改头像大小固定为40*40
+        // 修改头像大小固定为40*40
         self.imageView.image = [UIImage imageNamed:model.devil];
         CGSize imageSize = CGSizeMake(35, 35);
         UIGraphicsBeginImageContext(imageSize);

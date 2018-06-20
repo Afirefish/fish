@@ -15,9 +15,7 @@
 #import "TizaChatDetail.h"
 #import <Masonry.h>
 
-@interface ChatRoomCleared ()
-
-@end
+NS_ASSUME_NONNULL_BEGIN
 
 @implementation ChatRoomCleared
 
@@ -34,7 +32,7 @@
 
 - (void)setupSubviews {
 
-    //设置背景图片
+    // 设置背景图片
     UIImageView *backgroudImageView = ({
         UIImageView *imageView = [[UIImageView alloc] init];
         imageView.contentMode = UIViewContentModeScaleAspectFill;
@@ -54,7 +52,7 @@
         }
     }];
     
-    //结束的标签
+    // 结束的标签
     UILabel *finishLabel = ({
         UILabel *label = [[UILabel alloc] init];
         label.text = @"Chat Cleared!";
@@ -72,7 +70,7 @@
         make.bottom.equalTo(backgroudImageView.mas_centerY).offset(-80.0);
     }];
     
-    //重新开始
+    // 重新开始
     UIButton *reStartButton = ({
         UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
         button.backgroundColor = [UIColor clearColor];
@@ -91,7 +89,7 @@
     }];
 }
 
-- (void)reStart {//重新开始和恶魔的聊天
+- (void)reStart { // 重新开始和恶魔的聊天
     UIAlertController *reStartAlert = [UIAlertController alertControllerWithTitle:@"重新开始和恶魔的聊天吗？" message:@"重新开始将会清空所有获得的卡牌！" preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *reStartComfirmAction = [UIAlertAction actionWithTitle:@"重新开始" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         ChatRoomMgr *chatRoomMgr = [ChatRoomMgr defaultMgr];
@@ -109,3 +107,5 @@
 }
 
 @end
+
+NS_ASSUME_NONNULL_END

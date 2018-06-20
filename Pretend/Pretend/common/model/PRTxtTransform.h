@@ -44,17 +44,15 @@
  
  **/
 
-
 /*
  *转换小说成为以句号，问号，感叹号，省略号为间隔，一句一句的文本
  */
-- (void)transNovelToMyTxt;
-
+- (BOOL)transNovelToMyTxt;
 
 /*
  *转换一句一句的文本成为plist文本
  */
-- (void)transTXTToPlist;
+- (BOOL)transTXTToPlist;
 
 @end
 

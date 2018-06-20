@@ -24,7 +24,7 @@
     self.tabBarItem.title = [NSString stringWithFormat:@"Chat"];
 }
 
-- (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated {//隐藏tabbar
+- (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated { // 隐藏tabbar
     if ([viewController isKindOfClass:NSClassFromString(@"BaseChatDetail")] || [viewController isKindOfClass:NSClassFromString(@"DevilChatRoom")]) {
         viewController.hidesBottomBarWhenPushed = YES;
     } else {

@@ -35,8 +35,9 @@
 
 #pragma mark - data control
 
-//玩家做出选择的消息
+// 加载新的json数据
 - (ChatStatus)loadNewMessage {
+    // 获得当前真正的子类
     NSString *className = NSStringFromClass([self class]);
     NSString *devil = [className substringToIndex:className.length - 3];
     // 对于普通文本来说，只需要继续下一句话就好
@@ -57,9 +58,10 @@
         }
         if ([self.plainMsg isEqualToString:@"ALL END"]) {
             [[ChatRoomMgr defaultMgr] chatComplete];
+            [self updateCard:@"ALL"];
             return ChatComplete;
         }
-        // 章节开始,只有这个时候才记录剧情的进度,其他恶魔从这里读取数据来查看是不是自己的剧情
+        // 章节开始,只有这个时候才记录剧情的进度,其他AI从这里读取数据来查看是不是自己的剧情
         if ([self.plainMsg containsString:@"Chapter Begin"]) {
             NSArray *array = [self.plainMsg componentsSeparatedByString:@" "]; //文本生成的数组
             NSString *showTime = array.firstObject;
@@ -92,6 +94,7 @@
         if ([self.plainMsg containsString:@"Chapter End"]) {
             NSArray *array = [self.plainMsg componentsSeparatedByString:@" "]; //文本生成的数组
             NSString *showTime = array.firstObject;
+            [self updateCard:showTime];
             NSLog(@"现在 %@剧情结束了",showTime);
             return ChapterComplete;
         }
@@ -209,6 +212,10 @@
     if ([self isFileFirstCreated]) {
         NSLog(@"create file");
     }
+    if (self.isChoice) {
+        self.previousStep --;
+        self.finished --;
+    }
     NSNumber *previousStep = [NSNumber numberWithUnsignedInteger:self.previousStep];
     NSNumber *finished = [NSNumber numberWithUnsignedInteger:self.finished];
     NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:
@@ -239,6 +246,37 @@
                          self.cards,@"cards",
                          nil];
     [dic writeToFile:self.filePath atomically:YES];
+}
+
+- (void)updateCard:(NSString *)name {
+    if ([name isEqualToString:@"Santa"]) {
+        [[DevilCardMgr defaultMgr] updateCard:1 available:YES];
+    }
+    else if ([name isEqualToString:@"Pufu"]) {
+        [[DevilCardMgr defaultMgr] updateCard:2 available:YES];
+    }
+    else if ([name isEqualToString:@"Chizi"]) {
+        [[DevilCardMgr defaultMgr] updateCard:3 available:YES];
+    }
+    else if ([name isEqualToString:@"Tiza"]) {
+        [[DevilCardMgr defaultMgr] updateCard:4 available:YES];
+    }
+    else {
+        for (NSInteger i = 1; i <= 6; i ++) {
+            [[DevilCardMgr defaultMgr] updateCard:i available:YES];
+        }
+    }
+}
+
+- (void)loadAllCard {
+    [self updateCard:@"ALL"];
+}
+
+- (void)clearAllCard {
+    for (NSInteger i = 1; i <= 6; i ++) {
+        [[DevilCardMgr defaultMgr] updateCard:i available:NO];
+    }
+    [[DevilCardMgr defaultMgr].presentCards removeAllObjects];
 }
 
 //保存获得的卡牌信息

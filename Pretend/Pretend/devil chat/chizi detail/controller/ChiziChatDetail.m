@@ -54,6 +54,9 @@ static NSString *chiziChat = @"ChiziChat";
 
 - (void)setupBackgroundImage {
     self.tableBackgroundView.image = [UIImage imageNamed:@"chiziBG"];
+    [self.controlsView.fastPlayBtn setImage:[UIImage imageNamed:@"fast_play_chizi"] forState:UIControlStateNormal];
+    [self.controlsView.autoPlayBtn setImage:[UIImage imageNamed:@"auto_play_chizi"] forState:UIControlStateNormal];
+    [self.controlsView.nextBtn setImage:[UIImage imageNamed:@"next_chizi"] forState:UIControlStateNormal];
 }
 
 - (void)playBGM {

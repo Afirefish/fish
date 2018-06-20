@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "BaseChatModel.h"
 
-//聊天的cell的基类
+// 聊天的cell的基类
 
 @interface BaseChatTableViewCell : UITableViewCell
 
