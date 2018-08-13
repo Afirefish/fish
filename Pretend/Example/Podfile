@@ -1,0 +1,32 @@
+
+source 'https://github.com/CocoaPods/Specs.git'
+source 'http://git.baijiashilian.com/open-ios/specs.git'
+
+
+#use_frameworks!
+
+target 'BJPlayerManagerUI_Example' do
+  pod 'BJPlayerManagerUI', :path => '../'
+  
+#  点播
+  pod 'BJPlayerManagerCore'
+  pod 'BJVideoPlayer'
+  
+#  直播
+  pod 'BJLiveCore'
+
+#回放
+  pod 'BJPlaybackUI'
+  pod 'BJPlaybackCore'
+
+  pod 'MBProgressHUD' #, :inhibit_all_warnings => true
+  pod 'IQKeyboardManager'# :inhibit_all_warnings => true
+  pod 'ReactiveObjC'#, :inhibit_all_warnings => true
+  pod 'Masonry' #, :inhibit_all_warnings => true
+  
+
+  target 'BJPlayerManagerUI_Tests' do
+    inherit! :search_paths
+ 
+  end
+end

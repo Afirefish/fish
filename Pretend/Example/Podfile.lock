@@ -1,0 +1,129 @@
+PODS:
+  - ASIHTTPRequest (1.8.2):
+    - ASIHTTPRequest/ASIWebPageRequest (= 1.8.2)
+    - ASIHTTPRequest/CloudFiles (= 1.8.2)
+    - ASIHTTPRequest/Core (= 1.8.2)
+    - ASIHTTPRequest/S3 (= 1.8.2)
+  - ASIHTTPRequest/ASIWebPageRequest (1.8.2):
+    - ASIHTTPRequest/Core
+  - ASIHTTPRequest/CloudFiles (1.8.2):
+    - ASIHTTPRequest/Core
+  - ASIHTTPRequest/Core (1.8.2):
+    - Reachability
+  - ASIHTTPRequest/S3 (1.8.2):
+    - ASIHTTPRequest/Core
+  - BJLiveBase (1.3.2):
+    - BJLiveBase/Base (= 1.3.2)
+  - BJLiveBase/Base (1.3.2)
+  - BJLiveBase/Ext (1.3.2):
+    - BJLiveBase/Base
+  - BJLiveBase/Masonry (1.3.2):
+    - Masonry (~> 1.1)
+  - BJLiveBase/Networking (1.3.2)
+  - BJLiveBase/PocketSocket/Client (1.3.2):
+    - BJLiveBase/PocketSocket/Core
+  - BJLiveBase/PocketSocket/Core (1.3.2)
+  - BJLiveBase/WebImage/AFNetworking (1.3.2):
+    - BJLiveBase/Networking
+    - BJLiveBase/WebImage/BJLWebImage
+  - BJLiveBase/WebImage/BJLWebImage (1.3.2)
+  - BJLiveBase/YYModel (1.3.2)
+  - BJLiveCore (1.3.2):
+    - BJLiveBase (~> 1.3.1)
+    - BJLiveBase/Base
+    - BJLiveBase/Ext
+    - BJLiveBase/Networking
+    - BJLiveBase/PocketSocket/Client
+    - BJLiveBase/WebImage/AFNetworking
+    - BJLiveBase/YYModel
+    - BJLiveCore/static (= 1.3.2)
+  - BJLiveCore/BJHLMediaPlayer (1.3.2):
+    - BJLiveBase (~> 1.3.1)
+    - BJLiveBase/Base
+    - BJLiveBase/Ext
+    - BJLiveBase/Networking
+    - BJLiveBase/PocketSocket/Client
+    - BJLiveBase/WebImage/AFNetworking
+    - BJLiveBase/YYModel
+  - BJLiveCore/static (1.3.2):
+    - BJLiveBase (~> 1.3.1)
+    - BJLiveBase/Base
+    - BJLiveBase/Ext
+    - BJLiveBase/Networking
+    - BJLiveBase/PocketSocket/Client
+    - BJLiveBase/WebImage/AFNetworking
+    - BJLiveBase/YYModel
+    - BJLiveCore/BJHLMediaPlayer
+    - BJLLogStat (~> 0.9.1)
+  - BJLLogStat (0.9.1):
+    - BJLiveBase/Networking (~> 1.3.1)
+  - BJPlaybackCore (1.4.1):
+    - BJLiveBase (~> 1.3.2)
+    - BJLiveBase/Base
+    - BJLiveBase/Ext
+    - BJLiveBase/Networking
+    - BJLiveBase/YYModel
+    - BJLiveCore (~> 1.3.1)
+    - BJPlayerManagerCore (~> 1.4.2)
+  - BJPlaybackUI (1.4.1):
+    - BJLiveBase (~> 1.3.2)
+    - BJLiveBase/Masonry
+    - BJPlaybackCore (~> 1.4.1)
+    - Masonry
+    - MBProgressHUD
+  - BJPlayerManagerCore (1.4.2):
+    - ASIHTTPRequest
+    - BJLiveBase (~> 1.3.2)
+    - BJLiveBase/Base
+    - BJLiveBase/Networking
+    - BJLiveBase/YYModel
+    - BJLLogStat (~> 0.9.1)
+    - BJVideoPlayer (~> 1.4.4)
+  - BJPlayerManagerUI (1.4.1):
+    - BJPlayerManagerCore (~> 1.4.2)
+    - Masonry
+    - MBProgressHUD
+  - BJVideoPlayer (1.4.4):
+    - BJVideoPlayer/IJKMediaFramework (= 1.4.4)
+  - BJVideoPlayer/IJKMediaFramework (1.4.4)
+  - IQKeyboardManager (5.0.8)
+  - Masonry (1.1.0)
+  - MBProgressHUD (1.1.0)
+  - Reachability (3.2)
+  - ReactiveObjC (3.1.0)
+
+DEPENDENCIES:
+  - BJLiveCore
+  - BJPlaybackCore
+  - BJPlaybackUI
+  - BJPlayerManagerCore
+  - BJPlayerManagerUI (from `../`)
+  - BJVideoPlayer
+  - IQKeyboardManager
+  - Masonry
+  - MBProgressHUD
+  - ReactiveObjC
+
+EXTERNAL SOURCES:
+  BJPlayerManagerUI:
+    :path: ../
+
+SPEC CHECKSUMS:
+  ASIHTTPRequest: ec013992946676b7978dcbde6396d57312d21db4
+  BJLiveBase: 73d226e18b375999aa96c09711c424798ca0a92e
+  BJLiveCore: aa9be6624594db6b8e178cc72b95ea0d2e592331
+  BJLLogStat: 7e4ebd3cdbaf6cf134688d64a3c96ac634e18648
+  BJPlaybackCore: a014153e91a59d14c4fc83129cc14213dcf82c64
+  BJPlaybackUI: 578c5b27a50cc8cdce8e5fb784dba9c7dc1ec82f
+  BJPlayerManagerCore: 5d4e3b91fb4b782f39ade2abe1badde56ca0e0e3
+  BJPlayerManagerUI: 614d0fa751f7c970cd4f0eb1c7bb7004b7789999
+  BJVideoPlayer: 1347fa7a62469187d5d76f4f743e72dbf2a53442
+  IQKeyboardManager: 266cb7b1d11f94a3e71229d77f960f9a1b538e5b
+  Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
+  MBProgressHUD: e7baa36a220447d8aeb12769bf0585582f3866d9
+  Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
+  ReactiveObjC: 2a38ea15335de4119d8b17caf1db1484f61db902
+
+PODFILE CHECKSUM: b9d3f621ff8ab1d931a4fa69d9e943961c0b6cd1
+
+COCOAPODS: 1.4.0
