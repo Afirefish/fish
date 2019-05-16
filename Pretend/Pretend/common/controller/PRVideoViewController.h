@@ -12,6 +12,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/**
+ 视频播放器
+ */
 @interface PRVideoViewController : UIViewController
 
 - (instancetype)initWithOpeningAnimate:(BOOL)isOpeningAnimate;

@@ -8,6 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
+/**
+ 文本转换工具
+ */
 @interface PRTxtTransform : NSObject
 
 /**

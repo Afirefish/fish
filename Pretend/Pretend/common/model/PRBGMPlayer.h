@@ -10,6 +10,9 @@
 #import <AVFoundation/AVFoundation.h>
 #import <UIKit/UIKit.h>
 
+/**
+ 纯音乐播放器
+ */
 @interface PRBGMPlayer : NSObject
 
 @property (nonatomic, assign) BOOL isPlaying;

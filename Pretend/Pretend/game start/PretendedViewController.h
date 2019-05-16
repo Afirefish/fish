@@ -6,7 +6,7 @@
 //  Copyright © 2017年 戴曦嘉. All rights reserved.
 //
 
-// 根控制器
+// 根控制器 tabbar
 #import <UIKit/UIKit.h>
 
 @interface PretendedViewController : UITabBarController<UITabBarControllerDelegate>

@@ -10,6 +10,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/**
+ 初始控制器
+ */
 @interface FeatureViewController : UIViewController
 
 - (void)stopPlay:(void (^ __nullable)(void))completion;

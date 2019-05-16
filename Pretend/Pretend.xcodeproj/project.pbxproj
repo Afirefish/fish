@@ -95,6 +95,8 @@
 		38C76D231FAC538900BCBCB9 /* PuriHandCardAttributes.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C76D221FAC538900BCBCB9 /* PuriHandCardAttributes.m */; };
 		38E240241FECB69300896939 /* CardFeastViewController+UI.m in Sources */ = {isa = PBXBuildFile; fileRef = 38E240231FECB69300896939 /* CardFeastViewController+UI.m */; };
 		38E2404F1FF0954700896939 /* CardCrafterCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 38E2404E1FF0954700896939 /* CardCrafterCell.m */; };
+		70A2AB91226EA9650000BA94 /* PRCalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70A2AB90226EA9650000BA94 /* PRCalendarViewController.m */; };
+		70A2AB94226EA9D00000BA94 /* PRQRCodeScannerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70A2AB93226EA9D00000BA94 /* PRQRCodeScannerViewController.m */; };
 		FEB8F7668BFCA7D04939BC7C /* libPods-Pretend.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D33B925DDB6AA3EAC9B48AB8 /* libPods-Pretend.a */; };
 /* End PBXBuildFile section */
 
@@ -283,6 +285,10 @@
 		38E2404D1FF0954700896939 /* CardCrafterCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CardCrafterCell.h; sourceTree = "<group>"; };
 		38E2404E1FF0954700896939 /* CardCrafterCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CardCrafterCell.m; sourceTree = "<group>"; };
 		4D56EA3242F97FEDFA0D68FC /* Pods-Pretend.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pretend.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Pretend/Pods-Pretend.debug.xcconfig"; sourceTree = "<group>"; };
+		70A2AB8F226EA9650000BA94 /* PRCalendarViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PRCalendarViewController.h; sourceTree = "<group>"; };
+		70A2AB90226EA9650000BA94 /* PRCalendarViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PRCalendarViewController.m; sourceTree = "<group>"; };
+		70A2AB92226EA9D00000BA94 /* PRQRCodeScannerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PRQRCodeScannerViewController.h; sourceTree = "<group>"; };
+		70A2AB93226EA9D00000BA94 /* PRQRCodeScannerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PRQRCodeScannerViewController.m; sourceTree = "<group>"; };
 		D33B925DDB6AA3EAC9B48AB8 /* libPods-Pretend.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Pretend.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4A1AF25F2E2AE883639043E /* Pods-Pretend.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pretend.release.xcconfig"; path = "Pods/Target Support Files/Pods-Pretend/Pods-Pretend.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -513,6 +519,10 @@
 				3808515B2022B54100836D03 /* PHSelectViewController.m */,
 				3832119A202ADCF800DB7B7A /* PRVideoViewController.h */,
 				3832119B202ADCF800DB7B7A /* PRVideoViewController.m */,
+				70A2AB8F226EA9650000BA94 /* PRCalendarViewController.h */,
+				70A2AB90226EA9650000BA94 /* PRCalendarViewController.m */,
+				70A2AB92226EA9D00000BA94 /* PRQRCodeScannerViewController.h */,
+				70A2AB93226EA9D00000BA94 /* PRQRCodeScannerViewController.m */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -1006,6 +1016,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -1087,10 +1098,12 @@
 				383211AA202AE53C00DB7B7A /* PRCustomSlider.m in Sources */,
 				38C76D201FAB74B700BCBCB9 /* PuriLayout.m in Sources */,
 				387BA635201606C700B7A15B /* NSObject+BJLWillDeallocBlock.m in Sources */,
+				70A2AB94226EA9D00000BA94 /* PRQRCodeScannerViewController.m in Sources */,
 				38A17BFD2004987200088588 /* PRTxtTransform.m in Sources */,
 				389C5C871FB0866400494006 /* CardCoverFlowLayout.m in Sources */,
 				387BA6382016E37200B7A15B /* BaseChatModel.m in Sources */,
 				38C76D081FA9E64500BCBCB9 /* TWNavigationController.m in Sources */,
+				70A2AB91226EA9650000BA94 /* PRCalendarViewController.m in Sources */,
 				387BA634201606C700B7A15B /* NSObject+BJLObserving.m in Sources */,
 				38C76CAE1FA19C6B00BCBCB9 /* ChiziMgr.m in Sources */,
 				3873AD7820D7DC62007CC8D3 /* DevilCardMgr.m in Sources */,

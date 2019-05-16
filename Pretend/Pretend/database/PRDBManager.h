@@ -13,6 +13,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/**
+ 小型数据库，一般可以不用
+ */
 @interface PRDBManager : NSObject
 // 数据库位置,使用前请先初始化路径
 @property (nonatomic, strong) NSString *databasePath;

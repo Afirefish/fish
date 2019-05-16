@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
+/**
+ 相册选择
+ */
 @interface PHSelectViewController : UIViewController
 
 @end
