@@ -7,6 +7,7 @@
 //
 
 #import "PRCalendarViewController.h"
+#import "PRCircleView.h"
 
 @interface PRCalendarViewController ()
 
@@ -16,17 +17,20 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+
+    self.view.backgroundColor = [UIColor whiteColor];
+    
+    NSArray *sizeArr = @[@300.0, @350.0, @400.0, @450.0, @500.0, @550.0, @600.0, @650.0];
+    NSArray *colorArr = @[[UIColor redColor], [UIColor orangeColor], [UIColor yellowColor], [UIColor greenColor], [UIColor cyanColor], [UIColor blueColor], [UIColor purpleColor], [UIColor blackColor]];
+    for (NSInteger i = 0; i <= 1; i ++) {
+        [self addSubViewWithRadius:[[sizeArr objectAtIndex:7 - i] floatValue] color:[colorArr objectAtIndex:7 - i]];
+    }
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)addSubViewWithRadius:(CGFloat)radius color:(UIColor *)color {
+    PRCircleView *view = [[PRCircleView alloc] initWithRadius:radius color:color];
+    [self.view addSubview:view];
+    view.frame = [UIScreen mainScreen].bounds;
 }
-*/
 
 @end
