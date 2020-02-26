@@ -11,8 +11,6 @@
 		3801A01A1F7A76B0006C3D18 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3801A0191F7A76B0006C3D18 /* AppDelegate.m */; };
 		3801A0221F7A76B0006C3D18 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3801A0211F7A76B0006C3D18 /* Assets.xcassets */; };
 		3801A0251F7A76B0006C3D18 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3801A0231F7A76B0006C3D18 /* LaunchScreen.storyboard */; };
-		3801A0301F7A76B0006C3D18 /* PretendTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3801A02F1F7A76B0006C3D18 /* PretendTests.m */; };
-		3801A03B1F7A76B0006C3D18 /* PretendUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3801A03A1F7A76B0006C3D18 /* PretendUITests.m */; };
 		3801A04A1F7B43CF006C3D18 /* FirstCommunication.m in Sources */ = {isa = PBXBuildFile; fileRef = 3801A0491F7B43CF006C3D18 /* FirstCommunication.m */; };
 		3801A04D1F7B4404006C3D18 /* DevilCard.m in Sources */ = {isa = PBXBuildFile; fileRef = 3801A04C1F7B4404006C3D18 /* DevilCard.m */; };
 		3801A0501F7B4423006C3D18 /* DevilRoom.m in Sources */ = {isa = PBXBuildFile; fileRef = 3801A04F1F7B4423006C3D18 /* DevilRoom.m */; };
@@ -98,25 +96,23 @@
 		70A2AB91226EA9650000BA94 /* PRCalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70A2AB90226EA9650000BA94 /* PRCalendarViewController.m */; };
 		70A2AB94226EA9D00000BA94 /* PRQRCodeScannerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70A2AB93226EA9D00000BA94 /* PRQRCodeScannerViewController.m */; };
 		70C6C24D232772FF00508DE4 /* PRCircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 70C6C24C232772FF00508DE4 /* PRCircleView.m */; };
+		70EB0A10239F9CA300FBE7EC /* PRCalendarHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 70EB0A0F239F9CA300FBE7EC /* PRCalendarHeaderView.m */; };
+		70EB0A1323A0909500FBE7EC /* PRCalendarCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 70EB0A1223A0909500FBE7EC /* PRCalendarCell.m */; };
 		FEB8F7668BFCA7D04939BC7C /* libPods-Pretend.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D33B925DDB6AA3EAC9B48AB8 /* libPods-Pretend.a */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		3801A02C1F7A76B0006C3D18 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 3801A00A1F7A76B0006C3D18 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 3801A0111F7A76B0006C3D18;
-			remoteInfo = Pretend;
+/* Begin PBXCopyFilesBuildPhase section */
+		70C6C2762328946F00508DE4 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
 		};
-		3801A0371F7A76B0006C3D18 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 3801A00A1F7A76B0006C3D18 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 3801A0111F7A76B0006C3D18;
-			remoteInfo = Pretend;
-		};
-/* End PBXContainerItemProxy section */
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		3801A0121F7A76B0006C3D18 /* Pretend.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pretend.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -126,12 +122,6 @@
 		3801A0211F7A76B0006C3D18 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3801A0241F7A76B0006C3D18 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3801A0261F7A76B0006C3D18 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		3801A02B1F7A76B0006C3D18 /* PretendTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PretendTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		3801A02F1F7A76B0006C3D18 /* PretendTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PretendTests.m; sourceTree = "<group>"; };
-		3801A0311F7A76B0006C3D18 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		3801A0361F7A76B0006C3D18 /* PretendUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PretendUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		3801A03A1F7A76B0006C3D18 /* PretendUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PretendUITests.m; sourceTree = "<group>"; };
-		3801A03C1F7A76B0006C3D18 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3801A0481F7B43CF006C3D18 /* FirstCommunication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirstCommunication.h; sourceTree = "<group>"; };
 		3801A0491F7B43CF006C3D18 /* FirstCommunication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirstCommunication.m; sourceTree = "<group>"; };
 		3801A04B1F7B4404006C3D18 /* DevilCard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DevilCard.h; sourceTree = "<group>"; };
@@ -292,6 +282,12 @@
 		70A2AB93226EA9D00000BA94 /* PRQRCodeScannerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PRQRCodeScannerViewController.m; sourceTree = "<group>"; };
 		70C6C24B232772FF00508DE4 /* PRCircleView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PRCircleView.h; sourceTree = "<group>"; };
 		70C6C24C232772FF00508DE4 /* PRCircleView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PRCircleView.m; sourceTree = "<group>"; };
+		70C6C2562328946F00508DE4 /* ReplayKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReplayKit.framework; path = System/Library/Frameworks/ReplayKit.framework; sourceTree = SDKROOT; };
+		70C6C2632328946F00508DE4 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		70EB0A0E239F9CA300FBE7EC /* PRCalendarHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PRCalendarHeaderView.h; sourceTree = "<group>"; };
+		70EB0A0F239F9CA300FBE7EC /* PRCalendarHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PRCalendarHeaderView.m; sourceTree = "<group>"; };
+		70EB0A1123A0909500FBE7EC /* PRCalendarCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PRCalendarCell.h; path = Pretend/common/view/PRCalendarCell.h; sourceTree = SOURCE_ROOT; };
+		70EB0A1223A0909500FBE7EC /* PRCalendarCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = PRCalendarCell.m; path = Pretend/common/view/PRCalendarCell.m; sourceTree = SOURCE_ROOT; };
 		D33B925DDB6AA3EAC9B48AB8 /* libPods-Pretend.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Pretend.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4A1AF25F2E2AE883639043E /* Pods-Pretend.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pretend.release.xcconfig"; path = "Pods/Target Support Files/Pods-Pretend/Pods-Pretend.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -306,20 +302,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		3801A0281F7A76B0006C3D18 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		3801A0331F7A76B0006C3D18 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -328,6 +310,8 @@
 			children = (
 				38748E5F20D239E700700891 /* libsqlite3.tbd */,
 				D33B925DDB6AA3EAC9B48AB8 /* libPods-Pretend.a */,
+				70C6C2562328946F00508DE4 /* ReplayKit.framework */,
+				70C6C2632328946F00508DE4 /* UIKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -336,8 +320,6 @@
 			isa = PBXGroup;
 			children = (
 				3801A0141F7A76B0006C3D18 /* Pretend */,
-				3801A02E1F7A76B0006C3D18 /* PretendTests */,
-				3801A0391F7A76B0006C3D18 /* PretendUITests */,
 				3801A0131F7A76B0006C3D18 /* Products */,
 				77B4DAE9C004B9A31F0F9C7E /* Pods */,
 				2AA6CFA4835DFD7BAA736578 /* Frameworks */,
@@ -348,8 +330,6 @@
 			isa = PBXGroup;
 			children = (
 				3801A0121F7A76B0006C3D18 /* Pretend.app */,
-				3801A02B1F7A76B0006C3D18 /* PretendTests.xctest */,
-				3801A0361F7A76B0006C3D18 /* PretendUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -380,24 +360,6 @@
 				3801A0161F7A76B0006C3D18 /* main.m */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		3801A02E1F7A76B0006C3D18 /* PretendTests */ = {
-			isa = PBXGroup;
-			children = (
-				3801A02F1F7A76B0006C3D18 /* PretendTests.m */,
-				3801A0311F7A76B0006C3D18 /* Info.plist */,
-			);
-			path = PretendTests;
-			sourceTree = "<group>";
-		};
-		3801A0391F7A76B0006C3D18 /* PretendUITests */ = {
-			isa = PBXGroup;
-			children = (
-				3801A03A1F7A76B0006C3D18 /* PretendUITests.m */,
-				3801A03C1F7A76B0006C3D18 /* Info.plist */,
-			);
-			path = PretendUITests;
 			sourceTree = "<group>";
 		};
 		3826FB5C205E3D2E00C6990E /* card sort */ = {
@@ -513,6 +475,10 @@
 				383211A9202AE53C00DB7B7A /* PRCustomSlider.m */,
 				70C6C24B232772FF00508DE4 /* PRCircleView.h */,
 				70C6C24C232772FF00508DE4 /* PRCircleView.m */,
+				70EB0A0E239F9CA300FBE7EC /* PRCalendarHeaderView.h */,
+				70EB0A0F239F9CA300FBE7EC /* PRCalendarHeaderView.m */,
+				70EB0A1123A0909500FBE7EC /* PRCalendarCell.h */,
+				70EB0A1223A0909500FBE7EC /* PRCalendarCell.m */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -939,6 +905,7 @@
 				3801A00E1F7A76B0006C3D18 /* Sources */,
 				3801A00F1F7A76B0006C3D18 /* Frameworks */,
 				3801A0101F7A76B0006C3D18 /* Resources */,
+				70C6C2762328946F00508DE4 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
@@ -948,42 +915,6 @@
 			productName = Pretend;
 			productReference = 3801A0121F7A76B0006C3D18 /* Pretend.app */;
 			productType = "com.apple.product-type.application";
-		};
-		3801A02A1F7A76B0006C3D18 /* PretendTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 3801A0421F7A76B0006C3D18 /* Build configuration list for PBXNativeTarget "PretendTests" */;
-			buildPhases = (
-				3801A0271F7A76B0006C3D18 /* Sources */,
-				3801A0281F7A76B0006C3D18 /* Frameworks */,
-				3801A0291F7A76B0006C3D18 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				3801A02D1F7A76B0006C3D18 /* PBXTargetDependency */,
-			);
-			name = PretendTests;
-			productName = PretendTests;
-			productReference = 3801A02B1F7A76B0006C3D18 /* PretendTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		3801A0351F7A76B0006C3D18 /* PretendUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 3801A0451F7A76B0006C3D18 /* Build configuration list for PBXNativeTarget "PretendUITests" */;
-			buildPhases = (
-				3801A0321F7A76B0006C3D18 /* Sources */,
-				3801A0331F7A76B0006C3D18 /* Frameworks */,
-				3801A0341F7A76B0006C3D18 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				3801A0381F7A76B0006C3D18 /* PBXTargetDependency */,
-			);
-			name = PretendUITests;
-			productName = PretendUITests;
-			productReference = 3801A0361F7A76B0006C3D18 /* PretendUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
 
@@ -1004,16 +935,6 @@
 							};
 						};
 					};
-					3801A02A1F7A76B0006C3D18 = {
-						CreatedOnToolsVersion = 8.3.3;
-						ProvisioningStyle = Automatic;
-						TestTargetID = 3801A0111F7A76B0006C3D18;
-					};
-					3801A0351F7A76B0006C3D18 = {
-						CreatedOnToolsVersion = 8.3.3;
-						ProvisioningStyle = Automatic;
-						TestTargetID = 3801A0111F7A76B0006C3D18;
-					};
 				};
 			};
 			buildConfigurationList = 3801A00D1F7A76B0006C3D18 /* Build configuration list for PBXProject "Pretend" */;
@@ -1031,8 +952,6 @@
 			projectRoot = "";
 			targets = (
 				3801A0111F7A76B0006C3D18 /* Pretend */,
-				3801A02A1F7A76B0006C3D18 /* PretendTests */,
-				3801A0351F7A76B0006C3D18 /* PretendUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -1054,20 +973,6 @@
 				389E43D2203FA6AE00AD107F /* SantaChat.mp3 in Resources */,
 				389E43D8203FA6CE00AD107F /* TizaChat.mp3 in Resources */,
 				383D72452006058E0063FEB6 /* article.txt in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		3801A0291F7A76B0006C3D18 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		3801A0341F7A76B0006C3D18 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1139,6 +1044,7 @@
 				3801A0771F7E3BF6006C3D18 /* BaseChatTableViewCell.m in Sources */,
 				38C76CEB1FA867D600BCBCB9 /* BaseCardCraftViewController.m in Sources */,
 				389C5C7E1FB057CB00494006 /* CardSortTestViewController.m in Sources */,
+				70EB0A10239F9CA300FBE7EC /* PRCalendarHeaderView.m in Sources */,
 				3832119C202ADCF800DB7B7A /* PRVideoViewController.m in Sources */,
 				38748E6620D25BF600700891 /* PRConstantSQL.m in Sources */,
 				3850CDD220BC5D0400E45D8B /* PRProgressIndicator.m in Sources */,
@@ -1161,6 +1067,7 @@
 				38C76D0E1FAAAFC800BCBCB9 /* CardCell.m in Sources */,
 				70C6C24D232772FF00508DE4 /* PRCircleView.m in Sources */,
 				38E240241FECB69300896939 /* CardFeastViewController+UI.m in Sources */,
+				70EB0A1323A0909500FBE7EC /* PRCalendarCell.m in Sources */,
 				38A13E021FE0D1C8002B62B4 /* UIColor+PRCustomColor.m in Sources */,
 				3801A0561F7B5CB3006C3D18 /* PretendedViewController.m in Sources */,
 				383211AD202C81CD00DB7B7A /* PRBGMPlayer.m in Sources */,
@@ -1178,36 +1085,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		3801A0271F7A76B0006C3D18 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				3801A0301F7A76B0006C3D18 /* PretendTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		3801A0321F7A76B0006C3D18 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				3801A03B1F7A76B0006C3D18 /* PretendUITests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		3801A02D1F7A76B0006C3D18 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 3801A0111F7A76B0006C3D18 /* Pretend */;
-			targetProxy = 3801A02C1F7A76B0006C3D18 /* PBXContainerItemProxy */;
-		};
-		3801A0381F7A76B0006C3D18 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 3801A0111F7A76B0006C3D18 /* Pretend */;
-			targetProxy = 3801A0371F7A76B0006C3D18 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		3801A0231F7A76B0006C3D18 /* LaunchScreen.storyboard */ = {
@@ -1334,6 +1212,7 @@
 			baseConfigurationReference = 4D56EA3242F97FEDFA0D68FC /* Pods-Pretend.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEVELOPMENT_TEAM = FQVXFE38VD;
 				INFOPLIST_FILE = Pretend/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -1348,58 +1227,13 @@
 			baseConfigurationReference = D4A1AF25F2E2AE883639043E /* Pods-Pretend.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEVELOPMENT_TEAM = FQVXFE38VD;
 				INFOPLIST_FILE = Pretend/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = daixijia.Pretend;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Release;
-		};
-		3801A0431F7A76B0006C3D18 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = PretendTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = daixijia.PretendTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Pretend.app/Pretend";
-			};
-			name = Debug;
-		};
-		3801A0441F7A76B0006C3D18 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = PretendTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = daixijia.PretendTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Pretend.app/Pretend";
-			};
-			name = Release;
-		};
-		3801A0461F7A76B0006C3D18 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				INFOPLIST_FILE = PretendUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = daixijia.PretendUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_TARGET_NAME = Pretend;
-			};
-			name = Debug;
-		};
-		3801A0471F7A76B0006C3D18 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				INFOPLIST_FILE = PretendUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = daixijia.PretendUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_TARGET_NAME = Pretend;
 			};
 			name = Release;
 		};
@@ -1420,24 +1254,6 @@
 			buildConfigurations = (
 				3801A0401F7A76B0006C3D18 /* Debug */,
 				3801A0411F7A76B0006C3D18 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		3801A0421F7A76B0006C3D18 /* Build configuration list for PBXNativeTarget "PretendTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				3801A0431F7A76B0006C3D18 /* Debug */,
-				3801A0441F7A76B0006C3D18 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		3801A0451F7A76B0006C3D18 /* Build configuration list for PBXNativeTarget "PretendUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				3801A0461F7A76B0006C3D18 /* Debug */,
-				3801A0471F7A76B0006C3D18 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
