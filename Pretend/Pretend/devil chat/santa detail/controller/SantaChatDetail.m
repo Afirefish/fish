@@ -6,6 +6,8 @@
 //  Copyright © 2017年 戴曦嘉. All rights reserved.
 //
 
+#import <AVFoundation/AVFoundation.h>
+
 #import "SantaChatDetail.h"
 #import "SantaMgr.h"
 
@@ -25,6 +27,7 @@ static NSString *santaChat = @"SantaChat";
 - (instancetype)init {
     if (self = [super init]) {
         self.chatMgr = [SantaMgr defaultMgr];
+        [self startTimer];
     }
     return self;
 }
@@ -82,6 +85,23 @@ static NSString *santaChat = @"SantaChat";
 //玩家做出选择之后的处理
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     [super collectionView:collectionView didSelectItemAtIndexPath:indexPath];
+}
+
+#pragma mark - timer
+
+- (void)startTimer {
+    [NSTimer scheduledTimerWithTimeInterval:1.0 repeats:YES block:^(NSTimer * _Nonnull timer) {
+        NSError *error = nil;
+        [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayAndRecord error:&error];
+        if (error) {
+            NSLog(@"AVAudioSession error %@", error);
+        }
+        [[AVAudioSession sharedInstance] setActive:YES error:&error];
+        if (error) {
+            NSLog(@"AVAudioSession error %@", error);
+        }
+        NSLog(@"scheduledTimerWithTimeInterval");
+    }];
 }
 
 #pragma cards

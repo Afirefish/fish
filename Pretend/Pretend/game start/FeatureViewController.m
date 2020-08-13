@@ -223,20 +223,6 @@ NS_ASSUME_NONNULL_BEGIN
     }];
 }
 
-#pragma mark - rotate control
-
-- (BOOL)shouldAutorotate {
-    return YES;
-}
-
-- (UIInterfaceOrientationMask)supportedInterfaceOrientations {
-    return UIInterfaceOrientationMaskLandscape;
-}
-
-- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation {
-    return UIInterfaceOrientationLandscapeRight;
-}
-
 @end
 
 NS_ASSUME_NONNULL_END

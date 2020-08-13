@@ -36,6 +36,7 @@ NS_ASSUME_NONNULL_BEGIN
     [super viewDidLoad];
     self.delegate = self;
     // Do any additional setup after loading the view.
+    self.modalPresentationStyle = UIModalPresentationOverFullScreen;
     self.view.backgroundColor = [UIColor whiteColor];
     self.tabBar.tintColor = [UIColor blackColor];
     NSMutableArray *childViewControllers = [[NSMutableArray alloc] init];
