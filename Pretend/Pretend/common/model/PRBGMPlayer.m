@@ -86,13 +86,13 @@ static dispatch_once_t onceToken;
 
 - (void)dealWithInterrupt:(NSNotification *)notification {
     NSDictionary *info = notification.userInfo;
-//    AVAudioSessionInterruptionType type = [info[AVAudioSessionInterruptionTypeKey] integerValue];
-//    if (type == AVAudioSessionInterruptionTypeBegan) {
-//        [self pause];
-//    }
-//    if (type == AVAudioSessionInterruptionTypeEnded) {
-//        [self play];
-//    }
+    AVAudioSessionInterruptionType type = [info[AVAudioSessionInterruptionTypeKey] integerValue];
+    if (type == AVAudioSessionInterruptionTypeBegan) {
+        [self pause];
+    }
+    if (type == AVAudioSessionInterruptionTypeEnded) {
+        [self play];
+    }
 }
 
 - (void)destroy {
@@ -121,25 +121,25 @@ static dispatch_once_t onceToken;
 
 //来电中断处理
 - (void)interruptionNotificationHandler:(NSNotification*)notification {
-//    NSDictionary *interuptionDict = notification.userInfo;
-//    NSString *type = [NSString stringWithFormat:@"%@", [interuptionDict valueForKey:AVAudioSessionInterruptionTypeKey]];
-//    NSUInteger interuptionType = [type integerValue];
-//
-//    if (interuptionType == AVAudioSessionInterruptionTypeBegan) {
-//        //获取中断前音乐是否在播放
-//        NSLog(@"AVAudioSessionInterruptionTypeBegan");
-//    }else if (interuptionType == AVAudioSessionInterruptionTypeEnded) {
-//        NSLog(@"AVAudioSessionInterruptionTypeEnded");
-//    }
-//
-//    if(self.isPlaying)
-//    {
-//        //停止播放的事件
-//        [self play];
-//    }else {
-//        //继续播放的事件
-//        [self pause];
-//    }
+    NSDictionary *interuptionDict = notification.userInfo;
+    NSString *type = [NSString stringWithFormat:@"%@", [interuptionDict valueForKey:AVAudioSessionInterruptionTypeKey]];
+    NSUInteger interuptionType = [type integerValue];
+
+    if (interuptionType == AVAudioSessionInterruptionTypeBegan) {
+        //获取中断前音乐是否在播放
+        NSLog(@"AVAudioSessionInterruptionTypeBegan");
+    }else if (interuptionType == AVAudioSessionInterruptionTypeEnded) {
+        NSLog(@"AVAudioSessionInterruptionTypeEnded");
+    }
+
+    if(self.isPlaying)
+    {
+        //停止播放的事件
+        [self play];
+    }else {
+        //继续播放的事件
+        [self pause];
+    }
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
@@ -188,38 +188,32 @@ static dispatch_once_t onceToken;
     commandCenter.playCommand.enabled = YES;
     // 为播放命令添加响应事件, 在点击后触发
     [commandCenter.playCommand addTargetWithHandler:^MPRemoteCommandHandlerStatus(MPRemoteCommandEvent * _Nonnull event) {
-//        [self play];
-//        [self configNowPlayingInfoCenter];
+        [self play];
+        [self configNowPlayingInfoCenter];
         return MPRemoteCommandHandlerStatusSuccess;
     }];
     // 播放, 暂停, 上下曲的命令默认都是启用状态, 即enabled默认为YES
     [commandCenter.pauseCommand addTargetWithHandler:^MPRemoteCommandHandlerStatus(MPRemoteCommandEvent * _Nonnull event) {
         //点击了暂停
-//        [self pause];
-//        [self configNowPlayingInfoCenter];
+        [self pause];
+        [self configNowPlayingInfoCenter];
         return MPRemoteCommandHandlerStatusSuccess;
     }];
-//    [commandCenter.previousTrackCommand addTargetWithHandler:^MPRemoteCommandHandlerStatus(MPRemoteCommandEvent * _Nonnull event) {
-//        //点击了上一首
-//        [[MusicPlayViewController shareMusicPlay] lastSongAction];
-//        [[MusicPlayViewController shareMusicPlay] configNowPlayingInfoCenter];
-//        return MPRemoteCommandHandlerStatusSuccess;
-//    }];
-//    [commandCenter.nextTrackCommand addTargetWithHandler:^MPRemoteCommandHandlerStatus(MPRemoteCommandEvent * _Nonnull event) {
-//        //点击了下一首
-//        [[MusicPlayViewController shareMusicPlay] nextSongButtonAction:nil];
-//        [[MusicPlayViewController shareMusicPlay] configNowPlayingInfoCenter];
-//        return MPRemoteCommandHandlerStatusSuccess;
-//    }];
-    // 启用耳机的播放/暂停命令 (耳机上的播放按钮触发的命令)
-//    commandCenter.togglePlayPauseCommand.enabled = YES;
-//    // 为耳机的按钮操作添加相关的响应事件
-//    [commandCenter.togglePlayPauseCommand addTargetWithHandler:^MPRemoteCommandHandlerStatus(MPRemoteCommandEvent * _Nonnull event) {
-//        // 进行播放/暂停的相关操作 (耳机的播放/暂停按钮)
-//        [[MusicPlayViewController shareMusicPlay] playPauseButtonAction:nil];
-//        [[MusicPlayViewController shareMusicPlay] configNowPlayingInfoCenter];
-//        return MPRemoteCommandHandlerStatusSuccess;
-//    }];
+    [commandCenter.previousTrackCommand addTargetWithHandler:^MPRemoteCommandHandlerStatus(MPRemoteCommandEvent * _Nonnull event) {
+        //点击了上一首
+        return MPRemoteCommandHandlerStatusSuccess;
+    }];
+    [commandCenter.nextTrackCommand addTargetWithHandler:^MPRemoteCommandHandlerStatus(MPRemoteCommandEvent * _Nonnull event) {
+        //点击了下一首
+
+        return MPRemoteCommandHandlerStatusSuccess;
+    }];
+    commandCenter.togglePlayPauseCommand.enabled = YES;
+    // 为耳机的按钮操作添加相关的响应事件
+    [commandCenter.togglePlayPauseCommand addTargetWithHandler:^MPRemoteCommandHandlerStatus(MPRemoteCommandEvent * _Nonnull event) {
+        // 进行播放/暂停的相关操作 (耳机的播放/暂停按钮)
+        return MPRemoteCommandHandlerStatusSuccess;
+    }];
 }
 
 - (void)applicationWillResignActive {
